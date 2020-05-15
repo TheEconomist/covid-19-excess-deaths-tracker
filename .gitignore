@@ -1,0 +1,17 @@
+# Mac directory maintenance
+.DS_Store
+
+# R code
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+
+# Python code
+__pycache__/
+.ipynb_checkpoints
+*.py[cod]
+*.$py.class
+
+# Javascript
+node_modules
