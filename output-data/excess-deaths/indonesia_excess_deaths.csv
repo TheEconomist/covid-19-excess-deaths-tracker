@@ -1,0 +1,5 @@
+"country","region","region_code","start_date","end_date","year","month","population","total_deaths","covid_deaths","expected_deaths","excess_deaths","non_covid_deaths"
+"Indonesia","Jakarta",0,"2020-01-01","2020-01-31",2020,1,10770000,3303,0,2717.5,585.5,3303
+"Indonesia","Jakarta",0,"2020-02-01","2020-02-29",2020,2,10770000,2744,0,2772.5,-28.5,2744
+"Indonesia","Jakarta",0,"2020-03-01","2020-03-31",2020,3,10770000,4422,84,3046.5,1375.5,4338
+"Indonesia","Jakarta",0,"2020-04-01","2020-04-30",2020,4,10770000,4377,297,2967.5,1409.5,4080

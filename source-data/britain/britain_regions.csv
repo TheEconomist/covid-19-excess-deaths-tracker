@@ -1,0 +1,15 @@
+country,region,region_code,population
+Britain,England and Wales,K04000001,59115809
+Britain,North East,E12000001,2657909
+Britain,North West,E12000002,7292093
+Britain,Yorkshire and The Humber,E12000003,5479615
+Britain,East Midlands,E12000004,4804149
+Britain,West Midlands,E12000005,5900757
+Britain,East,E12000006,6201214
+Britain,London,E12000007,8908081
+Britain,South East,E12000008,9133625
+Britain,South West,E12000009,5599735
+Britain,Wales,W92000004,3138631
+Britain,Scotland,S92000003,5438100
+Britain,Northern Ireland,N92000002,1881641
+Britain,Britain,K02000001,66435550

@@ -1,0 +1,52 @@
+country,source_type,frequency,description,link
+All,Covid-19 deaths,Daily,"Data from ECDC, via Our World In Data",https://ourworldindata.org/coronavirus-source-data
+Austria,Total deaths,Weekly,Data from Statistik Austria,http://www.statistik.at/web_de/presse/122934.html
+Austria,Population,,Data from Statistik Austria,http://www.statistik.at/web_de/statistiken/menschen_und_gesellschaft/bevoelkerung/bevoelkerungsstand_und_veraenderung/bevoelkerung_zu_jahres-_quartalsanfang/023582.html
+Belgium,Total deaths,Weekly,Data from Sciensano,https://covid-19.sciensano.be/nl/covid-19-epidemiologische-situatie
+Belgium,Covid-19 deaths,Daily,Data from Sciensano,https://epistat.wiv-isp.be/covid/
+Belgium,Population,,Data from Statbel,https://statbel.fgov.be/nl/themas/bevolking/structuur-van-de-bevolking
+Britain,Total deaths,Weekly,English and Welsh data from Office for National Statistics,https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/weeklyprovisionalfiguresondeathsregisteredinenglandandwales
+Britain,Total deaths,Weekly,Scottish data from National Records of Scotland,https://www.nrscotland.gov.uk/statistics-and-data/statistics/statistics-by-theme/vital-events/general-publications/weekly-and-monthly-data-on-births-and-deaths/deaths-involving-coronavirus-covid-19-in-scotland
+Britain,Total deaths,Weekly,North Irish data from Northern Ireland Statistics and Research Agency,https://www.nisra.gov.uk/publications/weekly-deaths
+Britain,Covid-19 deaths,Weekly,English and Welsh data from Office for National Statistics,https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/weeklyprovisionalfiguresondeathsregisteredinenglandandwales
+Britain,Covid-19 deaths,Weekly,Scottish data from National Records of Scotland,https://www.nrscotland.gov.uk/statistics-and-data/statistics/statistics-by-theme/vital-events/general-publications/weekly-and-monthly-data-on-births-and-deaths/deaths-involving-coronavirus-covid-19-in-scotland
+Britain,Covid-19 deaths,Weekly,North Irish data from Northern Ireland Statistics and Research Agency,https://www.nisra.gov.uk/publications/weekly-deaths
+Britain,Population,,Data from Office for National Statistics,https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland
+Denmark,Total deaths,Daily,Data from Danmarks Statistik,https://www.statistikbanken.dk/statbank5a/SelectVarVal/Define.asp?Maintable=DODC1&PLanguage=1
+Denmark,Population,,Data from Danmarks Statistik,https://www.dst.dk/en/Statistik/emner/befolkning-og-valg/befolkning-og-befolkningsfremskrivning
+Ecuador,Total deaths,,Data from Registro Civil,https://www.registrocivil.gob.ec/cifras/
+Ecuador,Population,,"Data from Instituto Nacional de Estadistica y Censos del Ecuador, via City Population",https://www.citypopulation.de/php/ecuador-admin.php
+France,Total deaths,Weekly,Data from Insee,https://www.insee.fr/fr/statistiques/4487854
+France,Total deaths,Yearly,Data from Insee,https://www.insee.fr/fr/information/4190491
+France,Covid-19 deaths,Daily,"Data from Sante Publique France, via OpenCOVID19 France",https://github.com/opencovid19-fr/data/blob/master/data-sources/sante-publique-france/covid_hospit.csv
+France,Population,,Data from Insee,https://www.insee.fr/fr/statistiques/4265390?sommaire=4265511
+Germany,Total deaths,Weekly,Data from Destatis,https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Sterbefaelle-Lebenserwartung/Tabellen/sonderauswertung-sterbefaelle.html?nn=209016
+Germany,Population,,Data from Destatis,https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Bevoelkerungsstand/Tabellen/zensus-geschlecht-staatsangehoerigkeit-2019.html
+Indonesia,Total deaths,Monthly,Jakarta data on burials from Provinsi DKI Jakarta,https://pertamananpemakaman.jakarta.go.id/v140/t15
+Indonesia,Covid-19 deaths,Daily,Jakarta data from Provinsi DKI Jakarta,https://corona.jakarta.go.id/en/data-pemantauan
+Indonesia,Population,,Jakarta data from World Population Review,https://worldpopulationreview.com/world-cities/jakarta-population/
+Italy,Total deaths,Weekly,Data from ISTAT,https://www.istat.it/it/archivio/240401
+Italy,Covid-19 deaths,Daily,Data from Dipartimento della Protezione Civile,https://github.com/pcm-dpc/COVID-19/blob/master/dati-regioni/dpc-covid19-ita-regioni-latest.csv
+Italy,Population,,"Data from ISTAT, covering each comune",http://asc.istat.it/asc_BL/
+Netherlands,Total deaths,Weekly,Data from Centraal Bureau voor de Statistiek,https://opendata.cbs.nl/statline/#/CBS/nl/dataset/70895ned/table?ts=1585916949260
+Netherlands,Population,,Data from Centraal Bureau voor de Statistiek,https://opendata.cbs.nl/statline/#/CBS/nl/dataset/37230ned/table
+Norway,Total deaths,Daily,Data from Statistisk Sentralbyra,https://www.ssb.no/statbank/table/07995/
+Norway,Population,,Data from Statistisk Sentralbyra,https://www.ssb.no/en/befolkning/statistikker/folkemengde/aar-per-1-januar
+Portugal,Total deaths,Daily,Data from Ministerio da Saœde,https://evm.min-saude.pt/#shiny-tab-q_total
+Portugal,Population,,Data from Instituto Nacional de Estatistica,https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_destaques&DESTAQUESdest_boui=354227526&DESTAQUESmodo=2
+Spain,Total deaths,Daily,Data from Instituto de Salud Carlos III,https://momo.isciii.es/public/momo/dashboard/momo_dashboard.html#datos
+Spain,Covid-19 deaths,Daily,"Data from Ministerio de Sanidad, via Datadista",https://github.com/datadista/datasets/blob/master/COVID%2019/ccaa_covid19_fallecidos_long.csv
+Spain,Population,,Data from Instituto Nacional de Estadistica,https://www.ine.es/en/prensa/cp_e2018_p_en.pdf
+Sweden,Total deaths,Daily,Data from Statistiska Centralbyran,https://www.scb.se/om-scb/nyheter-och-pressmeddelanden/scb-publicerar-preliminar-statistik-over-doda-i-sverige/
+Sweden,Covid-19 deaths,Daily,Data from Folkhalsomyndigheten,https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/bekraftade-fall-i-sverige
+Sweden,Population,,Data from Statistiska Centralbyran,https://www.scb.se/BE0101-en
+Switzerland,Total deaths,Weekly,Data from Federal Statistical Office,https://www.bfs.admin.ch/bfs/en/home/statistics/health/state-health/mortality-causes-death.html
+Switzerland,Population,,Data from Federal Statistical Office,https://www.bfs.admin.ch/bfs/de/home/statistiken/bevoelkerung.gnpdetail.2019-0447.html
+Turkey,Total deaths,Daily,Istanbul data on burials from Istanbul Buyuksehir Belediyesi,https://turkiye.gov.tr/istanbul-buyuksehir-belediyesi-vefat-sorgulama
+Turkey,Covid-19 deaths,,Latest breakdown of Turkish data by region,https://www.aa.com.tr/tr/koronavirus/turkiyenin-il-il-kovid-19-vaka-haritasi/1788776
+Turkey,Population,,Istanbul data from Biruni University,https://biruni.tuik.gov.tr/medas/?kn=95&locale=en
+United States,Total deaths,Weekly,Data from Centers for Disease Control and Prevention,https://gis.cdc.gov/grasp/fluview/mortality.html
+United States,Covid-19 deaths,Daily,"Data from Centers for Disease Control and Prevention, via USA Facts",https://usafactsstatic.blob.core.windows.net/public/data/covid-19/covid_deaths_usafacts.csv
+United States,Covid-19 deaths,Daily,New York City data from NYC Department of Health and Mental Hygiene,https://github.com/nychealth/coronavirus-data/blob/master/Deaths/probable-confirmed-dod.csv
+United States,Population,,Data from United States Census Bureau,https://www.census.gov/data/tables/time-series/demo/popest/2010s-state-total.html#par_textimage_1574439295
+United States,Population,,New York City data from NYC Department of City Planning,https://www1.nyc.gov/site/planning/planning-level/nyc-population/current-future-populations.page
