@@ -34,6 +34,9 @@ Norway,Total deaths,Daily,Data from Statistisk Sentralbyra,https://www.ssb.no/st
 Norway,Population,,Data from Statistisk Sentralbyra,https://www.ssb.no/en/befolkning/statistikker/folkemengde/aar-per-1-januar
 Portugal,Total deaths,Daily,Data from Ministerio da Saœde,https://evm.min-saude.pt/#shiny-tab-q_total
 Portugal,Population,,Data from Instituto Nacional de Estatistica,https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_destaques&DESTAQUESdest_boui=354227526&DESTAQUESmodo=2
+Russia,Total deaths,Monthly,Moscow data from Moscow Government Open Data Portal,https://data.mos.ru/opendata/7704111479-dinamika-registratsii-aktov-grajdanskogo-sostoyaniya?pageNumber=1&versionNumber=3&releaseNumber=42
+Russia,Covid-19 deaths,Daily,Data from Ministry of Health of the Russian Federation,https://xn--80aesfpebagmfblc0a.xn--p1ai/information/
+Russia,Population,,Moscow data from World Population Review,https://worldpopulationreview.com/world-cities/moscow-population/
 Spain,Total deaths,Daily,Data from Instituto de Salud Carlos III,https://momo.isciii.es/public/momo/dashboard/momo_dashboard.html#datos
 Spain,Covid-19 deaths,Daily,"Data from Ministerio de Sanidad, via Datadista",https://github.com/datadista/datasets/blob/master/COVID%2019/ccaa_covid19_fallecidos_long.csv
 Spain,Population,,Data from Instituto Nacional de Estadistica,https://www.ine.es/en/prensa/cp_e2018_p_en.pdf

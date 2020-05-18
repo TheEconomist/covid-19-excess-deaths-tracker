@@ -116,6 +116,16 @@ Italy's national statistical bureau, ISTAT, has published data about deaths from
 | `covid_deaths`    | ECDC / Our World In Data           |                                                                   |
 | `expected_deaths` | *The Economist*                    | Weekly average, based on 2015-19                                  |
 
+### Russia
+
+Russia's Federal State Statistics Service has only published [regional data about deaths from all causes](https://gks.ru/free_doc/2020/demo/edn03-20.htm) up to March 31st. Instead, we have imported data from the Moscow's Government Open Data Portal, which has published monthly figures up to April 30th.
+
+| Variable          | Source                             | Notes                                                             |
+| ------------------| -----------------------------------|-------------------------------------------------------------------|
+| `total_deaths`    | Moscow Government Open Data Portal | Last analysed to April 30th                                       |
+| `covid_deaths`    | Ministry of Health of Russia       |                                                                   |
+| `expected_deaths` | *The Economist*                    | Monthly average, based on 2015-19                                 |
+
 ### Spain
 
 | Variable          | Source                             | Notes                                                             |

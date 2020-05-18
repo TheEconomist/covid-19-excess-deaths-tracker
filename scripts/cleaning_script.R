@@ -696,7 +696,30 @@ write.csv(portugal_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 14: import and clean Spain's data---------------------------------------
+# Step 14: import and clean Russia's data---------------------------------------
+
+# Import Russia's data
+russia_total_source_latest <- fread("source-data/russia/russia_total_source_latest.csv") 
+
+# Join weekly total deaths and weekly covid deaths together
+russia_monthly_deaths <- russia_total_source_latest %>%
+  mutate(start_date = dmy(start_date),
+         end_date = dmy(end_date),
+         region_code = 0,
+         expected_deaths = "TBC") %>% # To be calculated
+  dplyr::select(country,region,region_code,start_date,end_date,year,month,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(russia_monthly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/russia_monthly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 15: import and clean Spain's data---------------------------------------
 
 # Import Spain's data
 spain_regions <- read_excel("source-data/spain/spain_regions.xlsx")
@@ -767,7 +790,7 @@ write.csv(spain_regions_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 15: import and clean Sweden's data---------------------------------------
+# Step 16: import and clean Sweden's data---------------------------------------
 
 # Import Sweden's data
 sweden_total_source_latest <- fread("source-data/sweden/sweden_total_source_latest.csv") 
@@ -822,7 +845,7 @@ write.csv(sweden_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 16: import and clean Switzerland's data---------------------------------------
+# Step 17: import and clean Switzerland's data---------------------------------------
 
 # Import Switzerland's data
 switzerland_total_source_2019_12_31 <- fread("source-data/switzerland/switzerland_total_source_2019_12_31.csv")
@@ -883,7 +906,7 @@ write.csv(switzerland_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 17: import and clean Turkey's data---------------------------------------
+# Step 18: import and clean Turkey's data---------------------------------------
 
 # Import Turkey's data
 turkey_total_source_latest <- fread("source-data/turkey/turkey_total_source_latest.csv") 
@@ -932,7 +955,7 @@ write.csv(turkey_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 18: import and clean the United States' data---------------------------------------
+# Step 19: import and clean the United States' data---------------------------------------
 
 # Import the United States' data
 united_states_states <- fread("source-data/united-states/united_states_states.csv")

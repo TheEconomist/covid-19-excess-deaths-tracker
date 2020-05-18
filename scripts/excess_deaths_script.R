@@ -20,6 +20,7 @@ italy_weekly_deaths <- fread("output-data/historical-deaths/italy_weekly_deaths.
 netherlands_weekly_deaths <- fread("output-data/historical-deaths/netherlands_weekly_deaths.csv")
 norway_weekly_deaths <- fread("output-data/historical-deaths/norway_weekly_deaths.csv")
 portugal_weekly_deaths <- fread("output-data/historical-deaths/portugal_weekly_deaths.csv")
+russia_monthly_deaths <- fread("output-data/historical-deaths/russia_monthly_deaths.csv")
 spain_weekly_deaths <- fread("output-data/historical-deaths/spain_weekly_deaths.csv")
 sweden_weekly_deaths <- fread("output-data/historical-deaths/sweden_weekly_deaths.csv")
 switzerland_weekly_deaths <- fread("output-data/historical-deaths/switzerland_weekly_deaths.csv")
@@ -38,7 +39,7 @@ get_excess_deaths <- function(df,frequency="weekly",calculate=TRUE){
       dplyr::select(-expected_deaths) %>%
       filter(year == 2020) %>%
       left_join(df %>%
-                  filter(year <= 2019) %>%
+                  filter(year >= 2015,year <= 2019) %>%
                   group_by(region,week) %>%
                   summarise(expected_deaths = mean(total_deaths,na.rm=T)))
       
@@ -49,7 +50,7 @@ get_excess_deaths <- function(df,frequency="weekly",calculate=TRUE){
       dplyr::select(-expected_deaths) %>%
       filter(year == 2020) %>%
       left_join(df %>%
-                  filter(year <= 2019) %>%
+                  filter(year >= 2015,year <= 2019) %>%
                   group_by(region,month) %>%
                   summarise(expected_deaths = mean(total_deaths,na.rm=T)))
     
@@ -120,6 +121,11 @@ write.csv(get_excess_deaths(norway_weekly_deaths),
 # Export Portugal
 write.csv(get_excess_deaths(portugal_weekly_deaths),
           "output-data/excess-deaths/portugal_excess_deaths.csv",
+          fileEncoding = "UTF-8",row.names=FALSE)
+
+# Export Russia
+write.csv(get_excess_deaths(russia_monthly_deaths,frequency="monthly"),
+          "output-data/excess-deaths/russia_excess_deaths.csv",
           fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Spain
