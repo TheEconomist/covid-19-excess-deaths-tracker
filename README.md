@@ -118,7 +118,7 @@ Italy's national statistical bureau, ISTAT, has published data about deaths from
 
 ### Russia
 
-Russia's Federal State Statistics Service has only published [regional data about deaths from all causes](https://gks.ru/free_doc/2020/demo/edn03-20.htm) up to March 31st. Instead, we have imported data from the Moscow's Government Open Data Portal, which has published monthly figures up to April 30th.
+Russia's Federal State Statistics Service has only published [regional data about deaths from all causes](https://gks.ru/free_doc/2020/demo/edn03-20.htm) up to March 31st. Instead, we have imported data from the Moscow's Government Open Data Portal, which has released monthly figures up to April 30th.
 
 | Variable          | Source                             | Notes                                                             |
 | ------------------| -----------------------------------|-------------------------------------------------------------------|
@@ -126,13 +126,21 @@ Russia's Federal State Statistics Service has only published [regional data abou
 | `covid_deaths`    | Ministry of Health of Russia       |                                                                   |
 | `expected_deaths` | *The Economist*                    | Monthly average, based on 2015-19                                 |
 
+### South Africa
+
+| Variable          | Source                                 | Notes                                                             |
+| ------------------| ---------------------------------------|-------------------------------------------------------------------|
+| `total_deaths`    | South African Medical Research Council | Last analysed to April 28th                                       |
+| `covid_deaths`    | ECDC / Our World In Data               |                                                                   |
+| `expected_deaths` | South African Medical Research Council | Baseline modelled by SAMRC                                        |
+
 ### Spain
 
 | Variable          | Source                             | Notes                                                             |
 | ------------------| -----------------------------------|-------------------------------------------------------------------|
 | `total_deaths`    | Instituto de Salud Carlos III      | Last analysed to May 5th                                          |
 | `covid_deaths`    | Ministerio de Sanidad / Datadista  |                                                                   |
-| `expected_deaths` | Instituto de Salud Carlos III      | Modelled MoMo baseline                                            |
+| `expected_deaths` | Instituto de Salud Carlos III      | Baseline modelled by MoMo                                         |
 
 ### Sweden
 
