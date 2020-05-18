@@ -12,6 +12,9 @@ Britain,Covid-19 deaths,Weekly,English and Welsh data from Office for National S
 Britain,Covid-19 deaths,Weekly,Scottish data from National Records of Scotland,https://www.nrscotland.gov.uk/statistics-and-data/statistics/statistics-by-theme/vital-events/general-publications/weekly-and-monthly-data-on-births-and-deaths/deaths-involving-coronavirus-covid-19-in-scotland
 Britain,Covid-19 deaths,Weekly,North Irish data from Northern Ireland Statistics and Research Agency,https://www.nisra.gov.uk/publications/weekly-deaths
 Britain,Population,,Data from Office for National Statistics,https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland
+Chile,Total deaths,Daily,Data from Servicio de Registro Civil e Identificacion,https://estadisticas.sed.srcei.cl/defcom
+Chile,Covid-19 deaths,Daily,"Data from Ministerio de Salud, via Data Science Research Peru",https://github.com/DataScienceResearchPeru/covid-19_latinoamerica/blob/master/latam_covid_19_data/time_series/time_series_deaths.csv
+Chile,Population,,Data from Instituto Nacional de Estadisticas,http://www.censo2017.cl/descargue-aqui-resultados-de-comunas/
 Denmark,Total deaths,Daily,Data from Danmarks Statistik,https://www.statistikbanken.dk/statbank5a/SelectVarVal/Define.asp?Maintable=DODC1&PLanguage=1
 Denmark,Population,,Data from Danmarks Statistik,https://www.dst.dk/en/Statistik/emner/befolkning-og-valg/befolkning-og-befolkningsfremskrivning
 Ecuador,Total deaths,,Data from Registro Civil,https://www.registrocivil.gob.ec/cifras/

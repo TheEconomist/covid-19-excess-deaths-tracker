@@ -11,6 +11,7 @@ options(scipen=999)
 austria_weekly_deaths <- fread("output-data/historical-deaths/austria_weekly_deaths.csv")
 belgium_weekly_deaths <- fread("output-data/historical-deaths/belgium_weekly_deaths.csv")
 britain_weekly_deaths <- fread("output-data/historical-deaths/britain_weekly_deaths.csv")
+chile_weekly_deaths <- fread("output-data/historical-deaths/chile_weekly_deaths.csv")
 denmark_weekly_deaths <- fread("output-data/historical-deaths/denmark_weekly_deaths.csv")
 ecuador_monthly_deaths <- fread("output-data/historical-deaths/ecuador_monthly_deaths.csv")
 france_weekly_deaths <- fread("output-data/historical-deaths/france_weekly_deaths.csv")
@@ -77,6 +78,11 @@ write.csv(get_excess_deaths(belgium_weekly_deaths,calculate=FALSE),
 # Export Britain
 write.csv(get_excess_deaths(britain_weekly_deaths),
           "output-data/excess-deaths/britain_excess_deaths.csv",
+          fileEncoding = "UTF-8",row.names=FALSE)
+
+# Export Chile
+write.csv(get_excess_deaths(chile_weekly_deaths),
+          "output-data/excess-deaths/chile_excess_deaths.csv",
           fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Denmark

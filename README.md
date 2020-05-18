@@ -36,11 +36,21 @@ We have combined English and Welsh data from the Office for National Statistics 
 | `covid_deaths`    | ONS / NRS / NISRA                 | Retrospectively adjusted, to use day that death was registered    |
 | `expected_deaths` | *The Economist*                   | Weekly average, based on 2015-19                                  |
 
+### Chile
+
+To follow the latest census in 2017, from which we are importing population estimates, we have grouped the regions of Ñuble and Biobio together. We have imported regional covid-19 death tolls from [a GitHub repository maintained by Data Science Research Peru](https://github.com/DataScienceResearchPeru/covid-19_latinoamerica).
+
+| Variable          | Source                            | Notes                                                             |
+| ------------------| ----------------------------------|-------------------------------------------------------------------|
+| `total_deaths`    | Registro Civil                    | Last updated to May 12th                                          |
+| `covid_deaths`    | Ministerio de Salud / DSRP        |                                                                   |
+| `expected_deaths` | *The Economist*                   | Weekly average, based on 2015-19                                  |
+
 ### Denmark
 
 | Variable          | Source                            | Notes                                                             |
 | ------------------| ----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Danmarks Statistik                | Last updated to May 5th                                           |
+| `total_deaths`    | Danmarks Statistik                | Last analysed to May 5th                                          |
 | `covid_deaths`    | ECDC / Our World In Data          |                                                                   |
 | `expected_deaths` | *The Economist*                   | Weekly average, based on 2015-19                                  |
 
