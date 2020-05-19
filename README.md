@@ -32,7 +32,7 @@ We have combined English and Welsh data from the Office for National Statistics 
 
 | Variable          | Source                            | Notes                                                             |
 | ------------------| ----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | ONS / NRS / NISRA                 | Last analysed to May 1st                                          |
+| `total_deaths`    | ONS / NRS / NISRA                 | Last analysed to May 8th                                          |
 | `covid_deaths`    | ONS / NRS / NISRA                 | Retrospectively adjusted, to use day that death was registered    |
 | `expected_deaths` | *The Economist*                   | Weekly average, based on 2015-19                                  |
 
