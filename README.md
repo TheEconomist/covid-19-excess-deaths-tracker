@@ -198,6 +198,8 @@ Our tracker uses two different R scripts to calculate excess deaths in each coun
 
 * [`excess_deaths_script.R`](scripts/excess_deaths_script.R): this imports the time series files from [`/output-data/historical-deaths/`](output-data/historical-deaths), and calculates the weekly or monthly `expected_deaths` for each country. We then use that baseline to calculate `excess_deaths`, and export the files to [`/output-data/excess-deaths/`](output-data/excess-deaths).
 
+There's also an additional script that summarises the data for some graphics in the article:
+
 * [`interactive_script.R`](scripts/interactive_script.R): this imports the files for excess deaths for a list of countries and creates the data for the small multiple chart and the table featured in the article. The files are exported to [`/output-data/interactive/`](output-data/interactive).
 
 ## Licence
