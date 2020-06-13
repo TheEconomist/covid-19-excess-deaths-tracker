@@ -31,7 +31,7 @@ table_data <- bind_rows(read_csv('output-data/excess-deaths/britain_excess_death
                         read_csv('output-data/excess-deaths/belgium_excess_deaths.csv'),
                         read_csv('output-data/excess-deaths/turkey_excess_deaths.csv'),
                         read_csv('output-data/excess-deaths/sweden_excess_deaths.csv'),
-                        read_csv('output-data/excess-deaths/indonesia_jakarta_excess_deaths.csv'),
+                        read_csv('output-data/excess-deaths/indonesia_excess_deaths.csv'),
                         read_csv('output-data/excess-deaths/austria_excess_deaths.csv'))
 
 # generate table csv
