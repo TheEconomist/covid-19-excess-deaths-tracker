@@ -22,7 +22,7 @@ Below is a summary of our sources for each country.
 
 | Variable          | Source                            | Notes                                                             |
 | ------------------| ----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Sciensano                         | Last analysed to May 10th                                        |
+| `total_deaths`    | Sciensano                         | Last analysed to May 24th                                         |
 | `covid_deaths`    | Sciensano                         | Retrospectively adjusted, to use day that death occurred          |
 | `expected_deaths` | Sciensano                         | Weekly average, based on 2015-19                                  |
 
@@ -32,7 +32,7 @@ We have combined English and Welsh data from the Office for National Statistics 
 
 | Variable          | Source                            | Notes                                                             |
 | ------------------| ----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | ONS / NRS / NISRA                 | Last analysed to May 15th                                         |
+| `total_deaths`    | ONS / NRS / NISRA                 | Last analysed to May 29th                                         |
 | `covid_deaths`    | ONS / NRS / NISRA                 | Retrospectively adjusted, to use day that death was registered    |
 | `expected_deaths` | *The Economist*                   | Weekly average, based on 2015-19                                  |
 
@@ -42,7 +42,7 @@ To follow the latest census in 2017, from which we are importing population esti
 
 | Variable          | Source                            | Notes                                                             |
 | ------------------| ----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Registro Civil                    | Last updated to May 19th                                          |
+| `total_deaths`    | Registro Civil                    | Last analysed to June 2nd                                         |
 | `covid_deaths`    | Ministerio de Salud / DSRP        |                                                                   |
 | `expected_deaths` | *The Economist*                   | Weekly average, based on 2015-19                                  |
 
@@ -50,7 +50,7 @@ To follow the latest census in 2017, from which we are importing population esti
 
 | Variable          | Source                            | Notes                                                             |
 | ------------------| ----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Danmarks Statistik                | Last analysed to May 5th                                          |
+| `total_deaths`    | Danmarks Statistik                | Last analysed to June 2nd                                         |
 | `covid_deaths`    | ECDC / Our World In Data          |                                                                   |
 | `expected_deaths` | *The Economist*                   | Weekly average, based on 2015-19                                  |
 
@@ -60,7 +60,7 @@ We are importing Ecuador's national covid-19 death toll from the ECDC. Ecuador's
 
 | Variable          | Source                            | Notes                                                             |
 | ------------------| ----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Registro Civil                    | Last analysed to April 30th                                       |
+| `total_deaths`    | Registro Civil                    | Last analysed to May 31st                                         |
 | `covid_deaths`    | ECDC / Our World In Data          |                                                                   |
 | `expected_deaths` | *The Economist*                   | Monthly average, based on 2018-19                                 |
 
@@ -70,7 +70,7 @@ France's national covid-19 toll, which we are importing from the ECDC, includes 
 
 | Variable          | Source                            | Notes                                                             |
 | ------------------| ----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Insee                             | Last analysed to May 5th                                          |
+| `total_deaths`    | Insee                             | Last analysed to May 26th                                         |
 | `covid_deaths`    | Santé Publique France / ECDC      |                                                                   |
 | `expected_deaths` | *The Economist*                   | Weekly average, based on 2015-19                                  |
 
@@ -78,7 +78,7 @@ France's national covid-19 toll, which we are importing from the ECDC, includes 
 
 | Variable          | Source                            | Notes                                                             |
 | ------------------| ----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Destatis                          | Last analysed to April 21st                                       |
+| `total_deaths`    | Destatis                          | Last analysed to May 12th                                         |
 | `covid_deaths`    | ECDC / Our World In Data          |                                                                   |
 | `expected_deaths` | *The Economist*                   | Weekly average, based on 2016-19                                  |
 
@@ -88,17 +88,15 @@ The only available data about deaths from all causes is [a monthly tally of buri
 
 | Variable          | Source                            | Notes                                                             |
 | ------------------| ----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Provinsi DKI Jakarta              | Last analysed to April 30th                                       |
+| `total_deaths`    | Provinsi DKI Jakarta              | Last analysed to May 31st                                         |
 | `covid_deaths`    | Provinsi DKI Jakarta              |                                                                   |
 | `expected_deaths` | *The Economist*                   | Monthly average, based on 2018-19                                 |
 
 ### Italy
 
-Italy's national statistical bureau, ISTAT, has published data about deaths from all causes up to March 31st, covering 6,866 of the country's 7,904 comunes. We have used the covid-19 death toll for the entire country, imported from the Dipartimento della Protezione Civile.
-
 | Variable          | Source                                    | Notes                                                             |
 | ------------------| ------------------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | ISTAT                                     | Last analysed to March 31st                                       |
+| `total_deaths`    | ISTAT                                     | Last analysed to April 28th                                       |
 | `covid_deaths`    | Dipartimento della Protezione Civile      |                                                                   |
 | `expected_deaths` | *The Economist*                           | Weekly average, based on 2015-19                                  |
 
@@ -106,7 +104,7 @@ Italy's national statistical bureau, ISTAT, has published data about deaths from
 
 | Variable          | Source                             | Notes                                                             |
 | ------------------| -----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Centraal Bureau voor de Statistiek | Last analysed to May 17th                                         |
+| `total_deaths`    | Centraal Bureau voor de Statistiek | Last analysed to May 31st                                         |
 | `covid_deaths`    | ECDC / Our World In Data           |                                                                   |
 | `expected_deaths` | *The Economist*                    | Weekly average, based on 2015-19                                  |
 
@@ -114,7 +112,7 @@ Italy's national statistical bureau, ISTAT, has published data about deaths from
 
 | Variable          | Source                             | Notes                                                             |
 | ------------------| -----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Statistisk Sentralbyra             | Last analysed to May 12th                                         |
+| `total_deaths`    | Statistisk Sentralbyra             | Last analysed to May 26th                                         |
 | `covid_deaths`    | ECDC / Our World In Data           |                                                                   |
 | `expected_deaths` | *The Economist*                    | Weekly average, based on 2015-19                                  |
 
@@ -122,7 +120,7 @@ Italy's national statistical bureau, ISTAT, has published data about deaths from
 
 | Variable          | Source                             | Notes                                                             |
 | ------------------| -----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Ministerio da Saúde                | Last analysed to May 19th                                         |
+| `total_deaths`    | Ministerio da Saúde                | Last analysed to June 9th                                         |
 | `covid_deaths`    | ECDC / Our World In Data           |                                                                   |
 | `expected_deaths` | *The Economist*                    | Weekly average, based on 2015-19                                  |
 
@@ -132,7 +130,7 @@ Russia's Federal State Statistics Service has only published [regional data abou
 
 | Variable          | Source                             | Notes                                                             |
 | ------------------| -----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Moscow Government Open Data Portal | Last analysed to April 30th                                       |
+| `total_deaths`    | Moscow Government Open Data Portal | Last analysed to May 31st                                         |
 | `covid_deaths`    | Ministry of Health of Russia       |                                                                   |
 | `expected_deaths` | *The Economist*                    | Monthly average, based on 2015-19                                 |
 
@@ -140,7 +138,7 @@ Russia's Federal State Statistics Service has only published [regional data abou
 
 | Variable          | Source                                 | Notes                                                             |
 | ------------------| ---------------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | South African Medical Research Council | Last analysed to May 19th                                         |
+| `total_deaths`    | South African Medical Research Council | Last analysed to June 2nd                                         |
 | `covid_deaths`    | ECDC / Our World In Data               |                                                                   |
 | `expected_deaths` | South African Medical Research Council | Baseline modelled by SAMRC                                        |
 
@@ -148,7 +146,7 @@ Russia's Federal State Statistics Service has only published [regional data abou
 
 | Variable          | Source                             | Notes                                                             |
 | ------------------| -----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Instituto de Salud Carlos III      | Last analysed to May 19th                                         |
+| `total_deaths`    | Instituto de Salud Carlos III      | Last analysed to June 2nd                                         |
 | `covid_deaths`    | Ministerio de Sanidad / Datadista  |                                                                   |
 | `expected_deaths` | Instituto de Salud Carlos III      | Baseline modelled by MoMo                                         |
 
@@ -156,7 +154,7 @@ Russia's Federal State Statistics Service has only published [regional data abou
 
 | Variable          | Source                             | Notes                                                             |
 | ------------------| -----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Statistiska Centralbyran           | Last analysed to May 12th                                         |
+| `total_deaths`    | Statistiska Centralbyran           | Last analysed to June 2nd                                         |
 | `covid_deaths`    | Folkhalsomyndigheten               | Retrospectively adjusted, to use day that death occurred          |
 | `expected_deaths` | *The Economist*                    | Weekly average, based on 2015-19                                  |
 
@@ -164,7 +162,7 @@ Russia's Federal State Statistics Service has only published [regional data abou
 
 | Variable          | Source                             | Notes                                                             |
 | ------------------| -----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Federal Statistical Office         | Last analysed to May 17th                                         |
+| `total_deaths`    | Federal Statistical Office         | Last analysed to May 31st                                         |
 | `covid_deaths`    | ECDC / Our World In Data           |                                                                   |
 | `expected_deaths` | *The Economist*                    | Weekly average, based on 2015-19                                  |
 
