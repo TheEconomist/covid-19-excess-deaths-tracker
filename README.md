@@ -28,7 +28,7 @@ Below is a summary of our sources for each country.
 
 ### Brazil
 
-We have used the Registro Civil, with data scraping by Brasil.IO, to import monthly data on deaths from all causes and covid during 2019-20 for five Brazilian cities: São Paulo, Rio de Janeiro, Fortaleza, Manaus and Recife. We have also imported historical data for 2016-18 from Brazil's DataSUS. 
+We have used the Registro Civil, with data scraping by Brasil.IO, to import monthly data on deaths from all causes and covid-19 during 2019-20 for five Brazilian cities: São Paulo, Rio de Janeiro, Fortaleza, Manaus and Recife. We have also imported historical data for 2016-18 from Brazil's DataSUS. 
 
 | Variable          | Source                               | Notes                                                             |
 | ------------------| -------------------------------------|-------------------------------------------------------------------|
