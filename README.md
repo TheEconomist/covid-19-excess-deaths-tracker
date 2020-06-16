@@ -26,6 +26,16 @@ Below is a summary of our sources for each country.
 | `covid_deaths`    | Sciensano                         | Retrospectively adjusted, to use day that death occurred          |
 | `expected_deaths` | Sciensano                         | Weekly average, based on 2015-19                                  |
 
+### Brazil
+
+We have used the Registro Civil, with data scraping by Brasil.IO, to import monthly data on deaths from all causes and covid during 2019-20 for five Brazilian cities: São Paulo, Rio de Janeiro, Fortaleza, Manaus and Recife. We have also imported historical data for 2016-18 from Brazil's DataSUS. 
+
+| Variable          | Source                               | Notes                                                             |
+| ------------------| -------------------------------------|-------------------------------------------------------------------|
+| `total_deaths`    | Registro Civil / DataSUS / Brasil.IO | Last analysed to April 30th                                       |
+| `covid_deaths`    | Registro Civil / DataSUS / Brasil.IO |                                                                   |
+| `expected_deaths` | *The Economist*                      | Monthly average, based on 2015-19                                 |
+
 ### Britain
 
 We have combined English and Welsh data from the Office for National Statistics with data from the National Records of Scotland and the Northern Ireland Statistics and Research Agency. Scotland reports data two days after everywhere else. We have used the ONS and NISRA dates as our weekly ending point.
@@ -38,7 +48,7 @@ We have combined English and Welsh data from the Office for National Statistics 
 
 ### Chile
 
-To follow the latest census in 2017, from which we are importing population estimates, we have grouped the regions of Ñuble and Biobio together. We have imported regional covid-19 death tolls from [a GitHub repository maintained by Data Science Research Peru](https://github.com/DataScienceResearchPeru/covid-19_latinoamerica).
+To follow the latest census in 2017, from which we are importing population estimates, we have grouped the regions of Ñuble and Biobio together. We have imported regional covid-19 death tolls from [a GitHub repository maintained by Data Science Research Peru](https://github.com/DataScienceResearchPeru/covid-19_latinoamerica). Note: Chile's deaths have been higher than the 2015-19 average for most of 2020, possibly because of population growth. We are looking into ways to adjust for this.
 
 | Variable          | Source                            | Notes                                                             |
 | ------------------| ----------------------------------|-------------------------------------------------------------------|
@@ -208,6 +218,6 @@ The data and files that we have generated from official sources are freely avail
 
 ## Authors
 
-This data has been collected, cleaned and analysed by [James Tozer](https://twitter.com/J_CD_T) and [Martín González](https://twitter.com/martgnz). We are grateful to Oğuz Işık for collecting and providing data from Turkey. 
+This data has been collected, cleaned and analysed by [James Tozer](https://twitter.com/J_CD_T) and [Martín González](https://twitter.com/martgnz). We are grateful to Oğuz Işık for providing data from Turkey; and to Thais Carrança, Helio Gurovitz and Diogo Melo for providing data from Brazil. 
 
 If you use the data, or have any suggestions, please email [jamestozer@economist.com](mailto:jamestozer@economist.com).
