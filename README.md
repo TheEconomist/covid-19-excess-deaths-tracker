@@ -34,7 +34,7 @@ We have used the Registro Civil, with data scraping by Brasil.IO, to import mont
 | ------------------| -------------------------------------|-------------------------------------------------------------------|
 | `total_deaths`    | Registro Civil / DataSUS / Brasil.IO | Last analysed to April 30th                                       |
 | `covid_deaths`    | Registro Civil / DataSUS / Brasil.IO |                                                                   |
-| `expected_deaths` | *The Economist*                      | Monthly average, based on 2015-19                                 |
+| `expected_deaths` | *The Economist*                      | Monthly average, based on 2016-19                                 |
 
 ### Britain
 
