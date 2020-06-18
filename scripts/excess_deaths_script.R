@@ -19,8 +19,10 @@ france_weekly_deaths <- fread("output-data/historical-deaths/france_weekly_death
 germany_weekly_deaths <- fread("output-data/historical-deaths/germany_weekly_deaths.csv")
 indonesia_monthly_deaths <- fread("output-data/historical-deaths/indonesia_monthly_deaths.csv")
 italy_weekly_deaths <- fread("output-data/historical-deaths/italy_weekly_deaths.csv")
+mexico_weekly_deaths <- fread("output-data/historical-deaths/mexico_weekly_deaths.csv")
 netherlands_weekly_deaths <- fread("output-data/historical-deaths/netherlands_weekly_deaths.csv")
 norway_weekly_deaths <- fread("output-data/historical-deaths/norway_weekly_deaths.csv")
+peru_monthly_deaths <- fread("output-data/historical-deaths/peru_monthly_deaths.csv")
 portugal_weekly_deaths <- fread("output-data/historical-deaths/portugal_weekly_deaths.csv")
 russia_monthly_deaths <- fread("output-data/historical-deaths/russia_monthly_deaths.csv")
 south_africa_weekly_deaths <- fread("output-data/historical-deaths/south_africa_weekly_deaths.csv")
@@ -121,6 +123,11 @@ write.csv(get_excess_deaths(italy_weekly_deaths),
           "output-data/excess-deaths/italy_excess_deaths.csv",
           fileEncoding = "UTF-8",row.names=FALSE)
 
+# Export Mexico
+write.csv(get_excess_deaths(mexico_weekly_deaths),
+          "output-data/excess-deaths/mexico_excess_deaths.csv",
+          fileEncoding = "UTF-8",row.names=FALSE)
+
 # Export the Netherlands
 write.csv(get_excess_deaths(netherlands_weekly_deaths),
           "output-data/excess-deaths/netherlands_excess_deaths.csv",
@@ -129,6 +136,11 @@ write.csv(get_excess_deaths(netherlands_weekly_deaths),
 # Export Norway
 write.csv(get_excess_deaths(norway_weekly_deaths),
           "output-data/excess-deaths/norway_excess_deaths.csv",
+          fileEncoding = "UTF-8",row.names=FALSE)
+
+# Export Peru
+write.csv(get_excess_deaths(peru_monthly_deaths,frequency="monthly"),
+          "output-data/excess-deaths/peru_excess_deaths.csv",
           fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Portugal

@@ -2,6 +2,18 @@
 
 This repository contains the data behind *The Economist’s* [tracker for covid-19 excess deaths](https://www.economist.com/graphic-detail/2020/04/16/tracking-covid-19-excess-deaths-across-countries) (which is free to read), and the code that we have used to clean, analyse and present the numbers.
 
+## Scripts and output data
+
+Our tracker uses two different R scripts to calculate excess deaths in each country:
+
+* [`cleaning_script.R`](scripts/cleaning_script.R): this imports raw data from various sources, and exports a weekly or monthly historical time series of `total_deaths` and `covid_deaths` going back to 2015 (or the earliest available year). If the source for total deaths has also specified a value for `expected_deaths`, that is included too. We remove any weeks or months in which the data might be incomplete. The files are exported to [`/output-data/historical-deaths/`](output-data/historical-deaths).
+
+* [`excess_deaths_script.R`](scripts/excess_deaths_script.R): this imports the time series files from [`/output-data/historical-deaths/`](output-data/historical-deaths), and calculates the weekly or monthly `expected_deaths` for each country. We then use that baseline to calculate `excess_deaths`, and export the files to [`/output-data/excess-deaths/`](output-data/excess-deaths).
+
+There's also an additional script that summarises the data for some graphics in the article:
+
+* [`interactive_script.R`](scripts/interactive_script.R): this imports the files for excess deaths for a list of countries and creates the data for the small multiple chart and the table featured in the article. The files are exported to [`/output-data/interactive/`](output-data/interactive).
+
 ## Source data
 
 Our tracker uses data from a number of statistical bureaus, health ministries and government departments. For each country, you can find the relevant source documents in the [`/source-data/`](source-data) folder, including some old versions in each country's `/archive/` folder. Some of the data are automatically downloaded from official websites in [`cleaning_script.R`](scripts/cleaning_script.R), an R file that formats the data consistently across countries.
@@ -110,6 +122,16 @@ The only available data about deaths from all causes is [a monthly tally of buri
 | `covid_deaths`    | Dipartimento della Protezione Civile      |                                                                   |
 | `expected_deaths` | *The Economist*                           | Weekly average, based on 2015-19                                  |
 
+### Mexico
+
+The only available data about deaths from all causes comes from [Mexico City's Civil Register](http://www.rcivil.cdmx.gob.mx/solicitudactas/busqueda/registrales/clase_acta/DEFUNCION), which has been [analysed by Laurianne Despeghel and Mario Romero Zavala](https://github.com/mariorz/folio-deceso). You can read a full description of their methodology in [this article published by Nexos](https://datos.nexos.com.mx/?p=1388), a Mexican magazine.
+
+| Variable          | Source                               | Notes                                                             |
+| ------------------| -------------------------------------|-------------------------------------------------------------------|
+| `total_deaths`    | Direccion General del Registro Civil | Last analysed to May 31st                                         |
+| `covid_deaths`    | ECDC / Our World In Data             |                                                                   |
+| `expected_deaths` | *The Economist*                      | Monthly average, based on 2018-19                                 |
+
 ### Netherlands
 
 | Variable          | Source                             | Notes                                                             |
@@ -125,6 +147,14 @@ The only available data about deaths from all causes is [a monthly tally of buri
 | `total_deaths`    | Statistisk Sentralbyra             | Last analysed to May 26th                                         |
 | `covid_deaths`    | ECDC / Our World In Data           |                                                                   |
 | `expected_deaths` | *The Economist*                    | Weekly average, based on 2015-19                                  |
+
+### Peru
+
+| Variable          | Source                            | Notes                                                             |
+| ------------------| ----------------------------------|-------------------------------------------------------------------|
+| `total_deaths`    | Ministerio de Salud               | Last analysed to May 31st                                         |
+| `covid_deaths`    | ECDC / Our World In Data          |                                                                   |
+| `expected_deaths` | *The Economist*                   | Monthly average, based on 2017-19                                 |
 
 ### Portugal
 
@@ -198,18 +228,6 @@ The CDC is publishing weekly data about deaths from all causes in each state and
 | `covid_deaths`    | CDC / USA Facts / NYC Health      | NYC toll includes "probable" deaths from covid-19                 |
 | `expected_deaths` | *The Economist*                   | Weekly average, based on 2015-19                                  |
 
-## Scripts and output data
-
-Our tracker uses two different R scripts to calculate excess deaths in each country:
-
-* [`cleaning_script.R`](scripts/cleaning_script.R): this imports raw data from various sources, and exports a weekly or monthly historical time series of `total_deaths` and `covid_deaths` going back to 2015 (or the earliest available year). If the source for total deaths has also specified a value for `expected_deaths`, that is included too. We remove any weeks or months in which the data might be incomplete. The files are exported to [`/output-data/historical-deaths/`](output-data/historical-deaths).
-
-* [`excess_deaths_script.R`](scripts/excess_deaths_script.R): this imports the time series files from [`/output-data/historical-deaths/`](output-data/historical-deaths), and calculates the weekly or monthly `expected_deaths` for each country. We then use that baseline to calculate `excess_deaths`, and export the files to [`/output-data/excess-deaths/`](output-data/excess-deaths).
-
-There's also an additional script that summarises the data for some graphics in the article:
-
-* [`interactive_script.R`](scripts/interactive_script.R): this imports the files for excess deaths for a list of countries and creates the data for the small multiple chart and the table featured in the article. The files are exported to [`/output-data/interactive/`](output-data/interactive).
-
 ## Licence
 
 This software is published by [*The Economist*](https://www.economist.com) under the [MIT licence](https://opensource.org/licenses/MIT). The data generated by *The Economist* are available under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -218,6 +236,6 @@ The data and files that we have generated from official sources are freely avail
 
 ## Authors
 
-This data has been collected, cleaned and analysed by [James Tozer](https://twitter.com/J_CD_T) and [Martín González](https://twitter.com/martgnz). We are grateful to Oğuz Işık for providing data from Turkey; and to Thais Carrança, Helio Gurovitz and Diogo Melo for providing data from Brazil. 
+This data has been collected, cleaned and analysed by [James Tozer](https://twitter.com/J_CD_T) and [Martín González](https://twitter.com/martgnz). We are grateful to Oğuz Işık for providing data from Turkey; to Laurianne Despeghel and Mario Romero Zavalato for providing data from Mexico; and to Thais Carrança, Helio Gurovitz and Diogo Melo for providing data from Brazil. 
 
 If you use the data, or have any suggestions, please email [jamestozer@economist.com](mailto:jamestozer@economist.com).
