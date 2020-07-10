@@ -70,7 +70,7 @@ get_excess_deaths <- function(df,frequency="weekly",calculate=TRUE){
 }
 
 # Export Austria
-austria_excess_deaths <- get_excess_deaths(austria_weekly_deaths,calculate=FALSE)
+austria_excess_deaths <- get_excess_deaths(austria_weekly_deaths)
 write.csv(austria_excess_deaths,"output-data/excess-deaths/austria_excess_deaths.csv",
        fileEncoding = "UTF-8",row.names=FALSE)
 

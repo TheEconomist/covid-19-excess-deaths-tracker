@@ -1,6 +1,6 @@
 country,source_type,frequency,description,link
 All,Covid-19 deaths,Daily,"Data from ECDC, via Our World In Data",https://ourworldindata.org/coronavirus-source-data
-Austria,Total deaths,Weekly,Data from Statistik Austria,http://www.statistik.at/web_de/presse/122934.html
+Austria,Total deaths,Weekly,Data from Statistik Austria,https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_gest_kalwo_GEST_KALWOCHE_100
 Austria,Population,,Data from Statistik Austria,http://www.statistik.at/web_de/statistiken/menschen_und_gesellschaft/bevoelkerung/bevoelkerungsstand_und_veraenderung/bevoelkerung_zu_jahres-_quartalsanfang/023582.html
 Belgium,Total deaths,Weekly,Data from Sciensano,https://covid-19.sciensano.be/nl/covid-19-epidemiologische-situatie
 Belgium,Covid-19 deaths,Daily,Data from Sciensano,https://epistat.wiv-isp.be/covid/
@@ -23,7 +23,7 @@ Ecuador,Total deaths,,Data from Registro Civil,https://www.registrocivil.gob.ec/
 Ecuador,Population,,"Data from Instituto Nacional de Estadistica y Censos del Ecuador, via City Population",https://www.citypopulation.de/php/ecuador-admin.php
 France,Total deaths,Weekly,Data from Insee,https://www.insee.fr/fr/statistiques/4487854
 France,Total deaths,Yearly,Data from Insee,https://www.insee.fr/fr/information/4190491
-France,Covid-19 deaths,Daily,"Data from Sante Publique France, via OpenCOVID19 France",https://github.com/opencovid19-fr/data/blob/master/data-sources/sante-publique-france/covid_hospit.csv
+France,Covid-19 deaths,Daily,"Data from Sante Publique France, via OpenCOVID19 France",https://www.data.gouv.fr/fr/datasets/donnees-hospitalieres-relatives-a-lepidemie-de-covid-19/
 France,Population,,Data from Insee,https://www.insee.fr/fr/statistiques/4265390?sommaire=4265511
 Germany,Total deaths,Weekly,Data from Destatis,https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Sterbefaelle-Lebenserwartung/Tabellen/sonderauswertung-sterbefaelle.html?nn=209016
 Germany,Population,,Data from Destatis,https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Bevoelkerungsstand/Tabellen/zensus-geschlecht-staatsangehoerigkeit-2019.html
