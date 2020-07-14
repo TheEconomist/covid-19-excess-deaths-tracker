@@ -229,6 +229,7 @@ write.csv(all_monthly_excess_deaths,"output-data/excess-deaths/all_monthly_exces
 
 # Step 4: convert monthly deaths into weekly rates, for interactive ---------------------------------------
 
+# Calculate the weekly death rates for each month in each region
 all_monthly_excess_deaths_weekly_rates <- all_monthly_excess_deaths %>%
   mutate(month_days = as.numeric(difftime(end_date,start_date,units=c("days"))) + 1,
          total_deaths = total_deaths / month_days * 7,
