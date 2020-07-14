@@ -226,4 +226,19 @@ all_monthly_excess_deaths <- bind_rows(brazil_excess_deaths,
 # Export monthly deaths
 write.csv(all_monthly_excess_deaths,"output-data/excess-deaths/all_monthly_excess_deaths.csv",
           fileEncoding = "UTF-8",row.names=FALSE)
-  
+
+# Step 4: convert monthly deaths into weekly rates, for interactive ---------------------------------------
+
+all_monthly_excess_deaths_weekly_rates <- all_monthly_excess_deaths %>%
+  mutate(month_days = as.numeric(difftime(end_date,start_date,units=c("days"))) + 1,
+         total_deaths = total_deaths / month_days * 7,
+         expected_deaths = expected_deaths / month_days * 7,
+         excess_deaths = excess_deaths / month_days * 7,
+         non_covid_deaths = non_covid_deaths / month_days * 7,
+         covid_deaths_per_100k = covid_deaths_per_100k / month_days * 7,
+         excess_deaths_per_100k = excess_deaths_per_100k / month_days * 7) %>%
+  dplyr::select(names(all_monthly_excess_deaths))
+
+# Export monthly deaths
+write.csv(all_monthly_excess_deaths_weekly_rates,"output-data/interactive/all_monthly_excess_deaths_weekly_rates.csv",
+          fileEncoding = "UTF-8",row.names=FALSE)
