@@ -113,31 +113,62 @@ write.csv(belgium_weekly_deaths %>%
 # Step 4: import and clean Brazil's data---------------------------------------
 
 # Import Brazil's data
-brazil_total_source_2018_12_31 <- read_excel("source-data/brazil/brazil_total_source_2018_12_31.xlsx") 
-brazil_total_source_latest <- read_excel("source-data/brazil/brazil_total_source_latest.xlsx") 
+brazil_total_source_2019_12_31 <- read_excel("source-data/brazil/brazil_total_source_2019_12_31.xlsx") 
+brazil_total_source_latest <- fread("https://raw.githubusercontent.com/capyvara/brazil-civil-registry-data/master/civil_registry_deaths.csv")
+brazil_covid_source_latest <- fread("https://raw.githubusercontent.com/capyvara/brazil-civil-registry-data/master/civil_registry_covid_cities.csv")
 
-# Join weekly total deaths and weekly covid deaths together
-brazil_monthly_deaths <- brazil_total_source_2018_12_31 %>%
+# Group total deaths by month and city
+brazil_monthly_total_deaths <- brazil_total_source_2019_12_31 %>% # Format the DataSUS data for 2016-19
   group_by(country,region,region_code,year,month,population) %>%
-  summarise(total_deaths = sum(total_deaths),
-            covid_deaths = sum(covid_deaths)) %>%
+  summarise(total_deaths = sum(total_deaths)) %>%
   ungroup() %>%
   mutate(start_date = as.Date(ISOdate(year,month,1)),
-         end_date = start_date + days_in_month(start_date)-1,
-         expected_deaths = "TBC") %>% # To be calculated
-  dplyr::select(country,region,region_code,start_date,end_date,year,month,
-                population,total_deaths,covid_deaths,expected_deaths) %>%
-  bind_rows(brazil_total_source_latest %>%
-              mutate(start_date = as.Date(start_date),
-                     end_date = as.Date(end_date),
-                     expected_deaths = "TBC")) %>% # To be calculated
-  arrange(region,start_date) %>%
-  filter(end_date <= as.Date("2020-04-30")) # Remove months with incomplete data
+         end_date = start_date + days_in_month(start_date)-1) %>% 
+  dplyr::select(country,region,region_code,start_date,end_date,year,month,population,total_deaths) %>%
+  bind_rows(brazil_total_source_latest %>% # Format the Brasil.IO data for 2020
+              mutate(year = year(start_date),
+                     month = month(start_date),
+                     country = "Brazil",
+                     region = city,
+                     region_code = state_ibge_code,
+                     total_deaths = deaths_total) %>%
+              filter(year == 2020,
+                     region %in% c("Fortaleza","Manaus","Recife","Rio de Janeiro","São Paulo")) %>% # Select cities with reliable data
+              group_by(country,region,region_code,year,month) %>%
+              summarise(total_deaths = sum(total_deaths)) %>%
+              mutate(start_date = as.Date(ISOdate(year,month,1)),
+                     end_date = start_date + days_in_month(start_date)-1) %>%
+              left_join(brazil_total_source_2019_12_31 %>% 
+                          dplyr::select(region,population) %>%
+                          distinct()) %>%
+              dplyr::select(country,region,region_code,start_date,end_date,year,month,population,total_deaths) %>%
+              ungroup()) %>%
+  arrange(population,start_date)
+
+# Group covid deaths by month and city
+brazil_monthly_covid_deaths <- brazil_covid_source_latest %>%
+  mutate(year = year(date),
+         month = month(date),
+         region = city,
+         region_code = state_ibge_code) %>%
+  rowwise() %>%
+  mutate(covid_deaths = sum(deaths_covid19,deaths_stroke_covid19,deaths_heart_attack_covid19, na.rm = T)) %>%
+  ungroup() %>%
+  group_by(region,region_code,year,month) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm = T)) %>%
+  ungroup()
+
+# Join monthly total deaths and monthly covid deaths together
+brazil_monthly_deaths <- brazil_monthly_total_deaths %>%
+  left_join(brazil_monthly_covid_deaths) %>%
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") # To be calculated
 
 # Export as CSV
 write.csv(brazil_monthly_deaths %>%
             mutate(start_date = format(start_date, "%Y-%m-%d"),
-                   end_date = format(end_date, "%Y-%m-%d")),
+                   end_date = format(end_date, "%Y-%m-%d")) %>%
+            filter(end_date <= as.Date("2020-06-30")), # Remove months with incomplete data
           "output-data/historical-deaths/brazil_monthly_deaths.csv",
           fileEncoding = "UTF-8",
           row.names=FALSE)
