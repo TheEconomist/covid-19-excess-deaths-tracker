@@ -65,7 +65,27 @@ get_excess_deaths <- function(df,frequency="weekly",calculate=TRUE){
   excess_deaths <- expected_deaths %>%
     mutate(excess_deaths = total_deaths - expected_deaths,
            non_covid_deaths = total_deaths - covid_deaths,
-           region_code = as.character(region_code))
+           region_code = as.character(region_code)) %>%
+    mutate(covid_deaths_per_100k = covid_deaths / population * 100000,
+           excess_deaths_per_100k = excess_deaths / population * 100000,
+           excess_deaths_pct_change = ((expected_deaths + excess_deaths) / expected_deaths) - 1)
+  
+  # Calculate weekly rates for monthly data
+  if(frequency == "monthly") {
+    
+    excess_deaths <- excess_deaths %>%
+      mutate(month_days = as.numeric(difftime(end_date,start_date,units=c("days"))) + 1,
+             total_deaths_per_7_days = total_deaths / month_days * 7,
+             expected_deaths_per_7_days = expected_deaths / month_days * 7,
+             excess_deaths_per_7_days = excess_deaths / month_days * 7,
+             non_covid_deaths_per_7_days = non_covid_deaths / month_days * 7,
+             covid_deaths_per_100k_per_7_days = covid_deaths_per_100k / month_days * 7,
+             excess_deaths_per_100k_per_7_days = excess_deaths_per_100k / month_days * 7) %>%
+      dplyr::select(-month_days)
+    
+  }
+  
+  excess_deaths
   
 }
 
@@ -225,21 +245,4 @@ all_monthly_excess_deaths <- bind_rows(brazil_excess_deaths,
 
 # Export monthly deaths
 write.csv(all_monthly_excess_deaths,"output-data/excess-deaths/all_monthly_excess_deaths.csv",
-          fileEncoding = "UTF-8",row.names=FALSE)
-
-# Step 4: convert monthly deaths into weekly rates, for interactive ---------------------------------------
-
-# Calculate the weekly death rates for each month in each region
-all_monthly_excess_deaths_weekly_rates <- all_monthly_excess_deaths %>%
-  mutate(month_days = as.numeric(difftime(end_date,start_date,units=c("days"))) + 1,
-         total_deaths = total_deaths / month_days * 7,
-         expected_deaths = expected_deaths / month_days * 7,
-         excess_deaths = excess_deaths / month_days * 7,
-         non_covid_deaths = non_covid_deaths / month_days * 7,
-         covid_deaths_per_100k = covid_deaths_per_100k / month_days * 7,
-         excess_deaths_per_100k = excess_deaths_per_100k / month_days * 7) %>%
-  dplyr::select(names(all_monthly_excess_deaths))
-
-# Export monthly deaths
-write.csv(all_monthly_excess_deaths_weekly_rates,"output-data/interactive/all_monthly_excess_deaths_weekly_rates.csv",
           fileEncoding = "UTF-8",row.names=FALSE)
