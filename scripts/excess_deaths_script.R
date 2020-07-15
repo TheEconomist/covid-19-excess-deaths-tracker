@@ -76,6 +76,7 @@ get_excess_deaths <- function(df,frequency="weekly",calculate=TRUE){
     excess_deaths <- excess_deaths %>%
       mutate(month_days = as.numeric(difftime(end_date,start_date,units=c("days"))) + 1,
              total_deaths_per_7_days = total_deaths / month_days * 7,
+             covid_deaths_per_7_days = covid_deaths / month_days * 7,
              expected_deaths_per_7_days = expected_deaths / month_days * 7,
              excess_deaths_per_7_days = excess_deaths / month_days * 7,
              non_covid_deaths_per_7_days = non_covid_deaths / month_days * 7,
