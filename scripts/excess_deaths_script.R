@@ -96,7 +96,7 @@ write.csv(austria_excess_deaths,"output-data/excess-deaths/austria_excess_deaths
        fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Belgium
-belgium_excess_deaths <- get_excess_deaths(belgium_weekly_deaths,calculate=FALSE)
+belgium_excess_deaths <- get_excess_deaths(belgium_weekly_deaths)
 write.csv(belgium_excess_deaths,"output-data/excess-deaths/belgium_excess_deaths.csv",
           fileEncoding = "UTF-8",row.names=FALSE)
 

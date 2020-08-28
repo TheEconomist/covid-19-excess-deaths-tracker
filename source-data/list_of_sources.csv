@@ -2,13 +2,15 @@ country,source_type,frequency,description,link
 All,Covid-19 deaths,Daily,"Data from ECDC, via Our World In Data",https://ourworldindata.org/coronavirus-source-data
 Austria,Total deaths,Weekly,Data from Statistik Austria,https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_gest_kalwo_GEST_KALWOCHE_100
 Austria,Population,,Data from Statistik Austria,http://www.statistik.at/web_de/statistiken/menschen_und_gesellschaft/bevoelkerung/bevoelkerungsstand_und_veraenderung/bevoelkerung_zu_jahres-_quartalsanfang/023582.html
-Belgium,Total deaths,Weekly,Data from Sciensano,https://covid-19.sciensano.be/nl/covid-19-epidemiologische-situatie
+Belgium,Total deaths,Weekly,Data from Sciensano,https://statbel.fgov.be/en/visuals/mortality
 Belgium,Covid-19 deaths,Daily,Data from Sciensano,https://epistat.wiv-isp.be/covid/
 Belgium,Population,,Data from Statbel,https://statbel.fgov.be/nl/themas/bevolking/structuur-van-de-bevolking
+Brazil,Total deaths,Monthly,"Data from Registro Civil and DataSUS, via Brasil.IO",
 Brazil,Total deaths,Monthly,Data from Registro Civil,https://registrocivil.org.br/
 Brazil,Population,,Data from O Instituto Brasileiro de Geografia e Estatistica,ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2019/estimativa_dou_2019.pdf
 Britain,Total deaths,Weekly,English and Welsh data from Office for National Statistics,https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/weeklyprovisionalfiguresondeathsregisteredinenglandandwales
 Britain,Total deaths,Weekly,Scottish data from National Records of Scotland,https://www.nrscotland.gov.uk/statistics-and-data/statistics/statistics-by-theme/vital-events/general-publications/weekly-and-monthly-data-on-births-and-deaths/deaths-involving-coronavirus-covid-19-in-scotland
+Britain,Total deaths,Weekly,Scottish data from Scottish Government,https://data.gov.scot/coronavirus-covid-19/data.html
 Britain,Total deaths,Weekly,North Irish data from Northern Ireland Statistics and Research Agency,https://www.nisra.gov.uk/publications/weekly-deaths
 Britain,Covid-19 deaths,Weekly,English and Welsh data from Office for National Statistics,https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/weeklyprovisionalfiguresondeathsregisteredinenglandandwales
 Britain,Covid-19 deaths,Weekly,Scottish data from National Records of Scotland,https://www.nrscotland.gov.uk/statistics-and-data/statistics/statistics-by-theme/vital-events/general-publications/weekly-and-monthly-data-on-births-and-deaths/deaths-involving-coronavirus-covid-19-in-scotland

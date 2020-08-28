@@ -34,9 +34,9 @@ Below is a summary of our sources for each country.
 
 | Variable          | Source                            | Notes                                                             |
 | ------------------| ----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Sciensano                         | Last analysed to June 7th                                         |
+| `total_deaths`    | Statbel                           | Last analysed to June 7th                                         |
 | `covid_deaths`    | Sciensano                         | Retrospectively adjusted, to use day that death occurred          |
-| `expected_deaths` | Sciensano                         | Weekly average, based on 2015-19                                  |
+| `expected_deaths` | *The Economist*                   | Weekly average, based on 2017-19                                  |
 
 ### Brazil
 
