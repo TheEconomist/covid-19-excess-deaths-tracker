@@ -253,6 +253,8 @@ chile_regions_weekly_covid_deaths <- chile_covid_source_latest %>%
   mutate(region_code = `ISO 3166-2 Code`) %>%
   dplyr::select(-c(`ISO 3166-2 Code`,Country,Subdivision,`Last Update`)) %>%
   pivot_longer(cols = c(-region_code), names_to = "date", values_to = "cumulative_deaths") %>%
+  # avoid double-counting if value is NA
+  fill(cumulative_deaths, .direction = "down") %>% 
   mutate(date = ymd(date)) %>%
   bind_rows(expand.grid(region_code = unique(chile_regions$region_code),
                         date = seq(as.Date("2015-01-01"), as.Date("2020-02-24"), by="days"), # Bind on rows with 0 covid deaths before February 24th
