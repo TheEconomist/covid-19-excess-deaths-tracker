@@ -11,7 +11,7 @@ table_data <- bind_rows(read_csv('output-data/excess-deaths/all_weekly_excess_de
                         read_csv('output-data/excess-deaths/all_monthly_excess_deaths.csv'))
 
 # we include some cities for countries that lack nationwide figures
-cities <- c('Istanbul', 'Mexico City', 'Rio de Janeiro', 'Jakarta', 'Moscow')
+cities <- c('Istanbul', 'Jakarta')
 
 # generate table csv
 table <- table_data %>% 
