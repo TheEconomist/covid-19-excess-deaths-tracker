@@ -1,2 +1,4 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+source-data/italy/italy_total_source_2020_06_30.csv filter=lfs diff=lfs merge=lfs -text
+output-data/expected-deaths-models/united_states_expected_deaths_model.RDS filter=lfs diff=lfs merge=lfs -text
