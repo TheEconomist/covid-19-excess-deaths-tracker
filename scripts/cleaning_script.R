@@ -265,7 +265,7 @@ chile_regions_weekly_deaths <- chile_regions_weekly_covid_deaths %>%
                 population,total_deaths,covid_deaths,expected_deaths) %>%
   drop_na() %>%
   filter(week != 53,
-         end_date <= as.Date("2020-09-16")) # Remove weeks with incomplete data
+         end_date <= as.Date("2020-10-21")) # Remove weeks with incomplete data
 
 # Aggregate at the national level
 chile_national_weekly_deaths <- chile_regions_weekly_deaths %>%
@@ -326,7 +326,7 @@ denmark_weekly_deaths <- denmark_weekly_total_deaths %>%
                 population,total_deaths,covid_deaths,expected_deaths) %>%
   drop_na() %>%
   filter(week != 53,
-         end_date <= as.Date("2020-09-08")) # Remove weeks with incomplete data
+         end_date <= as.Date("2020-10-13")) # Remove weeks with incomplete data
 
 # Export as CSV
 write.csv(denmark_weekly_deaths %>%
@@ -611,12 +611,12 @@ write.csv(indonesia_monthly_deaths %>%
 
 # Import Italy's data
 italy_comunes <- read_excel("source-data/italy/italy_comunes.xlsx")
-italy_total_source_latest <- fread("source-data/italy/italy_total_source_2020_06_30.csv")
+italy_total_source_latest <- fread("source-data/italy/italy_total_source_2020_08_31.csv")
 italy_covid_source_latest <- read_csv("https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni.csv")
 
 # Create list of Italian comunes with reliable data
 italy_comunes_reliable <- italy_total_source_latest %>%
-  filter(GE <= 630, T_20 != "n.d.") %>% # Filter out any comunes missing data before June 30th
+  filter(GE <= 831, T_20 != "n.d.") %>% # Filter out any comunes missing data before June 30th
   dplyr::select(COD_PROVCOM) %>%
   distinct() %>%
   pull()
@@ -631,7 +631,7 @@ italy_regions <- italy_comunes %>%
 italy_regions_weekly_total_deaths <- italy_total_source_latest %>%
   mutate(comune_code = COD_PROVCOM) %>%
   left_join(italy_comunes) %>% 
-  filter(GE <= 630, T_20 != "n.d.") %>% # Remove any missing days
+  filter(GE <= 831, T_20 != "n.d.") %>% # Remove any missing days
   group_by(region_code,GE) %>%
   summarise(total_deaths_2015 = sum(T_15,na.rm=T),
             total_deaths_2016 = sum(T_16,na.rm=T),
@@ -910,7 +910,7 @@ portugal_weekly_deaths <- portugal_weekly_total_deaths %>%
                 population,total_deaths,covid_deaths,expected_deaths) %>%
   drop_na() %>%
   filter(week != 53,
-         end_date <= as.Date("2020-09-15")) # Remove weeks with incomplete data
+         end_date <= as.Date("2020-10-22")) # Remove weeks with incomplete data
 
 # Export as CSV
 write.csv(portugal_weekly_deaths %>%
@@ -1045,7 +1045,7 @@ spain_regions_weekly_deaths <- spain_regions_weekly_total_deaths %>%
   ungroup() %>%
   dplyr::select(country,region,region_code,start_date,end_date,year,week,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
-  filter(end_date <= as.Date("2020-10-20")) # Remove weeks with incomplete data
+  filter(end_date <= as.Date("2020-10-22")) # Remove weeks with incomplete data
 
 # Export as CSV
 write.csv(spain_regions_weekly_deaths %>%
@@ -1342,7 +1342,7 @@ united_states_national_weekly_deaths <- united_states_weekly_deaths %>%
 # Export as CSV
 write.csv(united_states_weekly_deaths %>%
             bind_rows(united_states_national_weekly_deaths) %>%
-            filter(end_date <= as.Date("2020-08-22")) %>% # Remove weeks with incomplete data
+            filter(end_date <= as.Date("2020-10-03")) %>% # Remove weeks with incomplete data
             mutate(start_date = format(start_date, "%Y-%m-%d"),
                    end_date = format(end_date, "%Y-%m-%d")),
           "output-data/historical-deaths/united_states_weekly_deaths.csv",

@@ -142,8 +142,8 @@ austria_results <- get_excess_deaths(austria_weekly_deaths,austria_expected_deat
 write.csv(austria_results[[2]],"output-data/excess-deaths/austria_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Belgium
-belgium_results <- get_excess_deaths(belgium_weekly_deaths,belgium_expected_deaths_model,"weekly",calculate=TRUE,train_model=FALSE)
-#saveRDS(belgium_results[[1]],"output-data/expected-deaths-models/belgium_expected_deaths_model.RDS")
+belgium_results <- get_excess_deaths(belgium_weekly_deaths,belgium_expected_deaths_model,"weekly",calculate=TRUE,train_model=TRUE)
+saveRDS(belgium_results[[1]],"output-data/expected-deaths-models/belgium_expected_deaths_model.RDS")
 write.csv(belgium_results[[2]],"output-data/excess-deaths/belgium_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Brazil
@@ -166,13 +166,13 @@ denmark_results <- get_excess_deaths(denmark_weekly_deaths,denmark_expected_deat
 write.csv(denmark_results[[2]],"output-data/excess-deaths/denmark_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Ecuador
-ecuador_results <- get_excess_deaths(ecuador_monthly_deaths,ecuador_expected_deaths_model,"monthly",calculate=TRUE,train_model=FALSE)
-#saveRDS(ecuador_results[[1]],"output-data/expected-deaths-models/ecuador_expected_deaths_model.RDS")
+ecuador_results <- get_excess_deaths(ecuador_monthly_deaths,ecuador_expected_deaths_model,"monthly",calculate=TRUE,train_model=TRUE)
+saveRDS(ecuador_results[[1]],"output-data/expected-deaths-models/ecuador_expected_deaths_model.RDS")
 write.csv(ecuador_results[[2]],"output-data/excess-deaths/ecuador_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export France
 france_results <- get_excess_deaths(france_weekly_deaths,france_expected_deaths_model,"weekly",calculate=TRUE,train_model=FALSE)
-saveRDS(france_results[[1]],"output-data/expected-deaths-models/france_expected_deaths_model.RDS")
+#saveRDS(france_results[[1]],"output-data/expected-deaths-models/france_expected_deaths_model.RDS")
 write.csv(france_results[[2]],"output-data/excess-deaths/france_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Germany
@@ -186,8 +186,8 @@ indonesia_results <- get_excess_deaths(indonesia_monthly_deaths,indonesia_expect
 write.csv(indonesia_results[[2]],"output-data/excess-deaths/indonesia_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Italy
-italy_results <- get_excess_deaths(italy_weekly_deaths,italy_expected_deaths_model,"weekly",calculate=TRUE,train_model=FALSE)
-#saveRDS(italy_results[[1]],"output-data/expected-deaths-models/italy_expected_deaths_model.RDS")
+italy_results <- get_excess_deaths(italy_weekly_deaths,italy_expected_deaths_model,"weekly",calculate=TRUE,train_model=TRUE)
+saveRDS(italy_results[[1]],"output-data/expected-deaths-models/italy_expected_deaths_model.RDS")
 write.csv(italy_results[[2]],"output-data/excess-deaths/italy_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Mexico
