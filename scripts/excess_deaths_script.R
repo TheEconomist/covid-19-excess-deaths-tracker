@@ -238,7 +238,7 @@ switzerland_results <- get_excess_deaths(switzerland_weekly_deaths,switzerland_e
 write.csv(switzerland_results[[2]],"output-data/excess-deaths/switzerland_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Turkey
-turkey_results <- get_excess_deaths(turkey_weekly_deaths,turkey_expected_deaths_model,"weekly",calculate=TRUE,train_model=FALSE)
+turkey_results <- get_excess_deaths(turkey_weekly_deaths,turkey_expected_deaths_model,"weekly",calculate=TRUE,train_model=TRUE)
 #saveRDS(turkey_results[[1]],"output-data/expected-deaths-models/turkey_expected_deaths_model.RDS")
 write.csv(turkey_results[[2]],"output-data/excess-deaths/turkey_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
