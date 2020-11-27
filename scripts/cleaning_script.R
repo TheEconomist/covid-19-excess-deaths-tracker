@@ -531,7 +531,7 @@ france_national_weekly_deaths <- france_regions_weekly_deaths %>%
 write.csv(bind_rows(france_regions_weekly_deaths,france_national_weekly_deaths) %>%
             mutate(start_date = format(start_date, "%Y-%m-%d"),
                    end_date = format(end_date, "%Y-%m-%d")) %>%
-            filter(end_date <= as.Date("2020-09-29")), # Remove weeks with incomplete data
+            filter(end_date <= as.Date("2020-11-10")), # Remove weeks with incomplete data
           "output-data/historical-deaths/france_weekly_deaths.csv",
           fileEncoding = "UTF-8",
           row.names=FALSE)
@@ -1233,7 +1233,7 @@ united_states_week_windows <- fread("source-data/united-states/united_states_wee
 united_states_covid_source_latest <- fread("https://usafactsstatic.blob.core.windows.net/public/data/covid-19/covid_deaths_usafacts.csv")
 united_states_total_source_latest <- fread("source-data/united-states/united_states_total_source_latest.csv")
 united_states_total_source_2020 <- fread("https://data.cdc.gov/api/views/xkkf-xrst/rows.csv")
-new_york_city_covid_source_latest <- fread("https://raw.githubusercontent.com/nychealth/coronavirus-data/master/deaths/probable-confirmed-dod.csv") 
+new_york_city_covid_source_latest <- fread("https://raw.githubusercontent.com/nychealth/coronavirus-data/master/trends/data-by-day.csv") 
 
 # Group total deaths by week and state
 united_states_weekly_total_deaths <- united_states_total_source_latest %>%
@@ -1271,9 +1271,8 @@ new_york_state_weekly_total_deaths <- united_states_weekly_total_deaths %>%
 
 # Group NYC covid deaths by week
 new_york_city_weekly_covid_deaths <- new_york_city_covid_source_latest %>%
-  mutate(date = mdy(DATE_OF_DEATH),
-         PROBABLE_COUNT = case_when(is.na(PROBABLE_COUNT) ~ 0, TRUE ~ as.numeric(PROBABLE_COUNT)),
-         covid_deaths = CONFIRMED_COUNT + PROBABLE_COUNT) %>% # Add confirmed and probable deaths together
+  mutate(date = mdy(date_of_interest),
+         covid_deaths = DEATH_COUNT + DEATH_COUNT_PROBABLE) %>% # Add confirmed and probable deaths together
   dplyr::select(date, covid_deaths) %>%
   bind_rows(expand.grid(date = seq(as.Date("2020-01-01"), as.Date("2020-03-10"), by="days"), # Bind on rows before March 11th
                         covid_deaths = 0)) %>%
@@ -1347,7 +1346,7 @@ united_states_national_weekly_deaths <- united_states_weekly_deaths %>%
 # Export as CSV
 write.csv(united_states_weekly_deaths %>%
             bind_rows(united_states_national_weekly_deaths) %>%
-            filter(end_date <= as.Date("2020-10-03")) %>% # Remove weeks with incomplete data
+            filter(end_date <= as.Date("2020-11-07")) %>% # Remove weeks with incomplete data
             mutate(start_date = format(start_date, "%Y-%m-%d"),
                    end_date = format(end_date, "%Y-%m-%d")),
           "output-data/historical-deaths/united_states_weekly_deaths.csv",
