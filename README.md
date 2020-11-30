@@ -26,7 +26,7 @@ Below is a summary of our sources for each country.
 
 | Variable          | Source                            | Notes                                                             |
 | ------------------| ----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Statistik Austria                 | Last analysed to September 6th                                    |
+| `total_deaths`    | Statistik Austria                 | Last analysed to November 15th                                    |
 | `covid_deaths`    | ECDC / Our World In Data          |                                                                   |
 | `expected_deaths` | Statistik Austria                 | Weekly modelled baseline, trained on 2016-19                      |
 
@@ -34,7 +34,7 @@ Below is a summary of our sources for each country.
 
 | Variable          | Source                            | Notes                                                             |
 | ------------------| ----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Statbel                           | Last analysed to August 4th                                       |
+| `total_deaths`    | Statbel                           | Last analysed to November 3rd                                     |
 | `covid_deaths`    | Sciensano                         | Retrospectively adjusted, to use day that death occurred          |
 | `expected_deaths` | *The Economist*                   | Weekly modelled baseline, trained on 2016-19                      |
 
@@ -44,7 +44,7 @@ We have used [estimates from Vital Strategies](https://www.vitalstrategies.org/r
 
 | Variable          | Source                                  | Notes                                                             |
 | ------------------| ----------------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Vital Strategies / Registro Civil / SIM | Last analysed to August 15th                                      |
+| `total_deaths`    | Vital Strategies / Registro Civil / SIM | Last analysed to October 3rd                                      |
 | `covid_deaths`    | ECDC / Our World In Data                |                                                                   |
 | `expected_deaths` | Vital Strategies                        | Weekly modelled baseline, trained by Vital Strategies             |
 
@@ -54,7 +54,7 @@ We have combined English and Welsh data from the Office for National Statistics 
 
 | Variable          | Source                            | Notes                                                             |
 | ------------------| ----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | ONS / NRS / NISRA                 | Last analysed to September 4th                                    |
+| `total_deaths`    | ONS / NRS / NISRA                 | Last analysed to November 13th                                    |
 | `covid_deaths`    | ONS / NRS / NISRA                 | Retrospectively adjusted, to use day that death was registered    |
 | `expected_deaths` | *The Economist*                   | Weekly modelled baseline, trained on 2015-19                      |
 
@@ -64,7 +64,7 @@ To follow the latest census in 2017, from which we are importing population esti
 
 | Variable          | Source                            | Notes                                                             |
 | ------------------| ----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Registro Civil                    | Last analysed to September 15th                                   |
+| `total_deaths`    | Registro Civil                    | Last analysed to November 17th                                    |
 | `covid_deaths`    | Ministerio de Salud / DSRP        |                                                                   |
 | `expected_deaths` | *The Economist*                   | Weekly modelled baseline, trained on 2015-19                      |
 
@@ -72,7 +72,7 @@ To follow the latest census in 2017, from which we are importing population esti
 
 | Variable          | Source                            | Notes                                                             |
 | ------------------| ----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Danmarks Statistik                | Last analysed to September 8th                                    |
+| `total_deaths`    | Danmarks Statistik                | Last analysed to November 10th                                    |
 | `covid_deaths`    | ECDC / Our World In Data          |                                                                   |
 | `expected_deaths` | *The Economist*                   | Weekly modelled baseline, trained on 2015-19                      |
 
@@ -80,7 +80,7 @@ To follow the latest census in 2017, from which we are importing population esti
 
 | Variable          | Source                            | Notes                                                             |
 | ------------------| ----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Registro Civil                    | Last analysed to August 31st                                      |
+| `total_deaths`    | Registro Civil                    | Last analysed to September 30th                                   |
 | `covid_deaths`    | ECDC / Our World In Data          |                                                                   |
 | `expected_deaths` | *The Economist*                   | Monthly modelled baseline, trained on 2018-19                     |
 
@@ -90,7 +90,7 @@ France's national `covid_deaths`, which we are importing from the ECDC, includes
 
 | Variable          | Source                            | Notes                                                             |
 | ------------------| ----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Insee                             | Last analysed to September 1st                                    |
+| `total_deaths`    | Insee                             | Last analysed to November 10th                                    |
 | `covid_deaths`    | Santé Publique France / ECDC      |                                                                   |
 | `expected_deaths` | *The Economist*                   | Weekly modelled baseline, trained on 2015-19                      |
 
@@ -98,7 +98,7 @@ France's national `covid_deaths`, which we are importing from the ECDC, includes
 
 | Variable          | Source                            | Notes                                                             |
 | ------------------| ----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Destatis                          | Last analysed to August 18th                                      |
+| `total_deaths`    | Destatis                          | Last analysed to October 20th                                     |
 | `covid_deaths`    | ECDC / Our World In Data          |                                                                   |
 | `expected_deaths` | *The Economist*                   | Weekly modelled baseline, trained on 2016-19                      |
 
@@ -116,18 +116,15 @@ The only available data about deaths from all causes is [a monthly tally of buri
 
 | Variable          | Source                                    | Notes                                                             |
 | ------------------| ------------------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | ISTAT                                     | Last analysed to June 30th                                        |
+| `total_deaths`    | ISTAT                                     | Last analysed to August 25th                                      |
 | `covid_deaths`    | Dipartimento della Protezione Civile      |                                                                   |
 | `expected_deaths` | *The Economist*                           | Weekly modelled baseline, trained on 2015-19                      |
 
 ### Mexico
 
-We have traced data on `total_deaths` and `expected_deaths` from [a report](https://www.gob.mx/cms/uploads/attachment/file/576411/CP_Salud_CTD_coronavirus_COVID-19__05sep20.pdf#page=14) by the Secretaría de Salud on September 5th. These data, and the modelled baseline, cover 24 of Mexico's 32 federal states, including 85.5% of the population. We have imported data for `covid_deaths` from the ECDC, which cover all 32 states.
-
-
 | Variable          | Source                               | Notes                                                             |
 | ------------------| -------------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Secretaría de Salud                  | Last analysed to August 1st                                       |
+| `total_deaths`    | Secretaría de Salud                  | Last analysed to September 26th                                   |
 | `covid_deaths`    | ECDC / Our World In Data             |                                                                   |
 | `expected_deaths` | *The Economist*                      | Monthly average, based on 2018-19                                 |
 
@@ -135,7 +132,7 @@ We have traced data on `total_deaths` and `expected_deaths` from [a report](http
 
 | Variable          | Source                             | Notes                                                             |
 | ------------------| -----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Centraal Bureau voor de Statistiek | Last analysed to September 6th                                    |
+| `total_deaths`    | Centraal Bureau voor de Statistiek | Last analysed to November 20th                                    |
 | `covid_deaths`    | ECDC / Our World In Data           |                                                                   |
 | `expected_deaths` | *The Economist*                    | Weekly modelled baseline, trained on 2015-19                      |
 
@@ -143,7 +140,7 @@ We have traced data on `total_deaths` and `expected_deaths` from [a report](http
 
 | Variable          | Source                             | Notes                                                             |
 | ------------------| -----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Statistisk Sentralbyra             | Last analysed to August 25th                                      |
+| `total_deaths`    | Statistisk Sentralbyra             | Last analysed to November 10th                                    |
 | `covid_deaths`    | ECDC / Our World In Data           |                                                                   |
 | `expected_deaths` | *The Economist*                    | Weekly modelled baseline, trained on 2015-19                      |
 
@@ -151,7 +148,7 @@ We have traced data on `total_deaths` and `expected_deaths` from [a report](http
 
 | Variable          | Source                            | Notes                                                             |
 | ------------------| ----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Ministerio de Salud               | Last analysed to August 31st                                      |
+| `total_deaths`    | Ministerio de Salud               | Last analysed to October 31st                                     |
 | `covid_deaths`    | ECDC / Our World In Data          |                                                                   |
 | `expected_deaths` | *The Economist*                   | Monthly modelled baseline, trained on 2017-19                     |
 
@@ -159,7 +156,7 @@ We have traced data on `total_deaths` and `expected_deaths` from [a report](http
 
 | Variable          | Source                             | Notes                                                             |
 | ------------------| -----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Ministerio da Saúde                | Last analysed to September 15th                                   |
+| `total_deaths`    | Ministerio da Saúde                | Last analysed to November 24th                                    |
 | `covid_deaths`    | ECDC / Our World In Data           |                                                                   |
 | `expected_deaths` | *The Economist*                    | Weekly modelled baseline, trained on 2015-19                      |
 
@@ -169,7 +166,7 @@ We have traced data on `total_deaths` and `expected_deaths` from [a report](http
 
 | Variable          | Source                             | Notes                                                             |
 | ------------------| -----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Rosstat / *The Moscow Times*       | Last analysed to July 31st                                        |
+| `total_deaths`    | Rosstat / *The Moscow Times*       | Last analysed to September 30th                                   |
 | `covid_deaths`    | ECDC / Our World In Data           |                                                                   |
 | `expected_deaths` | *The Economist*                    | Monthly modelled baseline, trained on 2015-19                     |
 
@@ -177,7 +174,7 @@ We have traced data on `total_deaths` and `expected_deaths` from [a report](http
 
 | Variable          | Source                                 | Notes                                                             |
 | ------------------| ---------------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | South African Medical Research Council | Last analysed to September 8th                                    |
+| `total_deaths`    | South African Medical Research Council | Last analysed to November 17th                                    |
 | `covid_deaths`    | ECDC / Our World In Data               |                                                                   |
 | `expected_deaths` | South African Medical Research Council | Weekly modelled baseline, trained by SAMRC                        |
 
@@ -185,7 +182,7 @@ We have traced data on `total_deaths` and `expected_deaths` from [a report](http
 
 | Variable          | Source                             | Notes                                                             |
 | ------------------| -----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Instituto de Salud Carlos III      | Last analysed to September 15th                                   |
+| `total_deaths`    | Instituto de Salud Carlos III      | Last analysed to November 17th                                    |
 | `covid_deaths`    | Ministerio de Sanidad / Datadista  |                                                                   |
 | `expected_deaths` | Instituto de Salud Carlos III      | Daily modelled baseline, trained by MoMo                          |
 
@@ -193,7 +190,7 @@ We have traced data on `total_deaths` and `expected_deaths` from [a report](http
 
 | Variable          | Source                             | Notes                                                             |
 | ------------------| -----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Statistiska Centralbyran           | Last analysed to September 8th                                    |
+| `total_deaths`    | Statistiska Centralbyran           | Last analysed to November 10th                                    |
 | `covid_deaths`    | Folkhalsomyndigheten               | Retrospectively adjusted, to use day that death occurred          |
 | `expected_deaths` | *The Economist*                    | Monthly modelled baseline, trained on 2015-19                     |
 
@@ -201,7 +198,7 @@ We have traced data on `total_deaths` and `expected_deaths` from [a report](http
 
 | Variable          | Source                             | Notes                                                             |
 | ------------------| -----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | Federal Statistical Office         | Last analysed to September 6th                                    |
+| `total_deaths`    | Federal Statistical Office         | Last analysed to November 15th                                    |
 | `covid_deaths`    | ECDC / Our World In Data           |                                                                   |
 | `expected_deaths` | *The Economist*                    | Monthly modelled baseline, trained on 2015-19                     |
 
@@ -213,7 +210,7 @@ The Turkish government has not released a regional breakdown of covid-19 data [s
 
 | Variable          | Source                            | Notes                                                             |
 | ------------------| ----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | İstanbul Büyükşehir Belediyesi    | Last analysed to August 25th                                      |
+| `total_deaths`    | İstanbul Büyükşehir Belediyesi    | Last analysed to November 17th                                    |
 | `covid_deaths`    | ECDC / Our World In Data          |                                                                   |
 | `expected_deaths` | *The Economist*                   | Monthly modelled baseline, trained on 2017-19                     |
 
@@ -223,7 +220,7 @@ The CDC is publishing weekly data about `total_deaths` in each state and New Yor
 
 | Variable          | Source                            | Notes                                                             |
 | ------------------| ----------------------------------|-------------------------------------------------------------------|
-| `total_deaths`    | CDC                               | Last analysed to August 22nd                                      |
+| `total_deaths`    | CDC                               | Last analysed to November 7th                                     |
 | `covid_deaths`    | CDC / USA Facts / NYC Health      | NYC toll includes "probable" deaths from covid-19                 |
 | `expected_deaths` | *The Economist*                   | Monthly modelled baseline, trained on 2015-19                     |
 
@@ -235,6 +232,6 @@ The data and files that we have generated from official sources are freely avail
 
 ## Authors
 
-This data has been collected, cleaned and analysed by [James Tozer](https://twitter.com/J_CD_T) and [Martín González](https://twitter.com/martgnz). We are grateful to Oğuz Işık for providing data from Istanbul; to Laurianne Despeghel and Mario Romero Zavalato for providing data from Mexico City; to Thais Carrança, Helio Gurovitz and Diogo Melo for providing data from Brazilian cities; and to Vital Strategies for providing data from the whole of Brazil. 
+This data has been collected, cleaned and analysed by [James Tozer](https://twitter.com/J_CD_T) and [Martín González](https://twitter.com/martgnz). We are grateful to Oğuz Işık for providing data from Istanbul; to René van der Veer for providing code for the Netherlands; to Laurianne Despeghel and Mario Romero Zavalato for providing data from Mexico City; to Thais Carrança, Helio Gurovitz and Diogo Melo for providing data from Brazilian cities; and to Vital Strategies for providing data from the whole of Brazil. 
 
 If you use the data, or have any suggestions, please email [jamestozer@economist.com](mailto:jamestozer@economist.com).
