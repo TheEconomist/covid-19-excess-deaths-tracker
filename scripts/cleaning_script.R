@@ -1002,17 +1002,15 @@ write.csv(south_africa_weekly_deaths %>%
 # Import Spain's data
 spain_regions <- read_excel("source-data/spain/spain_regions.xlsx")
 spain_total_source_latest <- fread("source-data/spain/spain_total_source_latest.csv")
-download.file("https://www.mscbs.gob.es/profesionales/saludPublica/ccayes/alertasActual/nCov-China/documentos/Fallecidos_COVID19.xlsx", # Download covid data
-               destfile="source-data/spain/spain_covid_source_latest.xlsx")
-spain_covid_source_latest <- read_excel("source-data/spain/spain_covid_source_latest.xlsx")
+spain_covid_source_latest <- read_csv('https://raw.githubusercontent.com/datadista/datasets/master/COVID%2019/ccaa_covid19_fallecidos_por_fecha_defuncion_nueva_serie_long.csv')
 
 # Group total and expected deaths by week and region
 spain_regions_weekly_total_deaths <- spain_total_source_latest %>%
   filter(cod_sexo == "all", cod_gedad == "all") %>%
-  mutate(date = ymd(fecha_defuncion), 
+  mutate(date = ymd(fecha_defuncion),
          year = year(date),
-         week = week(date), 
-         region_code = replace_na(cod_ine_ambito,0), 
+         week = week(date),
+         region_code = replace_na(cod_ine_ambito,0),
          total_deaths = defunciones_observadas,
          expected_deaths = defunciones_esperadas) %>%
   dplyr::select(date,year,week,region_code,total_deaths,expected_deaths) %>%
@@ -1025,25 +1023,33 @@ spain_regions_weekly_total_deaths <- spain_total_source_latest %>%
   filter(days == 7) %>% # Remove incomplete weeks
   mutate(start_date = as.Date(ISOdate(year-1, 12, 31)) + (week*7) - 6,
          end_date = start_date + 6)
-         
+
 # Group covid deaths by week and region
 spain_regions_weekly_covid_deaths <- spain_covid_source_latest %>%
-  drop_na() %>%
-  rename_all(~c("date","Andalusia","Aragón","Asturias","Balearics","Canary Islands","Cantabria","Castile-La Mancha",
-                "Castile & León","Catalonia","Ceuta","Valencia","Extremadura","Galicia","Madrid","Melilla","Murcia",
-                "Navarre","Basque Country","La Rioja","Spain")) %>%
-  mutate(date = as.Date(as.numeric(date), origin="1899-12-30")) %>%
-  pivot_longer(-date,names_to="region",values_to="covid_deaths") %>%
+  bind_rows(spain_covid_source_latest %>%
+              group_by(Fecha) %>%
+              summarise(Fallecidos = sum(Fallecidos,na.rm=T)) %>%
+              mutate(cod_ine = "0", CCAA = "Spain")) %>%
+  mutate(date = Fecha, region_code = as.numeric(cod_ine)) %>%
+  group_by(region_code) %>%
+  mutate(cumulative_deaths = cumsum(Fallecidos)) %>%
+  ungroup() %>%
+  dplyr::select(date,region_code,cumulative_deaths) %>%
+  group_by(region_code) %>% # Create a lag, to calculate daily deaths from cumulative ones
+  mutate(previous_day_deaths = lag(cumulative_deaths, n = 1, default = NA),
+         covid_deaths = case_when(!is.na(cumulative_deaths) & !is.na(previous_day_deaths) ~ cumulative_deaths - previous_day_deaths,
+                                  !is.na(cumulative_deaths) ~ cumulative_deaths)) %>%
+  ungroup() %>%
+  dplyr::select(date,region_code,covid_deaths) %>% # Bind on rows with 0 covid deaths before March 3rd
   bind_rows(expand.grid(date = seq(as.Date("2018-01-01"), as.Date("2020-02-12"), by="days"),
-                        region = unique(spain_regions$region),
+                        region_code = unique(spain_regions$region_code),
                         covid_deaths = 0)) %>%
-  left_join(spain_regions) %>%
-  arrange(region_code,date) %>%
   mutate(year = year(date),
          week = week(date)) %>%
+  left_join(spain_regions) %>%
   group_by(country,region,region_code,year,week,population) %>%
   summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
-  ungroup() 
+  ungroup()
 
 # Join weekly total deaths and weekly covid deaths together
 spain_regions_weekly_deaths <- spain_regions_weekly_total_deaths %>%
@@ -1051,7 +1057,7 @@ spain_regions_weekly_deaths <- spain_regions_weekly_total_deaths %>%
   ungroup() %>%
   dplyr::select(country,region,region_code,start_date,end_date,year,week,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
-  filter(end_date <= as.Date("2020-12-31")) # Remove weeks with incomplete data
+  filter(end_date <= as.Date("2020-12-30")) # Remove weeks with incomplete data
 
 # Export as CSV
 write.csv(spain_regions_weekly_deaths %>%
