@@ -5,6 +5,7 @@ library(tidyverse)
 library(readxl)
 library(data.table)
 library(lubridate)
+library(aweek)
 options(scipen=999)
 
 # Import global JHU data from Our World In Data
@@ -13,31 +14,66 @@ global_covid_source_latest <- read_csv("https://raw.githubusercontent.com/owid/c
 global_covid_source_cumulative <- read_csv("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/jhu/total_deaths.csv") %>%
   add_row(date=seq(as.Date("2019-12-31"), as.Date("2020-01-21"), by="days")) %>% arrange(date)
 
-# Step 2: import and clean Austria's data ---------------------------------------
+# Step 2: import and clean Australia's data ---------------------------------------
 
-# Import Austria's data
-austria_total_source_latest <- fread("https://data.statistik.gv.at/data/OGD_gest_kalwo_GEST_KALWOCHE_100.csv")
-austria_week_windows <- fread("source-data/austria/austria_week_windows.csv")
+# Import and group Australia's total deaths by week
+australia_weekly_total_deaths <- fread("source-data/human-mortality-database/AUS2stmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Australia", region = "Australia", region_code = 0, population = 25734100, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = as.Date(ISOdate(year-1, 12, 31)) + (week*7) - 6,
+                end_date = start_date + 6) %>%
+  mutate(end_date = case_when(week == 53 ~ as.Date(ISOdate(year,12,31)), TRUE ~ as.Date(end_date)), # Change end of 53rd week each year to December 31st
+         days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
 
-# Group total and expected deaths by week
-austria_weekly_total_deaths <- austria_total_source_latest %>% 
-  left_join(austria_week_windows) %>%
-  mutate(country = "Austria",
-         region = "Austria",
-         population = 8902600,
-         start_date = dmy(start_date),
-         end_date = dmy(end_date)) %>%
-  filter(year >= 2010) %>%
-  group_by(country,region,population,start_date,end_date,year,week) %>%
-  summarise(total_deaths = sum(`F-ANZ-1`, na.rm=T)) %>%
-  ungroup()
+# Group covid deaths by week
+australia_weekly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week_date = date,
+         week = week(week_date),
+         year = year(week_date),
+         covid_deaths = Australia) %>%
+  dplyr::select(date,year,week,covid_deaths) %>%
+  group_by(year,week) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join weekly total deaths and weekly covid deaths together
+australia_weekly_deaths <- australia_weekly_total_deaths %>%
+  left_join(australia_weekly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(australia_weekly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/australia_weekly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 3: import and clean Austria's data ---------------------------------------
+
+# Import and group Austria's total deaths by week
+austria_weekly_total_deaths <- fread("source-data/human-mortality-database/AUTstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Austria", region = "Austria", region_code = 0, population = 8902600, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
 
 # Group covid deaths by week
 austria_weekly_covid_deaths <- global_covid_source_latest %>%
   filter(date >= as.Date("2020-01-01")) %>%
-  mutate(week_date = date - 5, # Use Austria's weekly windows
-         week = week(week_date),
-         year = year(week_date),
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
          covid_deaths = Austria) %>%
   dplyr::select(date,year,week,covid_deaths) %>%
   group_by(year,week) %>%
@@ -47,11 +83,10 @@ austria_weekly_covid_deaths <- global_covid_source_latest %>%
 # Join weekly total deaths and weekly covid deaths together
 austria_weekly_deaths <- austria_weekly_total_deaths %>%
   left_join(austria_weekly_covid_deaths) %>% 
-  mutate(region_code = 0,
-         covid_deaths = replace_na(covid_deaths,0),
+  mutate(covid_deaths = replace_na(covid_deaths,0),
          expected_deaths = "TBC") %>% # To be calculated
   ungroup() %>%
-  dplyr::select(country,region,region_code,start_date,end_date,year,week,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
   drop_na()
 
@@ -63,52 +98,38 @@ write.csv(austria_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 3: import and clean Belgium's data ---------------------------------------
+# Step 4: import and clean Belgium's data ---------------------------------------
 
-# Import Belgium's data
-belgium_total_source_latest <- fread("source-data/belgium/belgium_total_source_latest.csv") 
-belgium_covid_source_latest <- fread("https://epistat.sciensano.be/Data/COVID19BE_MORT.csv")
-
-# Group total and expected deaths by week
-belgium_weekly_total_deaths <- belgium_total_source_latest %>% 
-  mutate(start_date = dmy(start_date),
-         year = year(start_date),
-         week = week(start_date)) %>%
-  group_by(country,region,week,year,population) %>%
-  summarise(total_deaths = sum(total_deaths)) %>%
-  arrange(year,week) %>%
-  drop_na()
+# Import and group Belgium's total deaths by week
+belgium_weekly_total_deaths <- fread("source-data/human-mortality-database/BELstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Belgium", region = "Belgium", region_code = 0, population = 11431406, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
 
 # Group covid deaths by week
-belgium_weekly_covid_deaths <- belgium_covid_source_latest %>%
-  mutate(date = ymd(DATE)) %>%
-  group_by(date) %>%
-  summarise(covid_deaths = sum(DEATHS,na.rm=T)) %>%
-  bind_rows(expand.grid(date = seq(as.Date("2020-01-01"), as.Date("2020-03-09"), by="days"),
-                        covid_deaths = 0)) %>%
-  mutate(country = "Belgium",
-         week = week(date),
-         year = year(date)) %>%
-  dplyr::select(country,date,year,week,covid_deaths) %>%
-  group_by(country,year,week) %>%
+belgium_weekly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+         covid_deaths = Belgium) %>%
+  dplyr::select(date,year,week,covid_deaths) %>%
+  group_by(year,week) %>%
   summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
-  drop_na() %>%
-  dplyr::select(country,year,week,covid_deaths)
+  drop_na()
 
 # Join weekly total deaths and weekly covid deaths together
 belgium_weekly_deaths <- belgium_weekly_total_deaths %>%
   left_join(belgium_weekly_covid_deaths) %>% 
-  mutate(region_code = 0,
-         start_date = as.Date(ISOdate(year-1, 12, 31)) + (week*7) - 6,
-         end_date = start_date + 6,
-         covid_deaths = replace_na(covid_deaths,0),
+  mutate(covid_deaths = replace_na(covid_deaths,0),
          expected_deaths = "TBC") %>% # To be calculated
   ungroup() %>%
-  dplyr::select(country,region,region_code,start_date,end_date,year,week,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
-  drop_na() %>%
-  filter(week != 53,
-       end_date <= as.Date("2020-12-15")) # Remove weeks with incomplete data
+  drop_na()
 
 # Export as CSV
 write.csv(belgium_weekly_deaths %>%
@@ -118,7 +139,7 @@ write.csv(belgium_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 4: import and clean Brazil's data ---------------------------------------
+# Step 5: import and clean Brazil's data ---------------------------------------
 
 # Import Brazil's data
 brazil_total_source_latest <- fread("source-data/brazil/brazil_total_source_latest.csv")
@@ -136,6 +157,7 @@ brazil_weekly_total_deaths <- brazil_total_source_latest %>%
          region_code = 0,
          start_date = as.Date("2019-12-29") + (week-1)*7,
          end_date = start_date + 6,
+         days = end_date - start_date + 1,
          year = 2020,
          population = 210147125)
 
@@ -152,7 +174,7 @@ brazil_weekly_covid_deaths <- global_covid_source_latest %>%
 # Join weekly total deaths and weekly covid deaths together
 brazil_weekly_deaths <- brazil_weekly_total_deaths %>%
   left_join(brazil_weekly_covid_deaths) %>%
-  dplyr::select(country,region,region_code,start_date,end_date,year,week,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
                 population,total_deaths,covid_deaths,expected_deaths)
 
 # Export as CSV
@@ -163,7 +185,7 @@ write.csv(brazil_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 5: import and clean Britain's data ---------------------------------------
+# Step 6: import and clean Britain's data ---------------------------------------
 
 # Import Britain's data
 britain_regions <- fread("source-data/britain/britain_regions.csv")
@@ -172,26 +194,23 @@ britain_covid_source_latest <- read_excel("source-data/britain/britain_covid_sou
 
 # Group total deaths by week and region
 britain_regions_weekly_total_deaths <- gather(britain_total_source_latest,"region","total_deaths",
-                                              -c(country,start_date,end_date,week)) %>%
+                                              -c(country,start_date,end_date,year,week)) %>%
   left_join(britain_regions %>% 
               dplyr::select(region,region_code,population)) %>%
-  mutate(year = year(start_date),
-         week = week(start_date))
+  mutate(days = end_date - start_date + 1)
 
 # Group covid deaths by week and region
 britain_regions_weekly_covid_deaths <- gather(britain_covid_source_latest,"region","covid_deaths",
-                                              -c(country,start_date,end_date,week)) %>%
+                                              -c(country,start_date,end_date,year,week)) %>%
   left_join(britain_regions %>% 
-              dplyr::select(region,region_code,population)) %>%
-  mutate(year = year(start_date),
-         week = week(start_date))
+              dplyr::select(region,region_code,population))
 
 # Join weekly total deaths and weekly covid deaths together
 britain_regions_weekly_deaths <- britain_regions_weekly_total_deaths %>%
   left_join(britain_regions_weekly_covid_deaths) %>%
   mutate(expected_deaths = "TBC") %>% # To be calculated
   ungroup() %>%
-  dplyr::select(country,region,region_code,start_date,end_date,year,week,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
   drop_na()
 
@@ -203,7 +222,89 @@ write.csv(britain_regions_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 6: import and clean Chile's data ---------------------------------------
+# Step 7: import and clean Bulgaria's data ---------------------------------------
+
+# Import and group Bulgaria's total deaths by week
+bulgaria_weekly_total_deaths <- fread("source-data/human-mortality-database/BGRstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Bulgaria", region = "Bulgaria", region_code = 0, population = 6951482, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
+
+# Group covid deaths by week
+bulgaria_weekly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+         covid_deaths = Bulgaria) %>%
+  dplyr::select(date,year,week,covid_deaths) %>%
+  group_by(year,week) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join weekly total deaths and weekly covid deaths together
+bulgaria_weekly_deaths <- bulgaria_weekly_total_deaths %>%
+  left_join(bulgaria_weekly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(bulgaria_weekly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/bulgaria_weekly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 8: import and clean Canada's data ---------------------------------------
+
+# Import and group Canada's total deaths by week
+canada_weekly_total_deaths <- fread("source-data/human-mortality-database/CANstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Canada", region = "Canada", region_code = 0, population = 38008005, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year,day=1)-1,
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
+
+# Group covid deaths by week
+canada_weekly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=7),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=7),1,4)),
+         covid_deaths = Canada) %>%
+  dplyr::select(date,year,week,covid_deaths) %>%
+  group_by(year,week) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join weekly total deaths and weekly covid deaths together
+canada_weekly_deaths <- canada_weekly_total_deaths %>%
+  left_join(canada_weekly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(canada_weekly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/canada_weekly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 9: import and clean Chile's data ---------------------------------------
 
 # Import Chile's data
 chile_regions <- read_excel("source-data/chile/chile_regions.xlsx")
@@ -260,25 +361,26 @@ chile_regions_weekly_deaths <- chile_regions_weekly_covid_deaths %>%
          end_date = start_date + 6,
          covid_deaths = covid_deaths,
          expected_deaths = "TBC") %>% # To be calculated
+  mutate(end_date = case_when(week == 53 ~ as.Date(ISOdate(year,12,31)), TRUE ~ as.Date(end_date)), # Change end of 53rd week each year to December 31st
+         days = end_date - start_date + 1) %>%
   ungroup() %>%
-  dplyr::select(country,region,region_code,start_date,end_date,year,week,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
-  drop_na() %>%
-  filter(week != 53,
-         end_date <= as.Date("2020-12-29")) # Remove weeks with incomplete data
+  drop_na()
 
 # Aggregate at the national level
 chile_national_weekly_deaths <- chile_regions_weekly_deaths %>%
   ungroup() %>%
   mutate(region = "Chile",
          region_code = "CL") %>%
-  group_by(country,region,region_code,start_date,end_date,year,week) %>%
+  group_by(country,region,region_code,start_date,end_date,days,year,week) %>%
   summarise(population = sum(population,na.rm=T),
             total_deaths = sum(total_deaths,na.rm=T),
             covid_deaths = sum(covid_deaths,na.rm=T),
             expected_deaths = "TBC") %>% # To be calculated
-  dplyr::select(country,region,region_code,start_date,end_date,year,week,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
+  filter(end_date <= as.Date("2021-01-07")) %>% # Remove weeks with incomplete data
   drop_na() 
 
 # Export as CSV
@@ -289,24 +391,105 @@ write.csv(bind_rows(chile_regions_weekly_deaths,chile_national_weekly_deaths) %>
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 7: import and clean Denmark's data ---------------------------------------
+# Step 10: import and clean Croatia's data ---------------------------------------
 
-# Import Denmark's data
-denmark_total_source_latest <- fread("source-data/denmark/denmark_total_source_latest.csv") 
+# Import and group Croatia's total deaths by week
+croatia_weekly_total_deaths <- fread("source-data/human-mortality-database/HRVstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Croatia", region = "Croatia", region_code = 0, population = 4058165, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year,day=1),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
 
-# Group total deaths by week
-denmark_weekly_total_deaths <- denmark_total_source_latest %>% 
-  mutate(start_date = dmy(start_date),
-         year = year(start_date),
-         week = week(start_date)) %>%
-  group_by(country,region,year,week,population) %>%
-  summarise(total_deaths = sum(total_deaths)) 
+# Group covid deaths by week
+croatia_weekly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+         covid_deaths = Croatia) %>%
+  dplyr::select(date,year,week,covid_deaths) %>%
+  group_by(year,week) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join weekly total deaths and weekly covid deaths together
+croatia_weekly_deaths <- croatia_weekly_total_deaths %>%
+  left_join(croatia_weekly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(croatia_weekly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/croatia_weekly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 11: import and clean the Czech Republic's data ---------------------------------------
+
+# Import and group the Czech Republic's total deaths by week
+czech_republic_weekly_total_deaths <- fread("source-data/human-mortality-database/CZEstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Czech Republic", region = "Czech Republic", region_code = 0, population = 10693939, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year,day=1),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
+
+# Group covid deaths by week
+czech_republic_weekly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+         covid_deaths = Czechia) %>%
+  dplyr::select(date,year,week,covid_deaths) %>%
+  group_by(year,week) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join weekly total deaths and weekly covid deaths together
+czech_republic_weekly_deaths <- czech_republic_weekly_total_deaths %>%
+  left_join(czech_republic_weekly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(czech_republic_weekly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/czech_republic_weekly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 12: import and clean Denmark's data ---------------------------------------
+
+# Import and group Denmark's total deaths by week
+denmark_weekly_total_deaths <- fread("source-data/human-mortality-database/DNKstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Denmark", region = "Denmark", region_code = 0, population = 5837213, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
 
 # Group covid deaths by week
 denmark_weekly_covid_deaths <- global_covid_source_latest %>%
   filter(date >= as.Date("2020-01-01")) %>%
-  mutate(week = week(date),
-         year = year(date),
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
          covid_deaths = Denmark) %>%
   dplyr::select(date,year,week,covid_deaths) %>%
   group_by(year,week) %>%
@@ -316,17 +499,12 @@ denmark_weekly_covid_deaths <- global_covid_source_latest %>%
 # Join weekly total deaths and weekly covid deaths together
 denmark_weekly_deaths <- denmark_weekly_total_deaths %>%
   left_join(denmark_weekly_covid_deaths) %>% 
-  mutate(region_code = 0,
-         start_date = as.Date(ISOdate(year-1, 12, 31)) + (week*7) - 6,
-         end_date = start_date + 6,
-         covid_deaths = replace_na(covid_deaths,0),
+  mutate(covid_deaths = replace_na(covid_deaths,0),
          expected_deaths = "TBC") %>% # To be calculated
   ungroup() %>%
-  dplyr::select(country,region,region_code,start_date,end_date,year,week,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
-  drop_na() %>%
-  filter(week != 53,
-         end_date <= as.Date("2020-12-08")) # Remove weeks with incomplete data
+  drop_na()
 
 # Export as CSV
 write.csv(denmark_weekly_deaths %>%
@@ -336,13 +514,14 @@ write.csv(denmark_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 8: import and clean Ecuador's data ---------------------------------------
+# Step 13: import and clean Ecuador's data ---------------------------------------
 
 # Import Ecuador's data
 ecuador_total_source_latest <- read_excel("source-data/ecuador/ecuador_total_source_latest.xlsx")
 
 # Group total deaths by month and region
-ecuador_monthly_total_deaths <- ecuador_total_source_latest 
+ecuador_monthly_total_deaths <- ecuador_total_source_latest %>%
+  mutate(days = end_date - start_date + 1)
 
 # Group national covid deaths by month
 ecuador_monthly_covid_deaths <- global_covid_source_latest %>%
@@ -362,7 +541,7 @@ ecuador_monthly_deaths <- ecuador_monthly_total_deaths %>%
   mutate(covid_deaths = replace_na(covid_deaths,0),
          expected_deaths = "TBC") %>% # To be calculated
   ungroup() %>%
-  dplyr::select(country,region,region_code,start_date,end_date,year,month,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
   drop_na() %>%
   arrange(region_code,year,month)
@@ -375,7 +554,90 @@ write.csv(ecuador_monthly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 9: import and clean France's data ---------------------------------------
+# Step 14: import and clean Estonia's data ---------------------------------------
+
+# Import and group Estonia's total deaths by week
+estonia_weekly_total_deaths <- fread("source-data/human-mortality-database/ESTstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Estonia", region = "Estonia", region_code = 0, population = 1329460, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year,day=1),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
+
+# Group covid deaths by week
+estonia_weekly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+         covid_deaths = Estonia) %>%
+  dplyr::select(date,year,week,covid_deaths) %>%
+  group_by(year,week) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join weekly total deaths and weekly covid deaths together
+estonia_weekly_deaths <- estonia_weekly_total_deaths %>%
+  left_join(estonia_weekly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(estonia_weekly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/estonia_weekly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 15: import and clean Finland's data ---------------------------------------
+
+# Import and group Finland's total deaths by week
+finland_weekly_total_deaths <- fread("source-data/human-mortality-database/FINstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Finland", region = "Finland", region_code = 0, population = 1329460, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year,day=1),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
+
+# Group covid deaths by week
+finland_weekly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+         covid_deaths = Finland) %>%
+  dplyr::select(date,year,week,covid_deaths) %>%
+  group_by(year,week) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join weekly total deaths and weekly covid deaths together
+finland_weekly_deaths <- finland_weekly_total_deaths %>%
+  left_join(finland_weekly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  filter(end_date <= as.Date("2020-12-27")) %>% # Remove weeks with incomplete data
+  drop_na()
+
+# Export as CSV
+write.csv(finland_weekly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/finland_weekly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 16: import and clean France's data ---------------------------------------
 
 # Import France's data
 france_depts <- read_excel("source-data/france/france_depts.xlsx")
@@ -410,7 +672,7 @@ france_regions_daily_total_deaths <- bind_rows(france_total_source_2015_12_31,fr
   left_join(france_depts %>%
               dplyr::select(dept_code,region, region_code)) %>%
   filter(date >= as.Date("2015-01-01"),
-         date <= as.Date("2020-02-29"), # Calculate daily total deaths up until the end of February 2020
+         date <= as.Date("2019-12-31"), # Calculate daily total deaths up until the end of December 2019
          !is.na(region)) %>%
   group_by(region,region_code,date) %>%
   summarise(total_deaths = n())
@@ -437,79 +699,43 @@ france_regions_weekly_total_deaths <- france_total_source_latest %>%
   group_by(country,region,region_code,year,week,population) %>%
   summarise(total_deaths = sum(total_deaths,na.rm=T)) %>%
   mutate(start_date = as.Date(ISOdate(year-1, 12, 31)) + (week*7) - 6,
-         end_date = start_date + 6)
+         end_date = start_date + 6) %>%
+  mutate(end_date = case_when(week == 53 ~ as.Date(ISOdate(year,12,31)), TRUE ~ as.Date(end_date))) # Change end of 53rd week each year to December 31st)
 
-# The next sections of code train a model to impute covid deaths in each departement before March 18th
 # Calculate daily cumulative covid deaths in each departement after March 18th
-france_depts_daily_covid_deaths <- france_covid_source_latest %>%
+france_regions_weekly_covid_deaths <- france_covid_source_latest %>%
   filter(sexe == 0) %>%
   mutate(dept_code = case_when(str_detect(dep,"^0") ~ str_replace(dep,"^0",""), TRUE ~ as.character(dep)),
          date = ymd(jour),
-         cumulative_deaths = dc) %>%
-  dplyr::select(dept_code, date, cumulative_deaths) %>%
-  left_join(france_depts %>%
-              dplyr::select(dept_code,dept)) %>%
-  arrange(dept_code,date) %>%
-  drop_na()
-
-# Generate dataframe to impute each departement's share of national covid deaths before March 18th
-france_covid_model_df <- france_depts_daily_covid_deaths %>%
-  left_join(france_depts_daily_covid_deaths %>% # Join on the daily sum of national covid deaths
-              group_by(date) %>%
-              summarise(national_deaths = sum(cumulative_deaths,na.rm=T))) %>%
-  mutate(national_share = cumulative_deaths / national_deaths, # Calculate each departement's share of national covid deaths
-         yday = yday(date))
-
-# Train logistic model to impute each departement's share of national covid deaths
-france_covid_model <- glm(national_share ~ yday + dept_code + dept_code:yday, # Use an interaction between each departement and day
-                          data = france_covid_model_df, family="binomial")
-summary(france_covid_model)
-
-# Use model to make imputations of each departement's daily share of national covid deaths before March 18th
-france_modelled_covid_shares <- expand.grid(date = seq(as.Date("2015-01-01"), Sys.Date(), by="days"), # Create empty grid
-                                            dept_code = unique(france_covid_model_df$dept_code)) %>%
-  left_join(france_covid_model_df %>%
-              dplyr::select(dept_code, dept)) %>% # Join on departement name
-  left_join(france_covid_model_df) %>%
-  distinct() %>%
-  mutate(date = ymd(date),
-         yday = yday(date)) %>%
-  mutate(imputed_national_share = predict(france_covid_model,.,type="response"))
-
-# Group covid deaths by week and region, combining observed data with imputed values
-france_regions_weekly_covid_deaths <- france_modelled_covid_shares %>%
-  left_join(global_covid_source_cumulative %>% # Join the ECDC's daily cumulative covid deaths for the whole of France before March 18th
-              mutate(ECDC_deaths = France) %>%
-              dplyr::select(date,ECDC_deaths)) %>%
-  mutate(modelled_deaths = case_when(is.na(cumulative_deaths) ~ imputed_national_share * ECDC_deaths, 
-                                     TRUE ~ as.numeric(cumulative_deaths)), # Impute cumulative covid deaths in each dept from ECDC data
+         year = year(date),
          week = week(date),
-         year = year(date)) %>%
-  group_by(dept_code) %>% # Create a lag, to calculate daily deaths from cumulative ones 
-  mutate(previous_day_deaths = lag(modelled_deaths, n = 1, default = NA),
-         covid_deaths = case_when(!is.na(modelled_deaths) & !is.na(previous_day_deaths) ~ modelled_deaths - previous_day_deaths,
-                                  !is.na(modelled_deaths) ~ modelled_deaths,
-                                  TRUE ~ 0),
-         covid_deaths = case_when(covid_deaths < 0 ~ 0, TRUE ~ as.numeric(covid_deaths))) %>%
-  left_join(france_depts) %>% # Join and group by region
-  group_by(country,region,region_code,year,week) %>%
+         cumulative_deaths = dc) %>%
+  dplyr::select(dept_code,date,year,week,cumulative_deaths) %>%
+  arrange(dept_code,date) %>%
+  left_join(france_depts %>%
+              dplyr::select(dept_code,region_code,region)) %>%
+  group_by(dept_code) %>%
+  mutate(previous_day_deaths = lag(cumulative_deaths, n = 1, default = 0),
+         covid_deaths = cumulative_deaths - previous_day_deaths) %>%
+  group_by(region,region_code,year,week) %>%
   summarise(covid_deaths = sum(covid_deaths,na.rm=T))
 
 # Join weekly total deaths and weekly covid deaths together in each region
 france_regions_weekly_deaths <- france_regions_weekly_total_deaths %>%
   left_join(france_regions_weekly_covid_deaths) %>%
-  mutate(expected_deaths = "TBC") %>% # To be calculated
-  dplyr::select(country,region,region_code,start_date,end_date,year,week,
+  mutate(days = end_date - start_date + 1,
+         covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
-  drop_na() %>%
-  filter(week != 53)
+  drop_na()
 
 # Aggregate at the national level, use ECDC covid data to include nursing homes
 france_national_weekly_deaths <- france_regions_weekly_deaths %>%
   ungroup() %>%
   mutate(region = "France",
          region_code = 0) %>%
-  group_by(country,region,region_code,start_date,end_date,year,week) %>%
+  group_by(country,region,region_code,start_date,end_date,days,year,week) %>%
   summarise(population = sum(population,na.rm=T),
             total_deaths = sum(total_deaths,na.rm=T),
             expected_deaths = "TBC") %>% # To be calculated
@@ -523,7 +749,7 @@ france_national_weekly_deaths <- france_regions_weekly_deaths %>%
               group_by(year,week) %>%
               summarise(covid_deaths = sum(covid_deaths,na.rm=T))) %>%
   mutate(covid_deaths = replace_na(covid_deaths,0)) %>%
-  dplyr::select(country,region,region_code,start_date,end_date,year,week,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
   drop_na() 
 
@@ -536,25 +762,23 @@ write.csv(bind_rows(france_regions_weekly_deaths,france_national_weekly_deaths) 
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 10: import and clean Germany's data ---------------------------------------
+# Step 17: import and clean Germany's data ---------------------------------------
 
-# Import Germany's data
-germany_total_source_latest <- fread("source-data/germany/germany_total_source_latest.csv") 
-
-# Group total deaths by week
-germany_weekly_total_deaths <- germany_total_source_latest %>% 
-  mutate(start_date = dmy(start_date),
-         end_date = dmy(end_date),
-         year = year(start_date),
-         week = week(start_date)) %>%
-  group_by(country,region,year,week,population) %>%
-  summarise(total_deaths = sum(total_deaths))
+# Import and group Germany's total deaths by week
+germany_weekly_total_deaths <- fread("source-data/human-mortality-database/DEUTNPstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Germany", region = "Germany", region_code = 0, population = 83166711, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
 
 # Group covid deaths by week
 germany_weekly_covid_deaths <- global_covid_source_latest %>%
   filter(date >= as.Date("2020-01-01")) %>%
-  mutate(week = week(date),
-         year = year(date),
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
          covid_deaths = Germany) %>%
   dplyr::select(date,year,week,covid_deaths) %>%
   group_by(year,week) %>%
@@ -564,17 +788,12 @@ germany_weekly_covid_deaths <- global_covid_source_latest %>%
 # Join weekly total deaths and weekly covid deaths together
 germany_weekly_deaths <- germany_weekly_total_deaths %>%
   left_join(germany_weekly_covid_deaths) %>% 
-  mutate(region_code = 0,
-         start_date = as.Date(ISOdate(year-1, 12, 31)) + (week*7) - 6,
-         end_date = start_date + 6,
-         covid_deaths = replace_na(covid_deaths,0),
+  mutate(covid_deaths = replace_na(covid_deaths,0),
          expected_deaths = "TBC") %>% # To be calculated
   ungroup() %>%
-  dplyr::select(country,region,region_code,start_date,end_date,year,week,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
-  drop_na() %>%
-  filter(week != 53,
-         end_date <= as.Date("2020-11-30")) # Remove weeks with incomplete data
+  drop_na()
 
 # Export as CSV
 write.csv(germany_weekly_deaths %>%
@@ -584,7 +803,130 @@ write.csv(germany_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 11: import and clean Indonesia's data ---------------------------------------
+# Step 18: import and clean Greece's data ---------------------------------------
+
+# Import and group Greece's total deaths by week
+greece_weekly_total_deaths <- fread("source-data/human-mortality-database/GRCstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Greece", region = "Greece", region_code = 0, population = 10724599, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year,day=1),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
+
+# Group covid deaths by week
+greece_weekly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+         covid_deaths = Greece) %>%
+  dplyr::select(date,year,week,covid_deaths) %>%
+  group_by(year,week) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join weekly total deaths and weekly covid deaths together
+greece_weekly_deaths <- greece_weekly_total_deaths %>%
+  left_join(greece_weekly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(greece_weekly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/greece_weekly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 19: import and clean Hungary's data ---------------------------------------
+
+# Import and group Hungary's total deaths by week
+hungary_weekly_total_deaths <- fread("source-data/human-mortality-database/HUNstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Hungary", region = "Hungary", region_code = 0, population = 9769526, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year,day=1),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
+
+# Group covid deaths by week
+hungary_weekly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+         covid_deaths = Hungary) %>%
+  dplyr::select(date,year,week,covid_deaths) %>%
+  group_by(year,week) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join weekly total deaths and weekly covid deaths together
+hungary_weekly_deaths <- hungary_weekly_total_deaths %>%
+  left_join(hungary_weekly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(hungary_weekly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/hungary_weekly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 20: import and clean Iceland's data ---------------------------------------
+
+# Import and group Iceland's total deaths by week
+iceland_weekly_total_deaths <- fread("source-data/human-mortality-database/ISLstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Iceland", region = "Iceland", region_code = 0, population = 364134, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year,day=1),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
+
+# Group covid deaths by week
+iceland_weekly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+         covid_deaths = Iceland) %>%
+  dplyr::select(date,year,week,covid_deaths) %>%
+  group_by(year,week) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join weekly total deaths and weekly covid deaths together
+iceland_weekly_deaths <- iceland_weekly_total_deaths %>%
+  left_join(iceland_weekly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(iceland_weekly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/iceland_weekly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 21: import and clean Indonesia's data ---------------------------------------
 
 # Import Indonesia's data
 indonesia_total_source_latest <- fread("source-data/indonesia/indonesia_total_source_latest.csv") 
@@ -593,9 +935,10 @@ indonesia_total_source_latest <- fread("source-data/indonesia/indonesia_total_so
 indonesia_monthly_deaths <- indonesia_total_source_latest %>%
   mutate(start_date = dmy(start_date),
          end_date = dmy(end_date),
+         days = end_date - start_date + 1, 
          region_code = 0,
          expected_deaths = "TBC") %>% # To be calculated
-  dplyr::select(country,region,region_code,start_date,end_date,year,month,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
   drop_na()
 
@@ -607,7 +950,48 @@ write.csv(indonesia_monthly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 12: import and clean Italy's data ---------------------------------------
+# Step 22: import and clean Israel's data ---------------------------------------
+
+# Import and group Israel's total deaths by week
+israel_weekly_total_deaths <- fread("source-data/human-mortality-database/ISRstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Israel", region = "Israel", region_code = 0, population = 9312200, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year,day=1),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
+
+# Group covid deaths by week
+israel_weekly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+         covid_deaths = Israel) %>%
+  dplyr::select(date,year,week,covid_deaths) %>%
+  group_by(year,week) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join weekly total deaths and weekly covid deaths together
+israel_weekly_deaths <- israel_weekly_total_deaths %>%
+  left_join(israel_weekly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(israel_weekly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/israel_weekly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 23: import and clean Italy's data ---------------------------------------
 
 # Import Italy's data
 italy_comunes <- read_excel("source-data/italy/italy_comunes.xlsx")
@@ -650,7 +1034,7 @@ italy_regions_weekly_total_deaths <- italy_total_source_latest %>%
   group_by(region_code,year,week) %>%
   summarise(days = n(),
             total_deaths = sum(total_deaths)) %>%
-  filter(days == 7) %>% # Remove any incomplete weeks
+  drop_na() %>%
   left_join(italy_regions) %>%
   ungroup()
   
@@ -683,10 +1067,11 @@ italy_regions_weekly_deaths <- italy_regions_weekly_total_deaths %>%
   left_join(italy_regions_weekly_covid_deaths %>%
               dplyr::select(region_code,year,week,covid_deaths)) %>%
   mutate(start_date = as.Date(ISOdate(year-1, 12, 31)) + (week*7) - 6,
-         end_date = start_date + 6,
+         end_date = start_date + days - 1,
          covid_deaths = covid_deaths,
          expected_deaths = "TBC") %>% # To be calculated
-  dplyr::select(country,region,region_code,start_date,end_date,year,week,
+  filter(days == 7) %>% # Remove weeks with incomplete data
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
   drop_na() 
 
@@ -695,12 +1080,12 @@ italy_national_weekly_deaths <- italy_regions_weekly_deaths %>%
   ungroup() %>%
   mutate(region = "Italy",
          region_code = 0) %>%
-  group_by(country,region,region_code,start_date,end_date,year,week) %>%
+  group_by(country,region,region_code,start_date,end_date,days,year,week) %>%
   summarise(population = sum(population,na.rm=T),
             total_deaths = sum(total_deaths,na.rm=T),
             covid_deaths = sum(covid_deaths,na.rm=T),
             expected_deaths = "TBC") %>% # To be calculated
-  dplyr::select(country,region,region_code,start_date,end_date,year,week,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
   drop_na() 
 
@@ -712,29 +1097,154 @@ write.csv(bind_rows(italy_regions_weekly_deaths,italy_national_weekly_deaths) %>
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 13: import and clean Mexico's data ---------------------------------------
+# Step 24: import and clean Latvia's data ---------------------------------------
+
+# Import and group Latvia's total deaths by week
+latvia_weekly_total_deaths <- fread("source-data/human-mortality-database/LVAstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Latvia", region = "Latvia", region_code = 0, population = 1907675, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year,day=1),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
+
+# Group covid deaths by week
+latvia_weekly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+         covid_deaths = Latvia) %>%
+  dplyr::select(date,year,week,covid_deaths) %>%
+  group_by(year,week) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join weekly total deaths and weekly covid deaths together
+latvia_weekly_deaths <- latvia_weekly_total_deaths %>%
+  left_join(latvia_weekly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(latvia_weekly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/latvia_weekly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 25: import and clean Lithuania's data ---------------------------------------
+
+# Import and group Lithuania's total deaths by week
+lithuania_weekly_total_deaths <- fread("source-data/human-mortality-database/LTUstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Lithuania", region = "Lithuania", region_code = 0, population = 2793694, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year,day=1),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
+
+# Group covid deaths by week
+lithuania_weekly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+         covid_deaths = Lithuania) %>%
+  dplyr::select(date,year,week,covid_deaths) %>%
+  group_by(year,week) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join weekly total deaths and weekly covid deaths together
+lithuania_weekly_deaths <- lithuania_weekly_total_deaths %>%
+  left_join(lithuania_weekly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(lithuania_weekly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/lithuania_weekly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 26: import and clean Luxembourg's data ---------------------------------------
+
+# Import and group Luxembourg's total deaths by week
+luxembourg_weekly_total_deaths <- fread("source-data/human-mortality-database/LUXstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Luxembourg", region = "Luxembourg", region_code = 0, population = 626108, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year,day=1),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
+
+# Group covid deaths by week
+luxembourg_weekly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+         covid_deaths = Luxembourg) %>%
+  dplyr::select(date,year,week,covid_deaths) %>%
+  group_by(year,week) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join weekly total deaths and weekly covid deaths together
+luxembourg_weekly_deaths <- luxembourg_weekly_total_deaths %>%
+  left_join(luxembourg_weekly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(luxembourg_weekly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/luxembourg_weekly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 27: import and clean Mexico's data ---------------------------------------
 
 # Import Mexico's data
 mexico_total_source_latest <- fread("source-data/mexico/mexico_total_source_latest.csv")
 
 # Group covid deaths by week
 mexico_weekly_covid_deaths <- global_covid_source_latest %>%
-  mutate(week_date = date + 3, # Use Mexico's weekly windows
-         year = year(week_date),
-         week = week(week_date),
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=7),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=7),1,4)),
          covid_deaths = Mexico) %>%
   dplyr::select(date,year,week,covid_deaths) %>%
-  group_by(year, week) %>%
-  summarise(covid_deaths = sum(covid_deaths, na.rm=T))
+  group_by(year,week) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
 
 # Join weekly total deaths and weekly covid deaths together
 mexico_weekly_deaths <- mexico_total_source_latest %>%
   mutate(start_date = dmy(start_date),
          end_date = dmy(end_date),
+         days = end_date - start_date + 1,
          week = week(end_date),
          year = year(end_date)) %>%
   left_join(mexico_weekly_covid_deaths) %>%
-  dplyr::select(country,region,region_code,start_date,end_date,year,week,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
   drop_na()
 
@@ -746,41 +1256,36 @@ write.csv(mexico_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 14: import and clean the Netherlands' data ---------------------------------------
+# Step 28: import and clean the Netherlands' data ---------------------------------------
 
-# Import the Netherlands' data library
-library(cbsodataR)
-
-# Group total deaths by week
-netherlands_weekly_total_deaths <- cbs_get_data("70895ENG") %>%
-  cbs_add_date_column() %>%
-  filter(Periods_freq=="W", Sex=="T001038", Age31December=="10000") %>%
-  group_by(Periods_Date) %>%
-  summarise(total_deaths = sum(Deaths_1)) %>%
-  mutate(country = "Netherlands", region = "Netherlands", start_date = Periods_Date, end_date = start_date+6,
-         population = 17414806, year = year(start_date), week = week(start_date)) %>%
-  filter(year >= 2015) %>%
-  ungroup() %>%
-  dplyr::select(-Periods_Date)
+# Import and group the Netherlands' total deaths by week
+netherlands_weekly_total_deaths <- fread("source-data/human-mortality-database/NLDstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Netherlands", region = "Netherlands", region_code = 0, population = 17414806, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
 
 # Group covid deaths by week
 netherlands_weekly_covid_deaths <- global_covid_source_latest %>%
-  mutate(week_date = date - 3, # Use the Netherlands' weekly windows
-         year = year(week_date),
-         week = week(week_date),
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
          covid_deaths = Netherlands) %>%
   dplyr::select(date,year,week,covid_deaths) %>%
-  group_by(year, week) %>%
-  summarise(covid_deaths = sum(covid_deaths, na.rm=T))
+  group_by(year,week) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
 
 # Join weekly total deaths and weekly covid deaths together
 netherlands_weekly_deaths <- netherlands_weekly_total_deaths %>%
   left_join(netherlands_weekly_covid_deaths) %>% 
-  mutate(region_code = 0,
-         covid_deaths = replace_na(covid_deaths,0),
+  mutate(covid_deaths = replace_na(covid_deaths,0),
          expected_deaths = "TBC") %>% # To be calculated
   ungroup() %>%
-  dplyr::select(country,region,region_code,start_date,end_date,year,week,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
   drop_na()
 
@@ -792,23 +1297,64 @@ write.csv(netherlands_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 15: import and clean Norway's data ---------------------------------------
+# Step 29: import and clean New Zealand's data ---------------------------------------
 
-# Import Norway's data
-norway_total_source_latest <- fread("source-data/norway/norway_total_source_latest.csv") 
+# Import and group New Zealand's total deaths by week
+new_zealand_weekly_total_deaths <- fread("source-data/human-mortality-database/NZL_NPstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "New Zealand", region = "New Zealand", region_code = 0, population = 5110490, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year,day=1),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
 
-# Group total deaths by week
-norway_weekly_total_deaths <- norway_total_source_latest %>% 
-  mutate(start_date = dmy(start_date),
-         end_date = dmy(end_date),
-         year = year(start_date),
-         week = week(start_date))
+# Group covid deaths by week
+new_zealand_weekly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+         covid_deaths = `New Zealand`) %>%
+  dplyr::select(date,year,week,covid_deaths) %>%
+  group_by(year,week) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join weekly total deaths and weekly covid deaths together
+new_zealand_weekly_deaths <- new_zealand_weekly_total_deaths %>%
+  left_join(new_zealand_weekly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(new_zealand_weekly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/new_zealand_weekly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 30: import and clean Norway's data ---------------------------------------
+
+# Import and group Norway's total deaths by week
+norway_weekly_total_deaths <- fread("source-data/human-mortality-database/NORstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Norway", region = "Norway", region_code = 0, population = 5384576, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
 
 # Group covid deaths by week
 norway_weekly_covid_deaths <- global_covid_source_latest %>%
   filter(date >= as.Date("2020-01-01")) %>%
-  mutate(week = week(date),
-         year = year(date),
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
          covid_deaths = Norway) %>%
   dplyr::select(date,year,week,covid_deaths) %>%
   group_by(year,week) %>%
@@ -818,16 +1364,12 @@ norway_weekly_covid_deaths <- global_covid_source_latest %>%
 # Join weekly total deaths and weekly covid deaths together
 norway_weekly_deaths <- norway_weekly_total_deaths %>%
   left_join(norway_weekly_covid_deaths) %>% 
-  mutate(region_code = 0,
-         start_date = as.Date(ISOdate(year-1, 12, 31)) + (week*7) - 6,
-         end_date = start_date + 6,
-         covid_deaths = replace_na(covid_deaths,0),
+  mutate(covid_deaths = replace_na(covid_deaths,0),
          expected_deaths = "TBC") %>% # To be calculated
   ungroup() %>%
-  dplyr::select(country,region,region_code,start_date,end_date,year,week,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
-  drop_na() %>%
-  filter(week != 53)
+  drop_na()
 
 # Export as CSV
 write.csv(norway_weekly_deaths %>%
@@ -837,7 +1379,7 @@ write.csv(norway_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 16: import and clean Peru's data ---------------------------------------
+# Step 31: import and clean Peru's data ---------------------------------------
 
 # Import Peru's data
 peru_total_source_latest <- fread("source-data/peru/peru_total_source_latest.csv")
@@ -845,7 +1387,8 @@ peru_total_source_latest <- fread("source-data/peru/peru_total_source_latest.csv
 # Group total deaths by month and region
 peru_monthly_total_deaths <- peru_total_source_latest %>%
   mutate(start_date = dmy(start_date),
-         end_date = dmy(end_date))
+         end_date = dmy(end_date),
+         days = end_date - start_date + 1)
 
 # Group national covid deaths by month
 peru_monthly_covid_deaths <- global_covid_source_latest %>%
@@ -865,7 +1408,7 @@ peru_monthly_deaths <- peru_monthly_total_deaths %>%
   mutate(covid_deaths = replace_na(covid_deaths,0),
          expected_deaths = "TBC") %>% # To be calculated
   ungroup() %>%
-  dplyr::select(country,region,region_code,start_date,end_date,year,month,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
   drop_na() %>%
   arrange(region_code,year,month)
@@ -878,25 +1421,64 @@ write.csv(peru_monthly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 17: import and clean Portugal's data ---------------------------------------
+# Step 32: import and clean Poland's data ---------------------------------------
 
-# Import Portugal's data
-portugal_total_source_latest <- fread("source-data/portugal/portugal_total_source_latest.csv")
+# Import and group Poland's total deaths by week
+poland_weekly_total_deaths <- fread("source-data/human-mortality-database/POLstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Poland", region = "Poland", region_code = 0, population = 38383000, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year,day=1),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
 
-# Group total deaths by week
-portugal_weekly_total_deaths <- portugal_total_source_latest %>% 
-  mutate(start_date = dmy(start_date),
-         end_date = dmy(end_date),
-         year = year(start_date),
-         week = week(start_date)) %>%
-  group_by(country,region,year,week,population) %>%
-  summarise(total_deaths = sum(total_deaths,na.rm=T))
+# Group covid deaths by week
+poland_weekly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+         covid_deaths = Poland) %>%
+  dplyr::select(date,year,week,covid_deaths) %>%
+  group_by(year,week) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join weekly total deaths and weekly covid deaths together
+poland_weekly_deaths <- poland_weekly_total_deaths %>%
+  left_join(poland_weekly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(poland_weekly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/poland_weekly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 33: import and clean Portugal's data ---------------------------------------
+
+# Import and group Portugal's total deaths by week
+portugal_weekly_total_deaths <- fread("source-data/human-mortality-database/PRTstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Portugal", region = "Portugal", region_code = 0, population = 10295909, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
 
 # Group covid deaths by week
 portugal_weekly_covid_deaths <- global_covid_source_latest %>%
   filter(date >= as.Date("2020-01-01")) %>%
-  mutate(year = year(date),
-         week = week(date),
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
          covid_deaths = Portugal) %>%
   dplyr::select(date,year,week,covid_deaths) %>%
   group_by(year,week) %>%
@@ -906,17 +1488,12 @@ portugal_weekly_covid_deaths <- global_covid_source_latest %>%
 # Join weekly total deaths and weekly covid deaths together
 portugal_weekly_deaths <- portugal_weekly_total_deaths %>%
   left_join(portugal_weekly_covid_deaths) %>% 
-  mutate(region_code = 0,
-         start_date = as.Date(ISOdate(year-1, 12, 31)) + (week*7) - 6,
-         end_date = start_date + 6,
-         covid_deaths = replace_na(covid_deaths,0),
+  mutate(covid_deaths = replace_na(covid_deaths,0),
          expected_deaths = "TBC") %>% # To be calculated
   ungroup() %>%
-  dplyr::select(country,region,region_code,start_date,end_date,year,week,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
-  drop_na() %>%
-  filter(week != 53,
-         end_date <= as.Date("2020-12-31")) # Remove weeks with incomplete data
+  drop_na()
 
 # Export as CSV
 write.csv(portugal_weekly_deaths %>%
@@ -926,7 +1503,7 @@ write.csv(portugal_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 18: import and clean Russia's data ---------------------------------------
+# Step 34: import and clean Russia's data ---------------------------------------
 
 # Import Russia's data
 russia_total_source_latest <- fread("source-data/russia/russia_total_source_latest.csv") 
@@ -944,8 +1521,11 @@ russia_monthly_deaths <- russia_total_source_latest %>%
   ungroup() %>%
   mutate(start_date = dmy(start_date),
          end_date = dmy(end_date),
+         days = end_date - start_date + 1,
          covid_deaths = replace_na(covid_deaths,0),
-         expected_deaths = "TBC")
+         expected_deaths = "TBC") %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,
+                population,total_deaths,covid_deaths,expected_deaths)
 
 # Export as CSV
 write.csv(russia_monthly_deaths %>%
@@ -955,7 +1535,89 @@ write.csv(russia_monthly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 19: import and clean South Africa's data ---------------------------------------
+# Step 35: import and clean Slovakia's data ---------------------------------------
+
+# Import and group Slovakia's total deaths by week
+slovakia_weekly_total_deaths <- fread("source-data/human-mortality-database/SVKstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Slovakia", region = "Slovakia", region_code = 0, population = 5464060, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year,day=1),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
+
+# Group covid deaths by week
+slovakia_weekly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+         covid_deaths = Slovakia) %>%
+  dplyr::select(date,year,week,covid_deaths) %>%
+  group_by(year,week) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join weekly total deaths and weekly covid deaths together
+slovakia_weekly_deaths <- slovakia_weekly_total_deaths %>%
+  left_join(slovakia_weekly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(slovakia_weekly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/slovakia_weekly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 36: import and clean Slovenia's data ---------------------------------------
+
+# Import and group Slovenia's total deaths by week
+slovenia_weekly_total_deaths <- fread("source-data/human-mortality-database/SVNstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Slovenia", region = "Slovenia", region_code = 0, population = 2100126, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year,day=1),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
+
+# Group covid deaths by week
+slovenia_weekly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+         covid_deaths = Slovenia) %>%
+  dplyr::select(date,year,week,covid_deaths) %>%
+  group_by(year,week) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join weekly total deaths and weekly covid deaths together
+slovenia_weekly_deaths <- slovenia_weekly_total_deaths %>%
+  left_join(slovenia_weekly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(slovenia_weekly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/slovenia_weekly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 37: import and clean South Africa's data ---------------------------------------
 
 # Import South Africa's data
 south_africa_total_source_latest <- fread("source-data/south-africa/south_africa_total_source_latest.csv")
@@ -964,14 +1626,13 @@ south_africa_total_source_latest <- fread("source-data/south-africa/south_africa
 south_africa_weekly_total_deaths <- south_africa_total_source_latest %>% 
   mutate(start_date = dmy(start_date),
          end_date = dmy(end_date),
-         year = year(start_date),
-         week = week(start_date))
+         days = end_date - start_date + 1)
 
 # Group covid deaths by week
 south_africa_weekly_covid_deaths <- global_covid_source_latest %>%
   filter(date >= as.Date("2020-01-01")) %>%
-  mutate(year = year(date),
-         week = week(date),
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=3),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=3),1,4)),
          covid_deaths = `South Africa`) %>%
   dplyr::select(date,year,week,covid_deaths) %>%
   group_by(year,week) %>%
@@ -981,11 +1642,9 @@ south_africa_weekly_covid_deaths <- global_covid_source_latest %>%
 # Join weekly total deaths and weekly covid deaths together
 south_africa_weekly_deaths <- south_africa_weekly_total_deaths %>%
   left_join(south_africa_weekly_covid_deaths) %>% 
-  mutate(region_code = 0,
-         start_date = as.Date(ISOdate(year-1, 12, 31)) + (week*7) - 6,
-         end_date = start_date + 6) %>%
+  mutate(region_code = 0) %>%
   ungroup() %>%
-  dplyr::select(country,region,region_code,start_date,end_date,year,week,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
   drop_na()
 
@@ -997,17 +1656,58 @@ write.csv(south_africa_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 20: import and clean Spain's data ---------------------------------------
+# Step 38: import and clean South Korea's data ---------------------------------------
+
+# Import and group South Korea's total deaths by week
+south_korea_weekly_total_deaths <- fread("source-data/human-mortality-database/KORstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "South Korea", region = "South Korea", region_code = 0, population = 51709098, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year,day=1),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
+
+# Group covid deaths by week
+south_korea_weekly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+         covid_deaths = `South Korea`) %>%
+  dplyr::select(date,year,week,covid_deaths) %>%
+  group_by(year,week) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join weekly total deaths and weekly covid deaths together
+south_korea_weekly_deaths <- south_korea_weekly_total_deaths %>%
+  left_join(south_korea_weekly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(south_korea_weekly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/south_korea_weekly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 39: import and clean Spain's data ---------------------------------------
 
 # Import Spain's data
 spain_regions <- read_excel("source-data/spain/spain_regions.xlsx")
-spain_total_source_latest <- fread("source-data/spain/spain_total_source_latest.csv")
+spain_total_source_latest <- fread("https://momo.isciii.es/public/momo/data")
 spain_covid_source_latest <- read_csv('https://raw.githubusercontent.com/datadista/datasets/master/COVID%2019/ccaa_covid19_fallecidos_por_fecha_defuncion_nueva_serie_long.csv')
 
 # Group total and expected deaths by week and region
 spain_regions_weekly_total_deaths <- spain_total_source_latest %>%
   filter(cod_sexo == "all", cod_gedad == "all") %>%
-  mutate(date = ymd(fecha_defuncion),
+  mutate(date = fecha_defuncion,
          year = year(date),
          week = week(date),
          region_code = replace_na(cod_ine_ambito,0),
@@ -1020,17 +1720,16 @@ spain_regions_weekly_total_deaths <- spain_total_source_latest %>%
             total_deaths = sum(total_deaths, na.rm=T),
             expected_deaths = sum(expected_deaths, na.rm=T)) %>%
   ungroup() %>%
-  filter(days == 7) %>% # Remove incomplete weeks
   mutate(start_date = as.Date(ISOdate(year-1, 12, 31)) + (week*7) - 6,
-         end_date = start_date + 6)
+         end_date = start_date + days - 1)
 
 # Group covid deaths by week and region
 spain_regions_weekly_covid_deaths <- spain_covid_source_latest %>%
   bind_rows(spain_covid_source_latest %>%
               group_by(Fecha) %>%
               summarise(Fallecidos = sum(Fallecidos,na.rm=T)) %>%
-              mutate(cod_ine = "0", CCAA = "Spain")) %>%
-  mutate(date = Fecha, region_code = as.numeric(cod_ine)) %>%
+              mutate(cod_ccaa = "0", CCAA = "Spain")) %>%
+  mutate(date = Fecha, region_code = as.numeric(cod_ccaa)) %>%
   group_by(region_code) %>%
   mutate(cumulative_deaths = cumsum(Fallecidos)) %>%
   ungroup() %>%
@@ -1055,9 +1754,9 @@ spain_regions_weekly_covid_deaths <- spain_covid_source_latest %>%
 spain_regions_weekly_deaths <- spain_regions_weekly_total_deaths %>%
   left_join(spain_regions_weekly_covid_deaths) %>%
   ungroup() %>%
-  dplyr::select(country,region,region_code,start_date,end_date,year,week,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
-  filter(end_date <= as.Date("2020-12-30")) # Remove weeks with incomplete data
+  filter(end_date <= as.Date("2021-01-14")) # Remove weeks with incomplete data
 
 # Export as CSV
 write.csv(spain_regions_weekly_deaths %>%
@@ -1067,33 +1766,25 @@ write.csv(spain_regions_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 21: import and clean Sweden's data ---------------------------------------
+# Step 40: import and clean Sweden's data ---------------------------------------
 
-# Import Sweden's data
-sweden_total_source_latest <- fread("source-data/sweden/sweden_total_source_latest.csv") 
-download.file("https://www.arcgis.com/sharing/rest/content/items/b5e7488e117749c19881cce45db13f7e/data", # Download covid data
-              destfile="source-data/sweden/sweden_covid_source_latest.xlsx")
-sweden_covid_source_latest <- read_excel("source-data/sweden/sweden_covid_source_latest.xlsx",sheet=2) %>%
-  filter(Datum_avliden != "Uppgift saknas") %>% # Remove deaths with an unknown date of occurrence
-  mutate(date = as.Date(as.numeric(Datum_avliden), origin="1899-12-30"),
-         covid_deaths = Antal_avlidna)
-
-# Group total deaths by week
-sweden_weekly_total_deaths <- sweden_total_source_latest %>% 
-  mutate(start_date = dmy(start_date),
-         year = year(start_date),
-         week = week(start_date)) %>%
-  group_by(country,region,week,year,population) %>%
-  summarise(total_deaths = sum(total_deaths,na.rm=T)) %>%
-  arrange(year,week)
+# Import and group Sweden's total deaths by week
+sweden_weekly_total_deaths <- fread("source-data/human-mortality-database/SWEstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT", Week != "UNK") %>%
+  mutate(country = "Sweden", region = "Sweden", region_code = 0, population = 10380245, 
+         year = Year, week = as.numeric(Week), total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year,day=1),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
 
 # Group covid deaths by week
-sweden_weekly_covid_deaths <- sweden_covid_source_latest %>%
-  dplyr::select(date,covid_deaths) %>%
-  bind_rows(expand.grid(date = seq(as.Date("2015-01-01"), as.Date("2020-03-10"), by="days"),
-                        covid_deaths = 0)) %>%
-  mutate(week = week(date),
-         year = year(date)) %>%
+sweden_weekly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+         covid_deaths = Sweden) %>%
+  dplyr::select(date,year,week,covid_deaths) %>%
   group_by(year,week) %>%
   summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
   drop_na()
@@ -1101,18 +1792,12 @@ sweden_weekly_covid_deaths <- sweden_covid_source_latest %>%
 # Join weekly total deaths and weekly covid deaths together
 sweden_weekly_deaths <- sweden_weekly_total_deaths %>%
   left_join(sweden_weekly_covid_deaths) %>% 
-  mutate(region_code = 0,
-         start_date = as.Date(ISOdate(year-1, 12, 31)) + (week*7) - 6,
-         end_date = start_date + 6,
-         covid_deaths = replace_na(covid_deaths,0),
+  mutate(covid_deaths = replace_na(covid_deaths,0),
          expected_deaths = "TBC") %>% # To be calculated
   ungroup() %>%
-  ungroup() %>%
-  dplyr::select(country,region,region_code,start_date,end_date,year,week,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
-  drop_na() %>%
-  filter(week != 53,
-         end_date <= as.Date("2020-12-18")) # Remove weeks with incomplete data
+  drop_na()
 
 # Export as CSV
 write.csv(sweden_weekly_deaths %>%
@@ -1122,58 +1807,38 @@ write.csv(sweden_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 22: import and clean Switzerland's data ---------------------------------------
+# Step 41: import and clean Switzerland's data ---------------------------------------
 
-# Import Switzerland's data
-switzerland_total_source_2019_12_31 <- fread("source-data/switzerland/switzerland_total_source_2019_12_31.csv")
-switzerland_total_source_latest <- fread("source-data/switzerland/switzerland_total_source_latest.csv") 
-
-# Group total deaths by week
-switzerland_weekly_total_deaths <- switzerland_total_source_2019_12_31 %>% # Group deaths from 2010-19
-  mutate(end_date = dmy(Ending),
-         start_date = end_date - 6,
-         year = year(start_date),
-         week = week(start_date),
-         total_deaths = NumberOfDeaths) %>%
-  dplyr::select(start_date,end_date,year,week,total_deaths) %>%
-  group_by(start_date,end_date,year,week) %>%
-  summarise(total_deaths = sum(total_deaths)) %>%
-  bind_rows(switzerland_total_source_latest %>% # Bind on deaths from 2020
-              mutate(end_date = dmy(Ending),
-                     start_date = end_date - 6,
-                     year = year(start_date),
-                     week = week(start_date),
-                     total_deaths = NoDec_EP) %>%
-              dplyr::select(start_date,end_date,year,week,total_deaths) %>%
-              group_by(start_date,end_date,year,week) %>%
-              summarise(total_deaths = sum(total_deaths))) %>%
-  drop_na()
+# Import and group Switzerland's total deaths by week
+switzerland_weekly_total_deaths <- fread("source-data/human-mortality-database/CHEstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Switzerland", region = "Switzerland", region_code = 0, population = 8570146, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
 
 # Group covid deaths by week
 switzerland_weekly_covid_deaths <- global_covid_source_latest %>%
   filter(date >= as.Date("2020-01-01")) %>%
-  mutate(week_date = date - 5, # Use Switzerland's weekly windows
-         week = week(week_date),
-         year = year(week_date),
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
          covid_deaths = Switzerland) %>%
   dplyr::select(date,year,week,covid_deaths) %>%
   group_by(year,week) %>%
   summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
-  drop_na() %>%
-  ungroup()
+  drop_na()
 
 # Join weekly total deaths and weekly covid deaths together
 switzerland_weekly_deaths <- switzerland_weekly_total_deaths %>%
   left_join(switzerland_weekly_covid_deaths) %>% 
-  mutate(country = "Switzerland",
-         region = "Switzerland",
-         region_code = 0,
-         population = 8570146,
-         covid_deaths = replace_na(covid_deaths,0),
+  mutate(covid_deaths = replace_na(covid_deaths,0),
          expected_deaths = "TBC") %>% # To be calculated
   ungroup() %>%
-  dplyr::select(country,region,region_code,start_date,end_date,year,week,
-                population,total_deaths,covid_deaths,expected_deaths) 
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
 
 # Export as CSV
 write.csv(switzerland_weekly_deaths %>%
@@ -1183,7 +1848,48 @@ write.csv(switzerland_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 23: import and clean Turkey's data ---------------------------------------
+# Step 42: import and clean Taiwan's data ---------------------------------------
+
+# Import and group Taiwan's total deaths by week
+taiwan_weekly_total_deaths <- fread("source-data/human-mortality-database/TWNstmf.csv") %>%
+  filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
+  mutate(country = "Taiwan", region = "Taiwan", region_code = 0, population = 23568378, 
+         year = Year, week = Week, total_deaths = Deaths,
+         start_date = aweek::get_date(week=week,year=year,day=1),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
+
+# Group covid deaths by week
+taiwan_weekly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+         covid_deaths = Taiwan) %>%
+  dplyr::select(date,year,week,covid_deaths) %>%
+  group_by(year,week) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join weekly total deaths and weekly covid deaths together
+taiwan_weekly_deaths <- taiwan_weekly_total_deaths %>%
+  left_join(taiwan_weekly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(taiwan_weekly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/taiwan_weekly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 43: import and clean Turkey's data ---------------------------------------
 
 # Import Turkey's data
 turkey_total_source_latest <- fread("source-data/turkey/turkey_total_source_latest.csv") 
@@ -1195,12 +1901,12 @@ turkey_weekly_total_deaths <- turkey_total_source_latest %>%
          year = year(start_date),
          week = week(start_date)) %>%
   group_by(country,region,year,week,population) %>%
-  summarise(days = sum(total_deaths > 0),
+  summarise(days = sum(!is.na(total_deaths)),
             total_deaths = sum(total_deaths, na.rm=T)) %>%
   ungroup() %>%
-  filter(days == 7, total_deaths > 0) %>% # Remove incomplete weeks
+  filter(days != 0) %>%
   mutate(start_date = as.Date(ISOdate(year-1, 12, 31)) + (week*7) - 6,
-         end_date = start_date + 6)
+         end_date = start_date + days)
 
 # Group covid deaths by week, assigning Istanbul half of Turkey's national deaths
 turkey_weekly_covid_deaths <- global_covid_source_latest %>%
@@ -1221,7 +1927,7 @@ turkey_weekly_deaths <- turkey_weekly_total_deaths %>%
   mutate(region_code = 0,
          expected_deaths = "TBC") %>% # To be calculated
   ungroup() %>%
-  dplyr::select(country,region,region_code,start_date,end_date,year,week,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
                 population,total_deaths,covid_deaths,expected_deaths) 
 
 # Export as CSV
@@ -1232,14 +1938,14 @@ write.csv(turkey_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 24: import and clean the United States' data ---------------------------------------
+# Step 44: import and clean the United States' data ---------------------------------------
 
 # Import the United States' data
 united_states_states <- fread("source-data/united-states/united_states_states.csv")
 united_states_week_windows <- fread("source-data/united-states/united_states_week_windows.csv")
 united_states_covid_source_latest <- fread("https://usafactsstatic.blob.core.windows.net/public/data/covid-19/covid_deaths_usafacts.csv")
 united_states_total_source_latest <- fread("source-data/united-states/united_states_total_source_latest.csv")
-united_states_total_source_2020 <- fread("https://data.cdc.gov/api/views/xkkf-xrst/rows.csv")
+united_states_total_source_corrected <- fread("https://data.cdc.gov/api/views/xkkf-xrst/rows.csv")
 new_york_city_covid_source_latest <- fread("https://raw.githubusercontent.com/nychealth/coronavirus-data/master/trends/data-by-day.csv") 
 
 # Group total deaths by week and state
@@ -1254,12 +1960,12 @@ united_states_weekly_total_deaths <- united_states_total_source_latest %>%
               mutate(state = state_name) %>%
               dplyr::select(-state_name)) %>%
   arrange(state,year,week) %>%
-  left_join(united_states_total_source_2020 %>% # Join on corrected 2020 data from the CDC
+  left_join(united_states_total_source_corrected %>% # Join on corrected 2020 data from the CDC
               mutate(state = State,
-                     year = year(`Week Ending Date`),
-                     week = week(`Week Ending Date`),
+                     week = as.numeric(str_sub(aweek::date2week(`Week Ending Date`,week_start=7),7,8)),
+                     year = as.numeric(str_sub(aweek::date2week(`Week Ending Date`,week_start=7),1,4)),
                      total_corrected_deaths = `Observed Number`) %>%
-              filter(year == 2020,
+              filter(year >= 2020,
                      Type == "Predicted (weighted)",
                      Outcome == "All causes") %>%
               dplyr::select(state,year,week,total_corrected_deaths)) %>%
@@ -1284,9 +1990,8 @@ new_york_city_weekly_covid_deaths <- new_york_city_covid_source_latest %>%
   bind_rows(expand.grid(date = seq(as.Date("2020-01-01"), as.Date("2020-03-10"), by="days"), # Bind on rows before March 11th
                         covid_deaths = 0)) %>%
   mutate(state_code = "NYC",
-         week_date = date + 3, # Use the US's weekly windows
-         week = week(week_date),
-         year = year(week_date)) %>%
+         week = as.numeric(str_sub(aweek::date2week(date,week_start=7),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=7),1,4))) %>%
   group_by(state_code,year,week) %>%
   summarise(covid_deaths = sum(covid_deaths,na.rm=T)) %>%
   ungroup()
@@ -1306,9 +2011,8 @@ united_states_weekly_covid_deaths <- united_states_covid_source_latest %>%
   arrange(state,date) %>%
   group_by(state) %>% # Create a lag, to calculate daily deaths from cumulative ones 
   mutate(state_code = state,
-         week_date = date + 3, # Use the US's weekly windows
-         week = week(week_date),
-         year = year(week_date),
+         week = as.numeric(str_sub(aweek::date2week(date,week_start=7),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=7),1,4)),
          previous_day_deaths = lag(cumulative_deaths, n = 1, default = NA), 
          covid_deaths = case_when(!is.na(cumulative_deaths) & !is.na(previous_day_deaths) ~ cumulative_deaths - previous_day_deaths,
                                   !is.na(cumulative_deaths) ~ cumulative_deaths)) %>%
@@ -1328,17 +2032,18 @@ united_states_weekly_deaths <- united_states_weekly_total_deaths %>%
          region_code = state_code,
          start_date = dmy(start_date),
          end_date = dmy(end_date),
+         days = end_date - start_date + 1,
          covid_deaths = replace_na(covid_deaths,0),
          expected_deaths = "TBC") %>% # To be calculated
   ungroup() %>%
-  dplyr::select(country,region,region_code,start_date,end_date,year,week,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
   drop_na() 
 
 # Aggregate at the national level
 united_states_national_weekly_deaths <- united_states_weekly_deaths %>%
   filter(region != "New York City") %>%
-  group_by(country,start_date,end_date,year,week) %>%
+  group_by(country,start_date,end_date,days,year,week) %>%
   summarise(population = sum(population, na.rm=T),
             total_deaths = sum(total_deaths, na.rm=T),
             covid_deaths = sum(covid_deaths, na.rm=T)) %>%
@@ -1346,14 +2051,14 @@ united_states_national_weekly_deaths <- united_states_weekly_deaths %>%
   mutate(region = "United States",
          region_code = "USA",
          expected_deaths = "TBC") %>%
-  dplyr::select(country,region,region_code,start_date,end_date,year,week,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
   drop_na() 
   
 # Export as CSV
 write.csv(united_states_weekly_deaths %>%
             bind_rows(united_states_national_weekly_deaths) %>%
-            filter(end_date <= as.Date("2020-12-12")) %>% # Remove weeks with incomplete data
+            filter(end_date <= as.Date("2021-01-02")) %>% # Remove weeks with incomplete data
             mutate(start_date = format(start_date, "%Y-%m-%d"),
                    end_date = format(end_date, "%Y-%m-%d")),
           "output-data/historical-deaths/united_states_weekly_deaths.csv",

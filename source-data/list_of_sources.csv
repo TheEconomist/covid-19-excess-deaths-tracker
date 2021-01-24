@@ -1,5 +1,6 @@
 country,source_type,frequency,description,link
 All,Covid-19 deaths,Daily,"Data from ECDC, via Our World In Data",https://ourworldindata.org/coronavirus-source-data
+All,Total deaths,Weekly,Data from Human Mortality Database,https://www.mortality.org/Public/STMF/Inputs/STMFinput.zip
 Austria,Total deaths,Weekly,Data from Statistik Austria,https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_gest_kalwo_GEST_KALWOCHE_100
 Austria,Population,,Data from Statistik Austria,http://www.statistik.at/web_de/statistiken/menschen_und_gesellschaft/bevoelkerung/bevoelkerungsstand_und_veraenderung/bevoelkerung_zu_jahres-_quartalsanfang/023582.html
 Belgium,Total deaths,Weekly,Data from Sciensano,https://statbel.fgov.be/en/visuals/mortality
