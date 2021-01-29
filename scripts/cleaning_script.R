@@ -600,7 +600,7 @@ write.csv(estonia_weekly_deaths %>%
 # Import and group Finland's total deaths by week
 finland_weekly_total_deaths <- fread("source-data/human-mortality-database/FINstmf.csv") %>%
   filter(Year >= 2015, Sex == "b", Age == "TOT") %>%
-  mutate(country = "Finland", region = "Finland", region_code = 0, population = 1329460, 
+  mutate(country = "Finland", region = "Finland", region_code = 0, population = 5536146, 
          year = Year, week = Week, total_deaths = Deaths,
          start_date = aweek::get_date(week=week,year=year,day=1),
          end_date = start_date + 6) %>%
