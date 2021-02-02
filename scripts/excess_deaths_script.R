@@ -232,8 +232,8 @@ write.csv(germany_results[[2]],"output-data/excess-deaths/germany_excess_deaths.
 
 # Export Greece
 greece_results <- get_excess_deaths(greece_weekly_deaths,greece_expected_deaths_model,"weekly",calculate=TRUE,train_model=TRUE)
-saveRDS(germany_results[[1]],"output-data/expected-deaths-models/germany_expected_deaths_model.RDS")
-write.csv(germany_results[[2]],"output-data/excess-deaths/germany_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
+saveRDS(greece_results[[1]],"output-data/expected-deaths-models/greece_expected_deaths_model.RDS")
+write.csv(greece_results[[2]],"output-data/excess-deaths/greece_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Hungary
 hungary_results <- get_excess_deaths(hungary_weekly_deaths,hungary_expected_deaths_model,"weekly",calculate=TRUE,train_model=TRUE)
