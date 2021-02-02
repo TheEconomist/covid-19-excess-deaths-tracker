@@ -139,7 +139,71 @@ write.csv(belgium_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 5: import and clean Brazil's data ---------------------------------------
+# Step 5: import and clean Bolivia's data ---------------------------------------
+
+# Import Bolivia's data
+bolivia_regions <- read_excel("source-data/bolivia/bolivia_regions.xlsx")
+bolivia_total_source_latest <- read_excel("source-data/bolivia/bolivia_total_source_latest.xlsx")
+bolivia_covid_source_latest <- read_csv("https://raw.githubusercontent.com/DataScienceResearchPeru/covid-19_latinoamerica/master/latam_covid_19_data/time_series/time_series_deaths.csv") %>%
+  filter(Country == "Bolivia")
+
+# Group total deaths by month and region
+bolivia_regions_monthly_total_deaths <- bolivia_total_source_latest %>%
+  mutate(days = end_date - start_date + 1)
+
+# Group covid deaths by week and region
+bolivia_regions_monthly_covid_deaths <- bolivia_covid_source_latest %>%
+  mutate(region_code = `ISO 3166-2 Code`) %>%
+  dplyr::select(-c(`ISO 3166-2 Code`,Country,Subdivision,`Last Update`)) %>%
+  pivot_longer(cols = c(-region_code), names_to = "date", values_to = "cumulative_deaths") %>%
+  # avoid double-counting if value is NA
+  fill(cumulative_deaths, .direction = "down") %>% 
+  mutate(date = ymd(date)) %>%
+  bind_rows(expand.grid(region_code = unique(bolivia_regions$region_code),
+                        date = seq(as.Date("2015-01-01"), as.Date("2020-02-24"), by="days"), # Bind on rows with 0 covid deaths before February 24th
+                        cumulative_deaths = 0)) %>%
+  filter(region_code != "BO") %>%
+  arrange(region_code,date) %>%
+  group_by(region_code) %>%
+  mutate(previous_day_deaths = lag(cumulative_deaths, n = 1, default = NA), # Create a lag, to calculate daily deaths from cumulative ones 
+         covid_deaths = case_when(!is.na(cumulative_deaths) & !is.na(previous_day_deaths) ~ cumulative_deaths - previous_day_deaths,
+                                  !is.na(cumulative_deaths) ~ cumulative_deaths)) %>%
+  mutate(month = month(date), year = year(date)) %>%
+  group_by(region_code, year, month) %>%
+  summarise(covid_deaths = sum(covid_deaths,na.rm=T))
+
+# Join monthly total deaths and monthly covid deaths together in each region
+bolivia_regions_monthly_deaths <- bolivia_regions_monthly_total_deaths %>%
+  left_join(bolivia_regions_monthly_covid_deaths) %>%
+  mutate(expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Aggregate at the national level
+bolivia_national_monthly_deaths <- bolivia_regions_monthly_deaths %>%
+  ungroup() %>%
+  mutate(region = "Bolivia",
+         region_code = "BO") %>%
+  group_by(country,region,region_code,start_date,end_date,days,year,month) %>%
+  summarise(population = sum(population,na.rm=T),
+            total_deaths = sum(total_deaths,na.rm=T),
+            covid_deaths = sum(covid_deaths,na.rm=T),
+            expected_deaths = "TBC") %>% # To be calculated
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na() 
+
+# Export as CSV
+write.csv(bind_rows(bolivia_regions_monthly_deaths,bolivia_national_monthly_deaths) %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/bolivia_monthly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 6: import and clean Brazil's data ---------------------------------------
 
 # Import Brazil's data
 brazil_total_source_latest <- fread("source-data/brazil/brazil_total_source_latest.csv")
@@ -185,7 +249,7 @@ write.csv(brazil_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 6: import and clean Britain's data ---------------------------------------
+# Step 7: import and clean Britain's data ---------------------------------------
 
 # Import Britain's data
 britain_regions <- fread("source-data/britain/britain_regions.csv")
@@ -222,7 +286,7 @@ write.csv(britain_regions_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 7: import and clean Bulgaria's data ---------------------------------------
+# Step 8: import and clean Bulgaria's data ---------------------------------------
 
 # Import and group Bulgaria's total deaths by week
 bulgaria_weekly_total_deaths <- fread("source-data/human-mortality-database/BGRstmf.csv") %>%
@@ -263,7 +327,7 @@ write.csv(bulgaria_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 8: import and clean Canada's data ---------------------------------------
+# Step 9: import and clean Canada's data ---------------------------------------
 
 # Import and group Canada's total deaths by week
 canada_weekly_total_deaths <- fread("source-data/human-mortality-database/CANstmf.csv") %>%
@@ -304,7 +368,7 @@ write.csv(canada_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 9: import and clean Chile's data ---------------------------------------
+# Step 10: import and clean Chile's data ---------------------------------------
 
 # Import Chile's data
 chile_regions <- read_excel("source-data/chile/chile_regions.xlsx")
@@ -391,7 +455,48 @@ write.csv(bind_rows(chile_regions_weekly_deaths,chile_national_weekly_deaths) %>
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 10: import and clean Croatia's data ---------------------------------------
+# Step 11: import and clean Colombia's data ---------------------------------------
+
+# Import Colombia's data
+colombia_total_source_latest <- fread("source-data/colombia/colombia_total_source_latest.csv")
+
+# Group total deaths by week and region
+colombia_weekly_total_deaths <- colombia_total_source_latest %>%
+  mutate(start_date = dmy(start_date),
+         end_date = dmy(end_date),
+         days = end_date - start_date + 1)
+
+# Group covid deaths by week
+colombia_weekly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+         covid_deaths = Colombia) %>%
+  dplyr::select(date,year,week,covid_deaths) %>%
+  group_by(year,week) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join weekly total deaths and weekly covid deaths together
+colombia_weekly_deaths <- colombia_weekly_total_deaths %>%
+  left_join(colombia_weekly_covid_deaths) %>% 
+  mutate(region_code = 0,
+         covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(colombia_weekly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/colombia_weekly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 12: import and clean Croatia's data ---------------------------------------
 
 # Import and group Croatia's total deaths by week
 croatia_weekly_total_deaths <- fread("source-data/human-mortality-database/HRVstmf.csv") %>%
@@ -432,7 +537,7 @@ write.csv(croatia_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 11: import and clean the Czech Republic's data ---------------------------------------
+# Step 13: import and clean the Czech Republic's data ---------------------------------------
 
 # Import and group the Czech Republic's total deaths by week
 czech_republic_weekly_total_deaths <- fread("source-data/human-mortality-database/CZEstmf.csv") %>%
@@ -473,7 +578,7 @@ write.csv(czech_republic_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 12: import and clean Denmark's data ---------------------------------------
+# Step 14: import and clean Denmark's data ---------------------------------------
 
 # Import and group Denmark's total deaths by week
 denmark_weekly_total_deaths <- fread("source-data/human-mortality-database/DNKstmf.csv") %>%
@@ -514,7 +619,7 @@ write.csv(denmark_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 13: import and clean Ecuador's data ---------------------------------------
+# Step 15: import and clean Ecuador's data ---------------------------------------
 
 # Import Ecuador's data
 ecuador_total_source_latest <- read_excel("source-data/ecuador/ecuador_total_source_latest.xlsx")
@@ -554,7 +659,7 @@ write.csv(ecuador_monthly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 14: import and clean Estonia's data ---------------------------------------
+# Step 16: import and clean Estonia's data ---------------------------------------
 
 # Import and group Estonia's total deaths by week
 estonia_weekly_total_deaths <- fread("source-data/human-mortality-database/ESTstmf.csv") %>%
@@ -595,7 +700,7 @@ write.csv(estonia_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 15: import and clean Finland's data ---------------------------------------
+# Step 17: import and clean Finland's data ---------------------------------------
 
 # Import and group Finland's total deaths by week
 finland_weekly_total_deaths <- fread("source-data/human-mortality-database/FINstmf.csv") %>%
@@ -637,7 +742,7 @@ write.csv(finland_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 16: import and clean France's data ---------------------------------------
+# Step 18: import and clean France's data ---------------------------------------
 
 # Import France's data
 france_dates <- fread("source-data/france/france_dates.csv")
@@ -772,7 +877,7 @@ write.csv(bind_rows(france_regions_weekly_deaths,france_national_weekly_deaths) 
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 17: import and clean Germany's data ---------------------------------------
+# Step 19: import and clean Germany's data ---------------------------------------
 
 # Import and group Germany's total deaths by week
 germany_weekly_total_deaths <- fread("source-data/human-mortality-database/DEUTNPstmf.csv") %>%
@@ -813,7 +918,7 @@ write.csv(germany_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 18: import and clean Greece's data ---------------------------------------
+# Step 20: import and clean Greece's data ---------------------------------------
 
 # Import and group Greece's total deaths by week
 greece_weekly_total_deaths <- fread("source-data/human-mortality-database/GRCstmf.csv") %>%
@@ -854,7 +959,7 @@ write.csv(greece_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 19: import and clean Hungary's data ---------------------------------------
+# Step 21: import and clean Hungary's data ---------------------------------------
 
 # Import and group Hungary's total deaths by week
 hungary_weekly_total_deaths <- fread("source-data/human-mortality-database/HUNstmf.csv") %>%
@@ -895,7 +1000,7 @@ write.csv(hungary_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 20: import and clean Iceland's data ---------------------------------------
+# Step 22: import and clean Iceland's data ---------------------------------------
 
 # Import and group Iceland's total deaths by week
 iceland_weekly_total_deaths <- fread("source-data/human-mortality-database/ISLstmf.csv") %>%
@@ -936,7 +1041,7 @@ write.csv(iceland_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 21: import and clean Indonesia's data ---------------------------------------
+# Step 23: import and clean Indonesia's data ---------------------------------------
 
 # Import Indonesia's data
 indonesia_total_source_latest <- fread("source-data/indonesia/indonesia_total_source_latest.csv") 
@@ -960,7 +1065,7 @@ write.csv(indonesia_monthly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 22: import and clean Israel's data ---------------------------------------
+# Step 24: import and clean Israel's data ---------------------------------------
 
 # Import and group Israel's total deaths by week
 israel_weekly_total_deaths <- fread("source-data/human-mortality-database/ISRstmf.csv") %>%
@@ -1001,7 +1106,7 @@ write.csv(israel_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 23: import and clean Italy's data ---------------------------------------
+# Step 25: import and clean Italy's data ---------------------------------------
 
 # Import Italy's data
 italy_comunes <- read_excel("source-data/italy/italy_comunes.xlsx")
@@ -1107,7 +1212,7 @@ write.csv(bind_rows(italy_regions_weekly_deaths,italy_national_weekly_deaths) %>
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 24: import and clean Latvia's data ---------------------------------------
+# Step 26: import and clean Latvia's data ---------------------------------------
 
 # Import and group Latvia's total deaths by week
 latvia_weekly_total_deaths <- fread("source-data/human-mortality-database/LVAstmf.csv") %>%
@@ -1148,7 +1253,7 @@ write.csv(latvia_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 25: import and clean Lithuania's data ---------------------------------------
+# Step 27: import and clean Lithuania's data ---------------------------------------
 
 # Import and group Lithuania's total deaths by week
 lithuania_weekly_total_deaths <- fread("source-data/human-mortality-database/LTUstmf.csv") %>%
@@ -1189,7 +1294,7 @@ write.csv(lithuania_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 26: import and clean Luxembourg's data ---------------------------------------
+# Step 28: import and clean Luxembourg's data ---------------------------------------
 
 # Import and group Luxembourg's total deaths by week
 luxembourg_weekly_total_deaths <- fread("source-data/human-mortality-database/LUXstmf.csv") %>%
@@ -1230,7 +1335,7 @@ write.csv(luxembourg_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 27: import and clean Mexico's data ---------------------------------------
+# Step 29: import and clean Mexico's data ---------------------------------------
 
 # Import Mexico's data
 mexico_total_source_latest <- fread("source-data/mexico/mexico_total_source_latest.csv")
@@ -1266,7 +1371,7 @@ write.csv(mexico_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 28: import and clean the Netherlands' data ---------------------------------------
+# Step 30: import and clean the Netherlands' data ---------------------------------------
 
 # Import and group the Netherlands' total deaths by week
 netherlands_weekly_total_deaths <- fread("source-data/human-mortality-database/NLDstmf.csv") %>%
@@ -1307,7 +1412,7 @@ write.csv(netherlands_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 29: import and clean New Zealand's data ---------------------------------------
+# Step 31: import and clean New Zealand's data ---------------------------------------
 
 # Import and group New Zealand's total deaths by week
 new_zealand_weekly_total_deaths <- fread("source-data/human-mortality-database/NZL_NPstmf.csv") %>%
@@ -1348,7 +1453,7 @@ write.csv(new_zealand_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 30: import and clean Norway's data ---------------------------------------
+# Step 32: import and clean Norway's data ---------------------------------------
 
 # Import and group Norway's total deaths by week
 norway_weekly_total_deaths <- fread("source-data/human-mortality-database/NORstmf.csv") %>%
@@ -1389,7 +1494,7 @@ write.csv(norway_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 31: import and clean Peru's data ---------------------------------------
+# Step 33: import and clean Peru's data ---------------------------------------
 
 # Import Peru's data
 peru_total_source_latest <- fread("source-data/peru/peru_total_source_latest.csv")
@@ -1431,7 +1536,7 @@ write.csv(peru_monthly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 32: import and clean Poland's data ---------------------------------------
+# Step 34: import and clean Poland's data ---------------------------------------
 
 # Import and group Poland's total deaths by week
 poland_weekly_total_deaths <- fread("source-data/human-mortality-database/POLstmf.csv") %>%
@@ -1472,7 +1577,7 @@ write.csv(poland_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 33: import and clean Portugal's data ---------------------------------------
+# Step 35: import and clean Portugal's data ---------------------------------------
 
 # Import and group Portugal's total deaths by week
 portugal_weekly_total_deaths <- fread("source-data/human-mortality-database/PRTstmf.csv") %>%
@@ -1513,7 +1618,7 @@ write.csv(portugal_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 34: import and clean Russia's data ---------------------------------------
+# Step 36: import and clean Russia's data ---------------------------------------
 
 # Import Russia's data
 russia_total_source_latest <- fread("source-data/russia/russia_total_source_latest.csv") 
@@ -1545,7 +1650,7 @@ write.csv(russia_monthly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 35: import and clean Slovakia's data ---------------------------------------
+# Step 37: import and clean Slovakia's data ---------------------------------------
 
 # Import and group Slovakia's total deaths by week
 slovakia_weekly_total_deaths <- fread("source-data/human-mortality-database/SVKstmf.csv") %>%
@@ -1586,7 +1691,7 @@ write.csv(slovakia_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 36: import and clean Slovenia's data ---------------------------------------
+# Step 38: import and clean Slovenia's data ---------------------------------------
 
 # Import and group Slovenia's total deaths by week
 slovenia_weekly_total_deaths <- fread("source-data/human-mortality-database/SVNstmf.csv") %>%
@@ -1627,7 +1732,7 @@ write.csv(slovenia_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 37: import and clean South Africa's data ---------------------------------------
+# Step 39: import and clean South Africa's data ---------------------------------------
 
 # Import South Africa's data
 south_africa_total_source_latest <- fread("source-data/south-africa/south_africa_total_source_latest.csv")
@@ -1666,7 +1771,7 @@ write.csv(south_africa_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 38: import and clean South Korea's data ---------------------------------------
+# Step 40: import and clean South Korea's data ---------------------------------------
 
 # Import and group South Korea's total deaths by week
 south_korea_weekly_total_deaths <- fread("source-data/human-mortality-database/KORstmf.csv") %>%
@@ -1707,7 +1812,7 @@ write.csv(south_korea_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 39: import and clean Spain's data ---------------------------------------
+# Step 41: import and clean Spain's data ---------------------------------------
 
 # Import Spain's data
 spain_regions <- read_excel("source-data/spain/spain_regions.xlsx")
@@ -1776,7 +1881,7 @@ write.csv(spain_regions_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 40: import and clean Sweden's data ---------------------------------------
+# Step 42: import and clean Sweden's data ---------------------------------------
 
 # Import and group Sweden's total deaths by week
 sweden_weekly_total_deaths <- fread("source-data/human-mortality-database/SWEstmf.csv") %>%
@@ -1817,7 +1922,7 @@ write.csv(sweden_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 41: import and clean Switzerland's data ---------------------------------------
+# Step 43: import and clean Switzerland's data ---------------------------------------
 
 # Import and group Switzerland's total deaths by week
 switzerland_weekly_total_deaths <- fread("source-data/human-mortality-database/CHEstmf.csv") %>%
@@ -1858,7 +1963,7 @@ write.csv(switzerland_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 42: import and clean Taiwan's data ---------------------------------------
+# Step 44: import and clean Taiwan's data ---------------------------------------
 
 # Import and group Taiwan's total deaths by week
 taiwan_weekly_total_deaths <- fread("source-data/human-mortality-database/TWNstmf.csv") %>%
@@ -1899,7 +2004,7 @@ write.csv(taiwan_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 43: import and clean Turkey's data ---------------------------------------
+# Step 45: import and clean Turkey's data ---------------------------------------
 
 # Import Turkey's data
 turkey_total_source_latest <- fread("source-data/turkey/turkey_total_source_latest.csv") 
@@ -1948,7 +2053,7 @@ write.csv(turkey_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Step 44: import and clean the United States' data ---------------------------------------
+# Step 46: import and clean the United States' data ---------------------------------------
 
 # Import the United States' data
 united_states_states <- fread("source-data/united-states/united_states_states.csv")

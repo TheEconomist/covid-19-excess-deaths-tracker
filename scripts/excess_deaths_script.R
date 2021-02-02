@@ -13,9 +13,11 @@ austria_weekly_deaths <- fread("output-data/historical-deaths/austria_weekly_dea
 belgium_weekly_deaths <- fread("output-data/historical-deaths/belgium_weekly_deaths.csv")
 brazil_weekly_deaths <- fread("output-data/historical-deaths/brazil_weekly_deaths.csv")
 britain_weekly_deaths <- fread("output-data/historical-deaths/britain_weekly_deaths.csv")
+bolivia_monthly_deaths <- fread("output-data/historical-deaths/bolivia_monthly_deaths.csv")
 bulgaria_weekly_deaths <- fread("output-data/historical-deaths/bulgaria_weekly_deaths.csv")
 canada_weekly_deaths <- fread("output-data/historical-deaths/canada_weekly_deaths.csv")
 chile_weekly_deaths <- fread("output-data/historical-deaths/chile_weekly_deaths.csv")
+colombia_weekly_deaths <- fread("output-data/historical-deaths/colombia_weekly_deaths.csv")
 croatia_weekly_deaths <- fread("output-data/historical-deaths/croatia_weekly_deaths.csv")
 czech_republic_weekly_deaths <- fread("output-data/historical-deaths/czech_republic_weekly_deaths.csv")
 denmark_weekly_deaths <- fread("output-data/historical-deaths/denmark_weekly_deaths.csv")
@@ -166,6 +168,11 @@ belgium_results <- get_excess_deaths(belgium_weekly_deaths,belgium_expected_deat
 saveRDS(belgium_results[[1]],"output-data/expected-deaths-models/belgium_expected_deaths_model.RDS")
 write.csv(belgium_results[[2]],"output-data/excess-deaths/belgium_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
+# Export Bolivia
+bolivia_results <- get_excess_deaths(bolivia_monthly_deaths,bolivia_expected_deaths_model,"monthly",calculate=TRUE,train_model=TRUE)
+saveRDS(bolivia_results[[1]],"output-data/expected-deaths-models/bolivia_expected_deaths_model.RDS")
+write.csv(bolivia_results[[2]],"output-data/excess-deaths/bolivia_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
+
 # Export Brazil
 brazil_results <- get_excess_deaths(brazil_weekly_deaths,"none","weekly",calculate=FALSE,train_model=FALSE)
 write.csv(brazil_results[[2]],"output-data/excess-deaths/brazil_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
@@ -189,6 +196,11 @@ write.csv(canada_results[[2]],"output-data/excess-deaths/canada_excess_deaths.cs
 chile_results <- get_excess_deaths(chile_weekly_deaths,chile_expected_deaths_model,"weekly",calculate=TRUE,train_model=TRUE)
 saveRDS(chile_results[[1]],"output-data/expected-deaths-models/chile_expected_deaths_model.RDS")
 write.csv(chile_results[[2]],"output-data/excess-deaths/chile_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
+
+# Export Colombia
+colombia_results <- get_excess_deaths(colombia_weekly_deaths,colombia_expected_deaths_model,"weekly",calculate=TRUE,train_model=TRUE)
+saveRDS(colombia_results[[1]],"output-data/expected-deaths-models/colombia_expected_deaths_model.RDS")
+write.csv(colombia_results[[2]],"output-data/excess-deaths/colombia_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Croatia
 croatia_results <- get_excess_deaths(croatia_weekly_deaths,croatia_expected_deaths_model,"weekly",calculate=TRUE,train_model=TRUE)
@@ -373,6 +385,7 @@ all_weekly_excess_deaths <- bind_rows(australia_results[[2]],
                                       bulgaria_results[[2]],
                                       canada_results[[2]],
                                       chile_results[[2]],
+                                      colombia_results[[2]],
                                       croatia_results[[2]],
                                       czech_republic_results[[2]],
                                       denmark_results[[2]],
@@ -413,7 +426,8 @@ write.csv(all_weekly_excess_deaths,"output-data/excess-deaths/all_weekly_excess_
           fileEncoding = "UTF-8",row.names=FALSE)
 
 # Combine monthly deaths and calculate per 100,000 people and percentage change
-all_monthly_excess_deaths <- bind_rows(ecuador_results[[2]],
+all_monthly_excess_deaths <- bind_rows(bolivia_results[[2]],
+                                       ecuador_results[[2]],
                                        indonesia_results[[2]],
                                        peru_results[[2]],
                                        russia_results[[2]]) %>%
