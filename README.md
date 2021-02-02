@@ -1,6 +1,6 @@
 # *The Economist's* tracker for covid-19 excess deaths 
 
-This repository contains the data behind *The Economist’s* [tracker for covid-19 excess deaths](https://www.economist.com/graphic-detail/2020/04/16/tracking-covid-19-excess-deaths-across-countries) (which is free to read), and the code that we have used to clean, analyse and present the numbers.
+This repository contains the data behind *The Economist’s* [tracker for covid-19 excess deaths](https://www.economist.com/graphic-detail/coronavirus-excess-deaths-tracker) (which is free to read), and the code that we have used to clean, analyse and present the numbers.
 
 ## Scripts and output data
 
@@ -10,13 +10,13 @@ Our tracker uses two different R scripts to calculate excess deaths in each coun
 
 * [`excess_deaths_script.R`](scripts/excess_deaths_script.R): this imports the time series files from [`/output-data/historical-deaths/`](output-data/historical-deaths), and calculates the weekly or monthly `expected_deaths` for each country (unless a modelled baseline has already been provided). Our own modelled baselines fit a linear trend for year, to account for long-term increases or decreases in mortality, and a fixed effect for each week or month up to February 2020. We have exported these models to [`/output-data/expected-deaths-models/`](output-data/expected-deaths-models). We then use these baselines to calculate `excess_deaths`, and export the files to [`/output-data/excess-deaths/`](output-data/excess-deaths).
 
-There's also an additional script that summarises the data for some graphics in the article:
+There is also an additional script that summarises the data for some graphics in the article:
 
 * [`interactive_script.R`](scripts/interactive_script.R): this imports the files for excess deaths for a list of countries and creates the data for the small multiple chart and the table featured in the article. The files are exported to [`/output-data/interactive/`](output-data/interactive).
 
 ## Source data
 
-Our tracker uses data from a number of statistical bureaus, health ministries and government departments. For each country, you can find the relevant source documents in the [`/source-data/`](source-data) folder, including some old versions in each country's `/archive/` folder. Some of the data are automatically downloaded from official websites in [`cleaning_script.R`](scripts/cleaning_script.R), an R file that formats the data consistently across countries.
+Our tracker uses data from a number of statistical bureaus, government departments and academic databases. For each country, you can find the relevant source documents in the [`/source-data/`](source-data) folder, including some old versions in each country's `/archive/` folder. Some of the data are automatically downloaded from official websites in [`cleaning_script.R`](scripts/cleaning_script.R), an R file that formats the data consistently across countries.
 
 We have also collated a full list of sources and links in a file called [`list_of_sources.csv`](source-data/list_of_sources.csv). In general we have tried to use the most expansive official estimate of covid-19 deaths available in each country. Belgium, Britain and Sweden all publish restrospectively adjusted estimates of when deaths occurred or were registered, rather than when they were reported. For most other countries, we have used the figures [maintained by the ECDC and Our World In Data](https://ourworldindata.org/coronavirus-source-data). We have subtracted one day from the ECDC's time series (since it uses 10am CET as its cut-off point).
 
