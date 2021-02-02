@@ -1,289 +1,327 @@
 AREA,SUB AREA,AGE GROUP,SEASON,WEEK,PERCENT P&I,NUM INFLUENZA DEATHS,NUM PNEUMONIA DEATHS,TOTAL DEATHS,PERCENT COMPLETE
-State,Alabama,All,2020-21,40,8.6,0,96,"1,110",> 100%
-State,Alabama,All,2020-21,41,8.9,1,107,"1,219",> 100%
-State,Alabama,All,2020-21,42,7.7,0,92,"1,195",> 100%
-State,Alabama,All,2020-21,43,9.4,1,107,"1,143",> 100%
-State,Alabama,All,2020-21,44,9.5,0,111,"1,169",> 100%
-State,Alabama,All,2020-21,45,8.5,0,107,"1,265",> 100%
-State,Alabama,All,2020-21,46,9.7,1,122,"1,266",> 100%
-State,Alabama,All,2020-21,47,8.8,2,106,"1,234",> 100%
-State,Alabama,All,2020-21,48,8.9,0,113,"1,274",> 100%
-State,Alabama,All,2020-21,49,10.6,1,130,"1,234",> 100%
-State,Alabama,All,2020-21,50,12.4,1,172,"1,399",> 100%
-State,Alabama,All,2020-21,51,12.4,1,141,"1,148",> 100%
-State,Alabama,All,2020-21,52,7.3,1,62,860,88.50%
-State,Alabama,All,2020-21,53,8.6,1,66,777,80%
-State,Alabama,All,2020-21,1,11.6,0,42,361,37.20%
-State,Alaska,All,2020-21,40,1.3,0,1,76,93.50%
-State,Alaska,All,2020-21,41,8.6,0,10,116,> 100%
+State,Alabama,All,2020-21,40,8.6,0,96,"1,118",> 100%
+State,Alabama,All,2020-21,41,8.8,1,107,"1,226",> 100%
+State,Alabama,All,2020-21,42,7.8,0,94,"1,200",> 100%
+State,Alabama,All,2020-21,43,9.5,1,108,"1,152",> 100%
+State,Alabama,All,2020-21,44,9.4,0,111,"1,178",> 100%
+State,Alabama,All,2020-21,45,8.4,0,107,"1,275",> 100%
+State,Alabama,All,2020-21,46,9.6,1,122,"1,276",> 100%
+State,Alabama,All,2020-21,47,8.7,2,107,"1,257",> 100%
+State,Alabama,All,2020-21,48,8.8,1,115,"1,313",> 100%
+State,Alabama,All,2020-21,49,10.5,1,136,"1,302",> 100%
+State,Alabama,All,2020-21,50,12.5,1,189,"1,523",> 100%
+State,Alabama,All,2020-21,51,13.6,1,193,"1,429",> 100%
+State,Alabama,All,2020-21,52,11.5,1,150,"1,318",> 100%
+State,Alabama,All,2020-21,53,11.5,1,147,"1,288",> 100%
+State,Alabama,All,2020-21,1,10.9,0,108,994,> 100%
+State,Alabama,All,2020-21,2,10.4,2,79,780,80.30%
+State,Alabama,All,2020-21,3,10.7,0,33,307,31.60%
+State,Alaska,All,2020-21,40,1.3,0,1,79,97.10%
+State,Alaska,All,2020-21,41,9.4,0,11,117,> 100%
 State,Alaska,All,2020-21,42,5.8,0,6,103,> 100%
-State,Alaska,All,2020-21,43,7.9,0,8,101,> 100%
-State,Alaska,All,2020-21,44,10.3,0,11,107,> 100%
-State,Alaska,All,2020-21,45,7.1,0,7,98,> 100%
-State,Alaska,All,2020-21,46,15.5,0,15,97,> 100%
-State,Alaska,All,2020-21,47,7.1,0,7,98,> 100%
-State,Alaska,All,2020-21,48,18.4,0,19,103,> 100%
-State,Alaska,All,2020-21,49,17.5,1,13,80,98.40%
-State,Alaska,All,2020-21,50,12.3,0,10,81,99.60%
-State,Alaska,All,2020-21,51,8.3,0,4,48,59%
-State,Alaska,All,2020-21,52,15.6,0,5,32,39.40%
-State,Alaska,All,2020-21,53,7.7,0,2,26,32%
-State,Alaska,All,2020-21,1,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,Alaska,All,2020-21,43,7.8,0,8,102,> 100%
+State,Alaska,All,2020-21,44,10.1,0,11,109,> 100%
+State,Alaska,All,2020-21,45,7.9,0,8,101,> 100%
+State,Alaska,All,2020-21,46,14.2,0,15,106,> 100%
+State,Alaska,All,2020-21,47,6.5,0,7,108,> 100%
+State,Alaska,All,2020-21,48,19.1,0,21,110,> 100%
+State,Alaska,All,2020-21,49,19.6,1,18,97,> 100%
+State,Alaska,All,2020-21,50,12.9,0,13,101,> 100%
+State,Alaska,All,2020-21,51,10,0,7,70,86.10%
+State,Alaska,All,2020-21,52,8.6,0,5,58,71.30%
+State,Alaska,All,2020-21,53,6.4,0,3,47,57.80%
+State,Alaska,All,2020-21,1,7.9,0,3,38,46.70%
+State,Alaska,All,2020-21,2,2.4,0,1,41,50.40%
+State,Alaska,All,2020-21,3,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
 State,Arizona,All,2020-21,40,6.8,0,81,"1,190",> 100%
 State,Arizona,All,2020-21,41,6.4,0,79,"1,234",> 100%
-State,Arizona,All,2020-21,42,6.6,0,81,"1,232",> 100%
+State,Arizona,All,2020-21,42,6.6,0,81,"1,233",> 100%
 State,Arizona,All,2020-21,43,7.1,0,90,"1,265",> 100%
-State,Arizona,All,2020-21,44,7.6,0,99,"1,296",> 100%
-State,Arizona,All,2020-21,45,9.7,0,131,"1,357",> 100%
-State,Arizona,All,2020-21,46,9.7,0,120,"1,242",> 100%
-State,Arizona,All,2020-21,47,12.7,0,190,"1,495",> 100%
-State,Arizona,All,2020-21,48,15.5,0,226,"1,460",> 100%
-State,Arizona,All,2020-21,49,18.2,0,286,"1,568",> 100%
-State,Arizona,All,2020-21,50,19.6,0,324,"1,655",> 100%
-State,Arizona,All,2020-21,51,21.6,0,337,"1,560",> 100%
-State,Arizona,All,2020-21,52,18.4,0,221,"1,202",> 100%
-State,Arizona,All,2020-21,53,16.2,1,176,"1,092",> 100%
-State,Arizona,All,2020-21,1,18.8,0,120,640,61.80%
+State,Arizona,All,2020-21,44,7.6,0,99,"1,297",> 100%
+State,Arizona,All,2020-21,45,9.7,0,132,"1,364",> 100%
+State,Arizona,All,2020-21,46,9.6,0,120,"1,247",> 100%
+State,Arizona,All,2020-21,47,12.7,0,190,"1,500",> 100%
+State,Arizona,All,2020-21,48,15.7,0,232,"1,480",> 100%
+State,Arizona,All,2020-21,49,18.7,0,307,"1,645",> 100%
+State,Arizona,All,2020-21,50,21.3,1,404,"1,899",> 100%
+State,Arizona,All,2020-21,51,25.2,0,487,"1,935",> 100%
+State,Arizona,All,2020-21,52,24.3,0,452,"1,860",> 100%
+State,Arizona,All,2020-21,53,21.2,2,331,"1,574",> 100%
+State,Arizona,All,2020-21,1,17.6,0,245,"1,390",> 100%
+State,Arizona,All,2020-21,2,13.2,0,139,"1,055",> 100%
+State,Arizona,All,2020-21,3,15,0,90,599,57.80%
 State,Arkansas,All,2020-21,40,13.1,0,102,778,> 100%
 State,Arkansas,All,2020-21,41,14,0,111,794,> 100%
-State,Arkansas,All,2020-21,42,14.6,1,113,783,> 100%
+State,Arkansas,All,2020-21,42,14.7,1,114,783,> 100%
 State,Arkansas,All,2020-21,43,15.1,0,119,788,> 100%
 State,Arkansas,All,2020-21,44,12.8,2,97,776,> 100%
-State,Arkansas,All,2020-21,45,11.7,1,97,837,> 100%
-State,Arkansas,All,2020-21,46,12.6,0,109,865,> 100%
-State,Arkansas,All,2020-21,47,13.4,0,114,852,> 100%
-State,Arkansas,All,2020-21,48,15.8,0,128,809,> 100%
-State,Arkansas,All,2020-21,49,16.1,2,143,898,> 100%
-State,Arkansas,All,2020-21,50,13.6,0,111,817,> 100%
-State,Arkansas,All,2020-21,51,13.5,1,94,703,> 100%
-State,Arkansas,All,2020-21,52,12.1,0,59,487,81.30%
-State,Arkansas,All,2020-21,53,11.9,1,49,419,69.90%
-State,Arkansas,All,2020-21,1,13.8,0,20,145,24.20%
-State,California,All,2020-21,40,8.5,0,478,"5,634",> 100%
-State,California,All,2020-21,41,9.3,1,510,"5,523",> 100%
-State,California,All,2020-21,42,7.9,1,437,"5,563",> 100%
-State,California,All,2020-21,43,7.9,0,421,"5,322",> 100%
-State,California,All,2020-21,44,7.9,0,432,"5,482",> 100%
-State,California,All,2020-21,45,8.2,0,474,"5,796",> 100%
-State,California,All,2020-21,46,8.5,0,507,"5,939",> 100%
-State,California,All,2020-21,47,10.7,2,670,"6,277",> 100%
-State,California,All,2020-21,48,12.2,1,761,"6,257",> 100%
-State,California,All,2020-21,49,14.5,0,993,"6,837",> 100%
-State,California,All,2020-21,50,16.8,2,"1,219","7,282",> 100%
-State,California,All,2020-21,51,17.6,1,"1,153","6,574",> 100%
-State,California,All,2020-21,52,14.5,2,734,"5,079",> 100%
-State,California,All,2020-21,53,13.7,0,518,"3,772",76.70%
-State,California,All,2020-21,1,14.1,0,260,"1,840",37.40%
-State,Colorado,All,2020-21,40,5.9,0,45,763,> 100%
+State,Arkansas,All,2020-21,45,11.8,1,98,838,> 100%
+State,Arkansas,All,2020-21,46,12.8,0,111,870,> 100%
+State,Arkansas,All,2020-21,47,13.5,0,116,858,> 100%
+State,Arkansas,All,2020-21,48,16.1,0,132,818,> 100%
+State,Arkansas,All,2020-21,49,16.8,2,153,924,> 100%
+State,Arkansas,All,2020-21,50,14.6,0,126,863,> 100%
+State,Arkansas,All,2020-21,51,15.1,2,126,848,> 100%
+State,Arkansas,All,2020-21,52,14.1,0,109,773,> 100%
+State,Arkansas,All,2020-21,53,15.6,1,114,739,> 100%
+State,Arkansas,All,2020-21,1,14.2,0,86,605,> 100%
+State,Arkansas,All,2020-21,2,14,0,68,484,80.80%
+State,Arkansas,All,2020-21,3,9.3,0,22,236,39.40%
+State,California,All,2020-21,40,8.5,0,480,"5,633",> 100%
+State,California,All,2020-21,41,9.3,1,511,"5,525",> 100%
+State,California,All,2020-21,42,7.9,1,438,"5,568",> 100%
+State,California,All,2020-21,43,7.9,0,422,"5,329",> 100%
+State,California,All,2020-21,44,7.9,0,434,"5,486",> 100%
+State,California,All,2020-21,45,8.2,0,477,"5,805",> 100%
+State,California,All,2020-21,46,8.6,0,511,"5,948",> 100%
+State,California,All,2020-21,47,10.7,2,674,"6,303",> 100%
+State,California,All,2020-21,48,12.1,1,765,"6,306",> 100%
+State,California,All,2020-21,49,14.8,0,"1,026","6,955",> 100%
+State,California,All,2020-21,50,17.2,2,"1,323","7,684",> 100%
+State,California,All,2020-21,51,20.1,1,"1,608","7,993",> 100%
+State,California,All,2020-21,52,19.8,2,"1,491","7,538",> 100%
+State,California,All,2020-21,53,18.4,1,"1,124","6,114",> 100%
+State,California,All,2020-21,1,18,1,925,"5,155",> 100%
+State,California,All,2020-21,2,14,0,513,"3,658",74.40%
+State,California,All,2020-21,3,12.2,0,201,"1,650",33.60%
+State,Colorado,All,2020-21,40,5.9,0,45,765,> 100%
 State,Colorado,All,2020-21,41,6,0,47,783,> 100%
 State,Colorado,All,2020-21,42,7.1,0,61,859,> 100%
-State,Colorado,All,2020-21,43,7.3,0,62,855,> 100%
-State,Colorado,All,2020-21,44,7.5,0,66,881,> 100%
-State,Colorado,All,2020-21,45,10.4,0,102,984,> 100%
-State,Colorado,All,2020-21,46,13.4,0,134,"1,003",> 100%
-State,Colorado,All,2020-21,47,11.6,0,127,"1,098",> 100%
-State,Colorado,All,2020-21,48,15.3,0,179,"1,172",> 100%
-State,Colorado,All,2020-21,49,21.4,0,253,"1,183",> 100%
-State,Colorado,All,2020-21,50,18.5,1,206,"1,119",> 100%
-State,Colorado,All,2020-21,51,15.6,0,150,960,> 100%
-State,Colorado,All,2020-21,52,7.9,0,49,620,89.50%
-State,Colorado,All,2020-21,53,8.2,0,39,478,69%
-State,Colorado,All,2020-21,1,7,0,24,343,49.50%
-State,Connecticut,All,2020-21,40,3.7,0,23,617,> 100%
-State,Connecticut,All,2020-21,41,4.7,0,29,623,> 100%
-State,Connecticut,All,2020-21,42,5.9,0,35,590,> 100%
-State,Connecticut,All,2020-21,43,5.1,0,33,649,> 100%
-State,Connecticut,All,2020-21,44,7.7,0,45,583,> 100%
-State,Connecticut,All,2020-21,45,7.4,0,43,585,> 100%
-State,Connecticut,All,2020-21,46,8.5,0,52,611,> 100%
-State,Connecticut,All,2020-21,47,10,0,66,663,> 100%
-State,Connecticut,All,2020-21,48,10.5,0,66,629,> 100%
-State,Connecticut,All,2020-21,49,13.1,0,57,436,75%
-State,Connecticut,All,2020-21,50,11.7,0,29,248,42.70%
-State,Connecticut,All,2020-21,51,16.8,0,28,167,28.70%
-State,Connecticut,All,2020-21,52,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,Colorado,All,2020-21,43,7.4,0,63,855,> 100%
+State,Colorado,All,2020-21,44,7.5,0,66,885,> 100%
+State,Colorado,All,2020-21,45,10.5,0,103,985,> 100%
+State,Colorado,All,2020-21,46,13.3,0,134,"1,008",> 100%
+State,Colorado,All,2020-21,47,11.6,0,129,"1,109",> 100%
+State,Colorado,All,2020-21,48,15.6,0,185,"1,188",> 100%
+State,Colorado,All,2020-21,49,21.7,0,264,"1,218",> 100%
+State,Colorado,All,2020-21,50,19.5,1,234,"1,204",> 100%
+State,Colorado,All,2020-21,51,17.6,0,199,"1,129",> 100%
+State,Colorado,All,2020-21,52,14.3,0,136,949,> 100%
+State,Colorado,All,2020-21,53,12.4,0,96,775,> 100%
+State,Colorado,All,2020-21,1,7,0,48,686,99.10%
+State,Colorado,All,2020-21,2,4.5,0,23,516,74.50%
+State,Colorado,All,2020-21,3,2.6,0,8,302,43.60%
+State,Connecticut,All,2020-21,40,3.7,0,23,620,> 100%
+State,Connecticut,All,2020-21,41,4.6,0,29,625,> 100%
+State,Connecticut,All,2020-21,42,5.9,0,35,595,> 100%
+State,Connecticut,All,2020-21,43,5,0,33,655,> 100%
+State,Connecticut,All,2020-21,44,7.5,0,45,599,> 100%
+State,Connecticut,All,2020-21,45,8,0,48,603,> 100%
+State,Connecticut,All,2020-21,46,8.7,0,55,630,> 100%
+State,Connecticut,All,2020-21,47,10.1,0,70,695,> 100%
+State,Connecticut,All,2020-21,48,10.9,0,74,676,> 100%
+State,Connecticut,All,2020-21,49,13.1,0,65,495,85.20%
+State,Connecticut,All,2020-21,50,15.1,0,52,344,59.20%
+State,Connecticut,All,2020-21,51,15.6,0,42,269,46.30%
+State,Connecticut,All,2020-21,52,10.3,0,22,214,36.80%
 State,Connecticut,All,2020-21,53,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
 State,Connecticut,All,2020-21,1,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
-State,Delaware,All,2020-21,40,7.6,0,15,198,> 100%
+State,Connecticut,All,2020-21,2,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,Connecticut,All,2020-21,3,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,Delaware,All,2020-21,40,8,0,16,200,> 100%
 State,Delaware,All,2020-21,41,6.6,0,13,198,> 100%
-State,Delaware,All,2020-21,42,4.7,0,9,193,> 100%
-State,Delaware,All,2020-21,43,5.8,0,12,208,> 100%
-State,Delaware,All,2020-21,44,6.2,0,11,177,> 100%
-State,Delaware,All,2020-21,45,6.3,0,11,175,> 100%
-State,Delaware,All,2020-21,46,8.5,0,13,153,93.30%
-State,Delaware,All,2020-21,47,7,0,13,187,> 100%
-State,Delaware,All,2020-21,48,6.5,0,10,155,94.50%
-State,Delaware,All,2020-21,49,6.6,0,11,166,> 100%
-State,Delaware,All,2020-21,50,5.5,0,10,182,> 100%
-State,Delaware,All,2020-21,51,7.5,0,13,173,> 100%
-State,Delaware,All,2020-21,52,4.3,0,6,139,84.80%
-State,Delaware,All,2020-21,53,1.9,0,2,105,64%
-State,Delaware,All,2020-21,1,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,Delaware,All,2020-21,42,4.6,0,9,196,> 100%
+State,Delaware,All,2020-21,43,5.6,0,12,213,> 100%
+State,Delaware,All,2020-21,44,8.4,0,16,191,> 100%
+State,Delaware,All,2020-21,45,7.1,0,13,182,> 100%
+State,Delaware,All,2020-21,46,9.9,0,16,162,98.80%
+State,Delaware,All,2020-21,47,7.2,0,15,207,> 100%
+State,Delaware,All,2020-21,48,9.8,0,17,174,> 100%
+State,Delaware,All,2020-21,49,8,0,14,174,> 100%
+State,Delaware,All,2020-21,50,7.5,0,15,201,> 100%
+State,Delaware,All,2020-21,51,9.4,0,20,212,> 100%
+State,Delaware,All,2020-21,52,5,0,9,180,> 100%
+State,Delaware,All,2020-21,53,4.8,0,8,165,> 100%
+State,Delaware,All,2020-21,1,10.9,0,13,119,72.60%
+State,Delaware,All,2020-21,2,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,Delaware,All,2020-21,3,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
 State,District of Columbia,All,2020-21,40,10.8,0,10,93,99.90%
 State,District of Columbia,All,2020-21,41,10.7,0,12,112,> 100%
 State,District of Columbia,All,2020-21,42,5.3,0,5,94,> 100%
 State,District of Columbia,All,2020-21,43,10.4,0,10,96,> 100%
-State,District of Columbia,All,2020-21,44,9.7,0,10,103,> 100%
-State,District of Columbia,All,2020-21,45,12.2,1,11,98,> 100%
+State,District of Columbia,All,2020-21,44,9.6,0,10,104,> 100%
+State,District of Columbia,All,2020-21,45,12.1,1,11,99,> 100%
 State,District of Columbia,All,2020-21,46,7.3,0,8,109,> 100%
-State,District of Columbia,All,2020-21,47,16.4,0,20,122,> 100%
-State,District of Columbia,All,2020-21,48,15.2,0,14,92,98.80%
-State,District of Columbia,All,2020-21,49,17.9,0,20,112,> 100%
-State,District of Columbia,All,2020-21,50,8.1,0,9,111,> 100%
-State,District of Columbia,All,2020-21,51,14.3,0,10,70,75.20%
-State,District of Columbia,All,2020-21,52,1.8,0,1,55,59.10%
-State,District of Columbia,All,2020-21,53,3.6,0,2,56,60.10%
-State,District of Columbia,All,2020-21,1,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
-State,Florida,All,2020-21,40,9,1,390,"4,341",> 100%
+State,District of Columbia,All,2020-21,47,15.7,0,20,127,> 100%
+State,District of Columbia,All,2020-21,48,16.8,0,16,95,> 100%
+State,District of Columbia,All,2020-21,49,18.5,0,22,119,> 100%
+State,District of Columbia,All,2020-21,50,11.7,0,15,128,> 100%
+State,District of Columbia,All,2020-21,51,22.5,0,23,102,> 100%
+State,District of Columbia,All,2020-21,52,15.6,0,15,96,> 100%
+State,District of Columbia,All,2020-21,53,9.6,0,9,94,> 100%
+State,District of Columbia,All,2020-21,1,6.6,0,5,76,81.60%
+State,District of Columbia,All,2020-21,2,8.2,0,4,49,52.60%
+State,District of Columbia,All,2020-21,3,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,Florida,All,2020-21,40,9,1,391,"4,342",> 100%
 State,Florida,All,2020-21,41,9.3,0,417,"4,494",> 100%
-State,Florida,All,2020-21,42,9.7,0,423,"4,358",> 100%
-State,Florida,All,2020-21,43,8.9,1,382,"4,320",> 100%
-State,Florida,All,2020-21,44,9.3,0,395,"4,238",> 100%
-State,Florida,All,2020-21,45,9.6,4,406,"4,286",> 100%
-State,Florida,All,2020-21,46,10.6,2,471,"4,456",> 100%
-State,Florida,All,2020-21,47,10.8,1,485,"4,490",> 100%
-State,Florida,All,2020-21,48,12.3,2,556,"4,550",> 100%
-State,Florida,All,2020-21,49,12.6,9,592,"4,775",> 100%
-State,Florida,All,2020-21,50,12.4,2,602,"4,866",> 100%
-State,Florida,All,2020-21,51,11.7,3,500,"4,293",> 100%
-State,Florida,All,2020-21,52,8.5,0,285,"3,370",91.80%
-State,Florida,All,2020-21,53,8.8,1,290,"3,311",90.20%
-State,Florida,All,2020-21,1,9.5,0,171,"1,800",49%
-State,Georgia,All,2020-21,40,7.4,0,139,"1,870",> 100%
-State,Georgia,All,2020-21,41,8.1,0,149,"1,833",> 100%
-State,Georgia,All,2020-21,42,9.2,2,168,"1,853",> 100%
-State,Georgia,All,2020-21,43,7.9,1,146,"1,860",> 100%
-State,Georgia,All,2020-21,44,9.5,0,175,"1,848",> 100%
-State,Georgia,All,2020-21,45,8.7,0,164,"1,883",> 100%
-State,Georgia,All,2020-21,46,10,1,191,"1,923",> 100%
-State,Georgia,All,2020-21,47,10.3,0,185,"1,795",> 100%
-State,Georgia,All,2020-21,48,9.4,1,167,"1,778",> 100%
-State,Georgia,All,2020-21,49,11.1,0,206,"1,854",> 100%
-State,Georgia,All,2020-21,50,11.4,0,192,"1,686",> 100%
-State,Georgia,All,2020-21,51,9.7,1,143,"1,478",97.40%
-State,Georgia,All,2020-21,52,11.7,1,124,"1,066",70.30%
-State,Georgia,All,2020-21,53,9.5,0,79,828,54.60%
-State,Georgia,All,2020-21,1,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,Florida,All,2020-21,42,9.7,0,423,"4,363",> 100%
+State,Florida,All,2020-21,43,8.9,1,383,"4,323",> 100%
+State,Florida,All,2020-21,44,9.3,0,396,"4,239",> 100%
+State,Florida,All,2020-21,45,9.6,4,406,"4,291",> 100%
+State,Florida,All,2020-21,46,10.6,2,470,"4,459",> 100%
+State,Florida,All,2020-21,47,10.8,1,487,"4,505",> 100%
+State,Florida,All,2020-21,48,12.3,2,560,"4,562",> 100%
+State,Florida,All,2020-21,49,12.6,9,596,"4,798",> 100%
+State,Florida,All,2020-21,50,12.7,2,630,"4,960",> 100%
+State,Florida,All,2020-21,51,12.8,4,602,"4,726",> 100%
+State,Florida,All,2020-21,52,12.8,2,564,"4,424",> 100%
+State,Florida,All,2020-21,53,10.4,1,446,"4,317",> 100%
+State,Florida,All,2020-21,1,10.7,0,386,"3,595",97.90%
+State,Florida,All,2020-21,2,9.9,0,317,"3,209",87.40%
+State,Florida,All,2020-21,3,8.8,0,161,"1,837",50%
+State,Georgia,All,2020-21,40,7.5,0,140,"1,877",> 100%
+State,Georgia,All,2020-21,41,8.1,0,149,"1,843",> 100%
+State,Georgia,All,2020-21,42,9.1,2,168,"1,858",> 100%
+State,Georgia,All,2020-21,43,7.9,1,147,"1,875",> 100%
+State,Georgia,All,2020-21,44,9.6,0,179,"1,868",> 100%
+State,Georgia,All,2020-21,45,8.8,0,169,"1,926",> 100%
+State,Georgia,All,2020-21,46,9.9,1,192,"1,944",> 100%
+State,Georgia,All,2020-21,47,10.1,0,186,"1,836",> 100%
+State,Georgia,All,2020-21,48,9.5,1,175,"1,851",> 100%
+State,Georgia,All,2020-21,49,11.2,0,218,"1,948",> 100%
+State,Georgia,All,2020-21,50,11.9,0,225,"1,894",> 100%
+State,Georgia,All,2020-21,51,11.1,1,209,"1,898",> 100%
+State,Georgia,All,2020-21,52,12.7,1,205,"1,620",> 100%
+State,Georgia,All,2020-21,53,12.1,1,185,"1,536",> 100%
+State,Georgia,All,2020-21,1,12,0,147,"1,226",80.80%
+State,Georgia,All,2020-21,2,11.6,0,108,932,61.40%
+State,Georgia,All,2020-21,3,11.2,0,39,349,23%
 State,Hawaii,All,2020-21,40,11.2,1,23,215,> 100%
 State,Hawaii,All,2020-21,41,9.5,0,22,232,> 100%
-State,Hawaii,All,2020-21,42,8.1,0,19,234,> 100%
-State,Hawaii,All,2020-21,43,4.7,0,11,233,> 100%
-State,Hawaii,All,2020-21,44,8.4,0,20,237,> 100%
-State,Hawaii,All,2020-21,45,6.5,0,15,231,> 100%
-State,Hawaii,All,2020-21,46,5.7,0,14,246,> 100%
+State,Hawaii,All,2020-21,42,8.1,0,19,235,> 100%
+State,Hawaii,All,2020-21,43,4.7,0,11,234,> 100%
+State,Hawaii,All,2020-21,44,8.4,0,20,238,> 100%
+State,Hawaii,All,2020-21,45,6.5,0,15,232,> 100%
+State,Hawaii,All,2020-21,46,6.1,0,15,246,> 100%
 State,Hawaii,All,2020-21,47,7.8,0,17,219,> 100%
-State,Hawaii,All,2020-21,48,7.1,0,15,211,> 100%
-State,Hawaii,All,2020-21,49,9.6,0,22,229,> 100%
-State,Hawaii,All,2020-21,50,5.4,0,11,204,97.60%
-State,Hawaii,All,2020-21,51,4,0,9,224,> 100%
-State,Hawaii,All,2020-21,52,4.8,0,7,146,69.80%
-State,Hawaii,All,2020-21,53,4,0,6,149,71.30%
-State,Hawaii,All,2020-21,1,6.2,0,4,65,31.10%
-State,Idaho,All,2020-21,40,6.3,0,20,317,> 100%
-State,Idaho,All,2020-21,41,5.5,0,16,291,> 100%
+State,Hawaii,All,2020-21,48,8,0,17,213,> 100%
+State,Hawaii,All,2020-21,49,9.9,0,23,232,> 100%
+State,Hawaii,All,2020-21,50,5.3,0,11,208,99.50%
+State,Hawaii,All,2020-21,51,4.1,0,10,242,> 100%
+State,Hawaii,All,2020-21,52,6.4,0,12,188,89.90%
+State,Hawaii,All,2020-21,53,4.3,0,8,186,89%
+State,Hawaii,All,2020-21,1,8.7,0,14,161,77%
+State,Hawaii,All,2020-21,2,6,0,10,166,79.40%
+State,Hawaii,All,2020-21,3,8.1,0,7,86,41.10%
+State,Idaho,All,2020-21,40,6.3,0,20,318,> 100%
+State,Idaho,All,2020-21,41,5.5,0,16,292,> 100%
 State,Idaho,All,2020-21,42,7.6,1,24,328,> 100%
 State,Idaho,All,2020-21,43,9.6,1,31,335,> 100%
 State,Idaho,All,2020-21,44,12.7,1,43,346,> 100%
 State,Idaho,All,2020-21,45,11.8,0,43,364,> 100%
 State,Idaho,All,2020-21,46,11.1,0,46,416,> 100%
-State,Idaho,All,2020-21,47,13.5,0,52,385,> 100%
-State,Idaho,All,2020-21,48,13.7,0,58,424,> 100%
-State,Idaho,All,2020-21,49,13.5,0,53,392,> 100%
-State,Idaho,All,2020-21,50,14.4,0,52,362,> 100%
-State,Idaho,All,2020-21,51,12.6,0,41,325,> 100%
-State,Idaho,All,2020-21,52,11.4,1,24,220,87.80%
-State,Idaho,All,2020-21,53,4.5,0,6,132,52.70%
-State,Idaho,All,2020-21,1,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
-State,Illinois,All,2020-21,40,8.1,1,179,"2,217",> 100%
-State,Illinois,All,2020-21,41,8.6,0,206,"2,403",> 100%
-State,Illinois,All,2020-21,42,9.4,1,220,"2,343",> 100%
-State,Illinois,All,2020-21,43,10.8,2,251,"2,349",> 100%
-State,Illinois,All,2020-21,44,10.2,1,256,"2,513",> 100%
-State,Illinois,All,2020-21,45,12.8,0,355,"2,763",> 100%
-State,Illinois,All,2020-21,46,14.8,0,441,"2,980",> 100%
-State,Illinois,All,2020-21,47,18.1,0,593,"3,279",> 100%
-State,Illinois,All,2020-21,48,18.1,0,584,"3,223",> 100%
-State,Illinois,All,2020-21,49,18.5,1,611,"3,309",> 100%
-State,Illinois,All,2020-21,50,16.9,1,558,"3,315",> 100%
-State,Illinois,All,2020-21,51,17.8,0,517,"2,912",> 100%
-State,Illinois,All,2020-21,52,11.3,0,237,"2,092",> 100%
-State,Illinois,All,2020-21,53,8.4,0,150,"1,795",88.10%
-State,Illinois,All,2020-21,1,8.2,0,98,"1,194",58.60%
-State,Indiana,All,2020-21,40,10,0,137,"1,364",> 100%
-State,Indiana,All,2020-21,41,9.5,0,133,"1,399",> 100%
-State,Indiana,All,2020-21,42,11.4,0,169,"1,485",> 100%
-State,Indiana,All,2020-21,43,10.5,0,155,"1,482",> 100%
-State,Indiana,All,2020-21,44,13.3,0,206,"1,545",> 100%
-State,Indiana,All,2020-21,45,13.4,1,210,"1,575",> 100%
-State,Indiana,All,2020-21,46,14.1,0,232,"1,640",> 100%
-State,Indiana,All,2020-21,47,16.9,1,307,"1,822",> 100%
-State,Indiana,All,2020-21,48,18.6,1,348,"1,878",> 100%
-State,Indiana,All,2020-21,49,20.3,1,353,"1,747",> 100%
-State,Indiana,All,2020-21,50,19.6,0,349,"1,785",> 100%
-State,Indiana,All,2020-21,51,18.1,1,230,"1,274",> 100%
-State,Indiana,All,2020-21,52,10.1,0,64,631,52.60%
-State,Indiana,All,2020-21,53,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
-State,Indiana,All,2020-21,1,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
-State,Iowa,All,2020-21,40,7.7,0,53,684,> 100%
-State,Iowa,All,2020-21,41,8.7,0,64,738,> 100%
+State,Idaho,All,2020-21,47,13.5,0,52,386,> 100%
+State,Idaho,All,2020-21,48,13.5,0,58,429,> 100%
+State,Idaho,All,2020-21,49,13.7,0,54,395,> 100%
+State,Idaho,All,2020-21,50,14.3,0,53,371,> 100%
+State,Idaho,All,2020-21,51,15,1,56,381,> 100%
+State,Idaho,All,2020-21,52,14.1,1,46,334,> 100%
+State,Idaho,All,2020-21,53,5.1,0,11,215,85.80%
+State,Idaho,All,2020-21,1,8.8,0,19,217,86.60%
+State,Idaho,All,2020-21,2,6.3,0,6,95,37.90%
+State,Idaho,All,2020-21,3,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,Illinois,All,2020-21,40,8.1,1,179,"2,220",> 100%
+State,Illinois,All,2020-21,41,8.6,0,206,"2,405",> 100%
+State,Illinois,All,2020-21,42,9.4,1,220,"2,346",> 100%
+State,Illinois,All,2020-21,43,10.8,2,251,"2,350",> 100%
+State,Illinois,All,2020-21,44,10.2,1,256,"2,516",> 100%
+State,Illinois,All,2020-21,45,12.9,0,358,"2,771",> 100%
+State,Illinois,All,2020-21,46,14.8,0,442,"2,982",> 100%
+State,Illinois,All,2020-21,47,18.1,0,595,"3,290",> 100%
+State,Illinois,All,2020-21,48,18.3,0,593,"3,248",> 100%
+State,Illinois,All,2020-21,49,18.5,1,617,"3,334",> 100%
+State,Illinois,All,2020-21,50,17,1,574,"3,377",> 100%
+State,Illinois,All,2020-21,51,18.7,0,580,"3,098",> 100%
+State,Illinois,All,2020-21,52,16.5,0,465,"2,819",> 100%
+State,Illinois,All,2020-21,53,10.9,0,264,"2,419",> 100%
+State,Illinois,All,2020-21,1,11.5,0,243,"2,114",> 100%
+State,Illinois,All,2020-21,2,7.5,0,131,"1,754",86.10%
+State,Illinois,All,2020-21,3,7.2,0,82,"1,132",55.60%
+State,Indiana,All,2020-21,40,10,0,137,"1,367",> 100%
+State,Indiana,All,2020-21,41,9.5,0,133,"1,401",> 100%
+State,Indiana,All,2020-21,42,11.4,0,169,"1,487",> 100%
+State,Indiana,All,2020-21,43,10.4,0,155,"1,487",> 100%
+State,Indiana,All,2020-21,44,13.3,0,206,"1,549",> 100%
+State,Indiana,All,2020-21,45,13.4,1,210,"1,577",> 100%
+State,Indiana,All,2020-21,46,14.1,0,232,"1,648",> 100%
+State,Indiana,All,2020-21,47,16.8,1,307,"1,832",> 100%
+State,Indiana,All,2020-21,48,18.5,1,351,"1,903",> 100%
+State,Indiana,All,2020-21,49,20,1,355,"1,783",> 100%
+State,Indiana,All,2020-21,50,20.4,0,382,"1,873",> 100%
+State,Indiana,All,2020-21,51,21.2,1,348,"1,648",> 100%
+State,Indiana,All,2020-21,52,18,1,219,"1,219",> 100%
+State,Indiana,All,2020-21,53,14.8,0,78,526,43.80%
+State,Indiana,All,2020-21,1,9.5,0,44,461,38.40%
+State,Indiana,All,2020-21,2,5.8,0,20,343,28.60%
+State,Indiana,All,2020-21,3,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,Iowa,All,2020-21,40,7.7,0,53,686,> 100%
+State,Iowa,All,2020-21,41,8.7,0,64,739,> 100%
 State,Iowa,All,2020-21,42,11.2,0,78,694,> 100%
-State,Iowa,All,2020-21,43,10.2,1,74,737,> 100%
-State,Iowa,All,2020-21,44,9.4,0,71,752,> 100%
+State,Iowa,All,2020-21,43,10.1,1,74,739,> 100%
+State,Iowa,All,2020-21,44,9.5,0,72,755,> 100%
 State,Iowa,All,2020-21,45,14,0,119,852,> 100%
-State,Iowa,All,2020-21,46,15.3,0,137,896,> 100%
-State,Iowa,All,2020-21,47,19.1,1,186,981,> 100%
-State,Iowa,All,2020-21,48,19.9,0,191,958,> 100%
-State,Iowa,All,2020-21,49,21.3,0,205,963,> 100%
-State,Iowa,All,2020-21,50,17,0,149,874,> 100%
-State,Iowa,All,2020-21,51,13.1,0,88,673,> 100%
-State,Iowa,All,2020-21,52,8.5,0,40,471,83.30%
-State,Iowa,All,2020-21,53,11.2,1,27,249,44%
-State,Iowa,All,2020-21,1,5.4,0,8,147,26%
-State,Kansas,All,2020-21,40,8.7,0,53,606,> 100%
+State,Iowa,All,2020-21,46,15.3,0,137,897,> 100%
+State,Iowa,All,2020-21,47,19.1,1,187,984,> 100%
+State,Iowa,All,2020-21,48,19.9,0,192,964,> 100%
+State,Iowa,All,2020-21,49,21.1,0,206,976,> 100%
+State,Iowa,All,2020-21,50,17.3,0,158,911,> 100%
+State,Iowa,All,2020-21,51,14.3,0,113,788,> 100%
+State,Iowa,All,2020-21,52,12,0,82,685,> 100%
+State,Iowa,All,2020-21,53,11.8,1,52,450,79.60%
+State,Iowa,All,2020-21,1,7.7,0,31,401,70.90%
+State,Iowa,All,2020-21,2,5.6,0,15,269,47.60%
+State,Iowa,All,2020-21,3,10.1,0,16,159,28.10%
+State,Kansas,All,2020-21,40,8.7,0,53,607,> 100%
 State,Kansas,All,2020-21,41,9.1,0,60,660,> 100%
 State,Kansas,All,2020-21,42,10.4,0,67,644,> 100%
 State,Kansas,All,2020-21,43,11.5,0,77,667,> 100%
 State,Kansas,All,2020-21,44,12.1,1,73,612,> 100%
-State,Kansas,All,2020-21,45,12.4,0,85,688,> 100%
-State,Kansas,All,2020-21,46,15.3,0,111,726,> 100%
-State,Kansas,All,2020-21,47,16.8,0,131,779,> 100%
-State,Kansas,All,2020-21,48,17.2,1,140,822,> 100%
-State,Kansas,All,2020-21,49,19.5,0,165,848,> 100%
-State,Kansas,All,2020-21,50,19.6,0,164,835,> 100%
-State,Kansas,All,2020-21,51,17.4,0,142,815,> 100%
-State,Kansas,All,2020-21,52,7.8,0,40,511,> 100%
-State,Kansas,All,2020-21,53,12.3,0,55,446,88.80%
-State,Kansas,All,2020-21,1,9.1,0,24,263,52.40%
-State,Kentucky,All,2020-21,40,8.9,1,88,"1,003",> 100%
-State,Kentucky,All,2020-21,41,8.9,0,94,"1,056",> 100%
-State,Kentucky,All,2020-21,42,12.2,0,135,"1,104",> 100%
-State,Kentucky,All,2020-21,43,11.1,0,127,"1,142",> 100%
-State,Kentucky,All,2020-21,44,11.4,1,124,"1,093",> 100%
-State,Kentucky,All,2020-21,45,12,0,137,"1,143",> 100%
-State,Kentucky,All,2020-21,46,14.3,1,160,"1,122",> 100%
-State,Kentucky,All,2020-21,47,17,1,200,"1,183",> 100%
-State,Kentucky,All,2020-21,48,15.1,0,181,"1,196",> 100%
-State,Kentucky,All,2020-21,49,17.7,0,200,"1,133",> 100%
-State,Kentucky,All,2020-21,50,15.1,0,157,"1,037",> 100%
-State,Kentucky,All,2020-21,51,12.5,0,92,734,82.90%
-State,Kentucky,All,2020-21,52,8.6,0,56,654,73.90%
-State,Kentucky,All,2020-21,53,8.7,0,41,469,53%
-State,Kentucky,All,2020-21,1,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
-State,Louisiana,All,2020-21,40,7.9,0,80,"1,017",> 100%
-State,Louisiana,All,2020-21,41,7.9,0,80,"1,009",> 100%
-State,Louisiana,All,2020-21,42,8,0,76,955,> 100%
-State,Louisiana,All,2020-21,43,7.9,0,77,974,> 100%
-State,Louisiana,All,2020-21,44,8,0,72,898,> 100%
-State,Louisiana,All,2020-21,45,8.4,0,81,967,> 100%
-State,Louisiana,All,2020-21,46,7.3,0,70,962,> 100%
-State,Louisiana,All,2020-21,47,8.7,0,83,949,> 100%
-State,Louisiana,All,2020-21,48,11.1,1,104,950,> 100%
-State,Louisiana,All,2020-21,49,11.1,1,100,906,> 100%
-State,Louisiana,All,2020-21,50,9.3,0,79,846,> 100%
-State,Louisiana,All,2020-21,51,10.4,0,72,695,82.30%
-State,Louisiana,All,2020-21,52,7.4,0,41,552,65.30%
-State,Louisiana,All,2020-21,53,9.9,0,45,455,53.90%
-State,Louisiana,All,2020-21,1,11.8,0,23,195,23.10%
+State,Kansas,All,2020-21,45,12.5,0,86,688,> 100%
+State,Kansas,All,2020-21,46,15.3,0,112,731,> 100%
+State,Kansas,All,2020-21,47,17,0,133,782,> 100%
+State,Kansas,All,2020-21,48,17.1,1,141,832,> 100%
+State,Kansas,All,2020-21,49,19.1,0,165,862,> 100%
+State,Kansas,All,2020-21,50,19.8,0,174,877,> 100%
+State,Kansas,All,2020-21,51,19.6,0,183,936,> 100%
+State,Kansas,All,2020-21,52,13.6,0,106,779,> 100%
+State,Kansas,All,2020-21,53,15.6,0,104,668,> 100%
+State,Kansas,All,2020-21,1,9.1,0,45,492,98%
+State,Kansas,All,2020-21,2,7.9,0,33,418,83.30%
+State,Kansas,All,2020-21,3,11.2,0,27,241,48%
+State,Kentucky,All,2020-21,40,9,1,89,"1,005",> 100%
+State,Kentucky,All,2020-21,41,8.9,0,94,"1,060",> 100%
+State,Kentucky,All,2020-21,42,12.2,0,135,"1,110",> 100%
+State,Kentucky,All,2020-21,43,11,0,127,"1,152",> 100%
+State,Kentucky,All,2020-21,44,11.4,1,124,"1,101",> 100%
+State,Kentucky,All,2020-21,45,12.2,0,141,"1,158",> 100%
+State,Kentucky,All,2020-21,46,14.2,1,160,"1,137",> 100%
+State,Kentucky,All,2020-21,47,17.5,1,212,"1,218",> 100%
+State,Kentucky,All,2020-21,48,15.4,0,192,"1,245",> 100%
+State,Kentucky,All,2020-21,49,17.9,0,217,"1,210",> 100%
+State,Kentucky,All,2020-21,50,15.9,0,188,"1,185",> 100%
+State,Kentucky,All,2020-21,51,15.7,0,157,"1,001",> 100%
+State,Kentucky,All,2020-21,52,11.1,0,98,882,99.60%
+State,Kentucky,All,2020-21,53,8.6,0,62,719,81.20%
+State,Kentucky,All,2020-21,1,9.6,0,54,560,63.30%
+State,Kentucky,All,2020-21,2,7.3,0,37,510,57.60%
+State,Kentucky,All,2020-21,3,7.1,0,14,196,22.10%
+State,Louisiana,All,2020-21,40,7.8,0,80,"1,026",> 100%
+State,Louisiana,All,2020-21,41,7.9,0,80,"1,018",> 100%
+State,Louisiana,All,2020-21,42,8,0,77,966,> 100%
+State,Louisiana,All,2020-21,43,8,0,79,984,> 100%
+State,Louisiana,All,2020-21,44,7.9,0,72,917,> 100%
+State,Louisiana,All,2020-21,45,8.6,0,85,994,> 100%
+State,Louisiana,All,2020-21,46,7.4,0,73,989,> 100%
+State,Louisiana,All,2020-21,47,9.3,0,92,993,> 100%
+State,Louisiana,All,2020-21,48,11.5,1,114,"1,003",> 100%
+State,Louisiana,All,2020-21,49,11.9,1,117,994,> 100%
+State,Louisiana,All,2020-21,50,11.1,0,113,"1,017",> 100%
+State,Louisiana,All,2020-21,51,13.1,0,124,947,> 100%
+State,Louisiana,All,2020-21,52,11.2,0,95,849,> 100%
+State,Louisiana,All,2020-21,53,9.9,0,70,707,83.70%
+State,Louisiana,All,2020-21,1,10.1,0,63,621,73.50%
+State,Louisiana,All,2020-21,2,9.9,0,46,463,54.80%
+State,Louisiana,All,2020-21,3,8,0,16,200,23.70%
 State,Maine,All,2020-21,40,4.2,0,12,287,> 100%
 State,Maine,All,2020-21,41,8,0,24,299,> 100%
 State,Maine,All,2020-21,42,4.4,0,12,273,> 100%
@@ -293,209 +331,237 @@ State,Maine,All,2020-21,45,6.3,0,21,336,> 100%
 State,Maine,All,2020-21,46,8.7,0,28,323,> 100%
 State,Maine,All,2020-21,47,8.1,1,24,308,> 100%
 State,Maine,All,2020-21,48,6.7,0,23,345,> 100%
-State,Maine,All,2020-21,49,6.5,1,22,352,> 100%
-State,Maine,All,2020-21,50,8,0,28,350,> 100%
-State,Maine,All,2020-21,51,7.4,0,24,323,> 100%
-State,Maine,All,2020-21,52,6.7,0,20,299,> 100%
-State,Maine,All,2020-21,53,7.4,0,19,257,95.40%
-State,Maine,All,2020-21,1,6.4,0,15,233,86.50%
+State,Maine,All,2020-21,49,6.8,1,23,352,> 100%
+State,Maine,All,2020-21,50,8,0,28,352,> 100%
+State,Maine,All,2020-21,51,7.6,0,25,327,> 100%
+State,Maine,All,2020-21,52,8,0,27,337,> 100%
+State,Maine,All,2020-21,53,7.9,0,25,318,> 100%
+State,Maine,All,2020-21,1,6.1,0,17,279,> 100%
+State,Maine,All,2020-21,2,11.5,0,29,253,93.90%
+State,Maine,All,2020-21,3,8.7,0,16,183,67.90%
 State,Maryland,All,2020-21,40,5.9,0,65,"1,097",> 100%
-State,Maryland,All,2020-21,41,8.6,0,93,"1,086",> 100%
-State,Maryland,All,2020-21,42,7.4,1,77,"1,055",> 100%
-State,Maryland,All,2020-21,43,8.5,1,91,"1,082",> 100%
-State,Maryland,All,2020-21,44,7.7,0,83,"1,077",> 100%
+State,Maryland,All,2020-21,41,8.6,0,94,"1,088",> 100%
+State,Maryland,All,2020-21,42,7.4,1,77,"1,056",> 100%
+State,Maryland,All,2020-21,43,8.5,1,91,"1,083",> 100%
+State,Maryland,All,2020-21,44,7.8,0,84,"1,079",> 100%
 State,Maryland,All,2020-21,45,7.2,0,79,"1,097",> 100%
-State,Maryland,All,2020-21,46,8.9,0,100,"1,124",> 100%
-State,Maryland,All,2020-21,47,9.4,1,112,"1,207",> 100%
-State,Maryland,All,2020-21,48,13.2,0,150,"1,133",> 100%
-State,Maryland,All,2020-21,49,11.8,0,145,"1,228",> 100%
-State,Maryland,All,2020-21,50,14.4,0,188,"1,307",> 100%
-State,Maryland,All,2020-21,51,13.7,0,164,"1,197",> 100%
-State,Maryland,All,2020-21,52,8.2,0,69,837,92.30%
-State,Maryland,All,2020-21,53,7.4,0,63,850,93.70%
-State,Maryland,All,2020-21,1,10.3,0,61,595,65.60%
-State,Massachusetts,All,2020-21,40,6.4,0,69,"1,075",99.70%
-State,Massachusetts,All,2020-21,41,7.4,1,79,"1,082",> 100%
+State,Maryland,All,2020-21,46,8.9,0,100,"1,126",> 100%
+State,Maryland,All,2020-21,47,9.3,1,112,"1,214",> 100%
+State,Maryland,All,2020-21,48,13.2,0,151,"1,148",> 100%
+State,Maryland,All,2020-21,49,11.7,0,146,"1,243",> 100%
+State,Maryland,All,2020-21,50,14.6,0,197,"1,350",> 100%
+State,Maryland,All,2020-21,51,14,0,187,"1,331",> 100%
+State,Maryland,All,2020-21,52,13.1,0,153,"1,166",> 100%
+State,Maryland,All,2020-21,53,11,0,125,"1,139",> 100%
+State,Maryland,All,2020-21,1,11.6,0,104,898,99%
+State,Maryland,All,2020-21,2,5,0,38,767,84.60%
+State,Maryland,All,2020-21,3,8.1,0,45,557,61.40%
+State,Massachusetts,All,2020-21,40,6.4,0,69,"1,076",99.80%
+State,Massachusetts,All,2020-21,41,7.4,1,79,"1,084",> 100%
 State,Massachusetts,All,2020-21,42,6.7,0,75,"1,125",> 100%
-State,Massachusetts,All,2020-21,43,6,0,71,"1,179",> 100%
-State,Massachusetts,All,2020-21,44,8,0,85,"1,068",99.10%
+State,Massachusetts,All,2020-21,43,6,0,71,"1,180",> 100%
+State,Massachusetts,All,2020-21,44,8,0,86,"1,069",99.20%
 State,Massachusetts,All,2020-21,45,8.5,2,100,"1,193",> 100%
-State,Massachusetts,All,2020-21,46,9.2,1,110,"1,201",> 100%
-State,Massachusetts,All,2020-21,47,7.8,2,91,"1,189",> 100%
-State,Massachusetts,All,2020-21,48,11,1,133,"1,220",> 100%
-State,Massachusetts,All,2020-21,49,11.9,0,153,"1,285",> 100%
-State,Massachusetts,All,2020-21,50,13.3,1,173,"1,310",> 100%
-State,Massachusetts,All,2020-21,51,12.6,0,163,"1,296",> 100%
-State,Massachusetts,All,2020-21,52,9.9,0,110,"1,116",> 100%
-State,Massachusetts,All,2020-21,53,9.8,0,97,990,91.90%
-State,Massachusetts,All,2020-21,1,9.2,0,69,748,69.40%
-State,Michigan,All,2020-21,40,5.7,1,116,"2,040",> 100%
+State,Massachusetts,All,2020-21,46,9.4,1,112,"1,202",> 100%
+State,Massachusetts,All,2020-21,47,7.8,2,91,"1,192",> 100%
+State,Massachusetts,All,2020-21,48,11,1,133,"1,222",> 100%
+State,Massachusetts,All,2020-21,49,11.9,0,154,"1,298",> 100%
+State,Massachusetts,All,2020-21,50,13.2,1,176,"1,336",> 100%
+State,Massachusetts,All,2020-21,51,13.3,1,182,"1,376",> 100%
+State,Massachusetts,All,2020-21,52,14.6,0,216,"1,475",> 100%
+State,Massachusetts,All,2020-21,53,14,0,185,"1,318",> 100%
+State,Massachusetts,All,2020-21,1,11.1,0,124,"1,117",> 100%
+State,Massachusetts,All,2020-21,2,8.5,1,79,941,87.30%
+State,Massachusetts,All,2020-21,3,9.1,1,64,711,66%
+State,Michigan,All,2020-21,40,5.7,1,116,"2,042",> 100%
 State,Michigan,All,2020-21,41,6.3,0,137,"2,172",> 100%
-State,Michigan,All,2020-21,42,7.3,0,149,"2,047",> 100%
-State,Michigan,All,2020-21,43,7.6,0,167,"2,206",> 100%
-State,Michigan,All,2020-21,44,7.2,1,157,"2,186",> 100%
-State,Michigan,All,2020-21,45,10.9,2,254,"2,343",> 100%
-State,Michigan,All,2020-21,46,13.4,0,328,"2,439",> 100%
-State,Michigan,All,2020-21,47,14.8,0,387,"2,618",> 100%
-State,Michigan,All,2020-21,48,17.4,2,460,"2,658",> 100%
-State,Michigan,All,2020-21,49,17.2,1,476,"2,776",> 100%
-State,Michigan,All,2020-21,50,18.2,1,519,"2,851",> 100%
-State,Michigan,All,2020-21,51,16.2,0,384,"2,369",> 100%
-State,Michigan,All,2020-21,52,7.8,2,118,"1,548",85.10%
-State,Michigan,All,2020-21,53,7.1,0,66,933,51.30%
-State,Michigan,All,2020-21,1,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,Michigan,All,2020-21,42,7.3,0,149,"2,048",> 100%
+State,Michigan,All,2020-21,43,7.6,0,167,"2,208",> 100%
+State,Michigan,All,2020-21,44,7.2,1,157,"2,191",> 100%
+State,Michigan,All,2020-21,45,10.9,2,255,"2,350",> 100%
+State,Michigan,All,2020-21,46,13.4,0,328,"2,440",> 100%
+State,Michigan,All,2020-21,47,14.8,0,389,"2,627",> 100%
+State,Michigan,All,2020-21,48,17.5,2,465,"2,673",> 100%
+State,Michigan,All,2020-21,49,17.2,1,481,"2,807",> 100%
+State,Michigan,All,2020-21,50,18.4,1,539,"2,927",> 100%
+State,Michigan,All,2020-21,51,17.1,0,451,"2,630",> 100%
+State,Michigan,All,2020-21,52,13.7,2,304,"2,241",> 100%
+State,Michigan,All,2020-21,53,9.2,0,151,"1,636",89.90%
+State,Michigan,All,2020-21,1,5.2,0,70,"1,344",73.90%
+State,Michigan,All,2020-21,2,4.6,0,61,"1,327",72.90%
+State,Michigan,All,2020-21,3,5,0,46,929,51.10%
 State,Minnesota,All,2020-21,40,8.3,0,74,887,> 100%
-State,Minnesota,All,2020-21,41,7.2,0,72,999,> 100%
+State,Minnesota,All,2020-21,41,7.2,0,72,"1,003",> 100%
 State,Minnesota,All,2020-21,42,7.1,0,67,947,> 100%
 State,Minnesota,All,2020-21,43,9.2,0,95,"1,035",> 100%
-State,Minnesota,All,2020-21,44,9.5,0,101,"1,059",> 100%
-State,Minnesota,All,2020-21,45,11.4,1,127,"1,126",> 100%
-State,Minnesota,All,2020-21,46,13,0,154,"1,188",> 100%
-State,Minnesota,All,2020-21,47,17.9,1,233,"1,309",> 100%
-State,Minnesota,All,2020-21,48,15.5,1,214,"1,383",> 100%
-State,Minnesota,All,2020-21,49,17.4,0,228,"1,313",> 100%
-State,Minnesota,All,2020-21,50,17.7,1,234,"1,331",> 100%
-State,Minnesota,All,2020-21,51,17.2,0,200,"1,163",> 100%
-State,Minnesota,All,2020-21,52,12,0,93,772,95.20%
-State,Minnesota,All,2020-21,53,5.3,0,33,627,77.30%
-State,Minnesota,All,2020-21,1,5.3,0,25,471,58.10%
-State,Mississippi,All,2020-21,40,12.4,0,90,726,> 100%
-State,Mississippi,All,2020-21,41,11.2,0,85,762,> 100%
-State,Mississippi,All,2020-21,42,12.9,0,88,680,> 100%
-State,Mississippi,All,2020-21,43,11.4,0,83,729,> 100%
-State,Mississippi,All,2020-21,44,12.5,0,90,720,> 100%
-State,Mississippi,All,2020-21,45,13.5,0,99,733,> 100%
-State,Mississippi,All,2020-21,46,11.9,0,95,800,> 100%
-State,Mississippi,All,2020-21,47,15.5,1,122,792,> 100%
-State,Mississippi,All,2020-21,48,16,1,125,788,> 100%
-State,Mississippi,All,2020-21,49,17.3,0,142,820,> 100%
-State,Mississippi,All,2020-21,50,19.6,0,176,898,> 100%
-State,Mississippi,All,2020-21,51,15,1,111,746,> 100%
-State,Mississippi,All,2020-21,52,12.9,1,77,607,> 100%
-State,Mississippi,All,2020-21,53,12.1,0,70,579,96.40%
-State,Mississippi,All,2020-21,1,13.1,0,43,328,54.60%
-State,Missouri,All,2020-21,40,9.4,0,135,"1,439",> 100%
-State,Missouri,All,2020-21,41,9.3,0,135,"1,457",> 100%
-State,Missouri,All,2020-21,42,9.5,0,138,"1,452",> 100%
-State,Missouri,All,2020-21,43,10.1,0,153,"1,510",> 100%
-State,Missouri,All,2020-21,44,12.4,0,187,"1,514",> 100%
-State,Missouri,All,2020-21,45,12.2,0,207,"1,694",> 100%
-State,Missouri,All,2020-21,46,14.6,0,253,"1,728",> 100%
-State,Missouri,All,2020-21,47,17.8,2,306,"1,727",> 100%
-State,Missouri,All,2020-21,48,18.2,0,312,"1,717",> 100%
-State,Missouri,All,2020-21,49,18.1,0,313,"1,732",> 100%
-State,Missouri,All,2020-21,50,17.8,0,285,"1,604",> 100%
-State,Missouri,All,2020-21,51,12.5,1,151,"1,216",> 100%
-State,Missouri,All,2020-21,52,9.5,0,86,910,80%
-State,Missouri,All,2020-21,53,9.4,0,71,759,66.70%
-State,Missouri,All,2020-21,1,8.1,0,35,431,37.90%
-State,Montana,All,2020-21,40,10.7,0,26,244,> 100%
+State,Minnesota,All,2020-21,44,9.5,0,101,"1,062",> 100%
+State,Minnesota,All,2020-21,45,11.3,1,127,"1,132",> 100%
+State,Minnesota,All,2020-21,46,12.9,0,155,"1,197",> 100%
+State,Minnesota,All,2020-21,47,17.9,1,234,"1,313",> 100%
+State,Minnesota,All,2020-21,48,15.5,1,215,"1,396",> 100%
+State,Minnesota,All,2020-21,49,17.2,0,229,"1,333",> 100%
+State,Minnesota,All,2020-21,50,17.4,1,236,"1,364",> 100%
+State,Minnesota,All,2020-21,51,17.2,0,213,"1,241",> 100%
+State,Minnesota,All,2020-21,52,14.9,0,167,"1,121",> 100%
+State,Minnesota,All,2020-21,53,10.8,1,107,"1,001",> 100%
+State,Minnesota,All,2020-21,1,6.8,0,48,704,86.80%
+State,Minnesota,All,2020-21,2,5.4,0,27,504,62.20%
+State,Minnesota,All,2020-21,3,4.9,1,19,412,50.80%
+State,Mississippi,All,2020-21,40,12.4,0,90,728,> 100%
+State,Mississippi,All,2020-21,41,11.1,0,85,764,> 100%
+State,Mississippi,All,2020-21,42,12.9,0,88,681,> 100%
+State,Mississippi,All,2020-21,43,11.4,0,83,730,> 100%
+State,Mississippi,All,2020-21,44,12.5,0,90,722,> 100%
+State,Mississippi,All,2020-21,45,13.6,0,100,736,> 100%
+State,Mississippi,All,2020-21,46,12,0,97,808,> 100%
+State,Mississippi,All,2020-21,47,15.5,1,123,801,> 100%
+State,Mississippi,All,2020-21,48,16.1,1,127,796,> 100%
+State,Mississippi,All,2020-21,49,17.5,0,147,838,> 100%
+State,Mississippi,All,2020-21,50,20,0,187,933,> 100%
+State,Mississippi,All,2020-21,51,17,1,145,860,> 100%
+State,Mississippi,All,2020-21,52,16.5,1,132,808,> 100%
+State,Mississippi,All,2020-21,53,15.2,0,121,795,> 100%
+State,Mississippi,All,2020-21,1,14.2,0,86,604,> 100%
+State,Mississippi,All,2020-21,2,13.3,0,69,520,86.50%
+State,Mississippi,All,2020-21,3,17.3,0,53,306,50.90%
+State,Missouri,All,2020-21,40,9.3,0,135,"1,448",> 100%
+State,Missouri,All,2020-21,41,9.4,0,137,"1,464",> 100%
+State,Missouri,All,2020-21,42,9.4,0,138,"1,461",> 100%
+State,Missouri,All,2020-21,43,10.3,0,156,"1,518",> 100%
+State,Missouri,All,2020-21,44,12.3,0,187,"1,526",> 100%
+State,Missouri,All,2020-21,45,12.2,0,209,"1,710",> 100%
+State,Missouri,All,2020-21,46,14.8,0,259,"1,753",> 100%
+State,Missouri,All,2020-21,47,17.6,2,308,"1,763",> 100%
+State,Missouri,All,2020-21,48,18.3,0,325,"1,777",> 100%
+State,Missouri,All,2020-21,49,18.1,0,331,"1,825",> 100%
+State,Missouri,All,2020-21,50,18,0,321,"1,786",> 100%
+State,Missouri,All,2020-21,51,15.2,1,244,"1,613",> 100%
+State,Missouri,All,2020-21,52,15,0,209,"1,397",> 100%
+State,Missouri,All,2020-21,53,12.3,1,147,"1,199",> 100%
+State,Missouri,All,2020-21,1,10.4,0,106,"1,015",89.20%
+State,Missouri,All,2020-21,2,8.3,0,69,830,72.90%
+State,Missouri,All,2020-21,3,11.6,1,54,474,41.70%
+State,Montana,All,2020-21,40,11,0,27,245,> 100%
 State,Montana,All,2020-21,41,14.5,0,41,282,> 100%
-State,Montana,All,2020-21,42,11.1,0,30,270,> 100%
-State,Montana,All,2020-21,43,16.6,0,50,301,> 100%
+State,Montana,All,2020-21,42,11.5,0,31,270,> 100%
+State,Montana,All,2020-21,43,16.6,0,50,302,> 100%
 State,Montana,All,2020-21,44,19,0,60,316,> 100%
 State,Montana,All,2020-21,45,14.4,0,43,299,> 100%
 State,Montana,All,2020-21,46,16,0,52,325,> 100%
-State,Montana,All,2020-21,47,20.6,0,67,326,> 100%
-State,Montana,All,2020-21,48,16.9,0,51,301,> 100%
-State,Montana,All,2020-21,49,20.1,0,52,259,> 100%
-State,Montana,All,2020-21,50,15.8,0,44,279,> 100%
-State,Montana,All,2020-21,51,15.1,0,32,212,> 100%
-State,Montana,All,2020-21,52,5.4,0,8,149,80%
-State,Montana,All,2020-21,53,7.7,0,6,78,41.90%
-State,Montana,All,2020-21,1,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,Montana,All,2020-21,47,20.5,0,67,327,> 100%
+State,Montana,All,2020-21,48,16.9,0,51,302,> 100%
+State,Montana,All,2020-21,49,20.3,0,53,261,> 100%
+State,Montana,All,2020-21,50,16.4,0,48,292,> 100%
+State,Montana,All,2020-21,51,16.3,0,41,251,> 100%
+State,Montana,All,2020-21,52,11.6,0,30,258,> 100%
+State,Montana,All,2020-21,53,7.6,0,13,170,91.30%
+State,Montana,All,2020-21,1,2.3,0,3,128,68.70%
+State,Montana,All,2020-21,2,7,0,6,86,46.20%
+State,Montana,All,2020-21,3,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
 State,Nebraska,All,2020-21,40,9.3,0,35,378,> 100%
-State,Nebraska,All,2020-21,41,9.2,0,36,392,> 100%
+State,Nebraska,All,2020-21,41,9.2,0,36,393,> 100%
 State,Nebraska,All,2020-21,42,9.3,0,36,388,> 100%
 State,Nebraska,All,2020-21,43,9.8,0,41,417,> 100%
 State,Nebraska,All,2020-21,44,10.2,0,45,441,> 100%
-State,Nebraska,All,2020-21,45,15,0,73,488,> 100%
-State,Nebraska,All,2020-21,46,20.1,0,107,533,> 100%
-State,Nebraska,All,2020-21,47,17.6,0,99,563,> 100%
-State,Nebraska,All,2020-21,48,20.8,1,110,534,> 100%
-State,Nebraska,All,2020-21,49,17.9,0,88,491,> 100%
-State,Nebraska,All,2020-21,50,15.5,0,69,444,> 100%
-State,Nebraska,All,2020-21,51,12.5,0,43,343,> 100%
-State,Nebraska,All,2020-21,52,9.4,0,21,224,71.70%
-State,Nebraska,All,2020-21,53,7.5,0,13,174,55.70%
-State,Nebraska,All,2020-21,1,3.1,0,2,64,20.50%
-State,Nevada,All,2020-21,40,11.1,0,61,551,> 100%
+State,Nebraska,All,2020-21,45,14.9,0,73,490,> 100%
+State,Nebraska,All,2020-21,46,20.3,0,109,538,> 100%
+State,Nebraska,All,2020-21,47,17.4,0,99,570,> 100%
+State,Nebraska,All,2020-21,48,20.8,1,112,542,> 100%
+State,Nebraska,All,2020-21,49,18.5,0,94,509,> 100%
+State,Nebraska,All,2020-21,50,15.4,0,73,473,> 100%
+State,Nebraska,All,2020-21,51,15.5,0,65,419,> 100%
+State,Nebraska,All,2020-21,52,11,0,40,364,> 100%
+State,Nebraska,All,2020-21,53,10.3,0,28,273,87.40%
+State,Nebraska,All,2020-21,1,6.7,0,13,195,62.40%
+State,Nebraska,All,2020-21,2,8.9,0,10,112,35.90%
+State,Nebraska,All,2020-21,3,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,Nevada,All,2020-21,40,11.1,0,61,550,> 100%
 State,Nevada,All,2020-21,41,9.8,0,53,543,> 100%
 State,Nevada,All,2020-21,42,8.9,0,45,504,> 100%
-State,Nevada,All,2020-21,43,11.5,0,60,522,> 100%
-State,Nevada,All,2020-21,44,11.5,0,65,567,> 100%
-State,Nevada,All,2020-21,45,11.9,0,64,538,> 100%
-State,Nevada,All,2020-21,46,13.8,0,83,600,> 100%
-State,Nevada,All,2020-21,47,20.2,0,122,605,> 100%
-State,Nevada,All,2020-21,48,21.8,0,151,692,> 100%
-State,Nevada,All,2020-21,49,26.1,1,187,721,> 100%
-State,Nevada,All,2020-21,50,25.3,0,196,776,> 100%
-State,Nevada,All,2020-21,51,26.2,0,159,607,> 100%
-State,Nevada,All,2020-21,52,18.6,0,82,440,> 100%
-State,Nevada,All,2020-21,53,19.2,0,73,381,86.80%
-State,Nevada,All,2020-21,1,16.2,0,32,197,44.90%
+State,Nevada,All,2020-21,43,11.5,0,60,523,> 100%
+State,Nevada,All,2020-21,44,11.7,0,67,571,> 100%
+State,Nevada,All,2020-21,45,11.9,0,64,539,> 100%
+State,Nevada,All,2020-21,46,13.7,0,83,604,> 100%
+State,Nevada,All,2020-21,47,20.3,0,124,611,> 100%
+State,Nevada,All,2020-21,48,21.7,0,153,705,> 100%
+State,Nevada,All,2020-21,49,26,1,192,741,> 100%
+State,Nevada,All,2020-21,50,26.7,0,224,840,> 100%
+State,Nevada,All,2020-21,51,29.2,0,217,744,> 100%
+State,Nevada,All,2020-21,52,27.9,0,194,695,> 100%
+State,Nevada,All,2020-21,53,24.1,0,142,590,> 100%
+State,Nevada,All,2020-21,1,18.9,1,93,498,> 100%
+State,Nevada,All,2020-21,2,19.1,0,71,371,84.50%
+State,Nevada,All,2020-21,3,15.8,1,30,196,44.60%
 State,New Hampshire,All,2020-21,40,4.7,0,11,233,> 100%
-State,New Hampshire,All,2020-21,41,3.1,0,8,262,> 100%
+State,New Hampshire,All,2020-21,41,3.4,0,9,262,> 100%
 State,New Hampshire,All,2020-21,42,3.9,0,10,257,> 100%
 State,New Hampshire,All,2020-21,43,5.2,0,12,231,> 100%
-State,New Hampshire,All,2020-21,44,5.1,0,13,256,> 100%
+State,New Hampshire,All,2020-21,44,5.1,0,13,257,> 100%
 State,New Hampshire,All,2020-21,45,4.5,0,12,266,> 100%
 State,New Hampshire,All,2020-21,46,5.2,0,15,289,> 100%
-State,New Hampshire,All,2020-21,47,6.5,0,17,260,> 100%
-State,New Hampshire,All,2020-21,48,8.2,0,23,279,> 100%
-State,New Hampshire,All,2020-21,49,7,0,22,316,> 100%
+State,New Hampshire,All,2020-21,47,6.6,0,17,259,> 100%
+State,New Hampshire,All,2020-21,48,8.2,0,23,280,> 100%
+State,New Hampshire,All,2020-21,49,6.9,0,22,317,> 100%
 State,New Hampshire,All,2020-21,50,6.9,0,21,304,> 100%
-State,New Hampshire,All,2020-21,51,6.1,0,17,280,> 100%
-State,New Hampshire,All,2020-21,52,3.7,0,10,270,> 100%
-State,New Hampshire,All,2020-21,53,4.1,0,9,222,98.20%
-State,New Hampshire,All,2020-21,1,10,0,21,210,92.90%
-State,New Jersey,All,2020-21,40,5.4,0,72,"1,340",96.50%
-State,New Jersey,All,2020-21,41,6.2,0,86,"1,383",99.60%
+State,New Hampshire,All,2020-21,51,6.6,1,18,288,> 100%
+State,New Hampshire,All,2020-21,52,5.9,0,20,341,> 100%
+State,New Hampshire,All,2020-21,53,6.6,0,20,301,> 100%
+State,New Hampshire,All,2020-21,1,9.2,0,24,260,> 100%
+State,New Hampshire,All,2020-21,2,4.4,0,9,204,90.20%
+State,New Hampshire,All,2020-21,3,5.5,0,9,163,72.10%
+State,New Jersey,All,2020-21,40,5.4,0,72,"1,339",96.40%
+State,New Jersey,All,2020-21,41,6.2,0,86,"1,384",99.70%
 State,New Jersey,All,2020-21,42,5.3,0,72,"1,357",97.70%
 State,New Jersey,All,2020-21,43,6.5,0,95,"1,470",> 100%
-State,New Jersey,All,2020-21,44,6.3,0,91,"1,434",> 100%
-State,New Jersey,All,2020-21,45,7.1,0,112,"1,575",> 100%
-State,New Jersey,All,2020-21,46,10.2,0,165,"1,625",> 100%
-State,New Jersey,All,2020-21,47,10.5,0,175,"1,661",> 100%
-State,New Jersey,All,2020-21,48,12.9,0,217,"1,681",> 100%
-State,New Jersey,All,2020-21,49,16,0,300,"1,880",> 100%
-State,New Jersey,All,2020-21,50,15.7,1,308,"1,973",> 100%
-State,New Jersey,All,2020-21,51,13.1,2,232,"1,785",> 100%
-State,New Jersey,All,2020-21,52,10,0,131,"1,305",94%
-State,New Jersey,All,2020-21,53,14.4,0,204,"1,414",> 100%
-State,New Jersey,All,2020-21,1,10.3,0,89,860,61.90%
-State,New Mexico,All,2020-21,40,6.5,0,25,382,> 100%
-State,New Mexico,All,2020-21,41,7.6,0,30,393,> 100%
-State,New Mexico,All,2020-21,42,8.7,0,32,369,> 100%
-State,New Mexico,All,2020-21,43,11.3,0,46,407,> 100%
-State,New Mexico,All,2020-21,44,16.4,1,68,422,> 100%
-State,New Mexico,All,2020-21,45,20.9,0,100,479,> 100%
-State,New Mexico,All,2020-21,46,20.8,1,106,515,> 100%
-State,New Mexico,All,2020-21,47,22.1,0,119,539,> 100%
-State,New Mexico,All,2020-21,48,24.5,0,132,538,> 100%
-State,New Mexico,All,2020-21,49,19.3,0,107,555,> 100%
-State,New Mexico,All,2020-21,50,20.4,0,106,520,> 100%
-State,New Mexico,All,2020-21,51,17.2,0,64,372,> 100%
-State,New Mexico,All,2020-21,52,14,0,35,250,73.30%
-State,New Mexico,All,2020-21,53,10.1,0,17,169,49.50%
-State,New Mexico,All,2020-21,1,15.9,0,13,82,24%
-State,New York,All,2020-21,40,7.3,1,144,"1,988",> 100%
+State,New Jersey,All,2020-21,44,6.3,0,91,"1,435",> 100%
+State,New Jersey,All,2020-21,45,7.1,0,112,"1,576",> 100%
+State,New Jersey,All,2020-21,46,10.1,0,165,"1,629",> 100%
+State,New Jersey,All,2020-21,47,10.6,0,176,"1,667",> 100%
+State,New Jersey,All,2020-21,48,13.1,0,221,"1,690",> 100%
+State,New Jersey,All,2020-21,49,16,0,305,"1,901",> 100%
+State,New Jersey,All,2020-21,50,15.8,1,319,"2,019",> 100%
+State,New Jersey,All,2020-21,51,15.3,2,313,"2,056",> 100%
+State,New Jersey,All,2020-21,52,17.3,0,339,"1,963",> 100%
+State,New Jersey,All,2020-21,53,17.8,0,337,"1,896",> 100%
+State,New Jersey,All,2020-21,1,12.1,0,178,"1,470",> 100%
+State,New Jersey,All,2020-21,2,10.3,0,132,"1,286",92.60%
+State,New Jersey,All,2020-21,3,9.4,0,78,831,59.80%
+State,New Mexico,All,2020-21,40,6.5,0,25,384,> 100%
+State,New Mexico,All,2020-21,41,7.6,0,30,395,> 100%
+State,New Mexico,All,2020-21,42,8.5,0,32,375,> 100%
+State,New Mexico,All,2020-21,43,11.6,0,48,414,> 100%
+State,New Mexico,All,2020-21,44,16.6,1,71,435,> 100%
+State,New Mexico,All,2020-21,45,20.2,0,100,495,> 100%
+State,New Mexico,All,2020-21,46,20.2,1,110,549,> 100%
+State,New Mexico,All,2020-21,47,21.7,0,123,566,> 100%
+State,New Mexico,All,2020-21,48,25.1,0,142,565,> 100%
+State,New Mexico,All,2020-21,49,20.5,0,124,605,> 100%
+State,New Mexico,All,2020-21,50,22.4,0,134,597,> 100%
+State,New Mexico,All,2020-21,51,19,0,96,504,> 100%
+State,New Mexico,All,2020-21,52,19.3,0,84,435,> 100%
+State,New Mexico,All,2020-21,53,10.6,0,34,322,94.40%
+State,New Mexico,All,2020-21,1,11.5,0,29,253,74.20%
+State,New Mexico,All,2020-21,2,8.2,0,15,182,53.30%
+State,New Mexico,All,2020-21,3,11.9,0,12,101,29.60%
+State,New York,All,2020-21,40,7.3,1,145,"1,988",> 100%
 State,New York,All,2020-21,41,7.6,1,159,"2,093",> 100%
 State,New York,All,2020-21,42,6.5,1,126,"1,946",> 100%
 State,New York,All,2020-21,43,7.3,1,140,"1,928",> 100%
-State,New York,All,2020-21,44,7.1,2,141,"2,025",> 100%
+State,New York,All,2020-21,44,7.1,2,142,"2,026",> 100%
 State,New York,All,2020-21,45,9.1,1,195,"2,154",> 100%
 State,New York,All,2020-21,46,9.4,1,194,"2,080",> 100%
-State,New York,All,2020-21,47,9.4,1,205,"2,196",> 100%
-State,New York,All,2020-21,48,11,2,252,"2,310",> 100%
-State,New York,All,2020-21,49,11.6,2,279,"2,416",> 100%
-State,New York,All,2020-21,50,13.5,1,356,"2,635",> 100%
-State,New York,All,2020-21,51,15,0,404,"2,694",> 100%
-State,New York,All,2020-21,52,13.1,2,281,"2,165",> 100%
-State,New York,All,2020-21,53,11.3,0,204,"1,813",95.40%
-State,New York,All,2020-21,1,13.3,0,235,"1,773",93.30%
-State,North Carolina,All,2020-21,40,9.6,0,74,767,45.40%
-State,North Carolina,All,2020-21,41,10.7,0,48,450,26.60%
+State,New York,All,2020-21,47,9.4,1,206,"2,201",> 100%
+State,New York,All,2020-21,48,11,2,253,"2,314",> 100%
+State,New York,All,2020-21,49,11.7,2,283,"2,427",> 100%
+State,New York,All,2020-21,50,13.6,1,358,"2,646",> 100%
+State,New York,All,2020-21,51,15.3,0,421,"2,757",> 100%
+State,New York,All,2020-21,52,15.9,2,455,"2,869",> 100%
+State,New York,All,2020-21,53,14.6,1,361,"2,482",> 100%
+State,New York,All,2020-21,1,13.4,0,262,"1,950",> 100%
+State,New York,All,2020-21,2,11.3,1,216,"1,927",> 100%
+State,New York,All,2020-21,3,12.3,1,208,"1,702",89.60%
+State,North Carolina,All,2020-21,40,8.2,0,87,"1,061",62.80%
+State,North Carolina,All,2020-21,41,9.5,0,49,517,30.60%
 State,North Carolina,All,2020-21,42,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
 State,North Carolina,All,2020-21,43,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
 State,North Carolina,All,2020-21,44,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
@@ -509,276 +575,314 @@ State,North Carolina,All,2020-21,51,,Insufficient Data,Insufficient Data,Insuffi
 State,North Carolina,All,2020-21,52,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
 State,North Carolina,All,2020-21,53,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
 State,North Carolina,All,2020-21,1,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,North Carolina,All,2020-21,2,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,North Carolina,All,2020-21,3,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
 State,North Dakota,All,2020-21,40,19.5,0,34,174,> 100%
 State,North Dakota,All,2020-21,41,18.6,0,40,215,> 100%
-State,North Dakota,All,2020-21,42,20.1,0,40,199,> 100%
-State,North Dakota,All,2020-21,43,20.9,0,37,177,> 100%
+State,North Dakota,All,2020-21,42,20,0,40,200,> 100%
+State,North Dakota,All,2020-21,43,20.8,0,37,178,> 100%
 State,North Dakota,All,2020-21,44,25,0,57,228,> 100%
 State,North Dakota,All,2020-21,45,27.9,0,69,247,> 100%
 State,North Dakota,All,2020-21,46,23.6,1,53,229,> 100%
 State,North Dakota,All,2020-21,47,28.5,1,70,249,> 100%
-State,North Dakota,All,2020-21,48,23,0,49,213,> 100%
-State,North Dakota,All,2020-21,49,26.5,0,62,234,> 100%
-State,North Dakota,All,2020-21,50,26.7,1,49,187,> 100%
-State,North Dakota,All,2020-21,51,18.2,0,24,132,> 100%
-State,North Dakota,All,2020-21,52,13.1,0,14,107,89.50%
-State,North Dakota,All,2020-21,53,8.1,0,3,37,30.90%
-State,North Dakota,All,2020-21,1,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
-State,Ohio,All,2020-21,40,6.7,0,174,"2,580",> 100%
-State,Ohio,All,2020-21,41,6.3,0,167,"2,634",> 100%
-State,Ohio,All,2020-21,42,6.9,0,179,"2,612",> 100%
-State,Ohio,All,2020-21,43,7.5,0,199,"2,642",> 100%
-State,Ohio,All,2020-21,44,8.4,0,227,"2,693",> 100%
-State,Ohio,All,2020-21,45,10.1,1,298,"2,973",> 100%
-State,Ohio,All,2020-21,46,11.3,0,338,"2,988",> 100%
-State,Ohio,All,2020-21,47,13.1,0,409,"3,115",> 100%
-State,Ohio,All,2020-21,48,15.4,0,521,"3,380",> 100%
-State,Ohio,All,2020-21,49,17.7,0,607,"3,433",> 100%
-State,Ohio,All,2020-21,50,15.8,0,506,"3,203",> 100%
-State,Ohio,All,2020-21,51,15.8,0,369,"2,340",> 100%
-State,Ohio,All,2020-21,52,10.3,0,149,"1,450",64.90%
-State,Ohio,All,2020-21,53,10.5,0,103,978,43.80%
-State,Ohio,All,2020-21,1,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
-State,Oklahoma,All,2020-21,40,11.9,0,104,873,> 100%
-State,Oklahoma,All,2020-21,41,11.5,0,113,982,> 100%
-State,Oklahoma,All,2020-21,42,11.6,2,100,879,> 100%
-State,Oklahoma,All,2020-21,43,11.2,1,106,953,> 100%
-State,Oklahoma,All,2020-21,44,12.1,2,123,"1,031",> 100%
-State,Oklahoma,All,2020-21,45,10.1,1,102,"1,016",> 100%
-State,Oklahoma,All,2020-21,46,15,0,156,"1,042",> 100%
-State,Oklahoma,All,2020-21,47,16.3,1,175,"1,083",> 100%
-State,Oklahoma,All,2020-21,48,18.9,1,203,"1,078",> 100%
-State,Oklahoma,All,2020-21,49,20,1,232,"1,164",> 100%
-State,Oklahoma,All,2020-21,50,17,1,154,914,> 100%
-State,Oklahoma,All,2020-21,51,11.8,0,84,711,94.90%
-State,Oklahoma,All,2020-21,52,9.4,0,46,491,65.50%
-State,Oklahoma,All,2020-21,53,9.8,0,27,276,36.80%
-State,Oklahoma,All,2020-21,1,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
-State,Oregon,All,2020-21,40,3.9,0,28,721,> 100%
+State,North Dakota,All,2020-21,48,22.9,0,49,214,> 100%
+State,North Dakota,All,2020-21,49,26.1,0,62,238,> 100%
+State,North Dakota,All,2020-21,50,26.6,1,49,188,> 100%
+State,North Dakota,All,2020-21,51,18.1,0,25,138,> 100%
+State,North Dakota,All,2020-21,52,10.9,0,16,147,> 100%
+State,North Dakota,All,2020-21,53,12.5,0,14,112,93.60%
+State,North Dakota,All,2020-21,1,6.6,0,4,61,51%
+State,North Dakota,All,2020-21,2,15.5,0,9,58,48.50%
+State,North Dakota,All,2020-21,3,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,Ohio,All,2020-21,40,6.7,0,174,"2,581",> 100%
+State,Ohio,All,2020-21,41,6.3,0,167,"2,639",> 100%
+State,Ohio,All,2020-21,42,6.8,0,179,"2,616",> 100%
+State,Ohio,All,2020-21,43,7.5,0,199,"2,647",> 100%
+State,Ohio,All,2020-21,44,8.5,0,229,"2,700",> 100%
+State,Ohio,All,2020-21,45,10.1,1,301,"2,981",> 100%
+State,Ohio,All,2020-21,46,11.2,0,338,"3,008",> 100%
+State,Ohio,All,2020-21,47,13.2,0,417,"3,159",> 100%
+State,Ohio,All,2020-21,48,15.6,0,539,"3,465",> 100%
+State,Ohio,All,2020-21,49,18.2,0,665,"3,649",> 100%
+State,Ohio,All,2020-21,50,17.4,0,653,"3,759",> 100%
+State,Ohio,All,2020-21,51,17,0,534,"3,141",> 100%
+State,Ohio,All,2020-21,52,13.5,0,352,"2,605",> 100%
+State,Ohio,All,2020-21,53,12.5,0,256,"2,055",92%
+State,Ohio,All,2020-21,1,9.3,0,119,"1,279",57.30%
+State,Ohio,All,2020-21,2,8.1,1,67,842,37.70%
+State,Ohio,All,2020-21,3,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,Oklahoma,All,2020-21,40,11.9,0,104,875,> 100%
+State,Oklahoma,All,2020-21,41,11.4,0,112,983,> 100%
+State,Oklahoma,All,2020-21,42,11.8,2,102,883,> 100%
+State,Oklahoma,All,2020-21,43,11.3,1,107,956,> 100%
+State,Oklahoma,All,2020-21,44,12.2,2,124,"1,037",> 100%
+State,Oklahoma,All,2020-21,45,10.2,1,104,"1,028",> 100%
+State,Oklahoma,All,2020-21,46,15,0,159,"1,062",> 100%
+State,Oklahoma,All,2020-21,47,16.8,1,187,"1,117",> 100%
+State,Oklahoma,All,2020-21,48,18.8,1,212,"1,132",> 100%
+State,Oklahoma,All,2020-21,49,20,1,250,"1,256",> 100%
+State,Oklahoma,All,2020-21,50,18.2,1,197,"1,087",> 100%
+State,Oklahoma,All,2020-21,51,16.4,0,165,"1,006",> 100%
+State,Oklahoma,All,2020-21,52,13.6,0,113,828,> 100%
+State,Oklahoma,All,2020-21,53,12.5,0,81,647,86.30%
+State,Oklahoma,All,2020-21,1,6.8,1,31,470,62.70%
+State,Oklahoma,All,2020-21,2,9.4,0,29,308,41.10%
+State,Oklahoma,All,2020-21,3,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,Oregon,All,2020-21,40,3.9,0,28,722,> 100%
 State,Oregon,All,2020-21,41,3.5,1,25,746,> 100%
-State,Oregon,All,2020-21,42,5.3,0,38,712,> 100%
-State,Oregon,All,2020-21,43,5.2,0,39,755,> 100%
+State,Oregon,All,2020-21,42,5.3,0,38,714,> 100%
+State,Oregon,All,2020-21,43,5.2,0,39,756,> 100%
 State,Oregon,All,2020-21,44,4.2,0,33,795,> 100%
-State,Oregon,All,2020-21,45,4,0,32,809,> 100%
-State,Oregon,All,2020-21,46,5.6,0,46,823,> 100%
-State,Oregon,All,2020-21,47,7.6,0,62,812,> 100%
-State,Oregon,All,2020-21,48,7.8,0,64,823,> 100%
-State,Oregon,All,2020-21,49,9.1,1,75,836,> 100%
-State,Oregon,All,2020-21,50,8.2,0,64,776,> 100%
-State,Oregon,All,2020-21,51,5.6,0,37,662,98.10%
-State,Oregon,All,2020-21,52,5.5,0,22,399,59.20%
-State,Oregon,All,2020-21,53,8.1,0,29,358,53.10%
-State,Oregon,All,2020-21,1,6,0,10,167,24.80%
+State,Oregon,All,2020-21,45,3.9,0,32,811,> 100%
+State,Oregon,All,2020-21,46,5.5,0,46,831,> 100%
+State,Oregon,All,2020-21,47,7.7,0,64,829,> 100%
+State,Oregon,All,2020-21,48,7.9,0,68,859,> 100%
+State,Oregon,All,2020-21,49,9.1,1,80,887,> 100%
+State,Oregon,All,2020-21,50,8.6,0,75,873,> 100%
+State,Oregon,All,2020-21,51,6.7,0,57,852,> 100%
+State,Oregon,All,2020-21,52,8.3,0,58,699,> 100%
+State,Oregon,All,2020-21,53,9.2,0,57,617,91.50%
+State,Oregon,All,2020-21,1,5,1,20,419,62.10%
+State,Oregon,All,2020-21,2,5.4,0,16,299,44.30%
+State,Oregon,All,2020-21,3,6.9,0,10,144,21.30%
 State,Pennsylvania,All,2020-21,40,5.4,0,142,"2,639",> 100%
-State,Pennsylvania,All,2020-21,41,5.5,0,150,"2,738",> 100%
-State,Pennsylvania,All,2020-21,42,5.5,0,144,"2,608",> 100%
-State,Pennsylvania,All,2020-21,43,7.4,0,202,"2,723",> 100%
-State,Pennsylvania,All,2020-21,44,6.6,0,179,"2,699",> 100%
-State,Pennsylvania,All,2020-21,45,8.6,3,246,"2,893",> 100%
-State,Pennsylvania,All,2020-21,46,10.9,1,326,"3,001",> 100%
-State,Pennsylvania,All,2020-21,47,12.1,2,390,"3,250",> 100%
-State,Pennsylvania,All,2020-21,48,12.8,0,450,"3,504",> 100%
-State,Pennsylvania,All,2020-21,49,14.5,2,534,"3,693",> 100%
-State,Pennsylvania,All,2020-21,50,15.6,3,628,"4,041",> 100%
-State,Pennsylvania,All,2020-21,51,16.2,1,607,"3,757",> 100%
-State,Pennsylvania,All,2020-21,52,12.4,1,332,"2,677",> 100%
-State,Pennsylvania,All,2020-21,53,11.6,2,272,"2,362",93.60%
-State,Pennsylvania,All,2020-21,1,13.3,0,150,"1,128",44.70%
-State,Rhode Island,All,2020-21,40,6.3,0,13,206,> 100%
+State,Pennsylvania,All,2020-21,41,5.5,0,150,"2,739",> 100%
+State,Pennsylvania,All,2020-21,42,5.5,0,144,"2,612",> 100%
+State,Pennsylvania,All,2020-21,43,7.4,0,202,"2,725",> 100%
+State,Pennsylvania,All,2020-21,44,6.6,0,179,"2,701",> 100%
+State,Pennsylvania,All,2020-21,45,8.6,3,247,"2,898",> 100%
+State,Pennsylvania,All,2020-21,46,10.9,1,326,"3,006",> 100%
+State,Pennsylvania,All,2020-21,47,12,2,390,"3,265",> 100%
+State,Pennsylvania,All,2020-21,48,12.9,0,455,"3,534",> 100%
+State,Pennsylvania,All,2020-21,49,14.4,2,540,"3,752",> 100%
+State,Pennsylvania,All,2020-21,50,15.6,3,640,"4,134",> 100%
+State,Pennsylvania,All,2020-21,51,16.8,1,690,"4,119",> 100%
+State,Pennsylvania,All,2020-21,52,16.5,1,583,"3,536",> 100%
+State,Pennsylvania,All,2020-21,53,12.4,3,349,"2,835",> 100%
+State,Pennsylvania,All,2020-21,1,12.6,0,312,"2,482",98.40%
+State,Pennsylvania,All,2020-21,2,9.4,0,209,"2,216",87.90%
+State,Pennsylvania,All,2020-21,3,10.4,0,169,"1,630",64.60%
+State,Rhode Island,All,2020-21,40,6.3,0,13,207,> 100%
 State,Rhode Island,All,2020-21,41,6.7,0,14,210,> 100%
 State,Rhode Island,All,2020-21,42,7,0,14,199,> 100%
-State,Rhode Island,All,2020-21,43,11.5,0,22,191,> 100%
-State,Rhode Island,All,2020-21,44,10.6,0,21,199,> 100%
+State,Rhode Island,All,2020-21,43,11.3,0,22,194,> 100%
+State,Rhode Island,All,2020-21,44,10.5,0,21,200,> 100%
 State,Rhode Island,All,2020-21,45,10.1,0,23,227,> 100%
-State,Rhode Island,All,2020-21,46,13.8,0,31,225,> 100%
-State,Rhode Island,All,2020-21,47,17.4,0,38,218,> 100%
-State,Rhode Island,All,2020-21,48,9.9,0,24,243,> 100%
-State,Rhode Island,All,2020-21,49,9.8,0,21,215,> 100%
-State,Rhode Island,All,2020-21,50,19.5,0,39,200,> 100%
-State,Rhode Island,All,2020-21,51,19.1,0,29,152,80.10%
-State,Rhode Island,All,2020-21,52,14.5,0,11,76,40%
-State,Rhode Island,All,2020-21,53,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
-State,Rhode Island,All,2020-21,1,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
-State,South Carolina,All,2020-21,40,9.4,0,106,"1,131",> 100%
+State,Rhode Island,All,2020-21,46,13.7,0,31,227,> 100%
+State,Rhode Island,All,2020-21,47,17.2,0,38,221,> 100%
+State,Rhode Island,All,2020-21,48,10.1,0,25,248,> 100%
+State,Rhode Island,All,2020-21,49,13.6,0,36,265,> 100%
+State,Rhode Island,All,2020-21,50,20.7,0,56,271,> 100%
+State,Rhode Island,All,2020-21,51,19.6,0,44,224,> 100%
+State,Rhode Island,All,2020-21,52,13,0,24,184,96.90%
+State,Rhode Island,All,2020-21,53,13.4,0,20,149,78.50%
+State,Rhode Island,All,2020-21,1,16.5,0,13,79,41.60%
+State,Rhode Island,All,2020-21,2,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,Rhode Island,All,2020-21,3,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,South Carolina,All,2020-21,40,9.4,0,107,"1,138",> 100%
 State,South Carolina,All,2020-21,41,6.6,0,74,"1,129",> 100%
-State,South Carolina,All,2020-21,42,10.3,0,108,"1,051",> 100%
+State,South Carolina,All,2020-21,42,10.3,0,108,"1,052",> 100%
 State,South Carolina,All,2020-21,43,9.5,0,108,"1,142",> 100%
 State,South Carolina,All,2020-21,44,10,1,120,"1,206",> 100%
-State,South Carolina,All,2020-21,45,9.3,0,108,"1,160",> 100%
+State,South Carolina,All,2020-21,45,9.3,0,108,"1,162",> 100%
 State,South Carolina,All,2020-21,46,8.7,2,90,"1,056",> 100%
-State,South Carolina,All,2020-21,47,11.5,0,81,702,78.10%
-State,South Carolina,All,2020-21,48,9.9,1,82,841,93.60%
-State,South Carolina,All,2020-21,49,11.7,0,144,"1,232",> 100%
-State,South Carolina,All,2020-21,50,10.8,2,129,"1,216",> 100%
-State,South Carolina,All,2020-21,51,9,0,88,978,> 100%
-State,South Carolina,All,2020-21,52,5.3,0,36,682,75.90%
-State,South Carolina,All,2020-21,53,5.6,0,35,621,69.10%
-State,South Carolina,All,2020-21,1,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
-State,South Dakota,All,2020-21,40,10.4,0,20,192,> 100%
-State,South Dakota,All,2020-21,41,15.3,0,32,209,> 100%
-State,South Dakota,All,2020-21,42,16.4,0,30,183,> 100%
-State,South Dakota,All,2020-21,43,15,1,34,234,> 100%
-State,South Dakota,All,2020-21,44,15.8,0,36,228,> 100%
-State,South Dakota,All,2020-21,45,17.1,0,59,345,> 100%
-State,South Dakota,All,2020-21,46,22.1,1,72,331,> 100%
-State,South Dakota,All,2020-21,47,24.5,1,77,319,> 100%
-State,South Dakota,All,2020-21,48,23.8,0,72,302,> 100%
-State,South Dakota,All,2020-21,49,19.2,0,49,255,> 100%
-State,South Dakota,All,2020-21,50,23.2,0,49,211,> 100%
-State,South Dakota,All,2020-21,51,16.8,0,18,107,73.20%
-State,South Dakota,All,2020-21,52,9.1,0,5,55,37.60%
-State,South Dakota,All,2020-21,53,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
-State,South Dakota,All,2020-21,1,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,South Carolina,All,2020-21,47,11.5,0,82,710,79%
+State,South Carolina,All,2020-21,48,9.9,1,83,852,94.80%
+State,South Carolina,All,2020-21,49,11.8,0,148,"1,249",> 100%
+State,South Carolina,All,2020-21,50,11.2,2,139,"1,260",> 100%
+State,South Carolina,All,2020-21,51,12.6,1,162,"1,297",> 100%
+State,South Carolina,All,2020-21,52,15.5,1,189,"1,226",> 100%
+State,South Carolina,All,2020-21,53,10.5,1,97,930,> 100%
+State,South Carolina,All,2020-21,1,7.2,0,25,347,38.60%
+State,South Carolina,All,2020-21,2,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,South Carolina,All,2020-21,3,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,South Dakota,All,2020-21,40,10.4,0,20,193,> 100%
+State,South Dakota,All,2020-21,41,15.2,0,32,210,> 100%
+State,South Dakota,All,2020-21,42,16.3,0,30,184,> 100%
+State,South Dakota,All,2020-21,43,14.7,1,34,238,> 100%
+State,South Dakota,All,2020-21,44,15.6,0,36,231,> 100%
+State,South Dakota,All,2020-21,45,17,0,59,347,> 100%
+State,South Dakota,All,2020-21,46,21.7,1,72,336,> 100%
+State,South Dakota,All,2020-21,47,24.2,1,78,326,> 100%
+State,South Dakota,All,2020-21,48,23.6,0,75,318,> 100%
+State,South Dakota,All,2020-21,49,20,0,53,265,> 100%
+State,South Dakota,All,2020-21,50,24,0,61,254,> 100%
+State,South Dakota,All,2020-21,51,19.9,0,41,206,> 100%
+State,South Dakota,All,2020-21,52,14.9,0,22,148,> 100%
+State,South Dakota,All,2020-21,53,14.5,0,17,117,80%
+State,South Dakota,All,2020-21,1,10.2,0,11,108,73.90%
+State,South Dakota,All,2020-21,2,3.8,0,3,80,54.70%
+State,South Dakota,All,2020-21,3,9.4,0,5,53,36.30%
 State,Tennessee,All,2020-21,40,9.3,0,153,"1,644",> 100%
-State,Tennessee,All,2020-21,41,10.6,1,176,"1,676",> 100%
-State,Tennessee,All,2020-21,42,11.7,2,194,"1,670",> 100%
-State,Tennessee,All,2020-21,43,13.5,1,228,"1,696",> 100%
-State,Tennessee,All,2020-21,44,12.7,0,221,"1,739",> 100%
-State,Tennessee,All,2020-21,45,12.6,2,215,"1,721",> 100%
-State,Tennessee,All,2020-21,46,13,0,233,"1,790",> 100%
-State,Tennessee,All,2020-21,47,15.3,1,285,"1,864",> 100%
-State,Tennessee,All,2020-21,48,17,2,302,"1,786",> 100%
-State,Tennessee,All,2020-21,49,15.9,1,314,"1,983",> 100%
-State,Tennessee,All,2020-21,50,16.4,0,307,"1,875",> 100%
-State,Tennessee,All,2020-21,51,15.8,0,252,"1,592",> 100%
-State,Tennessee,All,2020-21,52,10.1,0,128,"1,264",99.30%
-State,Tennessee,All,2020-21,53,9.2,0,103,"1,120",88%
-State,Tennessee,All,2020-21,1,10.1,1,71,714,56.10%
-State,Texas,All,2020-21,40,10.4,2,465,"4,512",> 100%
-State,Texas,All,2020-21,41,10.9,3,501,"4,625",> 100%
-State,Texas,All,2020-21,42,11.4,1,504,"4,443",> 100%
-State,Texas,All,2020-21,43,12.6,1,587,"4,678",> 100%
-State,Texas,All,2020-21,44,13.6,7,671,"4,976",> 100%
-State,Texas,All,2020-21,45,15.1,1,782,"5,188",> 100%
-State,Texas,All,2020-21,46,15.6,4,807,"5,205",> 100%
-State,Texas,All,2020-21,47,17.3,4,882,"5,123",> 100%
-State,Texas,All,2020-21,48,17.8,3,913,"5,136",> 100%
-State,Texas,All,2020-21,49,17.8,3,893,"5,020",> 100%
-State,Texas,All,2020-21,50,15.9,3,762,"4,798",> 100%
-State,Texas,All,2020-21,51,12.1,3,458,"3,815",> 100%
-State,Texas,All,2020-21,52,8.7,0,254,"2,917",80.80%
-State,Texas,All,2020-21,53,9.3,0,210,"2,255",62.50%
-State,Texas,All,2020-21,1,9.7,0,76,784,21.70%
+State,Tennessee,All,2020-21,41,10.5,1,176,"1,678",> 100%
+State,Tennessee,All,2020-21,42,11.7,2,194,"1,671",> 100%
+State,Tennessee,All,2020-21,43,13.5,1,228,"1,699",> 100%
+State,Tennessee,All,2020-21,44,12.7,0,221,"1,744",> 100%
+State,Tennessee,All,2020-21,45,12.7,2,218,"1,729",> 100%
+State,Tennessee,All,2020-21,46,13.1,0,236,"1,800",> 100%
+State,Tennessee,All,2020-21,47,15.4,1,290,"1,884",> 100%
+State,Tennessee,All,2020-21,48,17.1,2,308,"1,813",> 100%
+State,Tennessee,All,2020-21,49,16,1,323,"2,026",> 100%
+State,Tennessee,All,2020-21,50,17,0,339,"1,993",> 100%
+State,Tennessee,All,2020-21,51,17.5,1,334,"1,911",> 100%
+State,Tennessee,All,2020-21,52,17.6,1,337,"1,919",> 100%
+State,Tennessee,All,2020-21,53,15.2,1,257,"1,700",> 100%
+State,Tennessee,All,2020-21,1,12.1,2,165,"1,385",> 100%
+State,Tennessee,All,2020-21,2,9.5,1,106,"1,128",88.60%
+State,Tennessee,All,2020-21,3,11.7,0,82,701,55.10%
+State,Texas,All,2020-21,40,10.4,2,467,"4,521",> 100%
+State,Texas,All,2020-21,41,10.9,3,504,"4,634",> 100%
+State,Texas,All,2020-21,42,11.3,1,504,"4,451",> 100%
+State,Texas,All,2020-21,43,12.6,1,590,"4,696",> 100%
+State,Texas,All,2020-21,44,13.7,7,679,"5,014",> 100%
+State,Texas,All,2020-21,45,15.2,1,791,"5,226",> 100%
+State,Texas,All,2020-21,46,15.6,4,817,"5,256",> 100%
+State,Texas,All,2020-21,47,17.4,4,903,"5,206",> 100%
+State,Texas,All,2020-21,48,18.1,4,955,"5,289",> 100%
+State,Texas,All,2020-21,49,18.6,3,979,"5,282",> 100%
+State,Texas,All,2020-21,50,18.3,3,"1,002","5,498",> 100%
+State,Texas,All,2020-21,51,18,3,958,"5,345",> 100%
+State,Texas,All,2020-21,52,16.1,4,744,"4,632",> 100%
+State,Texas,All,2020-21,53,12.9,4,508,"3,957",> 100%
+State,Texas,All,2020-21,1,12.6,1,410,"3,263",90.40%
+State,Texas,All,2020-21,2,10.9,0,266,"2,451",67.90%
+State,Texas,All,2020-21,3,8,0,63,790,21.90%
 State,Utah,All,2020-21,40,10.2,0,39,384,> 100%
 State,Utah,All,2020-21,41,8,0,34,424,> 100%
 State,Utah,All,2020-21,42,6.9,1,27,403,> 100%
 State,Utah,All,2020-21,43,7.2,0,30,416,> 100%
 State,Utah,All,2020-21,44,8.7,0,39,449,> 100%
-State,Utah,All,2020-21,45,9.3,0,41,442,> 100%
+State,Utah,All,2020-21,45,9.7,0,43,444,> 100%
 State,Utah,All,2020-21,46,9.6,0,44,458,> 100%
-State,Utah,All,2020-21,47,12.7,0,66,520,> 100%
+State,Utah,All,2020-21,47,12.9,0,67,521,> 100%
 State,Utah,All,2020-21,48,11.1,0,52,467,> 100%
-State,Utah,All,2020-21,49,15.1,0,76,504,> 100%
-State,Utah,All,2020-21,50,13.4,0,70,522,> 100%
-State,Utah,All,2020-21,51,13.8,0,62,448,> 100%
-State,Utah,All,2020-21,52,6.4,0,21,327,99.40%
-State,Utah,All,2020-21,53,5.9,0,18,305,92.70%
-State,Utah,All,2020-21,1,8.6,0,20,233,70.80%
+State,Utah,All,2020-21,49,15,0,76,506,> 100%
+State,Utah,All,2020-21,50,13.6,0,72,529,> 100%
+State,Utah,All,2020-21,51,15.6,0,77,493,> 100%
+State,Utah,All,2020-21,52,10.5,0,48,455,> 100%
+State,Utah,All,2020-21,53,10.1,0,41,407,> 100%
+State,Utah,All,2020-21,1,7.6,0,26,343,> 100%
+State,Utah,All,2020-21,2,6,0,17,285,86.60%
+State,Utah,All,2020-21,3,5.3,0,12,225,68.40%
 State,Vermont,All,2020-21,40,0,0,0,127,> 100%
 State,Vermont,All,2020-21,41,5.1,0,6,118,> 100%
 State,Vermont,All,2020-21,42,5,0,5,100,91.50%
 State,Vermont,All,2020-21,43,5.5,0,7,128,> 100%
 State,Vermont,All,2020-21,44,4.3,0,5,116,> 100%
-State,Vermont,All,2020-21,45,3,0,4,135,> 100%
+State,Vermont,All,2020-21,45,2.9,0,4,137,> 100%
 State,Vermont,All,2020-21,46,3.8,0,5,131,> 100%
 State,Vermont,All,2020-21,47,1.8,0,2,112,> 100%
 State,Vermont,All,2020-21,48,6.3,0,8,128,> 100%
-State,Vermont,All,2020-21,49,5.6,0,8,143,> 100%
+State,Vermont,All,2020-21,49,5.6,0,8,144,> 100%
 State,Vermont,All,2020-21,50,5.7,0,7,122,> 100%
-State,Vermont,All,2020-21,51,5.9,0,7,118,> 100%
-State,Vermont,All,2020-21,52,8.5,0,9,106,97%
-State,Vermont,All,2020-21,53,3.6,0,1,28,25.60%
-State,Vermont,All,2020-21,1,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
-State,Virginia,All,2020-21,40,6.7,0,103,"1,538",> 100%
-State,Virginia,All,2020-21,41,6.9,0,102,"1,489",> 100%
-State,Virginia,All,2020-21,42,6.5,1,93,"1,438",> 100%
-State,Virginia,All,2020-21,43,6,2,88,"1,490",> 100%
-State,Virginia,All,2020-21,44,8.1,0,125,"1,541",> 100%
-State,Virginia,All,2020-21,45,6.5,0,106,"1,627",> 100%
-State,Virginia,All,2020-21,46,7.7,2,114,"1,502",> 100%
-State,Virginia,All,2020-21,47,8.4,1,132,"1,592",> 100%
-State,Virginia,All,2020-21,48,9.3,0,146,"1,573",> 100%
-State,Virginia,All,2020-21,49,10.5,2,163,"1,578",> 100%
-State,Virginia,All,2020-21,50,10.2,0,168,"1,640",> 100%
-State,Virginia,All,2020-21,51,8.6,1,118,"1,389",> 100%
-State,Virginia,All,2020-21,52,5.5,0,57,"1,030",82.30%
-State,Virginia,All,2020-21,53,6.1,0,46,749,59.80%
-State,Virginia,All,2020-21,1,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
-State,Washington,All,2020-21,40,6.9,0,79,"1,150",> 100%
+State,Vermont,All,2020-21,51,5.7,0,7,122,> 100%
+State,Vermont,All,2020-21,52,9.6,0,13,135,> 100%
+State,Vermont,All,2020-21,53,5,0,6,119,> 100%
+State,Vermont,All,2020-21,1,3.2,0,3,93,85.10%
+State,Vermont,All,2020-21,2,6,0,5,84,76.90%
+State,Vermont,All,2020-21,3,10,0,4,40,36.60%
+State,Virginia,All,2020-21,40,6.7,0,104,"1,542",> 100%
+State,Virginia,All,2020-21,41,6.8,0,102,"1,492",> 100%
+State,Virginia,All,2020-21,42,6.6,1,94,"1,441",> 100%
+State,Virginia,All,2020-21,43,6.1,2,89,"1,494",> 100%
+State,Virginia,All,2020-21,44,8.1,0,125,"1,545",> 100%
+State,Virginia,All,2020-21,45,6.6,0,108,"1,634",> 100%
+State,Virginia,All,2020-21,46,7.8,2,116,"1,507",> 100%
+State,Virginia,All,2020-21,47,8.4,1,133,"1,602",> 100%
+State,Virginia,All,2020-21,48,9.4,0,150,"1,595",> 100%
+State,Virginia,All,2020-21,49,10.4,2,165,"1,606",> 100%
+State,Virginia,All,2020-21,50,10.5,0,181,"1,723",> 100%
+State,Virginia,All,2020-21,51,10.9,2,187,"1,727",> 100%
+State,Virginia,All,2020-21,52,7.9,0,116,"1,477",> 100%
+State,Virginia,All,2020-21,53,9.3,0,130,"1,403",> 100%
+State,Virginia,All,2020-21,1,7.8,0,92,"1,179",94.20%
+State,Virginia,All,2020-21,2,6.8,0,72,"1,062",84.90%
+State,Virginia,All,2020-21,3,6.7,0,53,792,63.30%
+State,Washington,All,2020-21,40,6.9,0,80,"1,154",> 100%
 State,Washington,All,2020-21,41,6.3,2,71,"1,167",> 100%
 State,Washington,All,2020-21,42,6.2,0,71,"1,140",> 100%
-State,Washington,All,2020-21,43,7.9,0,94,"1,188",> 100%
-State,Washington,All,2020-21,44,7.7,0,91,"1,178",> 100%
-State,Washington,All,2020-21,45,7.1,0,91,"1,278",> 100%
-State,Washington,All,2020-21,46,8.3,0,107,"1,291",> 100%
-State,Washington,All,2020-21,47,8,0,105,"1,306",> 100%
-State,Washington,All,2020-21,48,9.6,0,118,"1,223",> 100%
-State,Washington,All,2020-21,49,13.8,0,186,"1,343",> 100%
-State,Washington,All,2020-21,50,12,0,163,"1,364",> 100%
-State,Washington,All,2020-21,51,13.7,0,163,"1,190",> 100%
-State,Washington,All,2020-21,52,8.3,0,58,696,67.50%
-State,Washington,All,2020-21,53,9.1,0,36,397,38.50%
-State,Washington,All,2020-21,1,5.6,0,23,408,39.60%
-State,West Virginia,All,2020-21,40,5.8,0,22,378,87.60%
-State,West Virginia,All,2020-21,41,10.4,0,37,356,82.50%
-State,West Virginia,All,2020-21,42,7.7,0,24,311,72.10%
-State,West Virginia,All,2020-21,43,11.8,0,48,406,94.10%
-State,West Virginia,All,2020-21,44,9.7,0,42,434,> 100%
-State,West Virginia,All,2020-21,45,10.6,0,49,464,> 100%
-State,West Virginia,All,2020-21,46,10.2,0,46,449,> 100%
-State,West Virginia,All,2020-21,47,15.9,0,62,389,90.10%
-State,West Virginia,All,2020-21,48,15.3,0,48,314,72.80%
-State,West Virginia,All,2020-21,49,25.3,0,74,293,67.90%
-State,West Virginia,All,2020-21,50,27.3,0,62,227,52.60%
-State,West Virginia,All,2020-21,51,16.2,0,24,148,34.30%
-State,West Virginia,All,2020-21,52,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,Washington,All,2020-21,43,7.9,0,94,"1,190",> 100%
+State,Washington,All,2020-21,44,7.8,0,92,"1,181",> 100%
+State,Washington,All,2020-21,45,7,0,90,"1,280",> 100%
+State,Washington,All,2020-21,46,8.5,0,110,"1,299",> 100%
+State,Washington,All,2020-21,47,8,0,105,"1,311",> 100%
+State,Washington,All,2020-21,48,9.6,0,118,"1,228",> 100%
+State,Washington,All,2020-21,49,13.8,0,186,"1,352",> 100%
+State,Washington,All,2020-21,50,12.2,0,170,"1,394",> 100%
+State,Washington,All,2020-21,51,13.9,0,184,"1,323",> 100%
+State,Washington,All,2020-21,52,11.2,0,133,"1,188",> 100%
+State,Washington,All,2020-21,53,10.2,0,99,967,93.80%
+State,Washington,All,2020-21,1,7.7,0,68,886,85.90%
+State,Washington,All,2020-21,2,4.2,1,30,743,72%
+State,Washington,All,2020-21,3,5,0,17,341,33.10%
+State,West Virginia,All,2020-21,40,5.8,0,22,381,88.30%
+State,West Virginia,All,2020-21,41,10.2,0,37,363,84.10%
+State,West Virginia,All,2020-21,42,7.5,0,24,318,73.70%
+State,West Virginia,All,2020-21,43,11.7,0,48,410,95%
+State,West Virginia,All,2020-21,44,9.4,0,42,447,> 100%
+State,West Virginia,All,2020-21,45,10.8,0,51,474,> 100%
+State,West Virginia,All,2020-21,46,10.1,0,49,483,> 100%
+State,West Virginia,All,2020-21,47,14.9,0,65,435,> 100%
+State,West Virginia,All,2020-21,48,11.8,0,53,449,> 100%
+State,West Virginia,All,2020-21,49,17.7,0,83,470,> 100%
+State,West Virginia,All,2020-21,50,19,0,73,385,89.20%
+State,West Virginia,All,2020-21,51,20.6,0,50,243,56.30%
+State,West Virginia,All,2020-21,52,31,0,45,145,33.60%
 State,West Virginia,All,2020-21,53,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
 State,West Virginia,All,2020-21,1,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
-State,Wisconsin,All,2020-21,40,6.1,0,70,"1,155",> 100%
+State,West Virginia,All,2020-21,2,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,West Virginia,All,2020-21,3,,Insufficient Data,Insufficient Data,Insufficient Data,< 20%
+State,Wisconsin,All,2020-21,40,6.1,0,70,"1,156",> 100%
 State,Wisconsin,All,2020-21,41,6,0,70,"1,165",> 100%
 State,Wisconsin,All,2020-21,42,9.1,0,113,"1,246",> 100%
 State,Wisconsin,All,2020-21,43,9.5,0,131,"1,375",> 100%
-State,Wisconsin,All,2020-21,44,11.5,0,166,"1,439",> 100%
+State,Wisconsin,All,2020-21,44,11.5,0,166,"1,441",> 100%
 State,Wisconsin,All,2020-21,45,12.7,0,206,"1,617",> 100%
-State,Wisconsin,All,2020-21,46,13.3,0,228,"1,716",> 100%
-State,Wisconsin,All,2020-21,47,13.2,0,218,"1,656",> 100%
-State,Wisconsin,All,2020-21,48,14.5,0,235,"1,626",> 100%
-State,Wisconsin,All,2020-21,49,13.1,0,212,"1,616",> 100%
-State,Wisconsin,All,2020-21,50,11.9,0,182,"1,529",> 100%
-State,Wisconsin,All,2020-21,51,10.4,1,134,"1,304",> 100%
-State,Wisconsin,All,2020-21,52,7.8,0,67,854,88.80%
-State,Wisconsin,All,2020-21,53,6.5,0,52,795,82.70%
-State,Wisconsin,All,2020-21,1,6.3,0,32,507,52.70%
+State,Wisconsin,All,2020-21,46,13.3,0,228,"1,718",> 100%
+State,Wisconsin,All,2020-21,47,13.1,0,218,"1,659",> 100%
+State,Wisconsin,All,2020-21,48,14.4,0,236,"1,634",> 100%
+State,Wisconsin,All,2020-21,49,13.1,0,214,"1,633",> 100%
+State,Wisconsin,All,2020-21,50,12,0,187,"1,557",> 100%
+State,Wisconsin,All,2020-21,51,11.1,1,160,"1,454",> 100%
+State,Wisconsin,All,2020-21,52,10.8,0,135,"1,253",> 100%
+State,Wisconsin,All,2020-21,53,9,0,95,"1,055",> 100%
+State,Wisconsin,All,2020-21,1,6.7,0,58,860,89.40%
+State,Wisconsin,All,2020-21,2,5.5,0,39,709,73.70%
+State,Wisconsin,All,2020-21,3,3.9,1,16,434,45.10%
 State,Wyoming,All,2020-21,40,5.8,0,7,120,> 100%
 State,Wyoming,All,2020-21,41,5.2,0,6,116,> 100%
 State,Wyoming,All,2020-21,42,6.6,0,8,122,> 100%
 State,Wyoming,All,2020-21,43,10.5,0,15,143,> 100%
 State,Wyoming,All,2020-21,44,9.6,0,12,125,> 100%
 State,Wyoming,All,2020-21,45,19.7,0,29,147,> 100%
-State,Wyoming,All,2020-21,46,12.4,0,18,145,> 100%
+State,Wyoming,All,2020-21,46,12.3,0,18,146,> 100%
 State,Wyoming,All,2020-21,47,14,0,20,143,> 100%
-State,Wyoming,All,2020-21,48,20.6,0,32,155,> 100%
-State,Wyoming,All,2020-21,49,20.3,0,27,133,> 100%
-State,Wyoming,All,2020-21,50,18.7,0,28,150,> 100%
-State,Wyoming,All,2020-21,51,14.8,0,18,122,> 100%
-State,Wyoming,All,2020-21,52,11.7,0,9,77,85.80%
-State,Wyoming,All,2020-21,53,9,0,6,67,74.60%
-State,Wyoming,All,2020-21,1,16.2,0,6,37,41.20%
+State,Wyoming,All,2020-21,48,21.2,0,33,156,> 100%
+State,Wyoming,All,2020-21,49,20.9,0,29,139,> 100%
+State,Wyoming,All,2020-21,50,19.2,0,32,167,> 100%
+State,Wyoming,All,2020-21,51,17.9,0,29,162,> 100%
+State,Wyoming,All,2020-21,52,20.2,0,23,114,> 100%
+State,Wyoming,All,2020-21,53,8.5,0,9,106,> 100%
+State,Wyoming,All,2020-21,1,7.1,0,6,85,94.70%
+State,Wyoming,All,2020-21,2,7.7,0,4,52,57.90%
+State,Wyoming,All,2020-21,3,14.3,0,4,28,31.20%
 State,New York City,All,2020-21,40,6.8,0,66,965,94.70%
 State,New York City,All,2020-21,41,6,1,61,"1,031",> 100%
-State,New York City,All,2020-21,42,6.4,1,65,"1,035",> 100%
+State,New York City,All,2020-21,42,6.4,1,65,"1,036",> 100%
 State,New York City,All,2020-21,43,6.3,1,63,"1,014",99.50%
 State,New York City,All,2020-21,44,7.5,0,79,"1,058",> 100%
-State,New York City,All,2020-21,45,9.4,0,109,"1,158",> 100%
-State,New York City,All,2020-21,46,8.1,0,88,"1,088",> 100%
+State,New York City,All,2020-21,45,9.4,0,109,"1,160",> 100%
+State,New York City,All,2020-21,46,8.2,0,89,"1,091",> 100%
 State,New York City,All,2020-21,47,9.4,0,101,"1,073",> 100%
 State,New York City,All,2020-21,48,8.9,0,95,"1,071",> 100%
-State,New York City,All,2020-21,49,9.4,0,107,"1,142",> 100%
-State,New York City,All,2020-21,50,10.8,1,130,"1,213",> 100%
-State,New York City,All,2020-21,51,11.2,1,144,"1,289",> 100%
-State,New York City,All,2020-21,52,10.8,0,135,"1,254",> 100%
-State,New York City,All,2020-21,53,12,0,131,"1,096",> 100%
-State,New York City,All,2020-21,1,12.4,1,131,"1,068",> 100%
+State,New York City,All,2020-21,49,9.3,0,107,"1,145",> 100%
+State,New York City,All,2020-21,50,10.7,1,130,"1,220",> 100%
+State,New York City,All,2020-21,51,11.3,1,148,"1,316",> 100%
+State,New York City,All,2020-21,52,12.2,0,174,"1,431",> 100%
+State,New York City,All,2020-21,53,13.4,2,177,"1,336",> 100%
+State,New York City,All,2020-21,1,13.4,1,173,"1,300",> 100%
+State,New York City,All,2020-21,2,10.9,0,114,"1,049",> 100%
+State,New York City,All,2020-21,3,13.7,1,137,"1,004",98.50%
 State,Alabama,All,2019-20,40,5,0,48,955,98.30%
 State,Alabama,All,2019-20,41,3.9,0,37,941,96.90%
 State,Alabama,All,2019-20,42,4.5,0,46,"1,012",> 100%
@@ -795,42 +899,42 @@ State,Alabama,All,2019-20,52,5.6,2,57,"1,059",> 100%
 State,Alabama,All,2019-20,1,6.6,5,67,"1,097",> 100%
 State,Alabama,All,2019-20,2,8,9,83,"1,152",> 100%
 State,Alabama,All,2019-20,3,6.5,7,63,"1,076",> 100%
-State,Alabama,All,2019-20,4,7.1,7,70,"1,087",> 100%
+State,Alabama,All,2019-20,4,7.1,7,70,"1,088",> 100%
 State,Alabama,All,2019-20,5,6.7,16,55,"1,059",> 100%
 State,Alabama,All,2019-20,6,6.7,12,64,"1,126",> 100%
 State,Alabama,All,2019-20,7,7.9,7,80,"1,105",> 100%
 State,Alabama,All,2019-20,8,7.2,5,75,"1,116",> 100%
-State,Alabama,All,2019-20,9,7.1,14,70,"1,183",> 100%
-State,Alabama,All,2019-20,10,6.9,13,63,"1,097",> 100%
+State,Alabama,All,2019-20,9,7.1,14,70,"1,184",> 100%
+State,Alabama,All,2019-20,10,6.9,13,63,"1,098",> 100%
 State,Alabama,All,2019-20,11,6.1,7,60,"1,106",> 100%
-State,Alabama,All,2019-20,12,7.8,7,78,"1,090",> 100%
-State,Alabama,All,2019-20,13,7.2,8,71,"1,095",> 100%
+State,Alabama,All,2019-20,12,7.8,7,78,"1,091",> 100%
+State,Alabama,All,2019-20,13,7.3,8,72,"1,096",> 100%
 State,Alabama,All,2019-20,14,6.1,4,68,"1,180",> 100%
 State,Alabama,All,2019-20,15,8,3,89,"1,148",> 100%
-State,Alabama,All,2019-20,16,8.6,0,100,"1,160",> 100%
-State,Alabama,All,2019-20,17,7.1,1,81,"1,156",> 100%
+State,Alabama,All,2019-20,16,8.6,0,100,"1,161",> 100%
+State,Alabama,All,2019-20,17,7.1,1,81,"1,157",> 100%
 State,Alabama,All,2019-20,18,7.9,2,89,"1,158",> 100%
 State,Alabama,All,2019-20,19,8.5,1,101,"1,196",> 100%
-State,Alabama,All,2019-20,20,8.3,3,94,"1,168",> 100%
+State,Alabama,All,2019-20,20,8.3,3,94,"1,170",> 100%
 State,Alabama,All,2019-20,21,7.1,0,82,"1,158",> 100%
-State,Alabama,All,2019-20,22,9.1,0,102,"1,123",> 100%
+State,Alabama,All,2019-20,22,9.1,0,102,"1,124",> 100%
 State,Alabama,All,2019-20,23,7.7,1,91,"1,198",> 100%
 State,Alabama,All,2019-20,24,6.8,0,78,"1,146",> 100%
-State,Alabama,All,2019-20,25,7.3,0,80,"1,102",> 100%
+State,Alabama,All,2019-20,25,7.3,0,81,"1,103",> 100%
 State,Alabama,All,2019-20,26,7.3,0,86,"1,178",> 100%
 State,Alabama,All,2019-20,27,7.7,1,94,"1,241",> 100%
-State,Alabama,All,2019-20,28,7.7,0,99,"1,289",> 100%
-State,Alabama,All,2019-20,29,8,0,104,"1,305",> 100%
-State,Alabama,All,2019-20,30,10.5,0,144,"1,370",> 100%
-State,Alabama,All,2019-20,31,12.2,0,171,"1,404",> 100%
-State,Alabama,All,2019-20,32,10.5,1,145,"1,387",> 100%
+State,Alabama,All,2019-20,28,7.7,0,99,"1,292",> 100%
+State,Alabama,All,2019-20,29,8,0,104,"1,306",> 100%
+State,Alabama,All,2019-20,30,10.6,1,144,"1,371",> 100%
+State,Alabama,All,2019-20,31,12.2,0,171,"1,405",> 100%
+State,Alabama,All,2019-20,32,10.5,1,145,"1,389",> 100%
 State,Alabama,All,2019-20,33,11,0,147,"1,334",> 100%
-State,Alabama,All,2019-20,34,9.1,0,120,"1,314",> 100%
-State,Alabama,All,2019-20,35,10.9,0,136,"1,243",> 100%
+State,Alabama,All,2019-20,34,9.1,0,120,"1,316",> 100%
+State,Alabama,All,2019-20,35,10.9,0,136,"1,244",> 100%
 State,Alabama,All,2019-20,36,9.1,0,113,"1,240",> 100%
-State,Alabama,All,2019-20,37,9.5,0,118,"1,248",> 100%
-State,Alabama,All,2019-20,38,8.5,0,104,"1,217",> 100%
-State,Alabama,All,2019-20,39,6.8,0,83,"1,213",> 100%
+State,Alabama,All,2019-20,37,9.4,0,118,"1,249",> 100%
+State,Alabama,All,2019-20,38,8.6,0,105,"1,221",> 100%
+State,Alabama,All,2019-20,39,6.8,0,83,"1,215",> 100%
 State,Alaska,All,2019-20,40,6.4,0,6,94,> 100%
 State,Alaska,All,2019-20,41,7.4,0,7,94,> 100%
 State,Alaska,All,2019-20,42,3.2,0,3,95,> 100%
@@ -874,15 +978,15 @@ State,Alaska,All,2019-20,27,1.2,0,1,83,> 100%
 State,Alaska,All,2019-20,28,3,0,3,101,> 100%
 State,Alaska,All,2019-20,29,4.5,0,4,89,> 100%
 State,Alaska,All,2019-20,30,3.2,0,3,95,> 100%
-State,Alaska,All,2019-20,31,6.4,0,7,110,> 100%
+State,Alaska,All,2019-20,31,6.3,0,7,111,> 100%
 State,Alaska,All,2019-20,32,5.6,0,6,107,> 100%
 State,Alaska,All,2019-20,33,5.3,0,4,76,93.50%
-State,Alaska,All,2019-20,34,6,0,7,117,> 100%
+State,Alaska,All,2019-20,34,6,0,7,116,> 100%
 State,Alaska,All,2019-20,35,2.2,0,2,93,> 100%
 State,Alaska,All,2019-20,36,9,0,9,100,> 100%
 State,Alaska,All,2019-20,37,3.4,0,3,89,> 100%
 State,Alaska,All,2019-20,38,2.8,0,3,108,> 100%
-State,Alaska,All,2019-20,39,4.4,0,5,113,> 100%
+State,Alaska,All,2019-20,39,4.3,0,5,115,> 100%
 State,Arizona,All,2019-20,40,4.7,0,52,"1,110",> 100%
 State,Arizona,All,2019-20,41,4.7,2,50,"1,114",> 100%
 State,Arizona,All,2019-20,42,4.7,2,51,"1,139",> 100%
@@ -902,19 +1006,19 @@ State,Arizona,All,2019-20,3,5.9,8,67,"1,262",> 100%
 State,Arizona,All,2019-20,4,8.2,11,91,"1,239",> 100%
 State,Arizona,All,2019-20,5,6.7,12,71,"1,248",> 100%
 State,Arizona,All,2019-20,6,7.2,10,78,"1,226",> 100%
-State,Arizona,All,2019-20,7,8.2,15,90,"1,273",> 100%
+State,Arizona,All,2019-20,7,8.3,15,91,"1,273",> 100%
 State,Arizona,All,2019-20,8,6.9,11,78,"1,285",> 100%
 State,Arizona,All,2019-20,9,6.7,13,75,"1,312",> 100%
 State,Arizona,All,2019-20,10,6.4,14,72,"1,339",> 100%
 State,Arizona,All,2019-20,11,6.7,10,77,"1,289",> 100%
-State,Arizona,All,2019-20,12,8.4,7,98,"1,255",> 100%
+State,Arizona,All,2019-20,12,8.4,7,98,"1,254",> 100%
 State,Arizona,All,2019-20,13,9.5,4,118,"1,279",> 100%
-State,Arizona,All,2019-20,14,9.8,4,125,"1,322",> 100%
+State,Arizona,All,2019-20,14,9.8,4,125,"1,323",> 100%
 State,Arizona,All,2019-20,15,10.9,3,147,"1,375",> 100%
 State,Arizona,All,2019-20,16,8.9,1,114,"1,292",> 100%
 State,Arizona,All,2019-20,17,8.8,1,120,"1,371",> 100%
 State,Arizona,All,2019-20,18,9.4,0,130,"1,380",> 100%
-State,Arizona,All,2019-20,19,9.9,0,138,"1,400",> 100%
+State,Arizona,All,2019-20,19,9.9,0,138,"1,401",> 100%
 State,Arizona,All,2019-20,20,9.8,0,127,"1,300",> 100%
 State,Arizona,All,2019-20,21,9.1,0,114,"1,251",> 100%
 State,Arizona,All,2019-20,22,9.6,1,123,"1,295",> 100%
@@ -925,14 +1029,14 @@ State,Arizona,All,2019-20,26,12.3,1,194,"1,589",> 100%
 State,Arizona,All,2019-20,27,15.6,0,275,"1,766",> 100%
 State,Arizona,All,2019-20,28,21,0,403,"1,922",> 100%
 State,Arizona,All,2019-20,29,20.6,1,401,"1,949",> 100%
-State,Arizona,All,2019-20,30,18.7,0,341,"1,827",> 100%
+State,Arizona,All,2019-20,30,18.7,0,342,"1,828",> 100%
 State,Arizona,All,2019-20,31,16,0,282,"1,760",> 100%
 State,Arizona,All,2019-20,32,14.9,1,232,"1,563",> 100%
 State,Arizona,All,2019-20,33,13,0,195,"1,501",> 100%
 State,Arizona,All,2019-20,34,9.4,0,138,"1,473",> 100%
-State,Arizona,All,2019-20,35,8.5,0,123,"1,443",> 100%
+State,Arizona,All,2019-20,35,8.6,0,124,"1,443",> 100%
 State,Arizona,All,2019-20,36,9.5,0,122,"1,285",> 100%
-State,Arizona,All,2019-20,37,7.1,0,90,"1,270",> 100%
+State,Arizona,All,2019-20,37,7.1,0,90,"1,271",> 100%
 State,Arizona,All,2019-20,38,6.3,0,79,"1,249",> 100%
 State,Arizona,All,2019-20,39,6.2,0,79,"1,268",> 100%
 State,Arkansas,All,2019-20,40,4.7,0,27,580,96.80%
@@ -974,19 +1078,19 @@ State,Arkansas,All,2019-20,23,6.3,0,42,662,> 100%
 State,Arkansas,All,2019-20,24,8.1,0,55,675,> 100%
 State,Arkansas,All,2019-20,25,6.6,0,47,709,> 100%
 State,Arkansas,All,2019-20,26,8.4,0,57,677,> 100%
-State,Arkansas,All,2019-20,27,6.6,0,46,699,> 100%
+State,Arkansas,All,2019-20,27,6.7,0,47,700,> 100%
 State,Arkansas,All,2019-20,28,8.4,0,57,677,> 100%
 State,Arkansas,All,2019-20,29,8.7,1,60,704,> 100%
 State,Arkansas,All,2019-20,30,10.9,0,79,728,> 100%
-State,Arkansas,All,2019-20,31,10.9,0,82,750,> 100%
+State,Arkansas,All,2019-20,31,10.9,0,82,752,> 100%
 State,Arkansas,All,2019-20,32,11.2,1,83,750,> 100%
 State,Arkansas,All,2019-20,33,11.1,0,87,786,> 100%
 State,Arkansas,All,2019-20,34,11.2,0,83,744,> 100%
-State,Arkansas,All,2019-20,35,12,0,89,741,> 100%
-State,Arkansas,All,2019-20,36,9.9,0,70,707,> 100%
-State,Arkansas,All,2019-20,37,11.5,0,83,721,> 100%
+State,Arkansas,All,2019-20,35,12,0,89,742,> 100%
+State,Arkansas,All,2019-20,36,9.9,0,70,708,> 100%
+State,Arkansas,All,2019-20,37,11.5,0,83,722,> 100%
 State,Arkansas,All,2019-20,38,10.3,0,76,740,> 100%
-State,Arkansas,All,2019-20,39,12.1,1,88,738,> 100%
+State,Arkansas,All,2019-20,39,12,1,88,740,> 100%
 State,California,All,2019-20,40,5.4,1,266,"4,961",> 100%
 State,California,All,2019-20,41,6.3,0,309,"4,893",99.50%
 State,California,All,2019-20,42,5.8,2,293,"5,047",> 100%
@@ -1000,14 +1104,14 @@ State,California,All,2019-20,49,7.1,15,376,"5,489",> 100%
 State,California,All,2019-20,50,6.9,11,357,"5,347",> 100%
 State,California,All,2019-20,51,6.9,13,360,"5,375",> 100%
 State,California,All,2019-20,52,7.1,23,368,"5,537",> 100%
-State,California,All,2019-20,1,8.6,43,464,"5,865",> 100%
+State,California,All,2019-20,1,8.7,43,465,"5,865",> 100%
 State,California,All,2019-20,2,8.2,52,427,"5,845",> 100%
 State,California,All,2019-20,3,9.9,66,505,"5,795",> 100%
 State,California,All,2019-20,4,8.9,71,444,"5,800",> 100%
 State,California,All,2019-20,5,8.6,59,426,"5,664",> 100%
 State,California,All,2019-20,6,8.8,68,453,"5,901",> 100%
 State,California,All,2019-20,7,9.1,75,430,"5,563",> 100%
-State,California,All,2019-20,8,9.3,71,462,"5,758",> 100%
+State,California,All,2019-20,8,9.3,71,462,"5,759",> 100%
 State,California,All,2019-20,9,8.9,72,432,"5,661",> 100%
 State,California,All,2019-20,10,9.4,56,479,"5,704",> 100%
 State,California,All,2019-20,11,8.9,52,429,"5,433",> 100%
@@ -1018,27 +1122,27 @@ State,California,All,2019-20,15,10.7,5,642,"6,019",> 100%
 State,California,All,2019-20,16,12.1,7,734,"6,109",> 100%
 State,California,All,2019-20,17,11.6,3,682,"5,922",> 100%
 State,California,All,2019-20,18,10.9,0,622,"5,694",> 100%
-State,California,All,2019-20,19,11,1,620,"5,644",> 100%
+State,California,All,2019-20,19,11,1,620,"5,645",> 100%
 State,California,All,2019-20,20,10.2,1,579,"5,666",> 100%
 State,California,All,2019-20,21,10.3,3,566,"5,528",> 100%
 State,California,All,2019-20,22,10.2,1,569,"5,565",> 100%
 State,California,All,2019-20,23,9.6,1,527,"5,494",> 100%
-State,California,All,2019-20,24,9.5,1,528,"5,556",> 100%
-State,California,All,2019-20,25,9.2,1,502,"5,456",> 100%
-State,California,All,2019-20,26,9.9,1,562,"5,684",> 100%
-State,California,All,2019-20,27,10.4,0,612,"5,866",> 100%
-State,California,All,2019-20,28,12,0,725,"6,035",> 100%
+State,California,All,2019-20,24,9.5,1,528,"5,557",> 100%
+State,California,All,2019-20,25,9.2,1,502,"5,457",> 100%
+State,California,All,2019-20,26,9.9,1,563,"5,686",> 100%
+State,California,All,2019-20,27,10.4,0,612,"5,867",> 100%
+State,California,All,2019-20,28,12,0,725,"6,036",> 100%
 State,California,All,2019-20,29,12.2,0,757,"6,226",> 100%
 State,California,All,2019-20,30,14,1,873,"6,222",> 100%
 State,California,All,2019-20,31,13.9,0,877,"6,321",> 100%
-State,California,All,2019-20,32,13.5,0,851,"6,285",> 100%
-State,California,All,2019-20,33,12.9,0,810,"6,256",> 100%
+State,California,All,2019-20,32,13.5,0,851,"6,284",> 100%
+State,California,All,2019-20,33,12.9,0,810,"6,258",> 100%
 State,California,All,2019-20,34,11.3,0,725,"6,439",> 100%
-State,California,All,2019-20,35,11.4,1,666,"5,856",> 100%
-State,California,All,2019-20,36,10.9,0,630,"5,763",> 100%
-State,California,All,2019-20,37,10.1,0,593,"5,856",> 100%
-State,California,All,2019-20,38,9,0,514,"5,730",> 100%
-State,California,All,2019-20,39,9.6,0,534,"5,541",> 100%
+State,California,All,2019-20,35,11.4,1,667,"5,858",> 100%
+State,California,All,2019-20,36,10.9,0,630,"5,764",> 100%
+State,California,All,2019-20,37,10.1,0,593,"5,857",> 100%
+State,California,All,2019-20,38,9,0,517,"5,734",> 100%
+State,California,All,2019-20,39,9.6,0,534,"5,543",> 100%
 State,Colorado,All,2019-20,40,3.9,0,28,715,> 100%
 State,Colorado,All,2019-20,41,3.1,0,23,750,> 100%
 State,Colorado,All,2019-20,42,5,0,40,797,> 100%
@@ -1071,10 +1175,10 @@ State,Colorado,All,2019-20,16,14.6,0,162,"1,110",> 100%
 State,Colorado,All,2019-20,17,15.2,1,160,"1,062",> 100%
 State,Colorado,All,2019-20,18,13.7,0,136,995,> 100%
 State,Colorado,All,2019-20,19,12.1,0,108,894,> 100%
-State,Colorado,All,2019-20,20,9.7,0,84,869,> 100%
+State,Colorado,All,2019-20,20,9.7,0,84,870,> 100%
 State,Colorado,All,2019-20,21,7.5,0,63,843,> 100%
 State,Colorado,All,2019-20,22,8.1,0,66,819,> 100%
-State,Colorado,All,2019-20,23,6.9,0,56,809,> 100%
+State,Colorado,All,2019-20,23,6.9,0,56,810,> 100%
 State,Colorado,All,2019-20,24,7.8,0,62,800,> 100%
 State,Colorado,All,2019-20,25,6.6,0,56,849,> 100%
 State,Colorado,All,2019-20,26,4.6,0,39,853,> 100%
@@ -1110,28 +1214,28 @@ State,Connecticut,All,2019-20,3,7.1,6,39,636,> 100%
 State,Connecticut,All,2019-20,4,5.6,7,29,648,> 100%
 State,Connecticut,All,2019-20,5,7.9,11,42,668,> 100%
 State,Connecticut,All,2019-20,6,6.9,6,38,640,> 100%
-State,Connecticut,All,2019-20,7,7.3,13,33,628,> 100%
-State,Connecticut,All,2019-20,8,6.6,11,32,647,> 100%
+State,Connecticut,All,2019-20,7,7.3,13,33,630,> 100%
+State,Connecticut,All,2019-20,8,6.8,11,33,649,> 100%
 State,Connecticut,All,2019-20,9,10.5,8,57,622,> 100%
 State,Connecticut,All,2019-20,10,6.7,2,40,631,> 100%
-State,Connecticut,All,2019-20,11,6.6,6,35,624,> 100%
+State,Connecticut,All,2019-20,11,6.5,6,35,627,> 100%
 State,Connecticut,All,2019-20,12,7.7,4,46,650,> 100%
-State,Connecticut,All,2019-20,13,7.4,4,50,725,> 100%
-State,Connecticut,All,2019-20,14,9.9,1,84,858,> 100%
-State,Connecticut,All,2019-20,15,13.3,3,161,"1,237",> 100%
-State,Connecticut,All,2019-20,16,12.1,3,161,"1,357",> 100%
-State,Connecticut,All,2019-20,17,14.1,1,187,"1,331",> 100%
-State,Connecticut,All,2019-20,18,14.5,0,167,"1,154",> 100%
-State,Connecticut,All,2019-20,19,14.8,0,156,"1,051",> 100%
-State,Connecticut,All,2019-20,20,12,0,113,939,> 100%
-State,Connecticut,All,2019-20,21,11.1,1,89,808,> 100%
-State,Connecticut,All,2019-20,22,9.1,0,68,748,> 100%
-State,Connecticut,All,2019-20,23,7.6,0,50,655,> 100%
+State,Connecticut,All,2019-20,13,7.5,4,51,730,> 100%
+State,Connecticut,All,2019-20,14,9.9,1,84,861,> 100%
+State,Connecticut,All,2019-20,15,13.3,3,162,"1,240",> 100%
+State,Connecticut,All,2019-20,16,12.1,3,161,"1,359",> 100%
+State,Connecticut,All,2019-20,17,14.1,1,187,"1,334",> 100%
+State,Connecticut,All,2019-20,18,14.4,0,167,"1,156",> 100%
+State,Connecticut,All,2019-20,19,14.8,0,156,"1,052",> 100%
+State,Connecticut,All,2019-20,20,12,0,113,942,> 100%
+State,Connecticut,All,2019-20,21,11.2,1,90,812,> 100%
+State,Connecticut,All,2019-20,22,9.1,0,68,749,> 100%
+State,Connecticut,All,2019-20,23,7.6,0,50,656,> 100%
 State,Connecticut,All,2019-20,24,5.4,0,34,625,> 100%
 State,Connecticut,All,2019-20,25,5.6,0,32,573,98.60%
-State,Connecticut,All,2019-20,26,7.2,0,43,598,> 100%
+State,Connecticut,All,2019-20,26,7.2,0,43,599,> 100%
 State,Connecticut,All,2019-20,27,4.2,0,23,542,93.30%
-State,Connecticut,All,2019-20,28,4.5,0,27,606,> 100%
+State,Connecticut,All,2019-20,28,4.6,0,28,606,> 100%
 State,Connecticut,All,2019-20,29,4.1,0,23,560,96.40%
 State,Connecticut,All,2019-20,30,3.3,0,19,570,98.10%
 State,Connecticut,All,2019-20,31,3.8,0,21,546,94%
@@ -1140,8 +1244,8 @@ State,Connecticut,All,2019-20,33,4.2,0,24,566,97.40%
 State,Connecticut,All,2019-20,34,2.9,0,16,554,95.30%
 State,Connecticut,All,2019-20,35,4.8,0,25,521,89.70%
 State,Connecticut,All,2019-20,36,4.5,0,25,561,96.60%
-State,Connecticut,All,2019-20,37,4.4,0,25,572,98.40%
-State,Connecticut,All,2019-20,38,5.3,0,30,566,97.40%
+State,Connecticut,All,2019-20,37,4.4,0,25,573,98.60%
+State,Connecticut,All,2019-20,38,5.3,0,30,567,97.60%
 State,Connecticut,All,2019-20,39,4.6,0,29,624,> 100%
 State,Delaware,All,2019-20,40,3.9,0,7,180,> 100%
 State,Delaware,All,2019-20,41,6.5,0,11,170,> 100%
@@ -1181,7 +1285,7 @@ State,Delaware,All,2019-20,22,11.5,0,25,218,> 100%
 State,Delaware,All,2019-20,23,8.6,0,16,186,> 100%
 State,Delaware,All,2019-20,24,5.2,0,10,194,> 100%
 State,Delaware,All,2019-20,25,4.8,0,8,165,> 100%
-State,Delaware,All,2019-20,26,6.5,0,13,200,> 100%
+State,Delaware,All,2019-20,26,6.5,0,13,201,> 100%
 State,Delaware,All,2019-20,27,7.5,0,15,200,> 100%
 State,Delaware,All,2019-20,28,6.5,0,13,200,> 100%
 State,Delaware,All,2019-20,29,6.1,0,12,196,> 100%
@@ -1193,8 +1297,8 @@ State,Delaware,All,2019-20,34,5.7,0,11,194,> 100%
 State,Delaware,All,2019-20,35,2.6,0,5,194,> 100%
 State,Delaware,All,2019-20,36,4.4,0,9,203,> 100%
 State,Delaware,All,2019-20,37,6,0,12,200,> 100%
-State,Delaware,All,2019-20,38,6.2,0,10,162,98.80%
-State,Delaware,All,2019-20,39,6,0,12,200,> 100%
+State,Delaware,All,2019-20,38,6.1,0,10,163,99.40%
+State,Delaware,All,2019-20,39,6,0,12,201,> 100%
 State,District of Columbia,All,2019-20,40,4.9,0,4,82,88.10%
 State,District of Columbia,All,2019-20,41,5.8,0,6,104,> 100%
 State,District of Columbia,All,2019-20,42,3.7,0,4,107,> 100%
@@ -1242,8 +1346,8 @@ State,District of Columbia,All,2019-20,31,8.7,0,9,104,> 100%
 State,District of Columbia,All,2019-20,32,5.4,0,5,93,99.90%
 State,District of Columbia,All,2019-20,33,13.5,0,14,104,> 100%
 State,District of Columbia,All,2019-20,34,12.8,0,12,94,> 100%
-State,District of Columbia,All,2019-20,35,8.8,0,9,102,> 100%
-State,District of Columbia,All,2019-20,36,12.8,0,14,109,> 100%
+State,District of Columbia,All,2019-20,35,8.7,0,9,103,> 100%
+State,District of Columbia,All,2019-20,36,12.7,0,14,110,> 100%
 State,District of Columbia,All,2019-20,37,9.9,0,11,111,> 100%
 State,District of Columbia,All,2019-20,38,7.1,0,6,84,90.20%
 State,District of Columbia,All,2019-20,39,12.4,0,11,89,95.60%
@@ -1269,35 +1373,35 @@ State,Florida,All,2019-20,6,7,33,265,"4,250",> 100%
 State,Florida,All,2019-20,7,6.8,24,262,"4,223",> 100%
 State,Florida,All,2019-20,8,6.9,31,262,"4,261",> 100%
 State,Florida,All,2019-20,9,6.7,30,252,"4,235",> 100%
-State,Florida,All,2019-20,10,6.6,26,262,"4,373",> 100%
+State,Florida,All,2019-20,10,6.6,26,262,"4,374",> 100%
 State,Florida,All,2019-20,11,7.4,23,292,"4,267",> 100%
 State,Florida,All,2019-20,12,8.9,21,354,"4,228",> 100%
 State,Florida,All,2019-20,13,8.6,18,356,"4,327",> 100%
 State,Florida,All,2019-20,14,10.9,17,460,"4,378",> 100%
 State,Florida,All,2019-20,15,9.8,10,428,"4,452",> 100%
-State,Florida,All,2019-20,16,10.2,4,437,"4,334",> 100%
+State,Florida,All,2019-20,16,10.2,4,436,"4,333",> 100%
 State,Florida,All,2019-20,17,9.7,6,431,"4,494",> 100%
 State,Florida,All,2019-20,18,9.8,2,418,"4,294",> 100%
 State,Florida,All,2019-20,19,9.1,8,383,"4,317",> 100%
 State,Florida,All,2019-20,20,8.6,0,365,"4,235",> 100%
 State,Florida,All,2019-20,21,7.8,5,330,"4,302",> 100%
-State,Florida,All,2019-20,22,7.9,1,327,"4,134",> 100%
+State,Florida,All,2019-20,22,7.9,1,327,"4,135",> 100%
 State,Florida,All,2019-20,23,7.7,0,324,"4,206",> 100%
 State,Florida,All,2019-20,24,7.4,1,307,"4,190",> 100%
 State,Florida,All,2019-20,25,7.7,1,334,"4,346",> 100%
-State,Florida,All,2019-20,26,8.6,0,386,"4,471",> 100%
+State,Florida,All,2019-20,26,8.6,0,386,"4,472",> 100%
 State,Florida,All,2019-20,27,9.6,2,449,"4,685",> 100%
 State,Florida,All,2019-20,28,11.6,1,586,"5,052",> 100%
-State,Florida,All,2019-20,29,15,3,812,"5,435",> 100%
+State,Florida,All,2019-20,29,15,3,812,"5,436",> 100%
 State,Florida,All,2019-20,30,16.3,1,920,"5,659",> 100%
-State,Florida,All,2019-20,31,17.4,5,993,"5,751",> 100%
+State,Florida,All,2019-20,31,17.4,5,993,"5,752",> 100%
 State,Florida,All,2019-20,32,18.4,2,"1,017","5,550",> 100%
-State,Florida,All,2019-20,33,16.5,2,905,"5,485",> 100%
+State,Florida,All,2019-20,33,16.5,2,905,"5,486",> 100%
 State,Florida,All,2019-20,34,16,2,830,"5,185",> 100%
-State,Florida,All,2019-20,35,13.5,2,671,"4,983",> 100%
-State,Florida,All,2019-20,36,13,3,613,"4,723",> 100%
-State,Florida,All,2019-20,37,12.4,1,550,"4,457",> 100%
-State,Florida,All,2019-20,38,10.4,0,481,"4,642",> 100%
+State,Florida,All,2019-20,35,13.5,2,671,"4,984",> 100%
+State,Florida,All,2019-20,36,13,3,613,"4,725",> 100%
+State,Florida,All,2019-20,37,12.4,1,550,"4,461",> 100%
+State,Florida,All,2019-20,38,10.4,0,482,"4,644",> 100%
 State,Florida,All,2019-20,39,10.2,0,454,"4,457",> 100%
 State,Georgia,All,2019-20,40,3.8,0,61,"1,597",> 100%
 State,Georgia,All,2019-20,41,4.3,2,66,"1,575",> 100%
@@ -1326,31 +1430,31 @@ State,Georgia,All,2019-20,11,6.1,5,103,"1,770",> 100%
 State,Georgia,All,2019-20,12,7.8,7,129,"1,751",> 100%
 State,Georgia,All,2019-20,13,8.7,8,153,"1,851",> 100%
 State,Georgia,All,2019-20,14,11.3,4,224,"2,020",> 100%
-State,Georgia,All,2019-20,15,11.2,5,224,"2,036",> 100%
+State,Georgia,All,2019-20,15,11.3,5,225,"2,038",> 100%
 State,Georgia,All,2019-20,16,10.6,3,211,"2,019",> 100%
 State,Georgia,All,2019-20,17,10.5,1,211,"2,015",> 100%
-State,Georgia,All,2019-20,18,10.4,2,201,"1,959",> 100%
+State,Georgia,All,2019-20,18,10.4,2,201,"1,960",> 100%
 State,Georgia,All,2019-20,19,9.3,2,184,"1,996",> 100%
-State,Georgia,All,2019-20,20,8.1,0,156,"1,934",> 100%
+State,Georgia,All,2019-20,20,8.1,0,156,"1,935",> 100%
 State,Georgia,All,2019-20,21,8,0,152,"1,901",> 100%
 State,Georgia,All,2019-20,22,6.5,0,115,"1,761",> 100%
 State,Georgia,All,2019-20,23,7.7,1,135,"1,762",> 100%
-State,Georgia,All,2019-20,24,7.8,0,134,"1,723",> 100%
-State,Georgia,All,2019-20,25,6.2,0,110,"1,785",> 100%
+State,Georgia,All,2019-20,24,7.8,0,135,"1,725",> 100%
+State,Georgia,All,2019-20,25,6.2,0,110,"1,787",> 100%
 State,Georgia,All,2019-20,26,6.9,0,123,"1,795",> 100%
-State,Georgia,All,2019-20,27,5.9,0,110,"1,858",> 100%
-State,Georgia,All,2019-20,28,8.2,0,160,"1,958",> 100%
-State,Georgia,All,2019-20,29,9.6,0,206,"2,135",> 100%
-State,Georgia,All,2019-20,30,11.6,1,246,"2,136",> 100%
-State,Georgia,All,2019-20,31,11.6,0,251,"2,168",> 100%
-State,Georgia,All,2019-20,32,13.2,0,286,"2,171",> 100%
-State,Georgia,All,2019-20,33,13.6,0,302,"2,226",> 100%
-State,Georgia,All,2019-20,34,13.2,2,293,"2,227",> 100%
-State,Georgia,All,2019-20,35,12.5,0,262,"2,092",> 100%
-State,Georgia,All,2019-20,36,11,0,219,"1,989",> 100%
-State,Georgia,All,2019-20,37,10.4,1,211,"2,047",> 100%
-State,Georgia,All,2019-20,38,10.8,0,204,"1,892",> 100%
-State,Georgia,All,2019-20,39,9.7,0,189,"1,948",> 100%
+State,Georgia,All,2019-20,27,6,0,111,"1,859",> 100%
+State,Georgia,All,2019-20,28,8.2,0,161,"1,959",> 100%
+State,Georgia,All,2019-20,29,9.6,0,206,"2,140",> 100%
+State,Georgia,All,2019-20,30,11.5,1,246,"2,139",> 100%
+State,Georgia,All,2019-20,31,11.6,0,251,"2,170",> 100%
+State,Georgia,All,2019-20,32,13.2,0,287,"2,174",> 100%
+State,Georgia,All,2019-20,33,13.6,0,302,"2,227",> 100%
+State,Georgia,All,2019-20,34,13.2,2,293,"2,228",> 100%
+State,Georgia,All,2019-20,35,12.5,0,262,"2,094",> 100%
+State,Georgia,All,2019-20,36,11,0,219,"1,992",> 100%
+State,Georgia,All,2019-20,37,10.3,1,210,"2,054",> 100%
+State,Georgia,All,2019-20,38,10.8,0,205,"1,898",> 100%
+State,Georgia,All,2019-20,39,9.7,0,189,"1,954",> 100%
 State,Hawaii,All,2019-20,40,6.9,0,15,218,> 100%
 State,Hawaii,All,2019-20,41,4.6,0,9,194,92.80%
 State,Hawaii,All,2019-20,42,8.4,0,19,226,> 100%
@@ -1376,12 +1480,12 @@ State,Hawaii,All,2019-20,9,6.8,2,14,237,> 100%
 State,Hawaii,All,2019-20,10,9.8,4,18,224,> 100%
 State,Hawaii,All,2019-20,11,7.8,2,17,244,> 100%
 State,Hawaii,All,2019-20,12,8.5,2,16,211,> 100%
-State,Hawaii,All,2019-20,13,7.7,2,16,235,> 100%
-State,Hawaii,All,2019-20,14,6,1,13,232,> 100%
+State,Hawaii,All,2019-20,13,7.7,2,16,234,> 100%
+State,Hawaii,All,2019-20,14,6,1,13,233,> 100%
 State,Hawaii,All,2019-20,15,8.2,1,17,220,> 100%
 State,Hawaii,All,2019-20,16,3.9,0,8,205,98.10%
 State,Hawaii,All,2019-20,17,5,0,10,200,95.70%
-State,Hawaii,All,2019-20,18,7.7,0,17,222,> 100%
+State,Hawaii,All,2019-20,18,7.6,0,17,223,> 100%
 State,Hawaii,All,2019-20,19,6.1,0,13,213,> 100%
 State,Hawaii,All,2019-20,20,5.5,0,13,237,> 100%
 State,Hawaii,All,2019-20,21,5.8,1,11,206,98.50%
@@ -1392,15 +1496,15 @@ State,Hawaii,All,2019-20,25,4.9,0,12,245,> 100%
 State,Hawaii,All,2019-20,26,3.8,0,9,236,> 100%
 State,Hawaii,All,2019-20,27,3.4,0,7,205,98.10%
 State,Hawaii,All,2019-20,28,3.3,0,8,239,> 100%
-State,Hawaii,All,2019-20,29,6.2,0,14,225,> 100%
+State,Hawaii,All,2019-20,29,6.2,0,14,226,> 100%
 State,Hawaii,All,2019-20,30,4,0,9,223,> 100%
-State,Hawaii,All,2019-20,31,4.7,0,10,212,> 100%
-State,Hawaii,All,2019-20,32,5.2,0,12,233,> 100%
+State,Hawaii,All,2019-20,31,4.7,0,10,213,> 100%
+State,Hawaii,All,2019-20,32,5.2,0,12,232,> 100%
 State,Hawaii,All,2019-20,33,7.2,0,16,223,> 100%
 State,Hawaii,All,2019-20,34,6.6,0,16,244,> 100%
-State,Hawaii,All,2019-20,35,10.6,0,27,255,> 100%
+State,Hawaii,All,2019-20,35,10.9,0,28,256,> 100%
 State,Hawaii,All,2019-20,36,7.7,0,18,233,> 100%
-State,Hawaii,All,2019-20,37,11.7,0,32,274,> 100%
+State,Hawaii,All,2019-20,37,11.6,0,32,276,> 100%
 State,Hawaii,All,2019-20,38,9.5,0,23,242,> 100%
 State,Hawaii,All,2019-20,39,9.1,0,22,243,> 100%
 State,Idaho,All,2019-20,40,3.3,0,9,270,> 100%
@@ -1477,12 +1581,12 @@ State,Illinois,All,2019-20,6,7.4,10,160,"2,307",> 100%
 State,Illinois,All,2019-20,7,6.9,13,144,"2,271",> 100%
 State,Illinois,All,2019-20,8,7.1,15,148,"2,290",> 100%
 State,Illinois,All,2019-20,9,7.3,21,147,"2,291",> 100%
-State,Illinois,All,2019-20,10,9,28,179,"2,303",> 100%
-State,Illinois,All,2019-20,11,8.6,22,171,"2,247",> 100%
+State,Illinois,All,2019-20,10,9,28,179,"2,304",> 100%
+State,Illinois,All,2019-20,11,8.6,22,171,"2,246",> 100%
 State,Illinois,All,2019-20,12,8.7,23,182,"2,363",> 100%
 State,Illinois,All,2019-20,13,10.9,16,241,"2,364",> 100%
 State,Illinois,All,2019-20,14,14.5,6,385,"2,697",> 100%
-State,Illinois,All,2019-20,15,15,5,434,"2,936",> 100%
+State,Illinois,All,2019-20,15,14.9,5,434,"2,937",> 100%
 State,Illinois,All,2019-20,16,17.4,6,515,"2,993",> 100%
 State,Illinois,All,2019-20,17,15.3,2,467,"3,060",> 100%
 State,Illinois,All,2019-20,18,17.9,0,538,"3,010",> 100%
@@ -1491,7 +1595,7 @@ State,Illinois,All,2019-20,20,15,2,436,"2,923",> 100%
 State,Illinois,All,2019-20,21,16.4,1,442,"2,700",> 100%
 State,Illinois,All,2019-20,22,11.9,0,309,"2,600",> 100%
 State,Illinois,All,2019-20,23,12.2,0,313,"2,568",> 100%
-State,Illinois,All,2019-20,24,11.6,0,273,"2,353",> 100%
+State,Illinois,All,2019-20,24,11.6,0,273,"2,354",> 100%
 State,Illinois,All,2019-20,25,9.1,0,212,"2,333",> 100%
 State,Illinois,All,2019-20,26,6.6,0,146,"2,199",> 100%
 State,Illinois,All,2019-20,27,7.1,0,160,"2,257",> 100%
@@ -1520,7 +1624,7 @@ State,Indiana,All,2019-20,49,6.4,1,83,"1,321",> 100%
 State,Indiana,All,2019-20,50,6.6,2,84,"1,305",> 100%
 State,Indiana,All,2019-20,51,7.1,4,96,"1,410",> 100%
 State,Indiana,All,2019-20,52,7.5,5,93,"1,299",> 100%
-State,Indiana,All,2019-20,1,9.1,13,118,"1,444",> 100%
+State,Indiana,All,2019-20,1,9.1,13,118,"1,445",> 100%
 State,Indiana,All,2019-20,2,8.6,13,107,"1,391",> 100%
 State,Indiana,All,2019-20,3,7.8,6,101,"1,378",> 100%
 State,Indiana,All,2019-20,4,7.2,6,95,"1,403",> 100%
@@ -1531,23 +1635,23 @@ State,Indiana,All,2019-20,8,8.4,12,104,"1,384",> 100%
 State,Indiana,All,2019-20,9,8.2,15,103,"1,436",> 100%
 State,Indiana,All,2019-20,10,8.1,14,96,"1,364",> 100%
 State,Indiana,All,2019-20,11,9,15,111,"1,401",> 100%
-State,Indiana,All,2019-20,12,8.5,17,96,"1,325",> 100%
+State,Indiana,All,2019-20,12,8.5,17,96,"1,326",> 100%
 State,Indiana,All,2019-20,13,9.5,14,125,"1,460",> 100%
 State,Indiana,All,2019-20,14,14.1,5,214,"1,555",> 100%
-State,Indiana,All,2019-20,15,14.6,3,233,"1,620",> 100%
+State,Indiana,All,2019-20,15,14.6,3,233,"1,621",> 100%
 State,Indiana,All,2019-20,16,14,0,208,"1,489",> 100%
 State,Indiana,All,2019-20,17,14.2,2,222,"1,582",> 100%
 State,Indiana,All,2019-20,18,14.4,4,214,"1,516",> 100%
 State,Indiana,All,2019-20,19,11.3,1,177,"1,569",> 100%
-State,Indiana,All,2019-20,20,10,2,153,"1,550",> 100%
+State,Indiana,All,2019-20,20,10,2,153,"1,551",> 100%
 State,Indiana,All,2019-20,21,9.2,0,134,"1,451",> 100%
 State,Indiana,All,2019-20,22,9.3,0,129,"1,381",> 100%
-State,Indiana,All,2019-20,23,8.5,1,117,"1,393",> 100%
+State,Indiana,All,2019-20,23,8.5,1,117,"1,394",> 100%
 State,Indiana,All,2019-20,24,8.2,0,114,"1,385",> 100%
 State,Indiana,All,2019-20,25,8.5,0,114,"1,343",> 100%
 State,Indiana,All,2019-20,26,7.1,0,97,"1,371",> 100%
 State,Indiana,All,2019-20,27,6.6,0,89,"1,342",> 100%
-State,Indiana,All,2019-20,28,7.7,0,102,"1,329",> 100%
+State,Indiana,All,2019-20,28,7.7,0,102,"1,330",> 100%
 State,Indiana,All,2019-20,29,6.7,1,90,"1,358",> 100%
 State,Indiana,All,2019-20,30,8.1,1,104,"1,302",> 100%
 State,Indiana,All,2019-20,31,7.6,0,102,"1,346",> 100%
@@ -1555,10 +1659,10 @@ State,Indiana,All,2019-20,32,7.8,0,103,"1,326",> 100%
 State,Indiana,All,2019-20,33,7.7,0,105,"1,359",> 100%
 State,Indiana,All,2019-20,34,8.7,0,114,"1,316",> 100%
 State,Indiana,All,2019-20,35,7,0,94,"1,339",> 100%
-State,Indiana,All,2019-20,36,8.6,0,106,"1,233",> 100%
-State,Indiana,All,2019-20,37,8.6,0,114,"1,325",> 100%
+State,Indiana,All,2019-20,36,8.6,0,106,"1,235",> 100%
+State,Indiana,All,2019-20,37,8.6,0,114,"1,326",> 100%
 State,Indiana,All,2019-20,38,8.1,0,112,"1,377",> 100%
-State,Indiana,All,2019-20,39,7.4,0,104,"1,403",> 100%
+State,Indiana,All,2019-20,39,7.4,0,104,"1,404",> 100%
 State,Iowa,All,2019-20,40,5.2,1,31,616,> 100%
 State,Iowa,All,2019-20,41,6.4,0,38,590,> 100%
 State,Iowa,All,2019-20,42,6.5,0,39,601,> 100%
@@ -1595,7 +1699,7 @@ State,Iowa,All,2019-20,20,8.3,0,56,677,> 100%
 State,Iowa,All,2019-20,21,8.1,0,50,617,> 100%
 State,Iowa,All,2019-20,22,5.9,0,37,623,> 100%
 State,Iowa,All,2019-20,23,7.3,0,43,593,> 100%
-State,Iowa,All,2019-20,24,6.5,0,39,603,> 100%
+State,Iowa,All,2019-20,24,6.5,0,39,602,> 100%
 State,Iowa,All,2019-20,25,5.9,0,34,579,> 100%
 State,Iowa,All,2019-20,26,3.8,0,21,557,98.50%
 State,Iowa,All,2019-20,27,5.3,0,32,602,> 100%
@@ -1608,8 +1712,8 @@ State,Iowa,All,2019-20,33,6.6,0,44,664,> 100%
 State,Iowa,All,2019-20,34,7.6,0,48,632,> 100%
 State,Iowa,All,2019-20,35,8.1,0,55,682,> 100%
 State,Iowa,All,2019-20,36,6.8,0,41,604,> 100%
-State,Iowa,All,2019-20,37,7.7,0,49,636,> 100%
-State,Iowa,All,2019-20,38,5.8,0,37,640,> 100%
+State,Iowa,All,2019-20,37,7.7,0,49,637,> 100%
+State,Iowa,All,2019-20,38,5.8,0,37,643,> 100%
 State,Iowa,All,2019-20,39,9.6,0,63,659,> 100%
 State,Kansas,All,2019-20,40,4.3,0,22,510,> 100%
 State,Kansas,All,2019-20,41,4.2,0,21,503,> 100%
@@ -1624,15 +1728,15 @@ State,Kansas,All,2019-20,49,7.6,2,40,554,> 100%
 State,Kansas,All,2019-20,50,6.6,1,38,589,> 100%
 State,Kansas,All,2019-20,51,6.5,0,35,541,> 100%
 State,Kansas,All,2019-20,52,8.5,3,47,587,> 100%
-State,Kansas,All,2019-20,1,9.9,9,51,605,> 100%
+State,Kansas,All,2019-20,1,9.9,9,51,606,> 100%
 State,Kansas,All,2019-20,2,7.9,5,41,582,> 100%
-State,Kansas,All,2019-20,3,8.2,8,41,601,> 100%
-State,Kansas,All,2019-20,4,10.2,11,49,587,> 100%
-State,Kansas,All,2019-20,5,8.3,9,38,566,> 100%
+State,Kansas,All,2019-20,3,8.1,8,41,602,> 100%
+State,Kansas,All,2019-20,4,10.2,11,49,586,> 100%
+State,Kansas,All,2019-20,5,8.3,9,38,567,> 100%
 State,Kansas,All,2019-20,6,7.3,9,29,520,> 100%
 State,Kansas,All,2019-20,7,7.5,7,37,589,> 100%
 State,Kansas,All,2019-20,8,8.5,10,40,585,> 100%
-State,Kansas,All,2019-20,9,8.6,13,35,560,> 100%
+State,Kansas,All,2019-20,9,8.6,13,35,559,> 100%
 State,Kansas,All,2019-20,10,10.1,14,45,587,> 100%
 State,Kansas,All,2019-20,11,11,8,52,546,> 100%
 State,Kansas,All,2019-20,12,8.6,17,29,534,> 100%
@@ -1641,7 +1745,7 @@ State,Kansas,All,2019-20,14,8.4,0,47,560,> 100%
 State,Kansas,All,2019-20,15,11.4,1,61,544,> 100%
 State,Kansas,All,2019-20,16,9.4,3,50,565,> 100%
 State,Kansas,All,2019-20,17,8.5,1,46,555,> 100%
-State,Kansas,All,2019-20,18,6.3,0,33,528,> 100%
+State,Kansas,All,2019-20,18,6.3,0,33,527,> 100%
 State,Kansas,All,2019-20,19,8.1,0,42,520,> 100%
 State,Kansas,All,2019-20,20,6.3,0,34,542,> 100%
 State,Kansas,All,2019-20,21,4.6,0,24,523,> 100%
@@ -1649,7 +1753,7 @@ State,Kansas,All,2019-20,22,4.9,1,25,532,> 100%
 State,Kansas,All,2019-20,23,6.4,0,33,519,> 100%
 State,Kansas,All,2019-20,24,6.6,0,35,533,> 100%
 State,Kansas,All,2019-20,25,6.6,0,34,514,> 100%
-State,Kansas,All,2019-20,26,6.4,0,34,533,> 100%
+State,Kansas,All,2019-20,26,6.4,0,34,532,> 100%
 State,Kansas,All,2019-20,27,5,0,29,583,> 100%
 State,Kansas,All,2019-20,28,2.5,0,13,517,> 100%
 State,Kansas,All,2019-20,29,4.6,0,25,539,> 100%
@@ -1659,9 +1763,9 @@ State,Kansas,All,2019-20,32,7.2,0,44,611,> 100%
 State,Kansas,All,2019-20,33,6.9,0,40,583,> 100%
 State,Kansas,All,2019-20,34,6.9,0,36,523,> 100%
 State,Kansas,All,2019-20,35,6.5,0,36,550,> 100%
-State,Kansas,All,2019-20,36,9.1,0,53,582,> 100%
+State,Kansas,All,2019-20,36,9.1,0,53,583,> 100%
 State,Kansas,All,2019-20,37,7.2,0,43,596,> 100%
-State,Kansas,All,2019-20,38,6.5,0,37,572,> 100%
+State,Kansas,All,2019-20,38,6.6,0,38,572,> 100%
 State,Kansas,All,2019-20,39,7.3,0,45,616,> 100%
 State,Kentucky,All,2019-20,40,5.9,0,52,878,99.20%
 State,Kentucky,All,2019-20,41,6.1,0,56,923,> 100%
@@ -1677,17 +1781,17 @@ State,Kentucky,All,2019-20,50,9,4,83,965,> 100%
 State,Kentucky,All,2019-20,51,6.8,4,64,999,> 100%
 State,Kentucky,All,2019-20,52,7.7,5,78,"1,078",> 100%
 State,Kentucky,All,2019-20,1,9.4,10,93,"1,097",> 100%
-State,Kentucky,All,2019-20,2,9.9,4,101,"1,060",> 100%
+State,Kentucky,All,2019-20,2,9.9,4,101,"1,061",> 100%
 State,Kentucky,All,2019-20,3,11,17,98,"1,044",> 100%
 State,Kentucky,All,2019-20,4,8.9,8,77,950,> 100%
 State,Kentucky,All,2019-20,5,10,8,90,981,> 100%
 State,Kentucky,All,2019-20,6,10.6,11,91,959,> 100%
 State,Kentucky,All,2019-20,7,8.9,9,77,965,> 100%
 State,Kentucky,All,2019-20,8,8.9,6,83,998,> 100%
-State,Kentucky,All,2019-20,9,9.7,12,88,"1,031",> 100%
+State,Kentucky,All,2019-20,9,9.7,12,88,"1,032",> 100%
 State,Kentucky,All,2019-20,10,8.2,6,76,"1,000",> 100%
 State,Kentucky,All,2019-20,11,10,13,91,"1,043",> 100%
-State,Kentucky,All,2019-20,12,9.9,13,82,955,> 100%
+State,Kentucky,All,2019-20,12,9.9,13,82,956,> 100%
 State,Kentucky,All,2019-20,13,9,8,76,937,> 100%
 State,Kentucky,All,2019-20,14,10.8,5,109,"1,051",> 100%
 State,Kentucky,All,2019-20,15,11.4,5,113,"1,035",> 100%
@@ -1696,25 +1800,25 @@ State,Kentucky,All,2019-20,17,12.2,1,116,960,> 100%
 State,Kentucky,All,2019-20,18,8.5,2,84,"1,008",> 100%
 State,Kentucky,All,2019-20,19,9.4,0,96,"1,017",> 100%
 State,Kentucky,All,2019-20,20,8.3,1,81,990,> 100%
-State,Kentucky,All,2019-20,21,9.5,0,94,987,> 100%
+State,Kentucky,All,2019-20,21,9.5,0,94,988,> 100%
 State,Kentucky,All,2019-20,22,9.2,0,91,992,> 100%
 State,Kentucky,All,2019-20,23,10.4,0,95,912,> 100%
 State,Kentucky,All,2019-20,24,8.3,0,82,990,> 100%
 State,Kentucky,All,2019-20,25,9.7,1,93,969,> 100%
-State,Kentucky,All,2019-20,26,10.2,0,96,944,> 100%
-State,Kentucky,All,2019-20,27,6.3,0,62,987,> 100%
+State,Kentucky,All,2019-20,26,10.2,0,96,945,> 100%
+State,Kentucky,All,2019-20,27,6.3,0,62,989,> 100%
 State,Kentucky,All,2019-20,28,8,0,84,"1,053",> 100%
 State,Kentucky,All,2019-20,29,7.5,1,71,955,> 100%
-State,Kentucky,All,2019-20,30,9.2,0,89,968,> 100%
+State,Kentucky,All,2019-20,30,9.2,0,89,969,> 100%
 State,Kentucky,All,2019-20,31,7.3,0,76,"1,042",> 100%
-State,Kentucky,All,2019-20,32,9.6,0,96,"1,003",> 100%
+State,Kentucky,All,2019-20,32,9.6,0,96,"1,004",> 100%
 State,Kentucky,All,2019-20,33,9.1,0,92,"1,011",> 100%
 State,Kentucky,All,2019-20,34,9.5,0,103,"1,089",> 100%
-State,Kentucky,All,2019-20,35,9.4,2,92,999,> 100%
-State,Kentucky,All,2019-20,36,8.5,0,89,"1,042",> 100%
-State,Kentucky,All,2019-20,37,9.2,0,92,"1,004",> 100%
-State,Kentucky,All,2019-20,38,8.5,0,85,995,> 100%
-State,Kentucky,All,2019-20,39,9.3,0,98,"1,059",> 100%
+State,Kentucky,All,2019-20,35,9.4,2,92,"1,000",> 100%
+State,Kentucky,All,2019-20,36,8.5,0,89,"1,044",> 100%
+State,Kentucky,All,2019-20,37,9.1,0,92,"1,006",> 100%
+State,Kentucky,All,2019-20,38,8.5,0,85,996,> 100%
+State,Kentucky,All,2019-20,39,9.2,0,98,"1,060",> 100%
 State,Louisiana,All,2019-20,40,4.3,1,33,797,94.30%
 State,Louisiana,All,2019-20,41,4,1,34,875,> 100%
 State,Louisiana,All,2019-20,42,4,0,36,909,> 100%
@@ -1728,11 +1832,11 @@ State,Louisiana,All,2019-20,49,3.4,1,33,990,> 100%
 State,Louisiana,All,2019-20,50,4.2,1,37,908,> 100%
 State,Louisiana,All,2019-20,51,4,0,39,976,> 100%
 State,Louisiana,All,2019-20,52,4.9,3,41,891,> 100%
-State,Louisiana,All,2019-20,1,6.1,3,54,930,> 100%
-State,Louisiana,All,2019-20,2,6.9,6,60,950,> 100%
+State,Louisiana,All,2019-20,1,6.1,3,54,931,> 100%
+State,Louisiana,All,2019-20,2,6.9,6,60,951,> 100%
 State,Louisiana,All,2019-20,3,5.6,6,47,947,> 100%
 State,Louisiana,All,2019-20,4,5.8,4,52,958,> 100%
-State,Louisiana,All,2019-20,5,4.7,4,41,963,> 100%
+State,Louisiana,All,2019-20,5,4.7,4,41,965,> 100%
 State,Louisiana,All,2019-20,6,4.4,7,34,942,> 100%
 State,Louisiana,All,2019-20,7,5.5,7,44,933,> 100%
 State,Louisiana,All,2019-20,8,5.1,9,38,928,> 100%
@@ -1742,31 +1846,31 @@ State,Louisiana,All,2019-20,11,5,7,42,982,> 100%
 State,Louisiana,All,2019-20,12,8,6,70,945,> 100%
 State,Louisiana,All,2019-20,13,10.2,4,121,"1,228",> 100%
 State,Louisiana,All,2019-20,14,16.5,4,225,"1,386",> 100%
-State,Louisiana,All,2019-20,15,16.1,1,242,"1,514",> 100%
+State,Louisiana,All,2019-20,15,16,1,242,"1,515",> 100%
 State,Louisiana,All,2019-20,16,17.7,4,237,"1,363",> 100%
 State,Louisiana,All,2019-20,17,17.2,1,213,"1,247",> 100%
 State,Louisiana,All,2019-20,18,15.8,1,185,"1,175",> 100%
-State,Louisiana,All,2019-20,19,15.7,2,175,"1,127",> 100%
+State,Louisiana,All,2019-20,19,15.7,2,175,"1,128",> 100%
 State,Louisiana,All,2019-20,20,12.6,0,139,"1,101",> 100%
 State,Louisiana,All,2019-20,21,8.9,0,94,"1,056",> 100%
-State,Louisiana,All,2019-20,22,8.8,0,92,"1,048",> 100%
+State,Louisiana,All,2019-20,22,8.8,0,92,"1,049",> 100%
 State,Louisiana,All,2019-20,23,9.4,0,96,"1,017",> 100%
-State,Louisiana,All,2019-20,24,6.7,0,64,951,> 100%
+State,Louisiana,All,2019-20,24,6.7,0,64,952,> 100%
 State,Louisiana,All,2019-20,25,7.6,0,75,989,> 100%
 State,Louisiana,All,2019-20,26,6.2,1,61,999,> 100%
 State,Louisiana,All,2019-20,27,8.2,0,80,981,> 100%
-State,Louisiana,All,2019-20,28,10.2,0,108,"1,062",> 100%
-State,Louisiana,All,2019-20,29,10.7,0,122,"1,140",> 100%
+State,Louisiana,All,2019-20,28,10.2,0,108,"1,064",> 100%
+State,Louisiana,All,2019-20,29,10.7,0,122,"1,141",> 100%
 State,Louisiana,All,2019-20,30,12.2,0,148,"1,213",> 100%
-State,Louisiana,All,2019-20,31,13.3,0,160,"1,199",> 100%
-State,Louisiana,All,2019-20,32,14.6,0,179,"1,224",> 100%
-State,Louisiana,All,2019-20,33,14.7,0,169,"1,150",> 100%
-State,Louisiana,All,2019-20,34,12,0,136,"1,130",> 100%
-State,Louisiana,All,2019-20,35,11.3,0,125,"1,102",> 100%
-State,Louisiana,All,2019-20,36,8.8,0,98,"1,117",> 100%
-State,Louisiana,All,2019-20,37,11,0,113,"1,023",> 100%
-State,Louisiana,All,2019-20,38,7.2,1,73,"1,026",> 100%
-State,Louisiana,All,2019-20,39,7.8,0,77,984,> 100%
+State,Louisiana,All,2019-20,31,13.3,0,160,"1,201",> 100%
+State,Louisiana,All,2019-20,32,14.7,0,180,"1,228",> 100%
+State,Louisiana,All,2019-20,33,14.7,0,170,"1,153",> 100%
+State,Louisiana,All,2019-20,34,12,0,136,"1,133",> 100%
+State,Louisiana,All,2019-20,35,11.3,0,125,"1,103",> 100%
+State,Louisiana,All,2019-20,36,8.8,0,99,"1,123",> 100%
+State,Louisiana,All,2019-20,37,11,0,113,"1,027",> 100%
+State,Louisiana,All,2019-20,38,7.3,1,74,"1,029",> 100%
+State,Louisiana,All,2019-20,39,7.9,0,78,987,> 100%
 State,Maine,All,2019-20,40,7.7,0,21,271,> 100%
 State,Maine,All,2019-20,41,9.2,0,25,273,> 100%
 State,Maine,All,2019-20,42,8.6,0,24,279,> 100%
@@ -1868,9 +1972,9 @@ State,Maryland,All,2019-20,33,7.1,0,75,"1,056",> 100%
 State,Maryland,All,2019-20,34,6.4,0,65,"1,016",> 100%
 State,Maryland,All,2019-20,35,6.9,0,72,"1,042",> 100%
 State,Maryland,All,2019-20,36,6.7,0,70,"1,051",> 100%
-State,Maryland,All,2019-20,37,4.8,0,48,994,> 100%
-State,Maryland,All,2019-20,38,6.5,0,64,986,> 100%
-State,Maryland,All,2019-20,39,8.8,0,96,"1,088",> 100%
+State,Maryland,All,2019-20,37,4.8,0,48,995,> 100%
+State,Maryland,All,2019-20,38,6.5,0,64,987,> 100%
+State,Maryland,All,2019-20,39,8.8,0,96,"1,089",> 100%
 State,Massachusetts,All,2019-20,40,7,0,77,"1,105",> 100%
 State,Massachusetts,All,2019-20,41,6.5,0,70,"1,079",> 100%
 State,Massachusetts,All,2019-20,42,6.2,0,69,"1,108",> 100%
@@ -1905,20 +2009,20 @@ State,Massachusetts,All,2019-20,18,21.9,2,502,"2,299",> 100%
 State,Massachusetts,All,2019-20,19,20.9,4,423,"2,042",> 100%
 State,Massachusetts,All,2019-20,20,17,0,320,"1,884",> 100%
 State,Massachusetts,All,2019-20,21,15.5,0,242,"1,561",> 100%
-State,Massachusetts,All,2019-20,22,14.4,0,194,"1,348",> 100%
+State,Massachusetts,All,2019-20,22,14.4,0,194,"1,349",> 100%
 State,Massachusetts,All,2019-20,23,12.5,0,151,"1,209",> 100%
-State,Massachusetts,All,2019-20,24,11.8,0,133,"1,130",> 100%
+State,Massachusetts,All,2019-20,24,11.8,0,133,"1,131",> 100%
 State,Massachusetts,All,2019-20,25,8.7,0,97,"1,116",> 100%
 State,Massachusetts,All,2019-20,26,7,0,75,"1,074",99.60%
 State,Massachusetts,All,2019-20,27,7.8,0,82,"1,050",97.40%
-State,Massachusetts,All,2019-20,28,5,1,50,"1,027",95.30%
+State,Massachusetts,All,2019-20,28,4.9,1,49,"1,026",95.20%
 State,Massachusetts,All,2019-20,29,5.4,0,56,"1,044",96.90%
-State,Massachusetts,All,2019-20,30,5.1,0,55,"1,078",> 100%
+State,Massachusetts,All,2019-20,30,5.1,0,55,"1,079",> 100%
 State,Massachusetts,All,2019-20,31,4.8,0,48,"1,000",92.80%
-State,Massachusetts,All,2019-20,32,5,0,49,982,91.10%
+State,Massachusetts,All,2019-20,32,5,0,49,983,91.20%
 State,Massachusetts,All,2019-20,33,4.8,0,49,"1,031",95.70%
-State,Massachusetts,All,2019-20,34,5.6,0,57,"1,022",94.80%
-State,Massachusetts,All,2019-20,35,5.7,0,59,"1,038",96.30%
+State,Massachusetts,All,2019-20,34,5.6,0,57,"1,024",95%
+State,Massachusetts,All,2019-20,35,5.8,0,60,"1,039",96.40%
 State,Massachusetts,All,2019-20,36,4,0,40,"1,002",93%
 State,Massachusetts,All,2019-20,37,3.9,0,39,990,91.90%
 State,Massachusetts,All,2019-20,38,6.2,0,67,"1,084",> 100%
@@ -1943,37 +2047,37 @@ State,Michigan,All,2019-20,4,5.7,8,109,"2,040",> 100%
 State,Michigan,All,2019-20,5,6.3,12,116,"2,032",> 100%
 State,Michigan,All,2019-20,6,7.4,8,139,"1,990",> 100%
 State,Michigan,All,2019-20,7,6.3,19,110,"2,056",> 100%
-State,Michigan,All,2019-20,8,7.6,28,133,"2,106",> 100%
-State,Michigan,All,2019-20,9,6.6,29,104,"2,016",> 100%
+State,Michigan,All,2019-20,8,7.6,28,133,"2,105",> 100%
+State,Michigan,All,2019-20,9,6.6,29,104,"2,017",> 100%
 State,Michigan,All,2019-20,10,7,27,115,"2,031",> 100%
 State,Michigan,All,2019-20,11,8.3,26,139,"1,993",> 100%
 State,Michigan,All,2019-20,12,8.1,31,137,"2,077",> 100%
 State,Michigan,All,2019-20,13,12.4,25,281,"2,477",> 100%
-State,Michigan,All,2019-20,14,19.5,18,596,"3,152",> 100%
-State,Michigan,All,2019-20,15,20.8,8,699,"3,402",> 100%
+State,Michigan,All,2019-20,14,19.5,18,597,"3,154",> 100%
+State,Michigan,All,2019-20,15,20.8,8,699,"3,404",> 100%
 State,Michigan,All,2019-20,16,20.9,5,662,"3,189",> 100%
 State,Michigan,All,2019-20,17,18.8,2,529,"2,824",> 100%
-State,Michigan,All,2019-20,18,14.9,3,386,"2,619",> 100%
+State,Michigan,All,2019-20,18,14.8,3,386,"2,620",> 100%
 State,Michigan,All,2019-20,19,13.5,3,303,"2,267",> 100%
 State,Michigan,All,2019-20,20,11.3,0,248,"2,192",> 100%
 State,Michigan,All,2019-20,21,9.6,1,196,"2,042",> 100%
 State,Michigan,All,2019-20,22,6.8,1,134,"1,985",> 100%
-State,Michigan,All,2019-20,23,6.9,0,140,"2,032",> 100%
-State,Michigan,All,2019-20,24,5.5,0,104,"1,890",> 100%
-State,Michigan,All,2019-20,25,5.7,0,109,"1,902",> 100%
-State,Michigan,All,2019-20,26,5.6,0,108,"1,943",> 100%
+State,Michigan,All,2019-20,23,6.9,0,140,"2,033",> 100%
+State,Michigan,All,2019-20,24,5.5,0,104,"1,889",> 100%
+State,Michigan,All,2019-20,25,5.7,0,109,"1,903",> 100%
+State,Michigan,All,2019-20,26,5.6,0,108,"1,942",> 100%
 State,Michigan,All,2019-20,27,4.4,0,87,"1,993",> 100%
 State,Michigan,All,2019-20,28,4.9,0,93,"1,900",> 100%
-State,Michigan,All,2019-20,29,4.3,0,82,"1,901",> 100%
-State,Michigan,All,2019-20,30,5.1,0,98,"1,918",> 100%
-State,Michigan,All,2019-20,31,5.4,0,107,"1,967",> 100%
-State,Michigan,All,2019-20,32,6.2,0,117,"1,876",> 100%
-State,Michigan,All,2019-20,33,6.6,0,135,"2,053",> 100%
-State,Michigan,All,2019-20,34,6.4,0,123,"1,933",> 100%
-State,Michigan,All,2019-20,35,5.5,0,108,"1,959",> 100%
-State,Michigan,All,2019-20,36,5.3,0,105,"1,969",> 100%
-State,Michigan,All,2019-20,37,4.9,0,96,"1,967",> 100%
-State,Michigan,All,2019-20,38,6.3,0,121,"1,920",> 100%
+State,Michigan,All,2019-20,29,4.3,0,82,"1,902",> 100%
+State,Michigan,All,2019-20,30,5.1,0,98,"1,917",> 100%
+State,Michigan,All,2019-20,31,5.5,0,108,"1,969",> 100%
+State,Michigan,All,2019-20,32,6.2,0,117,"1,875",> 100%
+State,Michigan,All,2019-20,33,6.6,0,135,"2,054",> 100%
+State,Michigan,All,2019-20,34,6.4,0,123,"1,935",> 100%
+State,Michigan,All,2019-20,35,5.6,0,109,"1,959",> 100%
+State,Michigan,All,2019-20,36,5.4,0,106,"1,971",> 100%
+State,Michigan,All,2019-20,37,4.8,0,95,"1,967",> 100%
+State,Michigan,All,2019-20,38,6.2,0,119,"1,920",> 100%
 State,Michigan,All,2019-20,39,5.8,0,118,"2,029",> 100%
 State,Minnesota,All,2019-20,40,5.4,1,47,887,> 100%
 State,Minnesota,All,2019-20,41,4.8,0,44,915,> 100%
@@ -2008,7 +2112,7 @@ State,Minnesota,All,2019-20,17,9.9,1,100,"1,016",> 100%
 State,Minnesota,All,2019-20,18,9.3,1,96,"1,048",> 100%
 State,Minnesota,All,2019-20,19,8.2,2,84,"1,049",> 100%
 State,Minnesota,All,2019-20,20,9.9,0,99,"1,002",> 100%
-State,Minnesota,All,2019-20,21,7.6,1,76,"1,012",> 100%
+State,Minnesota,All,2019-20,21,7.6,1,76,"1,013",> 100%
 State,Minnesota,All,2019-20,22,9.3,0,95,"1,019",> 100%
 State,Minnesota,All,2019-20,23,8.5,2,86,"1,039",> 100%
 State,Minnesota,All,2019-20,24,6.3,1,60,964,> 100%
@@ -2019,14 +2123,14 @@ State,Minnesota,All,2019-20,28,5.3,0,45,849,> 100%
 State,Minnesota,All,2019-20,29,7.2,0,62,857,> 100%
 State,Minnesota,All,2019-20,30,6.7,0,58,866,> 100%
 State,Minnesota,All,2019-20,31,5.2,0,43,821,> 100%
-State,Minnesota,All,2019-20,32,6.5,0,59,901,> 100%
-State,Minnesota,All,2019-20,33,6.9,0,61,890,> 100%
-State,Minnesota,All,2019-20,34,6.8,0,61,898,> 100%
+State,Minnesota,All,2019-20,32,6.6,0,60,903,> 100%
+State,Minnesota,All,2019-20,33,6.8,0,61,892,> 100%
+State,Minnesota,All,2019-20,34,6.8,0,61,899,> 100%
 State,Minnesota,All,2019-20,35,6.3,0,57,910,> 100%
 State,Minnesota,All,2019-20,36,5.9,1,52,904,> 100%
 State,Minnesota,All,2019-20,37,5.6,0,49,881,> 100%
-State,Minnesota,All,2019-20,38,5.7,0,55,960,> 100%
-State,Minnesota,All,2019-20,39,8.4,0,82,977,> 100%
+State,Minnesota,All,2019-20,38,5.7,0,55,962,> 100%
+State,Minnesota,All,2019-20,39,8.4,0,82,976,> 100%
 State,Mississippi,All,2019-20,40,4.9,0,29,591,98.30%
 State,Mississippi,All,2019-20,41,7.9,1,46,594,98.80%
 State,Mississippi,All,2019-20,42,5.7,1,32,580,96.50%
@@ -2049,7 +2153,7 @@ State,Mississippi,All,2019-20,6,9.2,7,60,727,> 100%
 State,Mississippi,All,2019-20,7,8.8,4,55,671,> 100%
 State,Mississippi,All,2019-20,8,7.1,5,41,644,> 100%
 State,Mississippi,All,2019-20,9,10.3,12,59,692,> 100%
-State,Mississippi,All,2019-20,10,9.5,5,60,681,> 100%
+State,Mississippi,All,2019-20,10,9.5,5,60,682,> 100%
 State,Mississippi,All,2019-20,11,8.7,7,50,652,> 100%
 State,Mississippi,All,2019-20,12,8.8,3,54,650,> 100%
 State,Mississippi,All,2019-20,13,9.5,4,63,707,> 100%
@@ -2067,18 +2171,18 @@ State,Mississippi,All,2019-20,24,9.4,0,68,723,> 100%
 State,Mississippi,All,2019-20,25,10.9,0,82,753,> 100%
 State,Mississippi,All,2019-20,26,9.2,1,65,716,> 100%
 State,Mississippi,All,2019-20,27,10.5,0,76,723,> 100%
-State,Mississippi,All,2019-20,28,12.5,0,101,810,> 100%
+State,Mississippi,All,2019-20,28,12.5,0,101,811,> 100%
 State,Mississippi,All,2019-20,29,15.7,0,127,810,> 100%
-State,Mississippi,All,2019-20,30,15.6,0,139,889,> 100%
-State,Mississippi,All,2019-20,31,19.2,1,169,886,> 100%
+State,Mississippi,All,2019-20,30,15.6,0,139,890,> 100%
+State,Mississippi,All,2019-20,31,19.2,1,169,887,> 100%
 State,Mississippi,All,2019-20,32,17.6,0,165,937,> 100%
 State,Mississippi,All,2019-20,33,17.3,0,152,880,> 100%
 State,Mississippi,All,2019-20,34,18.5,2,150,821,> 100%
 State,Mississippi,All,2019-20,35,13.9,1,114,830,> 100%
 State,Mississippi,All,2019-20,36,13.6,1,99,733,> 100%
-State,Mississippi,All,2019-20,37,11.2,0,85,758,> 100%
+State,Mississippi,All,2019-20,37,11.2,0,85,760,> 100%
 State,Mississippi,All,2019-20,38,12.2,0,92,754,> 100%
-State,Mississippi,All,2019-20,39,12.6,0,92,733,> 100%
+State,Mississippi,All,2019-20,39,12.5,0,92,735,> 100%
 State,Missouri,All,2019-20,40,4.7,0,52,"1,111",97.60%
 State,Missouri,All,2019-20,41,3.3,0,36,"1,104",97%
 State,Missouri,All,2019-20,42,5.3,1,60,"1,146",> 100%
@@ -2092,45 +2196,45 @@ State,Missouri,All,2019-20,49,5.8,1,67,"1,177",> 100%
 State,Missouri,All,2019-20,50,6.1,2,71,"1,199",> 100%
 State,Missouri,All,2019-20,51,3.6,2,41,"1,206",> 100%
 State,Missouri,All,2019-20,52,4.8,1,60,"1,266",> 100%
-State,Missouri,All,2019-20,1,6.4,5,76,"1,266",> 100%
-State,Missouri,All,2019-20,2,6.6,9,76,"1,290",> 100%
+State,Missouri,All,2019-20,1,6.4,5,76,"1,267",> 100%
+State,Missouri,All,2019-20,2,6.6,9,76,"1,292",> 100%
 State,Missouri,All,2019-20,3,6.6,3,81,"1,268",> 100%
 State,Missouri,All,2019-20,4,6.3,8,74,"1,307",> 100%
 State,Missouri,All,2019-20,5,7.1,9,84,"1,310",> 100%
 State,Missouri,All,2019-20,6,6,4,74,"1,294",> 100%
-State,Missouri,All,2019-20,7,6,10,69,"1,315",> 100%
+State,Missouri,All,2019-20,7,6,10,69,"1,316",> 100%
 State,Missouri,All,2019-20,8,6.7,28,60,"1,319",> 100%
 State,Missouri,All,2019-20,9,7.9,23,81,"1,311",> 100%
-State,Missouri,All,2019-20,10,7.6,22,81,"1,364",> 100%
+State,Missouri,All,2019-20,10,7.6,23,81,"1,364",> 100%
 State,Missouri,All,2019-20,11,7.2,20,71,"1,259",> 100%
 State,Missouri,All,2019-20,12,6.8,19,65,"1,229",> 100%
 State,Missouri,All,2019-20,13,8.6,12,99,"1,296",> 100%
 State,Missouri,All,2019-20,14,9,6,107,"1,261",> 100%
 State,Missouri,All,2019-20,15,6.9,1,97,"1,422",> 100%
 State,Missouri,All,2019-20,16,6.9,2,88,"1,305",> 100%
-State,Missouri,All,2019-20,17,8.1,0,114,"1,400",> 100%
-State,Missouri,All,2019-20,18,7.1,0,96,"1,352",> 100%
+State,Missouri,All,2019-20,17,8.1,0,114,"1,402",> 100%
+State,Missouri,All,2019-20,18,7.1,0,96,"1,353",> 100%
 State,Missouri,All,2019-20,19,7.1,0,98,"1,376",> 100%
-State,Missouri,All,2019-20,20,6.4,1,83,"1,305",> 100%
-State,Missouri,All,2019-20,21,6.2,0,78,"1,256",> 100%
-State,Missouri,All,2019-20,22,4.8,0,57,"1,184",> 100%
+State,Missouri,All,2019-20,20,6.4,1,83,"1,306",> 100%
+State,Missouri,All,2019-20,21,6.3,0,79,"1,257",> 100%
+State,Missouri,All,2019-20,22,4.8,0,57,"1,185",> 100%
 State,Missouri,All,2019-20,23,5.3,0,65,"1,233",> 100%
-State,Missouri,All,2019-20,24,6.1,1,73,"1,213",> 100%
-State,Missouri,All,2019-20,25,5.2,0,61,"1,183",> 100%
-State,Missouri,All,2019-20,26,5.2,0,64,"1,237",> 100%
-State,Missouri,All,2019-20,27,4,0,50,"1,236",> 100%
-State,Missouri,All,2019-20,28,4.6,1,56,"1,250",> 100%
-State,Missouri,All,2019-20,29,5.4,0,71,"1,318",> 100%
-State,Missouri,All,2019-20,30,6,0,78,"1,305",> 100%
-State,Missouri,All,2019-20,31,5.8,0,75,"1,297",> 100%
-State,Missouri,All,2019-20,32,8.3,0,108,"1,296",> 100%
-State,Missouri,All,2019-20,33,7.4,0,99,"1,330",> 100%
+State,Missouri,All,2019-20,24,6.1,1,73,"1,215",> 100%
+State,Missouri,All,2019-20,25,5.2,0,61,"1,184",> 100%
+State,Missouri,All,2019-20,26,5.1,0,63,"1,239",> 100%
+State,Missouri,All,2019-20,27,4.1,0,51,"1,237",> 100%
+State,Missouri,All,2019-20,28,4.6,1,56,"1,251",> 100%
+State,Missouri,All,2019-20,29,5.4,0,71,"1,319",> 100%
+State,Missouri,All,2019-20,30,6,0,78,"1,307",> 100%
+State,Missouri,All,2019-20,31,5.8,0,75,"1,299",> 100%
+State,Missouri,All,2019-20,32,8.3,0,108,"1,297",> 100%
+State,Missouri,All,2019-20,33,7.4,0,99,"1,331",> 100%
 State,Missouri,All,2019-20,34,6.9,2,91,"1,357",> 100%
 State,Missouri,All,2019-20,35,7.9,1,102,"1,309",> 100%
-State,Missouri,All,2019-20,36,7.8,1,105,"1,352",> 100%
-State,Missouri,All,2019-20,37,7.7,0,102,"1,331",> 100%
-State,Missouri,All,2019-20,38,8.3,0,113,"1,365",> 100%
-State,Missouri,All,2019-20,39,9.2,0,129,"1,397",> 100%
+State,Missouri,All,2019-20,36,7.8,1,105,"1,356",> 100%
+State,Missouri,All,2019-20,37,7.6,0,102,"1,335",> 100%
+State,Missouri,All,2019-20,38,8.3,0,113,"1,368",> 100%
+State,Missouri,All,2019-20,39,9.2,0,129,"1,402",> 100%
 State,Montana,All,2019-20,40,6.3,0,13,207,> 100%
 State,Montana,All,2019-20,41,7.7,0,15,195,> 100%
 State,Montana,All,2019-20,42,3.4,0,7,203,> 100%
@@ -2227,7 +2331,7 @@ State,Nebraska,All,2019-20,28,6.6,0,21,317,> 100%
 State,Nebraska,All,2019-20,29,7.1,0,23,324,> 100%
 State,Nebraska,All,2019-20,30,6.4,0,23,357,> 100%
 State,Nebraska,All,2019-20,31,6.3,0,22,352,> 100%
-State,Nebraska,All,2019-20,32,7.4,0,28,378,> 100%
+State,Nebraska,All,2019-20,32,7.7,0,29,379,> 100%
 State,Nebraska,All,2019-20,33,8.3,0,29,351,> 100%
 State,Nebraska,All,2019-20,34,6.7,0,24,359,> 100%
 State,Nebraska,All,2019-20,35,5.7,0,18,315,> 100%
@@ -2280,13 +2384,13 @@ State,Nevada,All,2019-20,29,15.7,0,97,617,> 100%
 State,Nevada,All,2019-20,30,16,0,105,658,> 100%
 State,Nevada,All,2019-20,31,17.1,0,103,602,> 100%
 State,Nevada,All,2019-20,32,20.4,0,137,671,> 100%
-State,Nevada,All,2019-20,33,18.4,0,117,637,> 100%
+State,Nevada,All,2019-20,33,18.3,0,117,638,> 100%
 State,Nevada,All,2019-20,34,16.9,0,106,629,> 100%
 State,Nevada,All,2019-20,35,12.7,0,78,615,> 100%
-State,Nevada,All,2019-20,36,13.9,0,85,611,> 100%
+State,Nevada,All,2019-20,36,14.1,0,86,612,> 100%
 State,Nevada,All,2019-20,37,12.5,0,69,551,> 100%
 State,Nevada,All,2019-20,38,11.2,0,59,528,> 100%
-State,Nevada,All,2019-20,39,11.2,0,57,509,> 100%
+State,Nevada,All,2019-20,39,11.2,0,57,510,> 100%
 State,New Hampshire,All,2019-20,40,6,0,14,234,> 100%
 State,New Hampshire,All,2019-20,41,9.3,0,22,236,> 100%
 State,New Hampshire,All,2019-20,42,5.5,0,14,254,> 100%
@@ -2327,7 +2431,7 @@ State,New Hampshire,All,2019-20,24,4.8,0,14,289,> 100%
 State,New Hampshire,All,2019-20,25,4.6,0,11,240,> 100%
 State,New Hampshire,All,2019-20,26,4.7,0,12,253,> 100%
 State,New Hampshire,All,2019-20,27,3.8,0,9,234,> 100%
-State,New Hampshire,All,2019-20,28,4.7,0,12,253,> 100%
+State,New Hampshire,All,2019-20,28,5.1,0,13,254,> 100%
 State,New Hampshire,All,2019-20,29,4.6,0,11,237,> 100%
 State,New Hampshire,All,2019-20,30,4.2,0,11,260,> 100%
 State,New Hampshire,All,2019-20,31,2,0,5,256,> 100%
@@ -2335,10 +2439,10 @@ State,New Hampshire,All,2019-20,32,4.2,0,10,239,> 100%
 State,New Hampshire,All,2019-20,33,6.1,0,14,229,> 100%
 State,New Hampshire,All,2019-20,34,5.1,0,13,255,> 100%
 State,New Hampshire,All,2019-20,35,4.3,0,10,234,> 100%
-State,New Hampshire,All,2019-20,36,3.4,0,8,234,> 100%
+State,New Hampshire,All,2019-20,36,3.4,0,8,235,> 100%
 State,New Hampshire,All,2019-20,37,1.8,0,4,226,100%
 State,New Hampshire,All,2019-20,38,5.3,0,12,227,> 100%
-State,New Hampshire,All,2019-20,39,8.3,0,23,276,> 100%
+State,New Hampshire,All,2019-20,39,8.3,0,23,277,> 100%
 State,New Jersey,All,2019-20,40,5.5,0,76,"1,374",98.90%
 State,New Jersey,All,2019-20,41,5.3,0,75,"1,424",> 100%
 State,New Jersey,All,2019-20,42,4.2,2,58,"1,432",> 100%
@@ -2367,10 +2471,10 @@ State,New Jersey,All,2019-20,12,7.9,9,119,"1,623",> 100%
 State,New Jersey,All,2019-20,13,15.8,10,328,"2,141",> 100%
 State,New Jersey,All,2019-20,14,25.3,13,866,"3,472",> 100%
 State,New Jersey,All,2019-20,15,29.8,9,"1,409","4,755",> 100%
-State,New Jersey,All,2019-20,16,28.3,3,"1,323","4,687",> 100%
+State,New Jersey,All,2019-20,16,28.3,3,"1,324","4,687",> 100%
 State,New Jersey,All,2019-20,17,30.1,6,"1,189","3,972",> 100%
 State,New Jersey,All,2019-20,18,27.9,2,877,"3,146",> 100%
-State,New Jersey,All,2019-20,19,23.6,0,611,"2,585",> 100%
+State,New Jersey,All,2019-20,19,23.6,0,611,"2,586",> 100%
 State,New Jersey,All,2019-20,20,20.7,0,474,"2,294",> 100%
 State,New Jersey,All,2019-20,21,16.6,0,322,"1,945",> 100%
 State,New Jersey,All,2019-20,22,16.7,0,290,"1,741",> 100%
@@ -2382,14 +2486,14 @@ State,New Jersey,All,2019-20,27,6.5,0,93,"1,425",> 100%
 State,New Jersey,All,2019-20,28,5.7,0,79,"1,388",99.90%
 State,New Jersey,All,2019-20,29,6.1,0,82,"1,335",96.10%
 State,New Jersey,All,2019-20,30,6.2,0,85,"1,379",99.30%
-State,New Jersey,All,2019-20,31,5.8,0,81,"1,400",> 100%
+State,New Jersey,All,2019-20,31,5.9,0,82,"1,400",> 100%
 State,New Jersey,All,2019-20,32,5.7,0,76,"1,343",96.70%
-State,New Jersey,All,2019-20,33,6.1,0,80,"1,311",94.40%
+State,New Jersey,All,2019-20,33,6.1,0,80,"1,312",94.50%
 State,New Jersey,All,2019-20,34,4.5,0,61,"1,345",96.80%
 State,New Jersey,All,2019-20,35,5.9,0,80,"1,356",97.60%
-State,New Jersey,All,2019-20,36,6.6,0,93,"1,412",> 100%
+State,New Jersey,All,2019-20,36,6.6,0,93,"1,413",> 100%
 State,New Jersey,All,2019-20,37,4.9,0,69,"1,394",> 100%
-State,New Jersey,All,2019-20,38,5.3,1,72,"1,373",98.90%
+State,New Jersey,All,2019-20,38,5.3,1,72,"1,372",98.80%
 State,New Jersey,All,2019-20,39,5.9,0,81,"1,384",99.70%
 State,New Mexico,All,2019-20,40,5,0,19,378,> 100%
 State,New Mexico,All,2019-20,41,3,0,11,366,> 100%
@@ -2422,27 +2526,27 @@ State,New Mexico,All,2019-20,15,9.6,0,40,415,> 100%
 State,New Mexico,All,2019-20,16,10.7,0,45,422,> 100%
 State,New Mexico,All,2019-20,17,9.4,0,39,413,> 100%
 State,New Mexico,All,2019-20,18,10.7,0,46,429,> 100%
-State,New Mexico,All,2019-20,19,9.3,0,40,432,> 100%
+State,New Mexico,All,2019-20,19,9.2,0,40,433,> 100%
 State,New Mexico,All,2019-20,20,8.1,0,38,468,> 100%
 State,New Mexico,All,2019-20,21,9.1,0,37,408,> 100%
 State,New Mexico,All,2019-20,22,8.4,0,37,439,> 100%
 State,New Mexico,All,2019-20,23,7.6,1,33,450,> 100%
 State,New Mexico,All,2019-20,24,9.6,0,42,438,> 100%
-State,New Mexico,All,2019-20,25,8.6,0,36,420,> 100%
-State,New Mexico,All,2019-20,26,7.3,0,29,397,> 100%
+State,New Mexico,All,2019-20,25,8.6,0,36,421,> 100%
+State,New Mexico,All,2019-20,26,7.5,0,30,398,> 100%
 State,New Mexico,All,2019-20,27,6,0,27,448,> 100%
 State,New Mexico,All,2019-20,28,7.2,0,29,403,> 100%
 State,New Mexico,All,2019-20,29,5.6,0,23,413,> 100%
-State,New Mexico,All,2019-20,30,9.2,0,40,435,> 100%
-State,New Mexico,All,2019-20,31,10.3,0,43,416,> 100%
-State,New Mexico,All,2019-20,32,6.3,0,28,443,> 100%
-State,New Mexico,All,2019-20,33,8.3,0,33,397,> 100%
-State,New Mexico,All,2019-20,34,6.9,0,28,405,> 100%
-State,New Mexico,All,2019-20,35,4.7,0,19,401,> 100%
-State,New Mexico,All,2019-20,36,6.5,0,25,386,> 100%
-State,New Mexico,All,2019-20,37,5.9,0,23,387,> 100%
-State,New Mexico,All,2019-20,38,5.4,0,22,404,> 100%
-State,New Mexico,All,2019-20,39,6.8,0,27,400,> 100%
+State,New Mexico,All,2019-20,30,9.3,0,41,439,> 100%
+State,New Mexico,All,2019-20,31,10.3,0,43,417,> 100%
+State,New Mexico,All,2019-20,32,6.3,0,28,444,> 100%
+State,New Mexico,All,2019-20,33,8.3,0,33,398,> 100%
+State,New Mexico,All,2019-20,34,6.9,0,28,407,> 100%
+State,New Mexico,All,2019-20,35,4.7,0,19,403,> 100%
+State,New Mexico,All,2019-20,36,6.4,0,25,388,> 100%
+State,New Mexico,All,2019-20,37,5.9,0,23,388,> 100%
+State,New Mexico,All,2019-20,38,5.4,0,22,405,> 100%
+State,New Mexico,All,2019-20,39,7,0,28,402,> 100%
 State,New York,All,2019-20,40,7,0,132,"1,894",99.70%
 State,New York,All,2019-20,41,6.3,1,123,"1,954",> 100%
 State,New York,All,2019-20,42,7.6,0,148,"1,958",> 100%
@@ -2461,7 +2565,7 @@ State,New York,All,2019-20,2,9.2,15,182,"2,139",> 100%
 State,New York,All,2019-20,3,9.5,20,187,"2,185",> 100%
 State,New York,All,2019-20,4,8.9,10,174,"2,070",> 100%
 State,New York,All,2019-20,5,7.8,16,146,"2,084",> 100%
-State,New York,All,2019-20,6,8.2,24,149,"2,109",> 100%
+State,New York,All,2019-20,6,8.3,24,150,"2,109",> 100%
 State,New York,All,2019-20,7,8.9,15,168,"2,055",> 100%
 State,New York,All,2019-20,8,9.2,26,166,"2,094",> 100%
 State,New York,All,2019-20,9,8.2,17,163,"2,195",> 100%
@@ -2475,26 +2579,26 @@ State,New York,All,2019-20,16,26.3,10,"1,129","4,329",> 100%
 State,New York,All,2019-20,17,24.8,1,907,"3,658",> 100%
 State,New York,All,2019-20,18,20.6,2,638,"3,109",> 100%
 State,New York,All,2019-20,19,18.2,2,505,"2,783",> 100%
-State,New York,All,2019-20,20,16.9,0,425,"2,516",> 100%
+State,New York,All,2019-20,20,16.9,0,425,"2,517",> 100%
 State,New York,All,2019-20,21,14.6,2,325,"2,240",> 100%
 State,New York,All,2019-20,22,11.4,0,245,"2,144",> 100%
 State,New York,All,2019-20,23,11.3,1,224,"1,990",> 100%
 State,New York,All,2019-20,24,9.4,0,180,"1,914",> 100%
 State,New York,All,2019-20,25,8.2,0,157,"1,924",> 100%
-State,New York,All,2019-20,26,7.7,0,151,"1,964",> 100%
+State,New York,All,2019-20,26,7.7,0,152,"1,964",> 100%
 State,New York,All,2019-20,27,7.5,0,144,"1,929",> 100%
 State,New York,All,2019-20,28,7.5,0,145,"1,935",> 100%
-State,New York,All,2019-20,29,8.1,0,151,"1,866",98.20%
-State,New York,All,2019-20,30,7.1,0,130,"1,838",96.70%
+State,New York,All,2019-20,29,8.1,0,151,"1,868",98.30%
+State,New York,All,2019-20,30,7.1,0,130,"1,837",96.70%
 State,New York,All,2019-20,31,6,0,114,"1,891",99.50%
 State,New York,All,2019-20,32,7,0,131,"1,882",99%
 State,New York,All,2019-20,33,6.5,0,120,"1,852",97.50%
 State,New York,All,2019-20,34,6.3,0,119,"1,882",99%
-State,New York,All,2019-20,35,5.4,0,100,"1,854",97.60%
-State,New York,All,2019-20,36,5.9,0,107,"1,802",94.80%
+State,New York,All,2019-20,35,5.5,0,102,"1,854",97.60%
+State,New York,All,2019-20,36,6,0,108,"1,801",94.80%
 State,New York,All,2019-20,37,7.6,0,136,"1,792",94.30%
-State,New York,All,2019-20,38,7.2,0,138,"1,911",> 100%
-State,New York,All,2019-20,39,7.4,0,153,"2,080",> 100%
+State,New York,All,2019-20,38,7.2,0,137,"1,910",> 100%
+State,New York,All,2019-20,39,7.4,0,154,"2,082",> 100%
 State,North Carolina,All,2019-20,40,5.6,2,101,"1,845",> 100%
 State,North Carolina,All,2019-20,41,5.3,0,91,"1,715",> 100%
 State,North Carolina,All,2019-20,42,5.4,0,97,"1,805",> 100%
@@ -2519,14 +2623,14 @@ State,North Carolina,All,2019-20,8,7.6,27,118,"1,914",> 100%
 State,North Carolina,All,2019-20,9,7.3,32,111,"1,957",> 100%
 State,North Carolina,All,2019-20,10,6.7,24,112,"2,016",> 100%
 State,North Carolina,All,2019-20,11,6.1,14,109,"2,006",> 100%
-State,North Carolina,All,2019-20,12,7.2,25,122,"2,029",> 100%
+State,North Carolina,All,2019-20,12,7.2,25,122,"2,030",> 100%
 State,North Carolina,All,2019-20,13,8.1,15,137,"1,870",> 100%
 State,North Carolina,All,2019-20,14,8.3,9,159,"2,012",> 100%
 State,North Carolina,All,2019-20,15,8,4,156,"2,004",> 100%
 State,North Carolina,All,2019-20,16,8.3,4,165,"2,029",> 100%
 State,North Carolina,All,2019-20,17,8.4,2,173,"2,084",> 100%
 State,North Carolina,All,2019-20,18,7.2,3,138,"1,952",> 100%
-State,North Carolina,All,2019-20,19,7.6,1,154,"2,043",> 100%
+State,North Carolina,All,2019-20,19,7.6,1,154,"2,044",> 100%
 State,North Carolina,All,2019-20,20,6.8,0,140,"2,049",> 100%
 State,North Carolina,All,2019-20,21,7.3,2,146,"2,037",> 100%
 State,North Carolina,All,2019-20,22,7.5,1,149,"1,987",> 100%
@@ -2536,17 +2640,17 @@ State,North Carolina,All,2019-20,25,7,1,135,"1,931",> 100%
 State,North Carolina,All,2019-20,26,6.1,0,117,"1,932",> 100%
 State,North Carolina,All,2019-20,27,6.2,0,124,"1,992",> 100%
 State,North Carolina,All,2019-20,28,6.8,0,133,"1,948",> 100%
-State,North Carolina,All,2019-20,29,7.1,0,143,"2,009",> 100%
-State,North Carolina,All,2019-20,30,7.6,0,161,"2,119",> 100%
+State,North Carolina,All,2019-20,29,7.2,0,144,"2,011",> 100%
+State,North Carolina,All,2019-20,30,7.6,0,161,"2,122",> 100%
 State,North Carolina,All,2019-20,31,8.7,0,179,"2,060",> 100%
-State,North Carolina,All,2019-20,32,8.7,0,177,"2,028",> 100%
-State,North Carolina,All,2019-20,33,9.6,0,202,"2,095",> 100%
-State,North Carolina,All,2019-20,34,8.7,1,176,"2,028",> 100%
-State,North Carolina,All,2019-20,35,8.7,0,167,"1,923",> 100%
-State,North Carolina,All,2019-20,36,9.5,1,174,"1,839",> 100%
-State,North Carolina,All,2019-20,37,8,1,132,"1,657",98%
-State,North Carolina,All,2019-20,38,9.1,0,146,"1,604",94.90%
-State,North Carolina,All,2019-20,39,9.3,0,109,"1,172",69.30%
+State,North Carolina,All,2019-20,32,8.7,0,178,"2,036",> 100%
+State,North Carolina,All,2019-20,33,9.8,0,207,"2,113",> 100%
+State,North Carolina,All,2019-20,34,8.7,1,179,"2,058",> 100%
+State,North Carolina,All,2019-20,35,8.8,0,173,"1,974",> 100%
+State,North Carolina,All,2019-20,36,9.6,1,188,"1,968",> 100%
+State,North Carolina,All,2019-20,37,8,1,147,"1,845",> 100%
+State,North Carolina,All,2019-20,38,8.6,0,166,"1,924",> 100%
+State,North Carolina,All,2019-20,39,9.6,0,145,"1,514",89.60%
 State,North Dakota,All,2019-20,40,5.9,0,7,119,99.50%
 State,North Dakota,All,2019-20,41,4.4,0,5,113,94.50%
 State,North Dakota,All,2019-20,42,11.6,0,17,146,> 100%
@@ -2613,44 +2717,44 @@ State,Ohio,All,2019-20,50,4.6,1,113,"2,499",> 100%
 State,Ohio,All,2019-20,51,4.6,2,112,"2,461",> 100%
 State,Ohio,All,2019-20,52,5,3,125,"2,541",> 100%
 State,Ohio,All,2019-20,1,6,15,138,"2,558",> 100%
-State,Ohio,All,2019-20,2,6.5,13,159,"2,632",> 100%
+State,Ohio,All,2019-20,2,6.5,13,159,"2,634",> 100%
 State,Ohio,All,2019-20,3,6.7,10,155,"2,473",> 100%
 State,Ohio,All,2019-20,4,5.8,19,129,"2,563",> 100%
-State,Ohio,All,2019-20,5,6.3,27,130,"2,498",> 100%
+State,Ohio,All,2019-20,5,6.3,27,130,"2,499",> 100%
 State,Ohio,All,2019-20,6,6,18,135,"2,530",> 100%
-State,Ohio,All,2019-20,7,6.6,24,141,"2,487",> 100%
+State,Ohio,All,2019-20,7,6.6,24,141,"2,488",> 100%
 State,Ohio,All,2019-20,8,5.4,18,120,"2,535",> 100%
 State,Ohio,All,2019-20,9,6.4,29,130,"2,473",> 100%
 State,Ohio,All,2019-20,10,6.8,22,148,"2,508",> 100%
 State,Ohio,All,2019-20,11,6.9,40,139,"2,577",> 100%
 State,Ohio,All,2019-20,12,7.1,26,152,"2,515",> 100%
 State,Ohio,All,2019-20,13,8.7,22,198,"2,526",> 100%
-State,Ohio,All,2019-20,14,8.2,10,201,"2,586",> 100%
+State,Ohio,All,2019-20,14,8.2,10,202,"2,586",> 100%
 State,Ohio,All,2019-20,15,9.9,7,252,"2,621",> 100%
-State,Ohio,All,2019-20,16,10.6,5,276,"2,653",> 100%
-State,Ohio,All,2019-20,17,8.9,6,244,"2,821",> 100%
+State,Ohio,All,2019-20,16,10.6,5,276,"2,654",> 100%
+State,Ohio,All,2019-20,17,8.9,6,244,"2,822",> 100%
 State,Ohio,All,2019-20,18,8.9,2,242,"2,728",> 100%
 State,Ohio,All,2019-20,19,7.4,2,192,"2,607",> 100%
 State,Ohio,All,2019-20,20,8.4,1,225,"2,693",> 100%
-State,Ohio,All,2019-20,21,7.4,0,198,"2,673",> 100%
-State,Ohio,All,2019-20,22,6.7,0,170,"2,525",> 100%
+State,Ohio,All,2019-20,21,7.4,0,198,"2,674",> 100%
+State,Ohio,All,2019-20,22,6.7,0,170,"2,526",> 100%
 State,Ohio,All,2019-20,23,7.5,0,192,"2,570",> 100%
 State,Ohio,All,2019-20,24,6.3,1,150,"2,414",> 100%
-State,Ohio,All,2019-20,25,5,0,119,"2,399",> 100%
+State,Ohio,All,2019-20,25,5,0,119,"2,400",> 100%
 State,Ohio,All,2019-20,26,5.3,1,127,"2,404",> 100%
 State,Ohio,All,2019-20,27,5.1,1,128,"2,516",> 100%
 State,Ohio,All,2019-20,28,6.4,1,161,"2,528",> 100%
-State,Ohio,All,2019-20,29,6.7,1,168,"2,518",> 100%
-State,Ohio,All,2019-20,30,7.5,0,187,"2,478",> 100%
-State,Ohio,All,2019-20,31,6.7,0,175,"2,593",> 100%
-State,Ohio,All,2019-20,32,7.7,0,196,"2,562",> 100%
+State,Ohio,All,2019-20,29,6.7,1,168,"2,519",> 100%
+State,Ohio,All,2019-20,30,7.5,0,187,"2,479",> 100%
+State,Ohio,All,2019-20,31,6.7,0,175,"2,594",> 100%
+State,Ohio,All,2019-20,32,7.6,0,196,"2,564",> 100%
 State,Ohio,All,2019-20,33,6.3,0,162,"2,577",> 100%
-State,Ohio,All,2019-20,34,7.3,1,187,"2,575",> 100%
-State,Ohio,All,2019-20,35,7,1,182,"2,617",> 100%
+State,Ohio,All,2019-20,34,7.3,1,187,"2,577",> 100%
+State,Ohio,All,2019-20,35,7,1,182,"2,618",> 100%
 State,Ohio,All,2019-20,36,6.7,0,164,"2,436",> 100%
-State,Ohio,All,2019-20,37,6.9,1,175,"2,534",> 100%
+State,Ohio,All,2019-20,37,7,1,176,"2,538",> 100%
 State,Ohio,All,2019-20,38,5.7,0,140,"2,460",> 100%
-State,Ohio,All,2019-20,39,6,0,156,"2,612",> 100%
+State,Ohio,All,2019-20,39,6,0,156,"2,613",> 100%
 State,Oklahoma,All,2019-20,40,6.9,1,48,709,94.60%
 State,Oklahoma,All,2019-20,41,7.1,0,52,730,97.40%
 State,Oklahoma,All,2019-20,42,7.5,0,61,809,> 100%
@@ -2666,8 +2770,8 @@ State,Oklahoma,All,2019-20,51,8.5,3,69,845,> 100%
 State,Oklahoma,All,2019-20,52,9.7,4,74,807,> 100%
 State,Oklahoma,All,2019-20,1,9.6,7,82,928,> 100%
 State,Oklahoma,All,2019-20,2,9.1,9,69,855,> 100%
-State,Oklahoma,All,2019-20,3,9.3,5,76,871,> 100%
-State,Oklahoma,All,2019-20,4,9.6,1,79,833,> 100%
+State,Oklahoma,All,2019-20,3,9.3,5,76,872,> 100%
+State,Oklahoma,All,2019-20,4,9.6,1,79,834,> 100%
 State,Oklahoma,All,2019-20,5,10.7,8,82,845,> 100%
 State,Oklahoma,All,2019-20,6,8.2,7,61,827,> 100%
 State,Oklahoma,All,2019-20,7,11.3,9,85,833,> 100%
@@ -2692,17 +2796,17 @@ State,Oklahoma,All,2019-20,25,8.2,0,62,755,> 100%
 State,Oklahoma,All,2019-20,26,8.3,0,65,779,> 100%
 State,Oklahoma,All,2019-20,27,6.8,0,55,812,> 100%
 State,Oklahoma,All,2019-20,28,8.3,0,66,793,> 100%
-State,Oklahoma,All,2019-20,29,7.9,0,64,806,> 100%
+State,Oklahoma,All,2019-20,29,7.9,0,64,807,> 100%
 State,Oklahoma,All,2019-20,30,9.5,1,86,917,> 100%
 State,Oklahoma,All,2019-20,31,10.6,0,97,917,> 100%
 State,Oklahoma,All,2019-20,32,10.3,0,86,835,> 100%
 State,Oklahoma,All,2019-20,33,11.6,0,103,886,> 100%
-State,Oklahoma,All,2019-20,34,10.2,0,92,899,> 100%
-State,Oklahoma,All,2019-20,35,9.2,1,77,851,> 100%
-State,Oklahoma,All,2019-20,36,9.8,0,84,853,> 100%
-State,Oklahoma,All,2019-20,37,11.6,1,94,818,> 100%
-State,Oklahoma,All,2019-20,38,9.3,0,76,819,> 100%
-State,Oklahoma,All,2019-20,39,11.5,0,109,948,> 100%
+State,Oklahoma,All,2019-20,34,10.3,0,93,900,> 100%
+State,Oklahoma,All,2019-20,35,9.3,1,78,852,> 100%
+State,Oklahoma,All,2019-20,36,9.8,0,84,854,> 100%
+State,Oklahoma,All,2019-20,37,11.6,1,94,819,> 100%
+State,Oklahoma,All,2019-20,38,9.2,0,75,819,> 100%
+State,Oklahoma,All,2019-20,39,11.6,0,110,951,> 100%
 State,Oregon,All,2019-20,40,4.3,0,31,724,> 100%
 State,Oregon,All,2019-20,41,4.8,0,33,681,> 100%
 State,Oregon,All,2019-20,42,4.3,0,32,742,> 100%
@@ -2725,7 +2829,7 @@ State,Oregon,All,2019-20,6,6,6,38,732,> 100%
 State,Oregon,All,2019-20,7,5.2,1,39,771,> 100%
 State,Oregon,All,2019-20,8,5.4,5,35,736,> 100%
 State,Oregon,All,2019-20,9,5.6,6,35,738,> 100%
-State,Oregon,All,2019-20,10,5.5,10,34,796,> 100%
+State,Oregon,All,2019-20,10,5.4,10,33,796,> 100%
 State,Oregon,All,2019-20,11,6.7,11,39,748,> 100%
 State,Oregon,All,2019-20,12,7.1,4,51,777,> 100%
 State,Oregon,All,2019-20,13,6.6,5,46,776,> 100%
@@ -2771,7 +2875,7 @@ State,Pennsylvania,All,2019-20,52,5.1,4,138,"2,760",> 100%
 State,Pennsylvania,All,2019-20,1,6.7,17,169,"2,771",> 100%
 State,Pennsylvania,All,2019-20,2,6.1,18,153,"2,808",> 100%
 State,Pennsylvania,All,2019-20,3,6.2,14,162,"2,846",> 100%
-State,Pennsylvania,All,2019-20,4,7.2,20,178,"2,767",> 100%
+State,Pennsylvania,All,2019-20,4,7.2,20,178,"2,766",> 100%
 State,Pennsylvania,All,2019-20,5,6.4,12,165,"2,760",> 100%
 State,Pennsylvania,All,2019-20,6,5.8,19,140,"2,763",> 100%
 State,Pennsylvania,All,2019-20,7,7,24,170,"2,777",> 100%
@@ -2780,21 +2884,21 @@ State,Pennsylvania,All,2019-20,9,6.3,27,146,"2,746",> 100%
 State,Pennsylvania,All,2019-20,10,6.8,38,148,"2,748",> 100%
 State,Pennsylvania,All,2019-20,11,7.5,39,170,"2,791",> 100%
 State,Pennsylvania,All,2019-20,12,8.1,28,183,"2,594",> 100%
-State,Pennsylvania,All,2019-20,13,8.4,21,206,"2,713",> 100%
+State,Pennsylvania,All,2019-20,13,8.4,21,206,"2,714",> 100%
 State,Pennsylvania,All,2019-20,14,9.5,11,272,"2,982",> 100%
 State,Pennsylvania,All,2019-20,15,13.8,5,470,"3,443",> 100%
-State,Pennsylvania,All,2019-20,16,13.8,4,510,"3,715",> 100%
+State,Pennsylvania,All,2019-20,16,13.9,4,511,"3,716",> 100%
 State,Pennsylvania,All,2019-20,17,14.7,3,555,"3,802",> 100%
 State,Pennsylvania,All,2019-20,18,12.6,0,447,"3,550",> 100%
-State,Pennsylvania,All,2019-20,19,13,1,442,"3,412",> 100%
+State,Pennsylvania,All,2019-20,19,13,1,442,"3,413",> 100%
 State,Pennsylvania,All,2019-20,20,10.9,1,351,"3,242",> 100%
-State,Pennsylvania,All,2019-20,21,10.4,1,306,"2,956",> 100%
-State,Pennsylvania,All,2019-20,22,7.9,0,219,"2,786",> 100%
+State,Pennsylvania,All,2019-20,21,10.4,1,306,"2,955",> 100%
+State,Pennsylvania,All,2019-20,22,7.9,0,219,"2,787",> 100%
 State,Pennsylvania,All,2019-20,23,6.4,0,172,"2,708",> 100%
 State,Pennsylvania,All,2019-20,24,6.7,0,169,"2,541",> 100%
-State,Pennsylvania,All,2019-20,25,6,0,154,"2,585",> 100%
+State,Pennsylvania,All,2019-20,25,6,0,154,"2,586",> 100%
 State,Pennsylvania,All,2019-20,26,5,1,126,"2,534",> 100%
-State,Pennsylvania,All,2019-20,27,5.4,0,138,"2,551",> 100%
+State,Pennsylvania,All,2019-20,27,5.4,0,138,"2,552",> 100%
 State,Pennsylvania,All,2019-20,28,5.4,0,142,"2,644",> 100%
 State,Pennsylvania,All,2019-20,29,4.7,0,120,"2,562",> 100%
 State,Pennsylvania,All,2019-20,30,4.6,0,114,"2,499",99.10%
@@ -2802,11 +2906,11 @@ State,Pennsylvania,All,2019-20,31,5.4,0,141,"2,633",> 100%
 State,Pennsylvania,All,2019-20,32,5.4,0,136,"2,528",> 100%
 State,Pennsylvania,All,2019-20,33,4.8,0,126,"2,648",> 100%
 State,Pennsylvania,All,2019-20,34,5.5,0,143,"2,608",> 100%
-State,Pennsylvania,All,2019-20,35,5.4,0,139,"2,564",> 100%
-State,Pennsylvania,All,2019-20,36,4.6,0,118,"2,592",> 100%
-State,Pennsylvania,All,2019-20,37,4.6,0,120,"2,581",> 100%
+State,Pennsylvania,All,2019-20,35,5.4,0,139,"2,565",> 100%
+State,Pennsylvania,All,2019-20,36,4.5,0,118,"2,594",> 100%
+State,Pennsylvania,All,2019-20,37,4.6,0,120,"2,582",> 100%
 State,Pennsylvania,All,2019-20,38,5.3,0,137,"2,598",> 100%
-State,Pennsylvania,All,2019-20,39,4.4,0,117,"2,667",> 100%
+State,Pennsylvania,All,2019-20,39,4.4,0,117,"2,668",> 100%
 State,Rhode Island,All,2019-20,40,3.8,0,7,184,96.90%
 State,Rhode Island,All,2019-20,41,6.8,0,13,192,> 100%
 State,Rhode Island,All,2019-20,42,5.1,0,10,196,> 100%
@@ -2858,7 +2962,7 @@ State,Rhode Island,All,2019-20,35,3.8,0,7,184,96.90%
 State,Rhode Island,All,2019-20,36,3.6,0,7,196,> 100%
 State,Rhode Island,All,2019-20,37,5.4,0,10,186,98%
 State,Rhode Island,All,2019-20,38,10.2,0,19,186,98%
-State,Rhode Island,All,2019-20,39,5.4,0,11,204,> 100%
+State,Rhode Island,All,2019-20,39,5.4,0,11,205,> 100%
 State,South Carolina,All,2019-20,40,4.2,1,40,975,> 100%
 State,South Carolina,All,2019-20,41,4.6,0,43,925,> 100%
 State,South Carolina,All,2019-20,42,5.3,0,48,911,> 100%
@@ -2872,8 +2976,8 @@ State,South Carolina,All,2019-20,49,5.8,4,58,"1,073",> 100%
 State,South Carolina,All,2019-20,50,5.8,1,61,"1,074",> 100%
 State,South Carolina,All,2019-20,51,6.1,0,66,"1,075",> 100%
 State,South Carolina,All,2019-20,52,6.2,6,58,"1,036",> 100%
-State,South Carolina,All,2019-20,1,9.2,15,87,"1,104",> 100%
-State,South Carolina,All,2019-20,2,7.1,10,69,"1,109",> 100%
+State,South Carolina,All,2019-20,1,9.2,15,87,"1,105",> 100%
+State,South Carolina,All,2019-20,2,7.1,10,69,"1,110",> 100%
 State,South Carolina,All,2019-20,3,7.7,10,74,"1,089",> 100%
 State,South Carolina,All,2019-20,4,6.2,10,56,"1,064",> 100%
 State,South Carolina,All,2019-20,5,7.2,12,62,"1,029",> 100%
@@ -2891,7 +2995,7 @@ State,South Carolina,All,2019-20,16,7.5,1,79,"1,066",> 100%
 State,South Carolina,All,2019-20,17,7.8,0,82,"1,052",> 100%
 State,South Carolina,All,2019-20,18,9.5,1,98,"1,046",> 100%
 State,South Carolina,All,2019-20,19,9.2,0,99,"1,079",> 100%
-State,South Carolina,All,2019-20,20,6.5,0,72,"1,113",> 100%
+State,South Carolina,All,2019-20,20,6.5,0,72,"1,112",> 100%
 State,South Carolina,All,2019-20,21,5.1,0,54,"1,052",> 100%
 State,South Carolina,All,2019-20,22,6.8,0,72,"1,061",> 100%
 State,South Carolina,All,2019-20,23,8.2,0,87,"1,063",> 100%
@@ -2906,11 +3010,11 @@ State,South Carolina,All,2019-20,31,14.5,1,197,"1,366",> 100%
 State,South Carolina,All,2019-20,32,14.3,0,200,"1,396",> 100%
 State,South Carolina,All,2019-20,33,12,0,161,"1,345",> 100%
 State,South Carolina,All,2019-20,34,10.8,0,129,"1,199",> 100%
-State,South Carolina,All,2019-20,35,13,0,163,"1,255",> 100%
-State,South Carolina,All,2019-20,36,11.1,1,139,"1,258",> 100%
-State,South Carolina,All,2019-20,37,9.6,0,116,"1,210",> 100%
-State,South Carolina,All,2019-20,38,9.3,0,106,"1,141",> 100%
-State,South Carolina,All,2019-20,39,9.7,0,112,"1,153",> 100%
+State,South Carolina,All,2019-20,35,13,0,163,"1,256",> 100%
+State,South Carolina,All,2019-20,36,11.1,1,139,"1,259",> 100%
+State,South Carolina,All,2019-20,37,9.6,0,116,"1,213",> 100%
+State,South Carolina,All,2019-20,38,9.3,0,106,"1,145",> 100%
+State,South Carolina,All,2019-20,39,9.7,0,112,"1,157",> 100%
 State,South Dakota,All,2019-20,40,8.2,0,13,159,> 100%
 State,South Dakota,All,2019-20,41,8.2,0,12,146,99.90%
 State,South Dakota,All,2019-20,42,9.1,0,15,165,> 100%
@@ -2947,7 +3051,7 @@ State,South Dakota,All,2019-20,20,8.7,1,12,149,> 100%
 State,South Dakota,All,2019-20,21,10.1,0,16,158,> 100%
 State,South Dakota,All,2019-20,22,7.3,0,11,150,> 100%
 State,South Dakota,All,2019-20,23,9,0,13,145,99.20%
-State,South Dakota,All,2019-20,24,7.2,0,11,152,> 100%
+State,South Dakota,All,2019-20,24,7.2,0,11,153,> 100%
 State,South Dakota,All,2019-20,25,5.9,0,10,170,> 100%
 State,South Dakota,All,2019-20,26,3.9,0,6,153,> 100%
 State,South Dakota,All,2019-20,27,6.5,0,10,154,> 100%
@@ -2955,13 +3059,13 @@ State,South Dakota,All,2019-20,28,8.9,0,15,168,> 100%
 State,South Dakota,All,2019-20,29,6.5,0,10,155,> 100%
 State,South Dakota,All,2019-20,30,8.5,0,14,165,> 100%
 State,South Dakota,All,2019-20,31,7.6,0,11,145,99.20%
-State,South Dakota,All,2019-20,32,5.1,0,9,176,> 100%
+State,South Dakota,All,2019-20,32,5.1,0,9,177,> 100%
 State,South Dakota,All,2019-20,33,8.1,0,12,148,> 100%
 State,South Dakota,All,2019-20,34,7.9,1,11,152,> 100%
 State,South Dakota,All,2019-20,35,4.4,0,8,180,> 100%
 State,South Dakota,All,2019-20,36,9.5,0,19,200,> 100%
 State,South Dakota,All,2019-20,37,5.3,0,9,171,> 100%
-State,South Dakota,All,2019-20,38,10.6,0,18,170,> 100%
+State,South Dakota,All,2019-20,38,10.5,0,18,172,> 100%
 State,South Dakota,All,2019-20,39,11.2,0,20,179,> 100%
 State,Tennessee,All,2019-20,40,5.6,1,72,"1,307",> 100%
 State,Tennessee,All,2019-20,41,3.7,0,48,"1,292",> 100%
@@ -2979,17 +3083,17 @@ State,Tennessee,All,2019-20,52,8.7,12,121,"1,530",> 100%
 State,Tennessee,All,2019-20,1,9.2,23,121,"1,559",> 100%
 State,Tennessee,All,2019-20,2,10.8,27,145,"1,599",> 100%
 State,Tennessee,All,2019-20,3,10,16,134,"1,498",> 100%
-State,Tennessee,All,2019-20,4,8.7,18,107,"1,445",> 100%
+State,Tennessee,All,2019-20,4,8.6,18,107,"1,447",> 100%
 State,Tennessee,All,2019-20,5,8.7,12,118,"1,496",> 100%
 State,Tennessee,All,2019-20,6,8.2,14,110,"1,515",> 100%
 State,Tennessee,All,2019-20,7,8.6,15,104,"1,382",> 100%
-State,Tennessee,All,2019-20,8,7.1,11,91,"1,437",> 100%
+State,Tennessee,All,2019-20,8,7.1,11,91,"1,438",> 100%
 State,Tennessee,All,2019-20,9,8.4,15,104,"1,425",> 100%
-State,Tennessee,All,2019-20,10,8.4,13,117,"1,550",> 100%
+State,Tennessee,All,2019-20,10,8.4,13,117,"1,549",> 100%
 State,Tennessee,All,2019-20,11,7.8,12,107,"1,521",> 100%
 State,Tennessee,All,2019-20,12,7.9,8,106,"1,448",> 100%
 State,Tennessee,All,2019-20,13,8.6,9,117,"1,469",> 100%
-State,Tennessee,All,2019-20,14,8.9,9,126,"1,518",> 100%
+State,Tennessee,All,2019-20,14,9,9,127,"1,518",> 100%
 State,Tennessee,All,2019-20,15,10.1,3,145,"1,468",> 100%
 State,Tennessee,All,2019-20,16,7.8,0,116,"1,481",> 100%
 State,Tennessee,All,2019-20,17,7.4,0,105,"1,418",> 100%
@@ -3000,21 +3104,21 @@ State,Tennessee,All,2019-20,21,7.2,0,108,"1,504",> 100%
 State,Tennessee,All,2019-20,22,7.1,1,97,"1,386",> 100%
 State,Tennessee,All,2019-20,23,7.1,0,100,"1,414",> 100%
 State,Tennessee,All,2019-20,24,6.7,1,95,"1,436",> 100%
-State,Tennessee,All,2019-20,25,6.6,1,97,"1,494",> 100%
+State,Tennessee,All,2019-20,25,6.6,1,98,"1,494",> 100%
 State,Tennessee,All,2019-20,26,7.1,1,107,"1,520",> 100%
 State,Tennessee,All,2019-20,27,5.9,0,86,"1,459",> 100%
 State,Tennessee,All,2019-20,28,9.2,0,141,"1,538",> 100%
 State,Tennessee,All,2019-20,29,8.8,2,137,"1,585",> 100%
 State,Tennessee,All,2019-20,30,9.9,1,160,"1,624",> 100%
-State,Tennessee,All,2019-20,31,10.1,0,165,"1,628",> 100%
+State,Tennessee,All,2019-20,31,10.1,0,165,"1,629",> 100%
 State,Tennessee,All,2019-20,32,10,1,161,"1,614",> 100%
 State,Tennessee,All,2019-20,33,10.8,0,168,"1,559",> 100%
 State,Tennessee,All,2019-20,34,9.8,0,157,"1,599",> 100%
-State,Tennessee,All,2019-20,35,10.7,0,173,"1,616",> 100%
-State,Tennessee,All,2019-20,36,9.5,0,146,"1,535",> 100%
-State,Tennessee,All,2019-20,37,11,0,181,"1,641",> 100%
-State,Tennessee,All,2019-20,38,10.9,1,164,"1,516",> 100%
-State,Tennessee,All,2019-20,39,11.3,0,186,"1,648",> 100%
+State,Tennessee,All,2019-20,35,10.7,0,173,"1,615",> 100%
+State,Tennessee,All,2019-20,36,9.4,0,145,"1,535",> 100%
+State,Tennessee,All,2019-20,37,11.1,0,182,"1,642",> 100%
+State,Tennessee,All,2019-20,38,10.9,1,164,"1,518",> 100%
+State,Tennessee,All,2019-20,39,11.3,0,186,"1,650",> 100%
 State,Texas,All,2019-20,40,5.2,2,196,"3,804",> 100%
 State,Texas,All,2019-20,41,6,2,226,"3,829",> 100%
 State,Texas,All,2019-20,42,6.4,2,248,"3,897",> 100%
@@ -3035,11 +3139,11 @@ State,Texas,All,2019-20,4,8,30,297,"4,065",> 100%
 State,Texas,All,2019-20,5,7.3,30,270,"4,118",> 100%
 State,Texas,All,2019-20,6,7.4,36,278,"4,237",> 100%
 State,Texas,All,2019-20,7,7.9,44,293,"4,292",> 100%
-State,Texas,All,2019-20,8,7.4,33,272,"4,145",> 100%
+State,Texas,All,2019-20,8,7.4,33,272,"4,146",> 100%
 State,Texas,All,2019-20,9,8.2,38,298,"4,075",> 100%
 State,Texas,All,2019-20,10,7.5,42,269,"4,136",> 100%
 State,Texas,All,2019-20,11,8.1,32,302,"4,108",> 100%
-State,Texas,All,2019-20,12,8.4,22,328,"4,174",> 100%
+State,Texas,All,2019-20,12,8.4,22,329,"4,175",> 100%
 State,Texas,All,2019-20,13,8.4,15,337,"4,190",> 100%
 State,Texas,All,2019-20,14,8.9,6,363,"4,135",> 100%
 State,Texas,All,2019-20,15,9.6,3,401,"4,213",> 100%
@@ -3050,23 +3154,23 @@ State,Texas,All,2019-20,19,8.5,3,355,"4,229",> 100%
 State,Texas,All,2019-20,20,8.6,1,363,"4,240",> 100%
 State,Texas,All,2019-20,21,8.2,4,342,"4,200",> 100%
 State,Texas,All,2019-20,22,8.6,4,347,"4,100",> 100%
-State,Texas,All,2019-20,23,7.3,1,302,"4,171",> 100%
+State,Texas,All,2019-20,23,7.3,1,302,"4,170",> 100%
 State,Texas,All,2019-20,24,7.2,1,309,"4,333",> 100%
-State,Texas,All,2019-20,25,8.8,1,391,"4,468",> 100%
-State,Texas,All,2019-20,26,9.1,2,410,"4,527",> 100%
-State,Texas,All,2019-20,27,11.8,0,588,"4,967",> 100%
-State,Texas,All,2019-20,28,16.3,4,923,"5,689",> 100%
-State,Texas,All,2019-20,29,18.8,2,"1,163","6,184",> 100%
+State,Texas,All,2019-20,25,8.8,1,391,"4,470",> 100%
+State,Texas,All,2019-20,26,9.1,2,410,"4,529",> 100%
+State,Texas,All,2019-20,27,11.8,0,588,"4,968",> 100%
+State,Texas,All,2019-20,28,16.3,4,923,"5,692",> 100%
+State,Texas,All,2019-20,29,18.8,2,"1,163","6,185",> 100%
 State,Texas,All,2019-20,30,18.9,2,"1,176","6,234",> 100%
 State,Texas,All,2019-20,31,19.7,3,"1,156","5,876",> 100%
-State,Texas,All,2019-20,32,17.6,3,992,"5,638",> 100%
-State,Texas,All,2019-20,33,17,3,965,"5,695",> 100%
-State,Texas,All,2019-20,34,15.5,1,771,"4,981",> 100%
-State,Texas,All,2019-20,35,14,1,702,"5,021",> 100%
-State,Texas,All,2019-20,36,11.8,0,574,"4,861",> 100%
-State,Texas,All,2019-20,37,11.2,1,511,"4,574",> 100%
-State,Texas,All,2019-20,38,10.7,0,485,"4,513",> 100%
-State,Texas,All,2019-20,39,11.2,2,499,"4,469",> 100%
+State,Texas,All,2019-20,32,17.7,3,993,"5,642",> 100%
+State,Texas,All,2019-20,33,17,3,966,"5,698",> 100%
+State,Texas,All,2019-20,34,15.5,1,772,"4,984",> 100%
+State,Texas,All,2019-20,35,14,1,703,"5,025",> 100%
+State,Texas,All,2019-20,36,11.8,0,575,"4,868",> 100%
+State,Texas,All,2019-20,37,11.2,1,512,"4,578",> 100%
+State,Texas,All,2019-20,38,10.7,0,485,"4,518",> 100%
+State,Texas,All,2019-20,39,11.2,2,500,"4,474",> 100%
 State,Utah,All,2019-20,40,6.2,1,19,322,97.80%
 State,Utah,All,2019-20,41,4.6,0,16,349,> 100%
 State,Utah,All,2019-20,42,2.5,0,9,354,> 100%
@@ -3184,10 +3288,10 @@ State,Virginia,All,2019-20,49,5.7,3,74,"1,353",> 100%
 State,Virginia,All,2019-20,50,4.9,0,69,"1,417",> 100%
 State,Virginia,All,2019-20,51,4.8,2,67,"1,429",> 100%
 State,Virginia,All,2019-20,52,5.3,3,72,"1,426",> 100%
-State,Virginia,All,2019-20,1,6.2,8,82,"1,455",> 100%
-State,Virginia,All,2019-20,2,6.1,6,89,"1,566",> 100%
-State,Virginia,All,2019-20,3,5.6,5,79,"1,494",> 100%
-State,Virginia,All,2019-20,4,6.1,16,74,"1,476",> 100%
+State,Virginia,All,2019-20,1,6.2,8,82,"1,456",> 100%
+State,Virginia,All,2019-20,2,6.1,6,89,"1,567",> 100%
+State,Virginia,All,2019-20,3,5.6,5,79,"1,495",> 100%
+State,Virginia,All,2019-20,4,6.2,16,75,"1,477",> 100%
 State,Virginia,All,2019-20,5,5.9,9,78,"1,480",> 100%
 State,Virginia,All,2019-20,6,5.1,11,67,"1,544",> 100%
 State,Virginia,All,2019-20,7,4.9,10,59,"1,403",> 100%
@@ -3208,21 +3312,21 @@ State,Virginia,All,2019-20,21,7.3,0,108,"1,478",> 100%
 State,Virginia,All,2019-20,22,6.9,1,100,"1,460",> 100%
 State,Virginia,All,2019-20,23,7.1,0,101,"1,432",> 100%
 State,Virginia,All,2019-20,24,7.7,0,111,"1,444",> 100%
-State,Virginia,All,2019-20,25,6.1,0,82,"1,337",> 100%
+State,Virginia,All,2019-20,25,6.1,0,82,"1,336",> 100%
 State,Virginia,All,2019-20,26,4.1,0,60,"1,451",> 100%
 State,Virginia,All,2019-20,27,4.6,0,65,"1,413",> 100%
 State,Virginia,All,2019-20,28,5.3,0,81,"1,520",> 100%
 State,Virginia,All,2019-20,29,7.4,1,101,"1,382",> 100%
-State,Virginia,All,2019-20,30,5.9,0,88,"1,499",> 100%
+State,Virginia,All,2019-20,30,5.9,0,88,"1,500",> 100%
 State,Virginia,All,2019-20,31,6.5,1,95,"1,483",> 100%
-State,Virginia,All,2019-20,32,5.6,0,86,"1,544",> 100%
-State,Virginia,All,2019-20,33,6.6,0,99,"1,496",> 100%
-State,Virginia,All,2019-20,34,7.1,0,104,"1,465",> 100%
-State,Virginia,All,2019-20,35,7.9,0,117,"1,473",> 100%
-State,Virginia,All,2019-20,36,7,0,105,"1,502",> 100%
-State,Virginia,All,2019-20,37,6.6,1,97,"1,488",> 100%
-State,Virginia,All,2019-20,38,6.7,0,100,"1,483",> 100%
-State,Virginia,All,2019-20,39,5,0,74,"1,470",> 100%
+State,Virginia,All,2019-20,32,5.6,0,86,"1,545",> 100%
+State,Virginia,All,2019-20,33,6.6,0,99,"1,497",> 100%
+State,Virginia,All,2019-20,34,7.2,0,105,"1,467",> 100%
+State,Virginia,All,2019-20,35,7.9,0,117,"1,475",> 100%
+State,Virginia,All,2019-20,36,7,0,105,"1,507",> 100%
+State,Virginia,All,2019-20,37,6.6,1,97,"1,492",> 100%
+State,Virginia,All,2019-20,38,6.8,0,101,"1,483",> 100%
+State,Virginia,All,2019-20,39,5,0,74,"1,477",> 100%
 State,Washington,All,2019-20,40,4.5,1,47,"1,062",> 100%
 State,Washington,All,2019-20,41,5.6,0,62,"1,113",> 100%
 State,Washington,All,2019-20,42,5.4,0,59,"1,091",> 100%
@@ -3246,8 +3350,8 @@ State,Washington,All,2019-20,7,8.3,11,87,"1,187",> 100%
 State,Washington,All,2019-20,8,6.6,6,68,"1,118",> 100%
 State,Washington,All,2019-20,9,7.6,11,76,"1,139",> 100%
 State,Washington,All,2019-20,10,9.6,16,100,"1,208",> 100%
-State,Washington,All,2019-20,11,8.5,10,89,"1,171",> 100%
-State,Washington,All,2019-20,12,11.5,17,124,"1,225",> 100%
+State,Washington,All,2019-20,11,8.5,10,90,"1,171",> 100%
+State,Washington,All,2019-20,12,11.5,17,124,"1,224",> 100%
 State,Washington,All,2019-20,13,13.7,9,168,"1,293",> 100%
 State,Washington,All,2019-20,14,12.9,9,161,"1,319",> 100%
 State,Washington,All,2019-20,15,10.9,1,142,"1,317",> 100%
@@ -3262,19 +3366,19 @@ State,Washington,All,2019-20,23,4.3,0,46,"1,059",> 100%
 State,Washington,All,2019-20,24,6.1,1,66,"1,101",> 100%
 State,Washington,All,2019-20,25,5.3,0,61,"1,147",> 100%
 State,Washington,All,2019-20,26,5,0,55,"1,091",> 100%
-State,Washington,All,2019-20,27,6.8,0,77,"1,134",> 100%
-State,Washington,All,2019-20,28,7.5,0,86,"1,153",> 100%
+State,Washington,All,2019-20,27,6.8,0,77,"1,133",> 100%
+State,Washington,All,2019-20,28,7.5,0,86,"1,154",> 100%
 State,Washington,All,2019-20,29,6,0,70,"1,172",> 100%
 State,Washington,All,2019-20,30,6.8,1,80,"1,186",> 100%
 State,Washington,All,2019-20,31,7.1,1,86,"1,232",> 100%
 State,Washington,All,2019-20,32,7.1,0,86,"1,217",> 100%
-State,Washington,All,2019-20,33,6.7,0,78,"1,165",> 100%
+State,Washington,All,2019-20,33,6.7,0,78,"1,166",> 100%
 State,Washington,All,2019-20,34,6.9,0,83,"1,198",> 100%
 State,Washington,All,2019-20,35,5.8,0,65,"1,124",> 100%
-State,Washington,All,2019-20,36,5.2,0,63,"1,222",> 100%
-State,Washington,All,2019-20,37,5.9,0,67,"1,141",> 100%
-State,Washington,All,2019-20,38,7.9,1,92,"1,177",> 100%
-State,Washington,All,2019-20,39,6.7,0,78,"1,167",> 100%
+State,Washington,All,2019-20,36,5.1,0,63,"1,225",> 100%
+State,Washington,All,2019-20,37,5.9,0,67,"1,142",> 100%
+State,Washington,All,2019-20,38,7.9,1,92,"1,178",> 100%
+State,Washington,All,2019-20,39,6.6,0,77,"1,167",> 100%
 State,West Virginia,All,2019-20,40,5.4,0,25,461,> 100%
 State,West Virginia,All,2019-20,41,6.7,0,30,448,> 100%
 State,West Virginia,All,2019-20,42,5.4,0,25,465,> 100%
@@ -3311,22 +3415,22 @@ State,West Virginia,All,2019-20,20,8.9,0,42,474,> 100%
 State,West Virginia,All,2019-20,21,7.6,0,33,436,> 100%
 State,West Virginia,All,2019-20,22,7.5,0,32,428,99.20%
 State,West Virginia,All,2019-20,23,6.1,0,25,412,95.50%
-State,West Virginia,All,2019-20,24,6.9,0,32,461,> 100%
+State,West Virginia,All,2019-20,24,6.9,0,32,463,> 100%
 State,West Virginia,All,2019-20,25,6,0,25,417,96.60%
-State,West Virginia,All,2019-20,26,6.8,0,31,459,> 100%
-State,West Virginia,All,2019-20,27,7,0,30,428,99.20%
-State,West Virginia,All,2019-20,28,3.8,0,17,450,> 100%
-State,West Virginia,All,2019-20,29,6.7,0,28,421,97.60%
-State,West Virginia,All,2019-20,30,6.7,0,33,496,> 100%
-State,West Virginia,All,2019-20,31,6.1,0,28,461,> 100%
+State,West Virginia,All,2019-20,26,6.7,0,31,460,> 100%
+State,West Virginia,All,2019-20,27,7,0,30,429,99.40%
+State,West Virginia,All,2019-20,28,3.8,0,17,451,> 100%
+State,West Virginia,All,2019-20,29,6.6,0,28,422,97.80%
+State,West Virginia,All,2019-20,30,6.6,0,33,497,> 100%
+State,West Virginia,All,2019-20,31,6.3,0,29,462,> 100%
 State,West Virginia,All,2019-20,32,8.1,0,39,484,> 100%
 State,West Virginia,All,2019-20,33,6.1,0,25,409,94.80%
-State,West Virginia,All,2019-20,34,6.4,0,27,419,97.10%
-State,West Virginia,All,2019-20,35,5.9,0,24,407,94.30%
-State,West Virginia,All,2019-20,36,9.5,0,40,422,97.80%
+State,West Virginia,All,2019-20,34,6.4,0,27,422,97.80%
+State,West Virginia,All,2019-20,35,5.9,0,24,408,94.60%
+State,West Virginia,All,2019-20,36,9.4,0,40,424,98.30%
 State,West Virginia,All,2019-20,37,5.9,0,26,439,> 100%
-State,West Virginia,All,2019-20,38,8.6,0,39,456,> 100%
-State,West Virginia,All,2019-20,39,7.5,0,35,467,> 100%
+State,West Virginia,All,2019-20,38,8.7,0,40,458,> 100%
+State,West Virginia,All,2019-20,39,7.4,0,35,470,> 100%
 State,Wisconsin,All,2019-20,40,4.4,1,42,972,> 100%
 State,Wisconsin,All,2019-20,41,4,2,41,"1,086",> 100%
 State,Wisconsin,All,2019-20,42,4.4,1,47,"1,089",> 100%
@@ -3367,7 +3471,7 @@ State,Wisconsin,All,2019-20,24,3.8,0,39,"1,013",> 100%
 State,Wisconsin,All,2019-20,25,4.3,0,47,"1,086",> 100%
 State,Wisconsin,All,2019-20,26,4,0,41,"1,019",> 100%
 State,Wisconsin,All,2019-20,27,3.9,0,41,"1,046",> 100%
-State,Wisconsin,All,2019-20,28,4.1,0,43,"1,049",> 100%
+State,Wisconsin,All,2019-20,28,4.2,0,44,"1,049",> 100%
 State,Wisconsin,All,2019-20,29,4,0,42,"1,048",> 100%
 State,Wisconsin,All,2019-20,30,4.2,0,46,"1,096",> 100%
 State,Wisconsin,All,2019-20,31,4.4,0,47,"1,064",> 100%
@@ -3378,7 +3482,7 @@ State,Wisconsin,All,2019-20,35,5.1,0,56,"1,095",> 100%
 State,Wisconsin,All,2019-20,36,4.9,0,51,"1,048",> 100%
 State,Wisconsin,All,2019-20,37,4.3,0,46,"1,072",> 100%
 State,Wisconsin,All,2019-20,38,4.6,0,52,"1,130",> 100%
-State,Wisconsin,All,2019-20,39,3.9,0,43,"1,098",> 100%
+State,Wisconsin,All,2019-20,39,3.9,0,43,"1,100",> 100%
 State,Wyoming,All,2019-20,40,5.2,0,5,96,> 100%
 State,Wyoming,All,2019-20,41,3.3,0,3,92,> 100%
 State,Wyoming,All,2019-20,42,9.4,0,9,96,> 100%
@@ -3453,12 +3557,12 @@ State,New York City,All,2019-20,6,10.7,16,106,"1,142",> 100%
 State,New York City,All,2019-20,7,9.2,15,89,"1,129",> 100%
 State,New York City,All,2019-20,8,8,11,74,"1,069",> 100%
 State,New York City,All,2019-20,9,9,7,93,"1,105",> 100%
-State,New York City,All,2019-20,10,9.8,9,97,"1,087",> 100%
+State,New York City,All,2019-20,10,9.8,10,96,"1,087",> 100%
 State,New York City,All,2019-20,11,10.2,6,109,"1,128",> 100%
 State,New York City,All,2019-20,12,12.9,14,165,"1,392",> 100%
 State,New York City,All,2019-20,13,24.1,48,626,"2,798",> 100%
 State,New York City,All,2019-20,14,32.7,218,"1,869","6,381",> 100%
-State,New York City,All,2019-20,15,32.3,328,"2,264","8,023",> 100%
+State,New York City,All,2019-20,15,32.3,328,"2,265","8,023",> 100%
 State,New York City,All,2019-20,16,31.2,171,"1,729","6,093",> 100%
 State,New York City,All,2019-20,17,31.2,76,"1,227","4,172",> 100%
 State,New York City,All,2019-20,18,28.3,11,824,"2,946",> 100%
@@ -3466,22 +3570,22 @@ State,New York City,All,2019-20,19,24.5,1,524,"2,141",> 100%
 State,New York City,All,2019-20,20,19.8,0,326,"1,648",> 100%
 State,New York City,All,2019-20,21,15.9,1,214,"1,356",> 100%
 State,New York City,All,2019-20,22,12.9,0,152,"1,174",> 100%
-State,New York City,All,2019-20,23,12.1,0,137,"1,135",> 100%
+State,New York City,All,2019-20,23,12.2,0,138,"1,135",> 100%
 State,New York City,All,2019-20,24,10.7,1,116,"1,098",> 100%
 State,New York City,All,2019-20,25,10.2,0,103,"1,006",98.70%
 State,New York City,All,2019-20,26,7,1,74,"1,075",> 100%
 State,New York City,All,2019-20,27,7.2,0,70,973,95.50%
 State,New York City,All,2019-20,28,7.5,1,76,"1,029",> 100%
 State,New York City,All,2019-20,29,8.1,0,78,968,95%
-State,New York City,All,2019-20,30,8.1,0,84,"1,036",> 100%
+State,New York City,All,2019-20,30,8.1,0,84,"1,038",> 100%
 State,New York City,All,2019-20,31,8,1,78,983,96.40%
 State,New York City,All,2019-20,32,7.2,0,70,972,95.40%
 State,New York City,All,2019-20,33,6.3,0,63,999,98%
 State,New York City,All,2019-20,34,6.6,0,65,989,97%
-State,New York City,All,2019-20,35,6.2,1,60,990,97.10%
-State,New York City,All,2019-20,36,7.1,0,68,963,94.50%
-State,New York City,All,2019-20,37,7.8,0,77,988,96.90%
-State,New York City,All,2019-20,38,6.2,0,62,996,97.70%
+State,New York City,All,2019-20,35,6.2,1,60,989,97%
+State,New York City,All,2019-20,36,7.1,0,68,964,94.60%
+State,New York City,All,2019-20,37,7.8,0,77,989,97%
+State,New York City,All,2019-20,38,6.3,0,63,996,97.70%
 State,New York City,All,2019-20,39,7.1,0,71,996,97.70%
 State,Alabama,All,2018-19,40,4,0,39,967,99.50%
 State,Alabama,All,2018-19,41,5.2,1,49,957,98.50%
