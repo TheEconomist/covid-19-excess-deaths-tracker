@@ -19,7 +19,7 @@ table <- table_data %>%
   group_by(region) %>% 
   mutate(cumulative_covid_deaths = cumsum(covid_deaths)) %>% 
   # we want to count since the first 50 deaths
-  filter(cumulative_covid_deaths >= 50 | (region %in% c("Taiwan","New Zealand","Iceland") & start_date >= as.Date("2020-02-01"))) %>%
+  filter(cumulative_covid_deaths >= 50 | (region %in% c("Costa Rica","Georgia","Iceland","Mongolia","New Zealand","Singapore","Taiwan") & start_date >= as.Date("2020-02-01"))) %>%
   summarise(
     covid_deaths = round(sum(covid_deaths, na.rm=T),-1),
     excess_deaths_per_100k = round(sum(excess_deaths_per_100k, na.rm=T)),
