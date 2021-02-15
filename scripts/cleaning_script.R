@@ -1488,7 +1488,7 @@ italy_covid_source_latest <- read_csv("https://raw.githubusercontent.com/pcm-dpc
 
 # Create list of Italian comunes with reliable data
 italy_comunes_reliable <- italy_total_source_latest %>%
-  filter(GE <= 831, T_20 != "n.d.") %>% # Filter out any comunes missing data before June 30th
+  filter(GE <= 1130, T_20 != "n.d.") %>% # Filter out any comunes missing data before November 30th
   dplyr::select(COD_PROVCOM) %>%
   distinct() %>%
   pull()
@@ -1522,7 +1522,7 @@ italy_regions_weekly_total_deaths <- italy_total_source_latest %>%
   group_by(region_code,year,week) %>%
   summarise(days = n(),
             total_deaths = sum(total_deaths)) %>%
-  drop_na() %>%
+  drop_na(region_code,week) %>%
   left_join(italy_regions) %>%
   ungroup()
   
@@ -1530,6 +1530,7 @@ italy_regions_weekly_total_deaths <- italy_total_source_latest %>%
 italy_regions_weekly_covid_deaths <- italy_covid_source_latest %>%
   mutate(date = as.Date(data),
          region_code = as.numeric(codice_regione)) %>%
+  filter(date <= as.Date("2020-11-30")) %>% # Remove any missing days
   group_by(date,region_code) %>% # Group Trentino and Sudtirol together
   summarise(cumulative_deaths = sum(deceduti)) %>%
   ungroup() %>%
@@ -1558,7 +1559,6 @@ italy_regions_weekly_deaths <- italy_regions_weekly_total_deaths %>%
          end_date = start_date + days - 1,
          covid_deaths = covid_deaths,
          expected_deaths = "TBC") %>% # To be calculated
-  filter(days == 7) %>% # Remove weeks with incomplete data
   dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
   drop_na() 
