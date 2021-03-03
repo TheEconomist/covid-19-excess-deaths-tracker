@@ -10,6 +10,7 @@ Chile,Total deaths,Daily,Data from Registro Civil,https://estadisticas.sed.srcei
 Chile,Covid-19 deaths,Daily,"Data from Ministerio de Salud, via Data Science Research Peru",https://github.com/DataScienceResearchPeru/covid-19_latinoamerica/blob/master/latam_covid_19_data/time_series/time_series_deaths.csv
 Colombia,Total deaths,Weekly,Data from Departamento Administrativo Nacional de Estadistica,https://www.dane.gov.co/index.php/estadisticas-por-tema/demografia-y-poblacion/informe-de-seguimiento-defunciones-por-covid-19
 Ecuador,Total deaths,Monthly,Data from Registro Civil,https://www.registrocivil.gob.ec/cifras/
+Ecuador,Total deaths,Daily,Data from Registro Civil,https://www.registrocivil.gob.ec/cifrasdefuncion/
 Ecuador,Covid-19 deaths,Daily,"Data from Ministerio de Salud, via Data Science Research Peru",https://github.com/DataScienceResearchPeru/covid-19_latinoamerica/blob/master/latam_covid_19_data/time_series/time_series_deaths.csv
 France,Total deaths,Weekly,Data from INSEE,https://www.insee.fr/fr/statistiques/4487854
 France,Total deaths,Yearly,Data from INSEE,https://www.insee.fr/fr/information/4190491
