@@ -991,6 +991,47 @@ write.csv(egypt_monthly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
+# Step 17: import and clean El Salvador's data ---------------------------------------
+
+# Import and group El Salvador's total deaths by month
+el_salvador_monthly_total_deaths <- world_mortality_dataset %>%
+  filter(country_name == "El Salvador", year >= 2015) %>%
+  mutate(country = country_name, region = country_name, region_code = 0, population = 6420746, 
+         month = time, total_deaths = deaths,
+         start_date = as.Date(ISOdate(year,month,1)),
+         end_date = ceiling_date(start_date,unit="month")-1) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,population,total_deaths)
+
+# Group covid deaths by month
+el_salvador_monthly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(month = month(date),
+         year = year(date),
+         covid_deaths = `El Salvador`) %>%
+  dplyr::select(date,year,month,covid_deaths) %>%
+  group_by(year,month) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join monthly total deaths and monthly covid deaths together
+el_salvador_monthly_deaths <- el_salvador_monthly_total_deaths %>%
+  left_join(el_salvador_monthly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(el_salvador_monthly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/el_salvador_monthly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
 # Step 24: import and clean Estonia's data ---------------------------------------
 
 # Import and group Estonia's total deaths by week
@@ -1438,6 +1479,50 @@ write.csv(indonesia_monthly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
+# Step 17: import and clean Iran's data ---------------------------------------
+
+# Import and group Iran's total deaths by quarter
+iran_quarterly_total_deaths <- world_mortality_dataset %>%
+  filter(country_name == "Iran", year >= 2015) %>%
+  mutate(country = country_name, region = country_name, region_code = 0, population = 83183741, 
+         quarter = time, total_deaths = deaths,
+         start_date = as.Date(ISOdate(year,(quarter*3)-2,1)), 
+         end_date = ceiling_date(start_date,unit="quarter")-1) %>%
+  mutate(start_date = start_date - 11, # Use Solar Hijri dates
+         end_date = end_date - 11) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,quarter,population,total_deaths)
+
+# Group covid deaths by quarter
+iran_quarterly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(solar_hijri_date = date + 11,
+         quarter = quarter(solar_hijri_date),
+         year = year(solar_hijri_date),
+         covid_deaths = `Iran`) %>%
+  dplyr::select(date,year,quarter,covid_deaths) %>%
+  group_by(year,quarter) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join monthly total deaths and monthly covid deaths together
+iran_quarterly_deaths <- iran_quarterly_total_deaths %>%
+  left_join(iran_quarterly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,quarter,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(iran_quarterly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/iran_quarterly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
 # Step 33: import and clean Israel's data ---------------------------------------
 
 # Import and group Israel's total deaths by week
@@ -1585,6 +1670,47 @@ write.csv(bind_rows(italy_regions_weekly_deaths,italy_national_weekly_deaths) %>
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
+# Step 17: import and clean Jamaica's data ---------------------------------------
+
+# Import and group Jamaica's total deaths by month
+jamaica_monthly_total_deaths <- world_mortality_dataset %>%
+  filter(country_name == "Jamaica", year >= 2015) %>%
+  mutate(country = country_name, region = country_name, region_code = 0, population = 2726667, 
+         month = time, total_deaths = deaths,
+         start_date = as.Date(ISOdate(year,month,1)),
+         end_date = ceiling_date(start_date,unit="month")-1) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,population,total_deaths)
+
+# Group covid deaths by month
+jamaica_monthly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(month = month(date),
+         year = year(date),
+         covid_deaths = `Jamaica`) %>%
+  dplyr::select(date,year,month,covid_deaths) %>%
+  group_by(year,month) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join monthly total deaths and monthly covid deaths together
+jamaica_monthly_deaths <- jamaica_monthly_total_deaths %>%
+  left_join(jamaica_monthly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(jamaica_monthly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/jamaica_monthly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
 # Step 35: import and clean Japan's data ---------------------------------------
 
 # Import and group Japan's total deaths by month
@@ -1623,6 +1749,47 @@ write.csv(japan_monthly_deaths %>%
             mutate(start_date = format(start_date, "%Y-%m-%d"),
                    end_date = format(end_date, "%Y-%m-%d")),
           "output-data/historical-deaths/japan_monthly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 17: import and clean Kazakhstan's data ---------------------------------------
+
+# Import and group Kazakhstan's total deaths by month
+kazakhstan_monthly_total_deaths <- world_mortality_dataset %>%
+  filter(country_name == "Kazakhstan", year >= 2015) %>%
+  mutate(country = country_name, region = country_name, region_code = 0, population = 18711200, 
+         month = time, total_deaths = deaths,
+         start_date = as.Date(ISOdate(year,month,1)),
+         end_date = ceiling_date(start_date,unit="month")-1) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,population,total_deaths)
+
+# Group covid deaths by month
+kazakhstan_monthly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(month = month(date),
+         year = year(date),
+         covid_deaths = `Kazakhstan`) %>%
+  dplyr::select(date,year,month,covid_deaths) %>%
+  group_by(year,month) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join monthly total deaths and monthly covid deaths together
+kazakhstan_monthly_deaths <- kazakhstan_monthly_total_deaths %>%
+  left_join(kazakhstan_monthly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(kazakhstan_monthly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/kazakhstan_monthly_deaths.csv",
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
@@ -1831,6 +1998,47 @@ write.csv(luxembourg_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
+# Step 17: import and clean Malaysia's data ---------------------------------------
+
+# Import and group Malaysia's total deaths by quarter
+malaysia_quarterly_total_deaths <- world_mortality_dataset %>%
+  filter(country_name == "Malaysia", year >= 2015) %>%
+  mutate(country = country_name, region = country_name, region_code = 0, population = 32730000, 
+         quarter = time, total_deaths = deaths,
+         start_date = as.Date(ISOdate(year,(quarter*3)-2,1)), 
+         end_date = ceiling_date(start_date,unit="quarter")-1) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,quarter,population,total_deaths)
+
+# Group covid deaths by quarter
+malaysia_quarterly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(quarter = quarter(date),
+         year = year(date),
+         covid_deaths = `Malaysia`) %>%
+  dplyr::select(date,year,quarter,covid_deaths) %>%
+  group_by(year,quarter) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join monthly total deaths and monthly covid deaths together
+malaysia_quarterly_deaths <- malaysia_quarterly_total_deaths %>%
+  left_join(malaysia_quarterly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,quarter,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(malaysia_quarterly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/malaysia_quarterly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
 # Step 40: import and clean Malta's data ---------------------------------------
 
 # Import and group Malta's total deaths by week
@@ -1869,6 +2077,47 @@ write.csv(malta_weekly_deaths %>%
             mutate(start_date = format(start_date, "%Y-%m-%d"),
                    end_date = format(end_date, "%Y-%m-%d")),
           "output-data/historical-deaths/malta_weekly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 17: import and clean Mauritius's data ---------------------------------------
+
+# Import and group Mauritius's total deaths by month
+mauritius_monthly_total_deaths <- world_mortality_dataset %>%
+  filter(country_name == "Mauritius", year >= 2015) %>%
+  mutate(country = country_name, region = country_name, region_code = 0, population = 1265475, 
+         month = time, total_deaths = deaths,
+         start_date = as.Date(ISOdate(year,month,1)),
+         end_date = ceiling_date(start_date,unit="month")-1) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,population,total_deaths)
+
+# Group covid deaths by month
+mauritius_monthly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(month = month(date),
+         year = year(date),
+         covid_deaths = `Mauritius`) %>%
+  dplyr::select(date,year,month,covid_deaths) %>%
+  group_by(year,month) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join monthly total deaths and monthly covid deaths together
+mauritius_monthly_deaths <- mauritius_monthly_total_deaths %>%
+  left_join(mauritius_monthly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(mauritius_monthly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/mauritius_monthly_deaths.csv",
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
@@ -2113,6 +2362,47 @@ write.csv(new_zealand_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
+# Step 17: import and clean Nicaragua's data ---------------------------------------
+
+# Import and group Nicaragua's total deaths by month
+nicaragua_monthly_total_deaths <- world_mortality_dataset %>%
+  filter(country_name == "Nicaragua", year >= 2015) %>%
+  mutate(country = country_name, region = country_name, region_code = 0, population = 6486201, 
+         month = time, total_deaths = deaths,
+         start_date = as.Date(ISOdate(year,month,1)),
+         end_date = ceiling_date(start_date,unit="month")-1) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,population,total_deaths)
+
+# Group covid deaths by month
+nicaragua_monthly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(month = month(date),
+         year = year(date),
+         covid_deaths = `Nicaragua`) %>%
+  dplyr::select(date,year,month,covid_deaths) %>%
+  group_by(year,month) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join monthly total deaths and monthly covid deaths together
+nicaragua_monthly_deaths <- nicaragua_monthly_total_deaths %>%
+  left_join(nicaragua_monthly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(nicaragua_monthly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/nicaragua_monthly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
 # Step 47: import and clean North Macedonia's data ---------------------------------------
 
 # Import and group North Macedonia's total deaths by month
@@ -2233,6 +2523,88 @@ write.csv(oman_monthly_deaths %>%
             mutate(start_date = format(start_date, "%Y-%m-%d"),
                    end_date = format(end_date, "%Y-%m-%d")),
           "output-data/historical-deaths/oman_monthly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 17: import and clean Panama's data ---------------------------------------
+
+# Import and group Panama's total deaths by month
+panama_monthly_total_deaths <- world_mortality_dataset %>%
+  filter(country_name == "Panama", year >= 2015) %>%
+  mutate(country = country_name, region = country_name, region_code = 0, population = 4176869, 
+         month = time, total_deaths = deaths,
+         start_date = as.Date(ISOdate(year,month,1)),
+         end_date = ceiling_date(start_date,unit="month")-1) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,population,total_deaths)
+
+# Group covid deaths by month
+panama_monthly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(month = month(date),
+         year = year(date),
+         covid_deaths = `Panama`) %>%
+  dplyr::select(date,year,month,covid_deaths) %>%
+  group_by(year,month) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join monthly total deaths and monthly covid deaths together
+panama_monthly_deaths <- panama_monthly_total_deaths %>%
+  left_join(panama_monthly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(panama_monthly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/panama_monthly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 17: import and clean Paraguay's data ---------------------------------------
+
+# Import and group Paraguay's total deaths by month
+paraguay_monthly_total_deaths <- world_mortality_dataset %>%
+  filter(country_name == "Paraguay", year >= 2015) %>%
+  mutate(country = country_name, region = country_name, region_code = 0, population = 4176869, 
+         month = time, total_deaths = deaths,
+         start_date = as.Date(ISOdate(year,month,1)),
+         end_date = ceiling_date(start_date,unit="month")-1) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,population,total_deaths)
+
+# Group covid deaths by month
+paraguay_monthly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(month = month(date),
+         year = year(date),
+         covid_deaths = `Paraguay`) %>%
+  dplyr::select(date,year,month,covid_deaths) %>%
+  group_by(year,month) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join monthly total deaths and monthly covid deaths together
+paraguay_monthly_deaths <- paraguay_monthly_total_deaths %>%
+  left_join(paraguay_monthly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(paraguay_monthly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/paraguay_monthly_deaths.csv",
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
@@ -2960,6 +3332,47 @@ write.csv(taiwan_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
+# Step 17: import and clean Tajikistan's data ---------------------------------------
+
+# Import and group Tajikistan's total deaths by quarter
+tajikistan_quarterly_total_deaths <- world_mortality_dataset %>%
+  filter(country_name == "Tajikistan", year >= 2015) %>%
+  mutate(country = country_name, region = country_name, region_code = 0, population = 9537645, 
+         quarter = time, total_deaths = deaths,
+         start_date = as.Date(ISOdate(year,(quarter*3)-2,1)), 
+         end_date = ceiling_date(start_date,unit="quarter")-1) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,quarter,population,total_deaths)
+
+# Group covid deaths by quarter
+tajikistan_quarterly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(quarter = quarter(date),
+         year = year(date),
+         covid_deaths = `Tajikistan`) %>%
+  dplyr::select(date,year,quarter,covid_deaths) %>%
+  group_by(year,quarter) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join monthly total deaths and monthly covid deaths together
+tajikistan_quarterly_deaths <- tajikistan_quarterly_total_deaths %>%
+  left_join(tajikistan_quarterly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,quarter,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(tajikistan_quarterly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/tajikistan_quarterly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
 # Step 67: import and clean Thailand's data ---------------------------------------
 
 # Import and group Thailand's total deaths by month
@@ -2998,6 +3411,47 @@ write.csv(thailand_monthly_deaths %>%
             mutate(start_date = format(start_date, "%Y-%m-%d"),
                    end_date = format(end_date, "%Y-%m-%d")),
           "output-data/historical-deaths/thailand_monthly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 33: import and clean Tunisia's data ---------------------------------------
+
+# Import and group Tunisia's total deaths by week
+tunisia_weekly_total_deaths <- world_mortality_dataset %>%
+  filter(country_name == "Tunisia", year >= 2015) %>%
+  mutate(country = country_name, region = country_name, region_code = 0, population = 11708370, 
+         week = time, total_deaths = deaths,
+         start_date = aweek::get_date(week=week,year=year),
+         end_date = start_date + 6) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
+
+# Group covid deaths by week
+tunisia_weekly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+         covid_deaths = Tunisia) %>%
+  dplyr::select(date,year,week,covid_deaths) %>%
+  group_by(year,week) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join weekly total deaths and weekly covid deaths together
+tunisia_weekly_deaths <- tunisia_weekly_total_deaths %>%
+  left_join(tunisia_weekly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(tunisia_weekly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/tunisia_weekly_deaths.csv",
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
