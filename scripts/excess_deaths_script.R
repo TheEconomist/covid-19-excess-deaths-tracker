@@ -30,6 +30,7 @@ czech_republic_weekly_deaths <- fread("output-data/historical-deaths/czech_repub
 denmark_weekly_deaths <- fread("output-data/historical-deaths/denmark_weekly_deaths.csv")
 ecuador_monthly_deaths <- fread("output-data/historical-deaths/ecuador_monthly_deaths.csv")
 egypt_monthly_deaths <- fread("output-data/historical-deaths/egypt_monthly_deaths.csv")
+el_salvador_monthly_deaths <- fread("output-data/historical-deaths/el_salvador_monthly_deaths.csv")
 estonia_weekly_deaths <- fread("output-data/historical-deaths/estonia_weekly_deaths.csv")
 finland_weekly_deaths <- fread("output-data/historical-deaths/finland_weekly_deaths.csv")
 france_weekly_deaths <- fread("output-data/historical-deaths/france_weekly_deaths.csv")
@@ -39,24 +40,32 @@ greece_weekly_deaths <- fread("output-data/historical-deaths/greece_weekly_death
 hungary_weekly_deaths <- fread("output-data/historical-deaths/hungary_weekly_deaths.csv")
 iceland_weekly_deaths <- fread("output-data/historical-deaths/iceland_weekly_deaths.csv")
 indonesia_monthly_deaths <- fread("output-data/historical-deaths/indonesia_monthly_deaths.csv")
+iran_quarterly_deaths <- fread("output-data/historical-deaths/iran_quarterly_deaths.csv")
 israel_weekly_deaths <- fread("output-data/historical-deaths/israel_weekly_deaths.csv")
 italy_weekly_deaths <- fread("output-data/historical-deaths/italy_weekly_deaths.csv")
+jamaica_monthly_deaths <- fread("output-data/historical-deaths/jamaica_monthly_deaths.csv")
 japan_monthly_deaths <- fread("output-data/historical-deaths/japan_monthly_deaths.csv")
+kazakhstan_monthly_deaths <- fread("output-data/historical-deaths/kazakhstan_monthly_deaths.csv")
 kosovo_monthly_deaths <- fread("output-data/historical-deaths/kosovo_monthly_deaths.csv")
 kyrgyzstan_monthly_deaths <- fread("output-data/historical-deaths/kyrgyzstan_monthly_deaths.csv")
 latvia_weekly_deaths <- fread("output-data/historical-deaths/latvia_weekly_deaths.csv")
 lithuania_weekly_deaths <- fread("output-data/historical-deaths/lithuania_weekly_deaths.csv")
 luxembourg_weekly_deaths <- fread("output-data/historical-deaths/luxembourg_weekly_deaths.csv")
+malaysia_quarterly_deaths <- fread("output-data/historical-deaths/malaysia_quarterly_deaths.csv")
 malta_weekly_deaths <- fread("output-data/historical-deaths/malta_weekly_deaths.csv")
+mauritius_monthly_deaths <- fread("output-data/historical-deaths/mauritius_monthly_deaths.csv")
 mexico_weekly_deaths <- fread("output-data/historical-deaths/mexico_weekly_deaths.csv")
 moldova_monthly_deaths <- fread("output-data/historical-deaths/moldova_monthly_deaths.csv")
 mongolia_monthly_deaths <- fread("output-data/historical-deaths/mongolia_monthly_deaths.csv")
 montenegro_weekly_deaths <- fread("output-data/historical-deaths/montenegro_weekly_deaths.csv")
 netherlands_weekly_deaths <- fread("output-data/historical-deaths/netherlands_weekly_deaths.csv")
 new_zealand_weekly_deaths <- fread("output-data/historical-deaths/new_zealand_weekly_deaths.csv")
+nicaragua_monthly_deaths <- fread("output-data/historical-deaths/nicaragua_monthly_deaths.csv")
 north_macedonia_monthly_deaths <- fread("output-data/historical-deaths/north_macedonia_monthly_deaths.csv")
 norway_weekly_deaths <- fread("output-data/historical-deaths/norway_weekly_deaths.csv")
 oman_monthly_deaths <- fread("output-data/historical-deaths/oman_monthly_deaths.csv")
+panama_monthly_deaths <- fread("output-data/historical-deaths/panama_monthly_deaths.csv")
+paraguay_monthly_deaths <- fread("output-data/historical-deaths/paraguay_monthly_deaths.csv")
 peru_monthly_deaths <- fread("output-data/historical-deaths/peru_monthly_deaths.csv")
 philippines_monthly_deaths <- fread("output-data/historical-deaths/philippines_monthly_deaths.csv")
 poland_weekly_deaths <- fread("output-data/historical-deaths/poland_weekly_deaths.csv")
@@ -73,8 +82,10 @@ south_korea_weekly_deaths <- fread("output-data/historical-deaths/south_korea_we
 spain_weekly_deaths <- fread("output-data/historical-deaths/spain_weekly_deaths.csv")
 sweden_weekly_deaths <- fread("output-data/historical-deaths/sweden_weekly_deaths.csv")
 switzerland_weekly_deaths <- fread("output-data/historical-deaths/switzerland_weekly_deaths.csv")
+tajikistan_quarterly_deaths <- fread("output-data/historical-deaths/tajikistan_quarterly_deaths.csv")
 taiwan_weekly_deaths <- fread("output-data/historical-deaths/taiwan_weekly_deaths.csv")
 thailand_monthly_deaths <- fread("output-data/historical-deaths/thailand_monthly_deaths.csv")
+tunisia_weekly_deaths <- fread("output-data/historical-deaths/tunisia_weekly_deaths.csv")
 turkey_weekly_deaths <- fread("output-data/historical-deaths/turkey_weekly_deaths.csv")
 ukraine_monthly_deaths <- fread("output-data/historical-deaths/ukraine_monthly_deaths.csv")
 united_states_weekly_deaths <- fread("output-data/historical-deaths/united_states_weekly_deaths.csv")
@@ -90,13 +101,17 @@ get_excess_deaths <- function(df,expected_deaths_model,frequency="weekly",calcul
   weekly_regional_formula <- as.formula(total_deaths_per_day ~ year + week + region + region:year + region:week)
   monthly_formula <- as.formula(total_deaths_per_day ~ year + month)
   monthly_regional_formula <- as.formula(total_deaths_per_day ~ year + month + region + region:year + region:month)
+  quarterly_formula <- as.formula(total_deaths_per_day ~ year + quarter)
+  quarterly_regional_formula <- as.formula(total_deaths_per_day ~ year + quarter + region + region:year + region:quarter)
   df_regions <- length(unique(df$region))
   
   # Convert weeks and months into fixed effects
   if(frequency == "weekly") {
     df <- df %>% mutate(week = as.character(week))
-  } else {
+  } else if (frequency == "monthly") {
     df <- df %>% mutate(month = as.character(month))
+  } else if (frequency == "quarterly") {
+    df <- df %>% mutate(quarter = as.character(quarter))
   }
   
   # Identify the correct formula for the dataframe
@@ -104,10 +119,14 @@ get_excess_deaths <- function(df,expected_deaths_model,frequency="weekly",calcul
     expected_deaths_formula <- weekly_formula
   } else if (frequency == "weekly" & df_regions > 1) {
     expected_deaths_formula <- weekly_regional_formula
-  } else if (df_regions == 1) {
+  } else if (frequency == "monthly" & df_regions == 1) {
     expected_deaths_formula <- monthly_formula
-  } else {
+  } else if (frequency == "monthly" & df_regions > 1)  {
     expected_deaths_formula <- monthly_regional_formula
+  } else if (frequency == "quarterly" & df_regions == 1) {
+    expected_deaths_formula <- quarterly_formula
+  } else if (frequency == "quarterly" & df_regions > 1)  {
+    expected_deaths_formula <- quarterly_regional_formula
   }
 
   # Calculate expected deaths
@@ -138,9 +157,9 @@ get_excess_deaths <- function(df,expected_deaths_model,frequency="weekly",calcul
     expected_deaths <- df %>% filter(year >= 2020) %>%
       mutate(expected_deaths = predict(expected_deaths_model,newdata=.) * days)
     
-  } else if(frequency == "monthly") {
+  } else if(frequency %in% c("monthly","quarterly")) {
     
-    # Train an Economist monthly model
+    # Train an Economist monthly or quarterly model
     train_df <- df %>% 
       filter(end_date < as.Date("2020-03-01")) %>%
       mutate(total_deaths_per_day = total_deaths / days)
@@ -159,8 +178,8 @@ get_excess_deaths <- function(df,expected_deaths_model,frequency="weekly",calcul
            excess_deaths_per_100k = excess_deaths / population * 100000,
            excess_deaths_pct_change = ((expected_deaths + excess_deaths) / expected_deaths) - 1)
   
-  # Calculate weekly rates for monthly data
-  if(frequency == "monthly") {
+  # Calculate weekly rates for monthly and quarterly data
+  if(frequency %in% c("monthly","quarterly")) {
     
     excess_deaths <- excess_deaths %>%
       mutate(total_deaths_per_7_days = total_deaths / days * 7,
@@ -288,6 +307,11 @@ egypt_results <- get_excess_deaths(egypt_monthly_deaths,egypt_expected_deaths_mo
 saveRDS(egypt_results[[1]],"output-data/expected-deaths-models/egypt_expected_deaths_model.RDS")
 write.csv(egypt_results[[2]],"output-data/excess-deaths/egypt_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
+# Export El Salvador
+el_salvador_results <- get_excess_deaths(el_salvador_monthly_deaths,el_salvador_expected_deaths_model,"monthly",calculate=TRUE,train_model=TRUE)
+saveRDS(el_salvador_results[[1]],"output-data/expected-deaths-models/el_salvador_expected_deaths_model.RDS")
+write.csv(el_salvador_results[[2]],"output-data/excess-deaths/el_salvador_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
+
 # Export Estonia
 estonia_results <- get_excess_deaths(estonia_weekly_deaths,estonia_expected_deaths_model,"weekly",calculate=TRUE,train_model=TRUE)
 saveRDS(estonia_results[[1]],"output-data/expected-deaths-models/estonia_expected_deaths_model.RDS")
@@ -333,6 +357,11 @@ indonesia_results <- get_excess_deaths(indonesia_monthly_deaths,indonesia_expect
 saveRDS(indonesia_results[[1]],"output-data/expected-deaths-models/indonesia_expected_deaths_model.RDS")
 write.csv(indonesia_results[[2]],"output-data/excess-deaths/indonesia_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
+# Export Iran
+iran_results <- get_excess_deaths(iran_quarterly_deaths,iran_expected_deaths_model,"quarterly",calculate=TRUE,train_model=TRUE)
+saveRDS(iran_results[[1]],"output-data/expected-deaths-models/iran_expected_deaths_model.RDS")
+write.csv(iran_results[[2]],"output-data/excess-deaths/iran_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
+
 # Export Israel
 israel_results <- get_excess_deaths(israel_weekly_deaths,israel_expected_deaths_model,"weekly",calculate=TRUE,train_model=TRUE)
 saveRDS(israel_results[[1]],"output-data/expected-deaths-models/israel_expected_deaths_model.RDS")
@@ -343,10 +372,20 @@ italy_results <- get_excess_deaths(italy_weekly_deaths,italy_expected_deaths_mod
 saveRDS(italy_results[[1]],"output-data/expected-deaths-models/italy_expected_deaths_model.RDS")
 write.csv(italy_results[[2]],"output-data/excess-deaths/italy_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
+# Export Jamaica
+jamaica_results <- get_excess_deaths(jamaica_monthly_deaths,japan_expected_deaths_model,"monthly",calculate=TRUE,train_model=TRUE)
+saveRDS(jamaica_results[[1]],"output-data/expected-deaths-models/jamaica_expected_deaths_model.RDS")
+write.csv(jamaica_results[[2]],"output-data/excess-deaths/jamaica_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
+
 # Export Japan
 japan_results <- get_excess_deaths(japan_monthly_deaths,japan_expected_deaths_model,"monthly",calculate=TRUE,train_model=TRUE)
 saveRDS(japan_results[[1]],"output-data/expected-deaths-models/japan_expected_deaths_model.RDS")
 write.csv(japan_results[[2]],"output-data/excess-deaths/japan_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
+
+# Export Kazakhstan
+kazakhstan_results <- get_excess_deaths(kazakhstan_monthly_deaths,kazakhstan_expected_deaths_model,"monthly",calculate=TRUE,train_model=TRUE)
+saveRDS(kazakhstan_results[[1]],"output-data/expected-deaths-models/kazakhstan_expected_deaths_model.RDS")
+write.csv(kazakhstan_results[[2]],"output-data/excess-deaths/kazakhstan_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Kosovo
 kosovo_results <- get_excess_deaths(kosovo_monthly_deaths,kosovo_expected_deaths_model,"monthly",calculate=TRUE,train_model=TRUE)
@@ -373,10 +412,20 @@ luxembourg_results <- get_excess_deaths(luxembourg_weekly_deaths,luxembourg_expe
 saveRDS(luxembourg_results[[1]],"output-data/expected-deaths-models/luxembourg_expected_deaths_model.RDS")
 write.csv(luxembourg_results[[2]],"output-data/excess-deaths/luxembourg_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
+# Export Malaysia
+malaysia_results <- get_excess_deaths(malaysia_quarterly_deaths,malaysia_expected_deaths_model,"quarterly",calculate=TRUE,train_model=TRUE)
+saveRDS(malaysia_results[[1]],"output-data/expected-deaths-models/malaysia_expected_deaths_model.RDS")
+write.csv(malaysia_results[[2]],"output-data/excess-deaths/malaysia_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
+
 # Export Malta
 malta_results <- get_excess_deaths(malta_weekly_deaths,malta_expected_deaths_model,"weekly",calculate=TRUE,train_model=TRUE)
 saveRDS(malta_results[[1]],"output-data/expected-deaths-models/malta_expected_deaths_model.RDS")
 write.csv(malta_results[[2]],"output-data/excess-deaths/malta_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
+
+# Export Mauritius
+mauritius_results <- get_excess_deaths(mauritius_monthly_deaths,mauritius_expected_deaths_model,"monthly",calculate=TRUE,train_model=TRUE)
+saveRDS(mauritius_results[[1]],"output-data/expected-deaths-models/mauritius_expected_deaths_model.RDS")
+write.csv(mauritius_results[[2]],"output-data/excess-deaths/mauritius_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Mexico
 mexico_results <- get_excess_deaths(mexico_weekly_deaths,"none","weekly",calculate=FALSE,train_model=FALSE)
@@ -407,6 +456,11 @@ new_zealand_results <- get_excess_deaths(new_zealand_weekly_deaths,new_zealand_e
 saveRDS(new_zealand_results[[1]],"output-data/expected-deaths-models/new_zealand_expected_deaths_model.RDS")
 write.csv(new_zealand_results[[2]],"output-data/excess-deaths/new_zealand_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
+# Export Nicaragua
+nicaragua_results <- get_excess_deaths(nicaragua_monthly_deaths,nicaragua_expected_deaths_model,"monthly",calculate=TRUE,train_model=TRUE)
+saveRDS(nicaragua_results[[1]],"output-data/expected-deaths-models/nicaragua_expected_deaths_model.RDS")
+write.csv(nicaragua_results[[2]],"output-data/excess-deaths/nicaragua_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
+
 # Export North Macedonia
 north_macedonia_results <- get_excess_deaths(north_macedonia_monthly_deaths,north_macedonia_expected_deaths_model,"monthly",calculate=TRUE,train_model=TRUE)
 saveRDS(north_macedonia_results[[1]],"output-data/expected-deaths-models/north_macedonia_expected_deaths_model.RDS")
@@ -421,6 +475,16 @@ write.csv(norway_results[[2]],"output-data/excess-deaths/norway_excess_deaths.cs
 oman_results <- get_excess_deaths(oman_monthly_deaths,oman_expected_deaths_model,"monthly",calculate=TRUE,train_model=TRUE)
 saveRDS(oman_results[[1]],"output-data/expected-deaths-models/oman_expected_deaths_model.RDS")
 write.csv(oman_results[[2]],"output-data/excess-deaths/oman_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
+
+# Export Panama
+panama_results <- get_excess_deaths(panama_monthly_deaths,panama_expected_deaths_model,"monthly",calculate=TRUE,train_model=TRUE)
+saveRDS(panama_results[[1]],"output-data/expected-deaths-models/panama_expected_deaths_model.RDS")
+write.csv(panama_results[[2]],"output-data/excess-deaths/panama_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
+
+# Export Paraguay
+paraguay_results <- get_excess_deaths(paraguay_monthly_deaths,paraguay_expected_deaths_model,"monthly",calculate=TRUE,train_model=TRUE)
+saveRDS(paraguay_results[[1]],"output-data/expected-deaths-models/paraguay_expected_deaths_model.RDS")
+write.csv(paraguay_results[[2]],"output-data/excess-deaths/paraguay_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Peru
 peru_results <- get_excess_deaths(peru_monthly_deaths,peru_expected_deaths_model,"monthly",calculate=TRUE,train_model=TRUE)
@@ -500,6 +564,11 @@ switzerland_results <- get_excess_deaths(switzerland_weekly_deaths,switzerland_e
 saveRDS(switzerland_results[[1]],"output-data/expected-deaths-models/switzerland_expected_deaths_model.RDS")
 write.csv(switzerland_results[[2]],"output-data/excess-deaths/switzerland_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
+# Export Tajikistan
+tajikistan_results <- get_excess_deaths(tajikistan_quarterly_deaths,tajikistan_expected_deaths_model,"quarterly",calculate=TRUE,train_model=TRUE)
+saveRDS(tajikistan_results[[1]],"output-data/expected-deaths-models/tajikistan_expected_deaths_model.RDS")
+write.csv(tajikistan_results[[2]],"output-data/excess-deaths/tajikistan_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
+
 # Export Taiwan
 taiwan_results <- get_excess_deaths(taiwan_weekly_deaths,taiwan_expected_deaths_model,"weekly",calculate=TRUE,train_model=TRUE)
 saveRDS(taiwan_results[[1]],"output-data/expected-deaths-models/taiwan_expected_deaths_model.RDS")
@@ -509,6 +578,11 @@ write.csv(taiwan_results[[2]],"output-data/excess-deaths/taiwan_excess_deaths.cs
 thailand_results <- get_excess_deaths(thailand_monthly_deaths,thailand_expected_deaths_model,"monthly",calculate=TRUE,train_model=TRUE)
 saveRDS(thailand_results[[1]],"output-data/expected-deaths-models/thailand_expected_deaths_model.RDS")
 write.csv(thailand_results[[2]],"output-data/excess-deaths/thailand_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
+
+# Export Tunisia
+tunisia_results <- get_excess_deaths(tunisia_weekly_deaths,tunisia_expected_deaths_model,"weekly",calculate=TRUE,train_model=TRUE)
+saveRDS(tunisia_results[[1]],"output-data/expected-deaths-models/tunisia_expected_deaths_model.RDS")
+write.csv(tunisia_results[[2]],"output-data/excess-deaths/tunisia_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Turkey
 turkey_results <- get_excess_deaths(turkey_weekly_deaths,turkey_expected_deaths_model,"weekly",calculate=TRUE,train_model=TRUE)
@@ -578,6 +652,7 @@ all_weekly_excess_deaths <- bind_rows(albania_results[[2]],
                                       sweden_results[[2]],
                                       switzerland_results[[2]],
                                       taiwan_results[[2]],
+                                      tunisia_results[[2]],
                                       turkey_results[[2]],
                                       united_states_results[[2]]) %>%
   mutate(covid_deaths_per_100k = covid_deaths / population * 100000,
@@ -596,14 +671,21 @@ all_monthly_excess_deaths <- bind_rows(azerbaijan_results[[2]],
                                        costa_rica_results[[2]],
                                        ecuador_results[[2]],
                                        egypt_results[[2]],
+                                       el_salvador_results[[2]],
                                        indonesia_results[[2]],
+                                       jamaica_results[[2]],
                                        japan_results[[2]],
+                                       kazakhstan_results[[2]],
                                        kosovo_results[[2]],
                                        kyrgyzstan_results[[2]],
+                                       mauritius_results[[2]],
                                        moldova_results[[2]],
                                        mongolia_results[[2]],
+                                       nicaragua_results[[2]],
                                        north_macedonia_results[[2]],
                                        oman_results[[2]],
+                                       panama_results[[2]],
+                                       paraguay_results[[2]],
                                        peru_results[[2]],
                                        philippines_results[[2]],
                                        qatar_results[[2]],
@@ -619,4 +701,16 @@ all_monthly_excess_deaths <- bind_rows(azerbaijan_results[[2]],
 
 # Export monthly deaths
 write.csv(all_monthly_excess_deaths,"output-data/excess-deaths/all_monthly_excess_deaths.csv",
+          fileEncoding = "UTF-8",row.names=FALSE)
+
+# Combine quarterly deaths and calculate per 100,000 people and percentage change
+all_quarterly_excess_deaths <- bind_rows(iran_results[[2]],
+                                         malaysia_results[[2]],
+                                         tajikistan_results[[2]]) %>%
+  mutate(covid_deaths_per_100k = covid_deaths / population * 100000,
+         excess_deaths_per_100k = excess_deaths / population * 100000,
+         excess_deaths_pct_change = (total_deaths / expected_deaths) - 1)
+
+# Export quarterly deaths
+write.csv(all_quarterly_excess_deaths,"output-data/excess-deaths/all_quarterly_excess_deaths.csv",
           fileEncoding = "UTF-8",row.names=FALSE)
