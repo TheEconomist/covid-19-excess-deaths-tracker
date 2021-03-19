@@ -28,7 +28,7 @@ table <- table_data %>%
     non_covid_deaths = round(sum(non_covid_deaths, na.rm=T),-1),
     excess_deaths = round(sum(excess_deaths, na.rm=T),-1),
     start_date = min(start_date),
-    end_date = max(end_date),
+    end_date = max(end_date)
   ) %>% 
   arrange(-excess_deaths) %>% 
   select(region, covid_deaths, excess_deaths, excess_deaths_per_100k, start_date, end_date) %>% 
