@@ -7,8 +7,9 @@ options(scipen=999)
 # Step 2: create CSV for the table ----------------------------------------
 
 # read every csv
-table_data <- bind_rows(read_csv('output-data/excess-deaths/all_weekly_excess_deaths.csv'),
-                        read_csv('output-data/excess-deaths/all_monthly_excess_deaths.csv'))
+table_data <- bind_rows(read_csv('output-data/excess-deaths/all_weekly_excess_deaths.csv') %>% mutate(region_code = as.character(region_code)),
+                        read_csv('output-data/excess-deaths/all_monthly_excess_deaths.csv') %>% mutate(region_code = as.character(region_code)),
+                        read_csv('output-data/excess-deaths/all_quarterly_excess_deaths.csv') %>% mutate(region_code = as.character(region_code)))
 
 # we include some cities for countries that lack nationwide figures
 cities <- c('Istanbul', 'Jakarta')
@@ -19,7 +20,7 @@ table <- table_data %>%
   group_by(region) %>% 
   mutate(cumulative_covid_deaths = cumsum(covid_deaths)) %>% 
   # we want to count since the first 50 deaths
-  filter(cumulative_covid_deaths >= 50 | (region %in% c("Costa Rica","Georgia","Iceland","Mongolia","New Zealand","Singapore","Taiwan") & start_date >= as.Date("2020-02-01")),
+  filter(cumulative_covid_deaths >= 50 | (region %in% c("Costa Rica","Georgia","Iceland","Mauritius","Mongolia","New Zealand","Singapore","Taiwan") & start_date >= as.Date("2020-02-01")),
          !region %in% c("Armenia","Azerbaijan")) %>%
   summarise(
     covid_deaths = round(sum(covid_deaths, na.rm=T),-1),
