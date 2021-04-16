@@ -17,7 +17,7 @@ belarus_monthly_deaths <- fread("output-data/historical-deaths/belarus_monthly_d
 belgium_weekly_deaths <- fread("output-data/historical-deaths/belgium_weekly_deaths.csv")
 bolivia_monthly_deaths <- fread("output-data/historical-deaths/bolivia_monthly_deaths.csv")
 bosnia_and_herzegovina_monthly_deaths <- fread("output-data/historical-deaths/bosnia_and_herzegovina_monthly_deaths.csv")
-brazil_weekly_deaths <- fread("output-data/historical-deaths/brazil_weekly_deaths.csv")
+brazil_monthly_deaths <- fread("output-data/historical-deaths/brazil_monthly_deaths.csv")
 britain_weekly_deaths <- fread("output-data/historical-deaths/britain_weekly_deaths.csv")
 bulgaria_weekly_deaths <- fread("output-data/historical-deaths/bulgaria_weekly_deaths.csv")
 canada_weekly_deaths <- fread("output-data/historical-deaths/canada_weekly_deaths.csv")
@@ -244,7 +244,8 @@ saveRDS(bosnia_and_herzegovina_results[[1]],"output-data/expected-deaths-models/
 write.csv(bosnia_and_herzegovina_results[[2]],"output-data/excess-deaths/bosnia_and_herzegovina_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Brazil
-brazil_results <- get_excess_deaths(brazil_weekly_deaths,"none","weekly",calculate=FALSE,train_model=FALSE)
+brazil_results <- get_excess_deaths(brazil_monthly_deaths,brazil_expected_deaths_model,"monthly",calculate=TRUE,train_model=TRUE)
+saveRDS(brazil_results[[1]],"output-data/expected-deaths-models/brazil_expected_deaths_model.RDS")
 write.csv(brazil_results[[2]],"output-data/excess-deaths/brazil_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Britain
@@ -428,7 +429,8 @@ saveRDS(mauritius_results[[1]],"output-data/expected-deaths-models/mauritius_exp
 write.csv(mauritius_results[[2]],"output-data/excess-deaths/mauritius_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Mexico
-mexico_results <- get_excess_deaths(mexico_weekly_deaths,"none","weekly",calculate=FALSE,train_model=FALSE)
+mexico_results <- get_excess_deaths(mexico_weekly_deaths,mexico_expected_deaths_model,"weekly",calculate=TRUE,train_model=TRUE)
+saveRDS(mexico_results[[1]],"output-data/expected-deaths-models/mexico_expected_deaths_model.RDS")
 write.csv(mexico_results[[2]],"output-data/excess-deaths/mexico_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Moldova
@@ -612,7 +614,6 @@ all_weekly_excess_deaths <- bind_rows(albania_results[[2]],
                                       australia_results[[2]],
                                       austria_results[[2]],
                                       belgium_results[[2]],
-                                      brazil_results[[2]],
                                       britain_results[[2]],
                                       bulgaria_results[[2]],
                                       canada_results[[2]],
@@ -668,6 +669,7 @@ all_monthly_excess_deaths <- bind_rows(azerbaijan_results[[2]],
                                        belarus_results[[2]],
                                        bolivia_results[[2]],
                                        bosnia_and_herzegovina_results[[2]],
+                                       brazil_results[[2]],
                                        costa_rica_results[[2]],
                                        ecuador_results[[2]],
                                        egypt_results[[2]],
