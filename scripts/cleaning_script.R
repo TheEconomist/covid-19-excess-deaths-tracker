@@ -1568,7 +1568,7 @@ italy_covid_source_latest <- read_csv("https://raw.githubusercontent.com/pcm-dpc
 
 # Create list of Italian comunes with reliable data
 italy_comunes_reliable <- italy_total_source_latest %>%
-  filter(GE <= 1130, T_20 != "n.d.") %>% # Filter out any comunes missing data before November 30th
+  filter(T_20 != "n.d.") %>% # Filter out any comunes missing data before November 30th
   dplyr::select(COD_PROVCOM) %>%
   distinct() %>%
   pull()
@@ -1583,14 +1583,14 @@ italy_regions <- italy_comunes %>%
 italy_regions_weekly_total_deaths <- italy_total_source_latest %>%
   mutate(comune_code = COD_PROVCOM) %>%
   left_join(italy_comunes) %>% 
-  filter(GE <= 1130, T_20 != "n.d.") %>% # Remove any missing days
   group_by(region_code,GE) %>%
   summarise(total_deaths_2015 = sum(T_15,na.rm=T),
             total_deaths_2016 = sum(T_16,na.rm=T),
             total_deaths_2017 = sum(T_17,na.rm=T),
             total_deaths_2018 = sum(T_18,na.rm=T),
             total_deaths_2019 = sum(T_19,na.rm=T),
-            total_deaths_2020 = sum(as.numeric(T_20),na.rm=T)) %>%
+            total_deaths_2020 = sum(as.numeric(T_20),na.rm=T),
+            total_deaths_2021 = sum(as.numeric(T_21),na.rm=T)) %>%
   gather("period","total_deaths",
          -c(region_code,GE)) %>%
   ungroup() %>%
@@ -1599,6 +1599,7 @@ italy_regions_weekly_total_deaths <- italy_total_source_latest %>%
          year = as.numeric(map_chr(period,substr,14,18)),
          date = as.Date(ISOdate(year, month, day)),
          week = week(date)) %>%
+  filter(date <= as.Date("2021-01-31")) %>% # Remove any missing days
   group_by(region_code,year,week) %>%
   summarise(days = n(),
             total_deaths = sum(total_deaths)) %>%
@@ -1610,7 +1611,7 @@ italy_regions_weekly_total_deaths <- italy_total_source_latest %>%
 italy_regions_weekly_covid_deaths <- italy_covid_source_latest %>%
   mutate(date = as.Date(data),
          region_code = as.numeric(codice_regione)) %>%
-  filter(date <= as.Date("2020-11-30")) %>% # Remove any missing days
+  filter(date <= as.Date("2021-01-31")) %>% # Remove any missing days
   group_by(date,region_code) %>% # Group Trentino and Sudtirol together
   summarise(cumulative_deaths = sum(deceduti)) %>%
   ungroup() %>%
