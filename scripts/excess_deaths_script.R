@@ -8,8 +8,8 @@ library(lubridate)
 options(scipen=999)
 
 # Import data
-albania_weekly_deaths <- fread("output-data/historical-deaths/albania_weekly_deaths.csv")
-armenia_weekly_deaths <- fread("output-data/historical-deaths/armenia_weekly_deaths.csv")
+albania_monthly_deaths <- fread("output-data/historical-deaths/albania_monthly_deaths.csv")
+armenia_monthly_deaths <- fread("output-data/historical-deaths/armenia_monthly_deaths.csv")
 australia_weekly_deaths <- fread("output-data/historical-deaths/australia_weekly_deaths.csv")
 austria_weekly_deaths <- fread("output-data/historical-deaths/austria_weekly_deaths.csv")
 azerbaijan_monthly_deaths <- fread("output-data/historical-deaths/azerbaijan_monthly_deaths.csv")
@@ -34,7 +34,7 @@ el_salvador_monthly_deaths <- fread("output-data/historical-deaths/el_salvador_m
 estonia_weekly_deaths <- fread("output-data/historical-deaths/estonia_weekly_deaths.csv")
 finland_weekly_deaths <- fread("output-data/historical-deaths/finland_weekly_deaths.csv")
 france_weekly_deaths <- fread("output-data/historical-deaths/france_weekly_deaths.csv")
-georgia_weekly_deaths <- fread("output-data/historical-deaths/georgia_weekly_deaths.csv")
+georgia_monthly_deaths <- fread("output-data/historical-deaths/georgia_monthly_deaths.csv")
 germany_weekly_deaths <- fread("output-data/historical-deaths/germany_weekly_deaths.csv")
 greece_weekly_deaths <- fread("output-data/historical-deaths/greece_weekly_deaths.csv")
 hungary_weekly_deaths <- fread("output-data/historical-deaths/hungary_weekly_deaths.csv")
@@ -199,12 +199,12 @@ get_excess_deaths <- function(df,expected_deaths_model,frequency="weekly",calcul
 # Step 3: calculate excess deaths for each country ---------------------------------------
 
 # Export Albania
-albania_results <- get_excess_deaths(albania_weekly_deaths,austria_expected_deaths_model,"weekly",calculate=TRUE,train_model=TRUE)
+albania_results <- get_excess_deaths(albania_monthly_deaths,albania_expected_deaths_model,"monthly",calculate=TRUE,train_model=TRUE)
 saveRDS(albania_results[[1]],"output-data/expected-deaths-models/albania_expected_deaths_model.RDS")
 write.csv(albania_results[[2]],"output-data/excess-deaths/albania_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Armenia
-armenia_results <- get_excess_deaths(armenia_weekly_deaths,austria_expected_deaths_model,"weekly",calculate=TRUE,train_model=TRUE)
+armenia_results <- get_excess_deaths(armenia_monthly_deaths,armenia_expected_deaths_model,"monthly",calculate=TRUE,train_model=TRUE)
 saveRDS(armenia_results[[1]],"output-data/expected-deaths-models/armenia_expected_deaths_model.RDS")
 write.csv(armenia_results[[2]],"output-data/excess-deaths/armenia_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
@@ -329,7 +329,7 @@ saveRDS(france_results[[1]],"output-data/expected-deaths-models/france_expected_
 write.csv(france_results[[2]],"output-data/excess-deaths/france_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Georgia
-georgia_results <- get_excess_deaths(georgia_weekly_deaths,georgia_expected_deaths_model,"weekly",calculate=TRUE,train_model=TRUE)
+georgia_results <- get_excess_deaths(georgia_monthly_deaths,georgia_expected_deaths_model,"monthly",calculate=TRUE,train_model=TRUE)
 saveRDS(georgia_results[[1]],"output-data/expected-deaths-models/georgia_expected_deaths_model.RDS")
 write.csv(georgia_results[[2]],"output-data/excess-deaths/georgia_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
@@ -609,9 +609,7 @@ write.csv(uzbekistan_results[[2]],"output-data/excess-deaths/uzbekistan_excess_d
 # Step 4: combine weekly and monthly deaths together, and calculate deaths per 100,000 people and percentage change ---------------------------------------
 
 # Combine weekly deaths and calculate per 100,000 people and percentage change
-all_weekly_excess_deaths <- bind_rows(albania_results[[2]],
-                                      armenia_results[[2]],
-                                      australia_results[[2]],
+all_weekly_excess_deaths <- bind_rows(australia_results[[2]],
                                       austria_results[[2]],
                                       belgium_results[[2]],
                                       britain_results[[2]],
@@ -626,7 +624,6 @@ all_weekly_excess_deaths <- bind_rows(albania_results[[2]],
                                       estonia_results[[2]],
                                       finland_results[[2]],
                                       france_results[[2]],
-                                      georgia_results[[2]],
                                       germany_results[[2]],
                                       greece_results[[2]],
                                       hungary_results[[2]],
@@ -665,7 +662,9 @@ write.csv(all_weekly_excess_deaths,"output-data/excess-deaths/all_weekly_excess_
           fileEncoding = "UTF-8",row.names=FALSE)
 
 # Combine monthly deaths and calculate per 100,000 people and percentage change
-all_monthly_excess_deaths <- bind_rows(azerbaijan_results[[2]],
+all_monthly_excess_deaths <- bind_rows(albania_results[[2]],
+                                       armenia_results[[2]],
+                                       azerbaijan_results[[2]],
                                        belarus_results[[2]],
                                        bolivia_results[[2]],
                                        bosnia_and_herzegovina_results[[2]],
@@ -674,6 +673,7 @@ all_monthly_excess_deaths <- bind_rows(azerbaijan_results[[2]],
                                        ecuador_results[[2]],
                                        egypt_results[[2]],
                                        el_salvador_results[[2]],
+                                       georgia_results[[2]],
                                        indonesia_results[[2]],
                                        jamaica_results[[2]],
                                        japan_results[[2]],
