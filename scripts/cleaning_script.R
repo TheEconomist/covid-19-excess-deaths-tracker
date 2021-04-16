@@ -19,83 +19,83 @@ world_mortality_dataset <- fread("https://raw.githubusercontent.com/akarlinsky/w
 
 # Step 2: import and clean Albania's data ---------------------------------------
 
-# Import and group Albania's total deaths by week
-albania_weekly_total_deaths <- world_mortality_dataset %>%
+# Import and group Albania's total deaths by month
+albania_monthly_total_deaths <- world_mortality_dataset %>%
   filter(country_name == "Albania", year >= 2015) %>%
   mutate(country = country_name, region = country_name, region_code = 0, population = 2845955, 
-         week = time, total_deaths = deaths,
-         start_date = aweek::get_date(week=week,year=year),
-         end_date = start_date + 6) %>%
+         month = time, total_deaths = deaths,
+         start_date = as.Date(ISOdate(year,month,1)),
+         end_date = ceiling_date(start_date,unit="month")-1) %>%
   mutate(days = end_date - start_date + 1) %>%
-  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,population,total_deaths)
 
-# Group covid deaths by week
-albania_weekly_covid_deaths <- global_covid_source_latest %>%
+# Group covid deaths by month
+albania_monthly_covid_deaths <- global_covid_source_latest %>%
   filter(date >= as.Date("2020-01-01")) %>%
-  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
-         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+  mutate(month = month(date),
+         year = year(date),
          covid_deaths = Albania) %>%
-  dplyr::select(date,year,week,covid_deaths) %>%
-  group_by(year,week) %>%
+  dplyr::select(date,year,month,covid_deaths) %>%
+  group_by(year,month) %>%
   summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
   drop_na()
 
-# Join weekly total deaths and weekly covid deaths together
-albania_weekly_deaths <- albania_weekly_total_deaths %>%
-  left_join(albania_weekly_covid_deaths) %>% 
+# Join monthly total deaths and monthly covid deaths together
+albania_monthly_deaths <- albania_monthly_total_deaths %>%
+  left_join(albania_monthly_covid_deaths) %>% 
   mutate(covid_deaths = replace_na(covid_deaths,0),
          expected_deaths = "TBC") %>% # To be calculated
   ungroup() %>%
-  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
   drop_na()
 
 # Export as CSV
-write.csv(albania_weekly_deaths %>%
+write.csv(albania_monthly_deaths %>%
             mutate(start_date = format(start_date, "%Y-%m-%d"),
                    end_date = format(end_date, "%Y-%m-%d")),
-          "output-data/historical-deaths/albania_weekly_deaths.csv",
+          "output-data/historical-deaths/albania_monthly_deaths.csv",
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
 # Step 3: import and clean Armenia's data ---------------------------------------
 
-# Import and group Armenia's total deaths by week
-armenia_weekly_total_deaths <- world_mortality_dataset %>%
+# Import and group Armenia's total deaths by month
+armenia_monthly_total_deaths <- world_mortality_dataset %>%
   filter(country_name == "Armenia", year >= 2015) %>%
   mutate(country = country_name, region = country_name, region_code = 0, population = 2956900, 
-         week = time, total_deaths = deaths,
-         start_date = aweek::get_date(week=week,year=year),
-         end_date = start_date + 6) %>%
+         month = time, total_deaths = deaths,
+         start_date = as.Date(ISOdate(year,month,1)),
+         end_date = ceiling_date(start_date,unit="month")-1) %>%
   mutate(days = end_date - start_date + 1) %>%
-  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,population,total_deaths)
 
-# Group covid deaths by week
-armenia_weekly_covid_deaths <- global_covid_source_latest %>%
+# Group covid deaths by month
+armenia_monthly_covid_deaths <- global_covid_source_latest %>%
   filter(date >= as.Date("2020-01-01")) %>%
-  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
-         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+  mutate(month = month(date),
+         year = year(date),
          covid_deaths = Armenia) %>%
-  dplyr::select(date,year,week,covid_deaths) %>%
-  group_by(year,week) %>%
+  dplyr::select(date,year,month,covid_deaths) %>%
+  group_by(year,month) %>%
   summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
   drop_na()
 
-# Join weekly total deaths and weekly covid deaths together
-armenia_weekly_deaths <- armenia_weekly_total_deaths %>%
-  left_join(armenia_weekly_covid_deaths) %>% 
+# Join monthly total deaths and monthly covid deaths together
+armenia_monthly_deaths <- armenia_monthly_total_deaths %>%
+  left_join(armenia_monthly_covid_deaths) %>% 
   mutate(covid_deaths = replace_na(covid_deaths,0),
          expected_deaths = "TBC") %>% # To be calculated
   ungroup() %>%
-  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
   drop_na()
 
 # Export as CSV
-write.csv(armenia_weekly_deaths %>%
+write.csv(armenia_monthly_deaths %>%
             mutate(start_date = format(start_date, "%Y-%m-%d"),
                    end_date = format(end_date, "%Y-%m-%d")),
-          "output-data/historical-deaths/armenia_weekly_deaths.csv",
+          "output-data/historical-deaths/armenia_monthly_deaths.csv",
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
@@ -1252,42 +1252,42 @@ write.csv(bind_rows(france_regions_weekly_deaths,france_national_weekly_deaths) 
 
 # Step 27: import and clean Georgia's data ---------------------------------------
 
-# Import and group Georgia's total deaths by week
-georgia_weekly_total_deaths <- world_mortality_dataset %>%
+# Import and group Georgia's total deaths by month
+georgia_monthly_total_deaths <- world_mortality_dataset %>%
   filter(country_name == "Georgia", year >= 2015) %>%
   mutate(country = country_name, region = country_name, region_code = 0, population = 3716858, 
-         week = time, total_deaths = deaths,
-         start_date = aweek::get_date(week=week,year=year),
-         end_date = start_date + 6) %>%
+         month = time, total_deaths = deaths,
+         start_date = as.Date(ISOdate(year,month,1)),
+         end_date = ceiling_date(start_date,unit="month")-1) %>%
   mutate(days = end_date - start_date + 1) %>%
-  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,population,total_deaths)
 
-# Group covid deaths by week
-georgia_weekly_covid_deaths <- global_covid_source_latest %>%
+# Group covid deaths by month
+georgia_monthly_covid_deaths <- global_covid_source_latest %>%
   filter(date >= as.Date("2020-01-01")) %>%
-  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
-         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+  mutate(month = month(date),
+         year = year(date),
          covid_deaths = Georgia) %>%
-  dplyr::select(date,year,week,covid_deaths) %>%
-  group_by(year,week) %>%
+  dplyr::select(date,year,month,covid_deaths) %>%
+  group_by(year,month) %>%
   summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
   drop_na()
 
-# Join weekly total deaths and weekly covid deaths together
-georgia_weekly_deaths <- georgia_weekly_total_deaths %>%
-  left_join(georgia_weekly_covid_deaths) %>% 
+# Join monthly total deaths and monthly covid deaths together
+georgia_monthly_deaths <- georgia_monthly_total_deaths %>%
+  left_join(georgia_monthly_covid_deaths) %>% 
   mutate(covid_deaths = replace_na(covid_deaths,0),
          expected_deaths = "TBC") %>% # To be calculated
   ungroup() %>%
-  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
   drop_na()
 
 # Export as CSV
-write.csv(georgia_weekly_deaths %>%
+write.csv(georgia_monthly_deaths %>%
             mutate(start_date = format(start_date, "%Y-%m-%d"),
                    end_date = format(end_date, "%Y-%m-%d")),
-          "output-data/historical-deaths/georgia_weekly_deaths.csv",
+          "output-data/historical-deaths/georgia_monthly_deaths.csv",
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
