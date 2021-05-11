@@ -66,7 +66,7 @@ norway_weekly_deaths <- fread("output-data/historical-deaths/norway_weekly_death
 oman_monthly_deaths <- fread("output-data/historical-deaths/oman_monthly_deaths.csv")
 panama_monthly_deaths <- fread("output-data/historical-deaths/panama_monthly_deaths.csv")
 paraguay_monthly_deaths <- fread("output-data/historical-deaths/paraguay_monthly_deaths.csv")
-peru_monthly_deaths <- fread("output-data/historical-deaths/peru_monthly_deaths.csv")
+peru_weekly_deaths <- fread("output-data/historical-deaths/peru_weekly_deaths.csv")
 philippines_monthly_deaths <- fread("output-data/historical-deaths/philippines_monthly_deaths.csv")
 poland_weekly_deaths <- fread("output-data/historical-deaths/poland_weekly_deaths.csv")
 portugal_weekly_deaths <- fread("output-data/historical-deaths/portugal_weekly_deaths.csv")
@@ -489,7 +489,7 @@ saveRDS(paraguay_results[[1]],"output-data/expected-deaths-models/paraguay_expec
 write.csv(paraguay_results[[2]],"output-data/excess-deaths/paraguay_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Peru
-peru_results <- get_excess_deaths(peru_monthly_deaths,peru_expected_deaths_model,"monthly",calculate=TRUE,train_model=TRUE)
+peru_results <- get_excess_deaths(peru_weekly_deaths,peru_expected_deaths_model,"weekly",calculate=TRUE,train_model=TRUE)
 saveRDS(peru_results[[1]],"output-data/expected-deaths-models/peru_expected_deaths_model.RDS")
 write.csv(peru_results[[2]],"output-data/excess-deaths/peru_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
@@ -639,6 +639,7 @@ all_weekly_excess_deaths <- bind_rows(australia_results[[2]],
                                       netherlands_results[[2]],
                                       new_zealand_results[[2]],
                                       norway_results[[2]],
+                                      peru_results[[2]],
                                       poland_results[[2]],
                                       portugal_results[[2]],
                                       romania_results[[2]],
@@ -688,7 +689,6 @@ all_monthly_excess_deaths <- bind_rows(albania_results[[2]],
                                        oman_results[[2]],
                                        panama_results[[2]],
                                        paraguay_results[[2]],
-                                       peru_results[[2]],
                                        philippines_results[[2]],
                                        qatar_results[[2]],
                                        russia_results[[2]],
