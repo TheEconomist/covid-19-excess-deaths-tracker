@@ -2591,7 +2591,7 @@ write.csv(paraguay_monthly_deaths %>%
 # Import and group Peru's total deaths by week
 peru_weekly_total_deaths <- world_mortality_dataset %>%
   filter(country_name == "Peru", year >= 2015) %>%
-  mutate(country = country_name, region = country_name, region_code = 0, population = 126014024, 
+  mutate(country = country_name, region = country_name, region_code = 0, population = 32824358, 
          week = time, total_deaths = deaths,
          start_date = aweek::get_date(week=week,year=year),
          end_date = start_date + 6) %>%
