@@ -28,7 +28,7 @@ croatia_weekly_deaths <- fread("output-data/historical-deaths/croatia_weekly_dea
 cyprus_weekly_deaths <- fread("output-data/historical-deaths/cyprus_weekly_deaths.csv")
 czech_republic_weekly_deaths <- fread("output-data/historical-deaths/czech_republic_weekly_deaths.csv")
 denmark_weekly_deaths <- fread("output-data/historical-deaths/denmark_weekly_deaths.csv")
-ecuador_monthly_deaths <- fread("output-data/historical-deaths/ecuador_monthly_deaths.csv")
+ecuador_weekly_deaths <- fread("output-data/historical-deaths/ecuador_weekly_deaths.csv")
 egypt_monthly_deaths <- fread("output-data/historical-deaths/egypt_monthly_deaths.csv")
 el_salvador_monthly_deaths <- fread("output-data/historical-deaths/el_salvador_monthly_deaths.csv")
 estonia_weekly_deaths <- fread("output-data/historical-deaths/estonia_weekly_deaths.csv")
@@ -83,7 +83,7 @@ spain_weekly_deaths <- fread("output-data/historical-deaths/spain_weekly_deaths.
 sweden_weekly_deaths <- fread("output-data/historical-deaths/sweden_weekly_deaths.csv")
 switzerland_weekly_deaths <- fread("output-data/historical-deaths/switzerland_weekly_deaths.csv")
 tajikistan_quarterly_deaths <- fread("output-data/historical-deaths/tajikistan_quarterly_deaths.csv")
-taiwan_weekly_deaths <- fread("output-data/historical-deaths/taiwan_weekly_deaths.csv")
+taiwan_monthly_deaths <- fread("output-data/historical-deaths/taiwan_monthly_deaths.csv")
 thailand_monthly_deaths <- fread("output-data/historical-deaths/thailand_monthly_deaths.csv")
 tunisia_weekly_deaths <- fread("output-data/historical-deaths/tunisia_weekly_deaths.csv")
 turkey_weekly_deaths <- fread("output-data/historical-deaths/turkey_weekly_deaths.csv")
@@ -299,7 +299,7 @@ saveRDS(denmark_results[[1]],"output-data/expected-deaths-models/denmark_expecte
 write.csv(denmark_results[[2]],"output-data/excess-deaths/denmark_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Ecuador
-ecuador_results <- get_excess_deaths(ecuador_monthly_deaths,ecuador_expected_deaths_model,"monthly",calculate=TRUE,train_model=TRUE)
+ecuador_results <- get_excess_deaths(ecuador_weekly_deaths,ecuador_expected_deaths_model,"weekly",calculate=TRUE,train_model=TRUE)
 saveRDS(ecuador_results[[1]],"output-data/expected-deaths-models/ecuador_expected_deaths_model.RDS")
 write.csv(ecuador_results[[2]],"output-data/excess-deaths/ecuador_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
@@ -553,7 +553,8 @@ saveRDS(south_korea_results[[1]],"output-data/expected-deaths-models/south_korea
 write.csv(south_korea_results[[2]],"output-data/excess-deaths/south_korea_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Spain
-spain_results <- get_excess_deaths(spain_weekly_deaths,"none","weekly",calculate=FALSE,train_model=FALSE)
+spain_results <- get_excess_deaths(spain_weekly_deaths,spain_expected_deaths_model,"weekly",calculate=TRUE,train_model=TRUE)
+saveRDS(spain_results[[1]],"output-data/expected-deaths-models/spain_expected_deaths_model.RDS")
 write.csv(spain_results[[2]],"output-data/excess-deaths/spain_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Sweden
@@ -572,7 +573,7 @@ saveRDS(tajikistan_results[[1]],"output-data/expected-deaths-models/tajikistan_e
 write.csv(tajikistan_results[[2]],"output-data/excess-deaths/tajikistan_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Taiwan
-taiwan_results <- get_excess_deaths(taiwan_weekly_deaths,taiwan_expected_deaths_model,"weekly",calculate=TRUE,train_model=TRUE)
+taiwan_results <- get_excess_deaths(taiwan_monthly_deaths,taiwan_expected_deaths_model,"monthly",calculate=TRUE,train_model=TRUE)
 saveRDS(taiwan_results[[1]],"output-data/expected-deaths-models/taiwan_expected_deaths_model.RDS")
 write.csv(taiwan_results[[2]],"output-data/excess-deaths/taiwan_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
@@ -621,6 +622,7 @@ all_weekly_excess_deaths <- bind_rows(australia_results[[2]],
                                       cyprus_results[[2]],
                                       czech_republic_results[[2]],
                                       denmark_results[[2]],
+                                      ecuador_results[[2]],
                                       estonia_results[[2]],
                                       finland_results[[2]],
                                       france_results[[2]],
@@ -650,7 +652,6 @@ all_weekly_excess_deaths <- bind_rows(australia_results[[2]],
                                       spain_results[[2]],
                                       sweden_results[[2]],
                                       switzerland_results[[2]],
-                                      taiwan_results[[2]],
                                       tunisia_results[[2]],
                                       turkey_results[[2]],
                                       united_states_results[[2]]) %>%
@@ -671,7 +672,6 @@ all_monthly_excess_deaths <- bind_rows(albania_results[[2]],
                                        bosnia_and_herzegovina_results[[2]],
                                        brazil_results[[2]],
                                        costa_rica_results[[2]],
-                                       ecuador_results[[2]],
                                        egypt_results[[2]],
                                        el_salvador_results[[2]],
                                        georgia_results[[2]],
@@ -694,6 +694,7 @@ all_monthly_excess_deaths <- bind_rows(albania_results[[2]],
                                        russia_results[[2]],
                                        serbia_results[[2]],
                                        singapore_results[[2]],
+                                       taiwan_results[[2]],
                                        thailand_results[[2]],
                                        ukraine_results[[2]],
                                        uzbekistan_results[[2]]) %>%
