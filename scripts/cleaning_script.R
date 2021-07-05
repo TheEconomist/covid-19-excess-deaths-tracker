@@ -58,6 +58,47 @@ write.csv(albania_monthly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
+# Step 3: import and clean Argentina's data ---------------------------------------
+
+# Import and group Argentina's total deaths by month
+argentina_monthly_total_deaths <- world_mortality_dataset %>%
+  filter(country_name == "Argentina", year >= 2015) %>%
+  mutate(country = country_name, region = country_name, region_code = 0, population = 44938712, 
+         month = time, total_deaths = deaths,
+         start_date = as.Date(ISOdate(year,month,1)),
+         end_date = ceiling_date(start_date,unit="month")-1) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,population,total_deaths)
+
+# Group covid deaths by month
+argentina_monthly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(month = month(date),
+         year = year(date),
+         covid_deaths = Argentina) %>%
+  dplyr::select(date,year,month,covid_deaths) %>%
+  group_by(year,month) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join monthly total deaths and monthly covid deaths together
+argentina_monthly_deaths <- argentina_monthly_total_deaths %>%
+  left_join(argentina_monthly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(argentina_monthly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/argentina_monthly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
 # Step 3: import and clean Armenia's data ---------------------------------------
 
 # Import and group Armenia's total deaths by month
@@ -716,6 +757,47 @@ write.csv(croatia_weekly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
+# Step 18: import and clean Cuba's data ---------------------------------------
+
+# Import and group Cuba's total deaths by month
+cuba_monthly_total_deaths <- world_mortality_dataset %>%
+  filter(country_name == "Cuba", year >= 2015) %>%
+  mutate(country = country_name, region = country_name, region_code = 0, population = 11193470, 
+         month = time, total_deaths = deaths,
+         start_date = as.Date(ISOdate(year,month,1)),
+         end_date = ceiling_date(start_date,unit="month")-1) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,population,total_deaths)
+
+# Group covid deaths by month
+cuba_monthly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(month = month(date),
+         year = year(date),
+         covid_deaths = Cuba) %>%
+  dplyr::select(date,year,month,covid_deaths) %>%
+  group_by(year,month) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join monthly total deaths and monthly covid deaths together
+cuba_monthly_deaths <- cuba_monthly_total_deaths %>%
+  left_join(cuba_monthly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(cuba_monthly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/cuba_monthly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
 # Step 19: import and clean Cyprus's data ---------------------------------------
 
 # Import and group Cyprus's total deaths by week
@@ -1358,6 +1440,47 @@ write.csv(iran_quarterly_deaths %>%
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
+# Step 34: import and clean Ireland's data ---------------------------------------
+
+# Import and group Ireland's total deaths by month
+ireland_monthly_total_deaths <- world_mortality_dataset %>%
+  filter(country_name == "Ireland", year >= 2015) %>%
+  mutate(country = country_name, region = country_name, region_code = 0, population = 4977400, 
+         month = time, total_deaths = deaths,
+         start_date = as.Date(ISOdate(year,month,1)),
+         end_date = ceiling_date(start_date,unit="month")-1) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,population,total_deaths)
+
+# Group covid deaths by month
+ireland_monthly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(month = month(date),
+         year = year(date),
+         covid_deaths = Ireland) %>%
+  dplyr::select(date,year,month,covid_deaths) %>%
+  group_by(year,month) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join monthly total deaths and monthly covid deaths together
+ireland_monthly_deaths <- ireland_monthly_total_deaths %>%
+  left_join(ireland_monthly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(ireland_monthly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/ireland_monthly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
 # Step 35: import and clean Israel's data ---------------------------------------
 
 # Import and group Israel's total deaths by week
@@ -1683,6 +1806,47 @@ write.csv(latvia_weekly_deaths %>%
             mutate(start_date = format(start_date, "%Y-%m-%d"),
                    end_date = format(end_date, "%Y-%m-%d")),
           "output-data/historical-deaths/latvia_weekly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 42: import and clean Lebanon's data ---------------------------------------
+
+# Import and group Lebanon's total deaths by month
+lebanon_monthly_total_deaths <- world_mortality_dataset %>%
+  filter(country_name == "Lebanon", year >= 2015) %>%
+  mutate(country = country_name, region = country_name, region_code = 0, population = 6859408, 
+         month = time, total_deaths = deaths,
+         start_date = as.Date(ISOdate(year,month,1)),
+         end_date = ceiling_date(start_date,unit="month")-1) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,population,total_deaths)
+
+# Group covid deaths by month
+lebanon_monthly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(month = month(date),
+         year = year(date),
+         covid_deaths = Lebanon) %>%
+  dplyr::select(date,year,month,covid_deaths) %>%
+  group_by(year,month) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join monthly total deaths and monthly covid deaths together
+lebanon_monthly_deaths <- lebanon_monthly_total_deaths %>%
+  left_join(lebanon_monthly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(lebanon_monthly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/lebanon_monthly_deaths.csv",
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
@@ -3337,6 +3501,47 @@ write.csv(united_states_weekly_deaths %>%
             mutate(start_date = format(start_date, "%Y-%m-%d"),
                    end_date = format(end_date, "%Y-%m-%d")),
           "output-data/historical-deaths/united_states_weekly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
+
+# Step 82: import and clean Uruguay's data ---------------------------------------
+
+# Import and group Uruguay's total deaths by month
+uruguay_monthly_total_deaths <- world_mortality_dataset %>%
+  filter(country_name == "Uruguay", year >= 2015) %>%
+  mutate(country = country_name, region = country_name, region_code = 0, population = 3518552, 
+         month = time, total_deaths = deaths,
+         start_date = as.Date(ISOdate(year,month,1)),
+         end_date = ceiling_date(start_date,unit="month")-1) %>%
+  mutate(days = end_date - start_date + 1) %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,population,total_deaths)
+
+# Group covid deaths by month
+uruguay_monthly_covid_deaths <- global_covid_source_latest %>%
+  filter(date >= as.Date("2020-01-01")) %>%
+  mutate(month = month(date),
+         year = year(date),
+         covid_deaths = Uruguay) %>%
+  dplyr::select(date,year,month,covid_deaths) %>%
+  group_by(year,month) %>%
+  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+  drop_na()
+
+# Join monthly total deaths and monthly covid deaths together
+uruguay_monthly_deaths <- uruguay_monthly_total_deaths %>%
+  left_join(uruguay_monthly_covid_deaths) %>% 
+  mutate(covid_deaths = replace_na(covid_deaths,0),
+         expected_deaths = "TBC") %>% # To be calculated
+  ungroup() %>%
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,
+                population,total_deaths,covid_deaths,expected_deaths) %>%
+  drop_na()
+
+# Export as CSV
+write.csv(uruguay_monthly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/historical-deaths/uruguay_monthly_deaths.csv",
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
