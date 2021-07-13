@@ -1934,42 +1934,42 @@ write.csv(luxembourg_weekly_deaths %>%
 
 # Step 45: import and clean Malaysia's data ---------------------------------------
 
-# Import and group Malaysia's total deaths by quarter
-malaysia_quarterly_total_deaths <- world_mortality_dataset %>%
+# Import and group Malaysia's total deaths by month
+malaysia_monthly_total_deaths <- world_mortality_dataset %>%
   filter(country_name == "Malaysia", year >= 2015) %>%
   mutate(country = country_name, region = country_name, region_code = 0, population = 32730000, 
-         quarter = time, total_deaths = deaths,
-         start_date = as.Date(ISOdate(year,(quarter*3)-2,1)), 
-         end_date = ceiling_date(start_date,unit="quarter")-1) %>%
+         month = time, total_deaths = deaths,
+         start_date = as.Date(ISOdate(year,month,1)),
+         end_date = ceiling_date(start_date,unit="month")-1) %>%
   mutate(days = end_date - start_date + 1) %>%
-  dplyr::select(country,region,region_code,start_date,end_date,days,year,quarter,population,total_deaths)
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,population,total_deaths)
 
-# Group covid deaths by quarter
-malaysia_quarterly_covid_deaths <- global_covid_source_latest %>%
+# Group covid deaths by month
+malaysia_monthly_covid_deaths <- global_covid_source_latest %>%
   filter(date >= as.Date("2020-01-01")) %>%
-  mutate(quarter = quarter(date),
+  mutate(month = month(date),
          year = year(date),
-         covid_deaths = `Malaysia`) %>%
-  dplyr::select(date,year,quarter,covid_deaths) %>%
-  group_by(year,quarter) %>%
+         covid_deaths = Malaysia) %>%
+  dplyr::select(date,year,month,covid_deaths) %>%
+  group_by(year,month) %>%
   summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
   drop_na()
 
 # Join monthly total deaths and monthly covid deaths together
-malaysia_quarterly_deaths <- malaysia_quarterly_total_deaths %>%
-  left_join(malaysia_quarterly_covid_deaths) %>% 
+malaysia_monthly_deaths <- malaysia_monthly_total_deaths %>%
+  left_join(malaysia_monthly_covid_deaths) %>% 
   mutate(covid_deaths = replace_na(covid_deaths,0),
          expected_deaths = "TBC") %>% # To be calculated
   ungroup() %>%
-  dplyr::select(country,region,region_code,start_date,end_date,days,year,quarter,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,month,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
   drop_na()
 
 # Export as CSV
-write.csv(malaysia_quarterly_deaths %>%
+write.csv(malaysia_monthly_deaths %>%
             mutate(start_date = format(start_date, "%Y-%m-%d"),
                    end_date = format(end_date, "%Y-%m-%d")),
-          "output-data/historical-deaths/malaysia_quarterly_deaths.csv",
+          "output-data/historical-deaths/malaysia_monthly_deaths.csv",
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
@@ -3465,36 +3465,70 @@ write.csv(ukraine_monthly_deaths %>%
 
 # Step 82: import and clean the United States' data ---------------------------------------
 
-# Import and group the United States' total deaths by week
-united_states_weekly_total_deaths <- world_mortality_dataset %>%
-  filter(country_name == "United States", year >= 2015) %>%
-  mutate(country = country_name, region = country_name, region_code = 0, population = 331449281, 
-         week = time, total_deaths = deaths,
-         start_date = aweek::get_date(week=week,year=year)-1,
-         end_date = start_date + 6) %>%
-  mutate(days = end_date - start_date + 1) %>%
-  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
+# Import the United States' data
+united_states_states <- fread("source-data/united-states/united_states_states.csv")
+united_states_covid_source_latest <- fread("https://usafactsstatic.blob.core.windows.net/public/data/covid-19/covid_deaths_usafacts.csv")
+united_states_total_source_latest <- fread("https://data.cdc.gov/api/views/xkkf-xrst/rows.csv")
 
-# Group covid deaths by week
-united_states_weekly_covid_deaths <- global_covid_source_latest %>%
-  filter(date >= as.Date("2020-01-01")) %>%
-  mutate(week = as.numeric(str_sub(aweek::date2week(date+1,week_start=1),7,8)),
-         year = as.numeric(str_sub(aweek::date2week(date+1,week_start=1),1,4)),
-         covid_deaths = `United States`) %>%
-  dplyr::select(date,year,week,covid_deaths) %>%
-  group_by(year,week) %>%
-  summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
-  drop_na()
+# Group US states' total and expected deaths by week
+united_states_weekly_total_deaths <- united_states_total_source_latest %>%
+  filter(Type == "Predicted (weighted)", Outcome == "All causes") %>%
+  mutate(country = "United States",
+         region = case_when(State == "New York City" ~ "New York", TRUE ~ State),
+         end_date = ymd(`Week Ending Date`),
+         start_date = end_date - 6,
+         days = 7,
+         week = as.numeric(str_sub(aweek::date2week(start_date,week_start=7),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(start_date,week_start=7),1,4)),
+         total_deaths = `Observed Number`,
+         expected_deaths = `Average Expected Count`) %>%
+  left_join(united_states_states) %>%
+  group_by(country,region,region_code,start_date,end_date,days,year,week,population) %>%
+  summarise(total_deaths = sum(total_deaths),
+            expected_deaths = sum(expected_deaths)) %>%
+  drop_na() %>%
+  ungroup()
+
+# Group US states' covid deaths by week
+united_states_weekly_covid_deaths <- united_states_covid_source_latest %>%
+  gather("date","cumulative_deaths",-c(countyFIPS,`County Name`,State,StateFIPS)) %>%
+  mutate(state = State,
+         cumulative_deaths = as.numeric(cumulative_deaths)) %>%
+  group_by(state,date) %>%
+  summarise(cumulative_deaths = sum(cumulative_deaths,na.rm=T)) %>%
+  ungroup() %>%
+  mutate(date = ymd(date)) %>%
+  bind_rows(expand.grid(state = unique(united_states_covid_source_latest$State), # Bind on rows before January 21st
+                        date = seq(as.Date("2015-01-01"), as.Date("2020-01-21"), by="days"),
+                        cumulative_deaths = 0)) %>%
+  arrange(state,date) %>%
+  group_by(state) %>% # Create a lag, to calculate daily deaths from cumulative ones
+  mutate(region_code = state,
+         week = as.numeric(str_sub(aweek::date2week(date,week_start=7),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=7),1,4)),
+         previous_day_deaths = lag(cumulative_deaths, n = 1, default = NA),
+         covid_deaths = case_when(!is.na(cumulative_deaths) & !is.na(previous_day_deaths) ~ cumulative_deaths - previous_day_deaths,
+                                  !is.na(cumulative_deaths) ~ cumulative_deaths)) %>%
+  group_by(region_code,year,week) %>%
+  summarise(covid_deaths = sum(covid_deaths)) 
 
 # Join weekly total deaths and weekly covid deaths together
 united_states_weekly_deaths <- united_states_weekly_total_deaths %>%
   left_join(united_states_weekly_covid_deaths) %>% 
-  mutate(covid_deaths = replace_na(covid_deaths,0),
-         expected_deaths = "TBC") %>% # To be calculated
   ungroup() %>%
+  drop_na() %>%
+  bind_rows(united_states_weekly_total_deaths %>%
+              left_join(united_states_weekly_covid_deaths) %>% 
+              drop_na() %>%
+              group_by(country,start_date,end_date,days,year,week) %>%
+              summarise(population = sum(population),
+                        total_deaths = sum(total_deaths),
+                        covid_deaths = sum(covid_deaths),
+                        expected_deaths = sum(expected_deaths)) %>%
+              mutate(region = "United States",region_code = "USA") %>%
+              ungroup()) %>%
   dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
-                population,total_deaths,covid_deaths,expected_deaths) %>%
-  drop_na()
+                population,total_deaths,covid_deaths,expected_deaths)
 
 # Export as CSV
 write.csv(united_states_weekly_deaths %>%
