@@ -39,6 +39,7 @@ france_weekly_deaths <- fread("output-data/historical-deaths/france_weekly_death
 georgia_monthly_deaths <- fread("output-data/historical-deaths/georgia_monthly_deaths.csv")
 germany_weekly_deaths <- fread("output-data/historical-deaths/germany_weekly_deaths.csv")
 greece_weekly_deaths <- fread("output-data/historical-deaths/greece_weekly_deaths.csv")
+guatemala_weekly_deaths <- fread("output-data/historical-deaths/guatemala_weekly_deaths.csv")
 hungary_weekly_deaths <- fread("output-data/historical-deaths/hungary_weekly_deaths.csv")
 iceland_weekly_deaths <- fread("output-data/historical-deaths/iceland_weekly_deaths.csv")
 indonesia_monthly_deaths <- fread("output-data/historical-deaths/indonesia_monthly_deaths.csv")
@@ -353,6 +354,11 @@ greece_results <- get_excess_deaths(greece_weekly_deaths,greece_expected_deaths_
 saveRDS(greece_results[[1]],"output-data/expected-deaths-models/greece_expected_deaths_model.RDS")
 write.csv(greece_results[[2]],"output-data/excess-deaths/greece_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
+# Export Guatemala
+guatemala_results <- get_excess_deaths(guatemala_weekly_deaths,guatemala_expected_deaths_model,"weekly",calculate=TRUE,train_model=TRUE)
+saveRDS(guatemala_results[[1]],"output-data/expected-deaths-models/guatemala_expected_deaths_model.RDS")
+write.csv(guatemala_results[[2]],"output-data/excess-deaths/guatemala_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
+
 # Export Hungary
 hungary_results <- get_excess_deaths(hungary_weekly_deaths,hungary_expected_deaths_model,"weekly",calculate=TRUE,train_model=TRUE)
 saveRDS(hungary_results[[1]],"output-data/expected-deaths-models/hungary_expected_deaths_model.RDS")
@@ -652,6 +658,7 @@ all_weekly_excess_deaths <- bind_rows(australia_results[[2]],
                                       france_results[[2]],
                                       germany_results[[2]],
                                       greece_results[[2]],
+                                      guatemala_results[[2]],
                                       hungary_results[[2]],
                                       iceland_results[[2]],
                                       israel_results[[2]],
