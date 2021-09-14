@@ -175,6 +175,52 @@ all_quarterly_excess_deaths <- rbindlist(data[unlist(lapply(1:length(data), FUN 
          excess_deaths_per_100k = excess_deaths / population * 100000,
          excess_deaths_pct_change = (total_deaths / expected_deaths) - 1)
 
+# Check that values do not differ enormously from previous ones:
+compare_weekly <- read_csv("output-data/excess-deaths/all_weekly_excess_deaths.csv")
+compare_monthly <- read_csv("output-data/excess-deaths/all_monthly_excess_deaths.csv")
+compare_quarterly <- read_csv("output-data/excess-deaths/all_quarterly_excess_deaths.csv")
+
+# Define function to generate comparison with existing data:
+gen_comparison <- function(data1 = all_weekly_excess_deaths,
+                           data2 = compare_weekly,
+                           frequency = "week"){
+  data1 <- data.frame(data1)
+  data2 <- data.frame(data2)
+  
+compare <-        merge(data1[, c("country", "region",
+                                  "year", frequency,
+                                  "excess_deaths_per_100k",
+                                  "excess_deaths")],
+                        data2[, c("country", "region",
+                                  "year", frequency,
+                                  "excess_deaths_per_100k",
+                                  "excess_deaths")], 
+                        by = c("country", "region", "year", frequency))
+
+compare$diff <- abs(compare$excess_deaths.x - compare$excess_deaths.y)
+compare$diff_per_100k <- abs(compare$excess_deaths_per_100k.x - compare$excess_deaths_per_100k.y)
+
+return(compare_weekly)
+}
+week_comparison <- gen_comparison(data1 = all_weekly_excess_deaths,
+                    data2 = compare_weekly,
+                    frequency = "week")
+month_comparison <- gen_comparison(data1 = all_monthly_excess_deaths,
+                                  data2 = compare_monthly,
+                                  frequency = "month")
+quarter_comparison <- gen_comparison(data1 = all_quarterly_excess_deaths,
+                                  data2 = compare_quarterly,
+                                  frequency = "quarter")
+
+if(max(week_comparison$diff) > 1000 |
+   max(month_comparison$diff) > 4000 |
+   max(quarterly_comparison$diff) > 12000 |
+   max(week_comparison$diff_per_100k) > 5 |
+   max(week_comparison$diff_per_100k) > 20 |
+   max(week_comparison$diff_per_100k) > 60){
+  stop("Differences with former data is very large, please inspect manually")
+} else {
+
 # Export weekly deaths
 write.csv(all_weekly_excess_deaths,"output-data/excess-deaths/all_weekly_excess_deaths.csv",
           fileEncoding = "UTF-8",row.names=FALSE)
@@ -186,3 +232,4 @@ write.csv(all_monthly_excess_deaths,"output-data/excess-deaths/all_monthly_exces
 # Export quarterly deaths
 write.csv(all_quarterly_excess_deaths,"output-data/excess-deaths/all_quarterly_excess_deaths.csv",
           fileEncoding = "UTF-8",row.names=FALSE)
+}
