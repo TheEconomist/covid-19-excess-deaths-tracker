@@ -214,7 +214,7 @@ quarter_comparison <- gen_comparison(data1 = all_quarterly_excess_deaths,
 
 if(max(week_comparison$diff) > 1000 |
    max(month_comparison$diff) > 4000 |
-   max(quarterly_comparison$diff) > 12000 |
+   max(quarter_comparison$diff) > 12000 |
    max(week_comparison$diff_per_100k) > 5 |
    max(week_comparison$diff_per_100k) > 20 |
    max(week_comparison$diff_per_100k) > 60){
@@ -222,8 +222,8 @@ if(max(week_comparison$diff) > 1000 |
 } else {
 
 # Export weekly deaths
-write.csv(all_weekly_excess_deaths,"output-data/excess-deaths/all_weekly_excess_deaths.csv",
-          fileEncoding = "UTF-8",row.names=FALSE)
+write.csv(all_weekly_excess_deaths, 
+          "output-data/excess-deaths/all_weekly_excess_deaths.csv", fileEncoding = "UTF-8", row.names=FALSE)
 
 # Export monthly deaths
 write.csv(all_monthly_excess_deaths,"output-data/excess-deaths/all_monthly_excess_deaths.csv",
