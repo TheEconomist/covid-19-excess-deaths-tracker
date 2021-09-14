@@ -1439,45 +1439,42 @@ write.csv(indonesia_monthly_deaths %>%
 
 # Step 36: import and clean Iran's data ---------------------------------------
 
-# Import and group Iran's total deaths by quarter
-iran_quarterly_total_deaths <- world_mortality_dataset %>%
+# Import and group Iran's total deaths by week
+iran_weekly_total_deaths <- world_mortality_dataset %>%
   filter(country_name == "Iran", year >= 2015) %>%
   mutate(country = country_name, region = country_name, region_code = 0, population = 83183741, 
-         quarter = time, total_deaths = deaths,
-         start_date = as.Date(ISOdate(year,(quarter*3)-2,1)), 
-         end_date = ceiling_date(start_date,unit="quarter")-1) %>%
-  mutate(start_date = start_date - 11, # Use Solar Hijri dates
-         end_date = end_date - 11) %>%
+         week = time, total_deaths = deaths,
+         start_date = aweek::get_date(week=week,year=year),
+         end_date = start_date + 6) %>%
   mutate(days = end_date - start_date + 1) %>%
-  dplyr::select(country,region,region_code,start_date,end_date,days,year,quarter,population,total_deaths)
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
 
-# Group covid deaths by quarter
-iran_quarterly_covid_deaths <- global_covid_source_latest %>%
+# Group covid deaths by week
+iran_weekly_covid_deaths <- global_covid_source_latest %>%
   filter(date >= as.Date("2020-01-01")) %>%
-  mutate(solar_hijri_date = date + 11,
-         quarter = quarter(solar_hijri_date),
-         year = year(solar_hijri_date),
-         covid_deaths = `Iran`) %>%
-  dplyr::select(date,year,quarter,covid_deaths) %>%
-  group_by(year,quarter) %>%
+  mutate(week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+         year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4)),
+         covid_deaths = Iran) %>%
+  dplyr::select(date,year,week,covid_deaths) %>%
+  group_by(year,week) %>%
   summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
   drop_na()
 
-# Join monthly total deaths and monthly covid deaths together
-iran_quarterly_deaths <- iran_quarterly_total_deaths %>%
-  left_join(iran_quarterly_covid_deaths) %>% 
+# Join weekly total deaths and weekly covid deaths together
+iran_weekly_deaths <- iran_weekly_total_deaths %>%
+  left_join(iran_weekly_covid_deaths) %>% 
   mutate(covid_deaths = replace_na(covid_deaths,0),
          expected_deaths = "TBC") %>% # To be calculated
   ungroup() %>%
-  dplyr::select(country,region,region_code,start_date,end_date,days,year,quarter,
+  dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
                 population,total_deaths,covid_deaths,expected_deaths) %>%
   drop_na()
 
 # Export as CSV
-write.csv(iran_quarterly_deaths %>%
+write.csv(iran_weekly_deaths %>%
             mutate(start_date = format(start_date, "%Y-%m-%d"),
                    end_date = format(end_date, "%Y-%m-%d")),
-          "output-data/historical-deaths/iran_quarterly_deaths.csv",
+          "output-data/historical-deaths/iran_weekly_deaths.csv",
           fileEncoding = "UTF-8",
           row.names=FALSE)
 

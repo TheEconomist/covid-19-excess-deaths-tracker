@@ -43,7 +43,7 @@ guatemala_weekly_deaths <- fread("output-data/historical-deaths/guatemala_weekly
 hungary_weekly_deaths <- fread("output-data/historical-deaths/hungary_weekly_deaths.csv")
 iceland_weekly_deaths <- fread("output-data/historical-deaths/iceland_weekly_deaths.csv")
 indonesia_monthly_deaths <- fread("output-data/historical-deaths/indonesia_monthly_deaths.csv")
-iran_quarterly_deaths <- fread("output-data/historical-deaths/iran_quarterly_deaths.csv")
+iran_weekly_deaths <- fread("output-data/historical-deaths/iran_weekly_deaths.csv")
 ireland_monthly_deaths <- fread("output-data/historical-deaths/ireland_monthly_deaths.csv")
 israel_weekly_deaths <- fread("output-data/historical-deaths/israel_weekly_deaths.csv")
 italy_weekly_deaths <- fread("output-data/historical-deaths/italy_weekly_deaths.csv")
@@ -375,7 +375,7 @@ saveRDS(indonesia_results[[1]],"output-data/expected-deaths-models/indonesia_exp
 write.csv(indonesia_results[[2]],"output-data/excess-deaths/indonesia_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export Iran
-iran_results <- get_excess_deaths(iran_quarterly_deaths,iran_expected_deaths_model,"quarterly",calculate=TRUE,train_model=TRUE)
+iran_results <- get_excess_deaths(iran_weekly_deaths,iran_expected_deaths_model,"weekly",calculate=TRUE,train_model=TRUE)
 saveRDS(iran_results[[1]],"output-data/expected-deaths-models/iran_expected_deaths_model.RDS")
 write.csv(iran_results[[2]],"output-data/excess-deaths/iran_excess_deaths.csv",fileEncoding = "UTF-8",row.names=FALSE)
 
@@ -661,6 +661,7 @@ all_weekly_excess_deaths <- bind_rows(australia_results[[2]],
                                       guatemala_results[[2]],
                                       hungary_results[[2]],
                                       iceland_results[[2]],
+                                      iran_results[[2]],
                                       israel_results[[2]],
                                       italy_results[[2]],
                                       latvia_results[[2]],
@@ -743,8 +744,7 @@ write.csv(all_monthly_excess_deaths,"output-data/excess-deaths/all_monthly_exces
           fileEncoding = "UTF-8",row.names=FALSE)
 
 # Combine quarterly deaths and calculate per 100,000 people and percentage change
-all_quarterly_excess_deaths <- bind_rows(iran_results[[2]],
-                                         tajikistan_results[[2]]) %>%
+all_quarterly_excess_deaths <- bind_rows(tajikistan_results[[2]]) %>%
   mutate(covid_deaths_per_100k = covid_deaths / population * 100000,
          excess_deaths_per_100k = excess_deaths / population * 100000,
          excess_deaths_pct_change = (total_deaths / expected_deaths) - 1)
