@@ -176,9 +176,9 @@ all_quarterly_excess_deaths <- rbindlist(data[unlist(lapply(1:length(data), FUN 
          excess_deaths_pct_change = (total_deaths / expected_deaths) - 1)
 
 # Check that values do not differ enormously from previous ones:
-compare_weekly <- read_csv("output-data/excess-deaths/all_weekly_excess_deaths.csv")
-compare_monthly <- read_csv("output-data/excess-deaths/all_monthly_excess_deaths.csv")
-compare_quarterly <- read_csv("output-data/excess-deaths/all_quarterly_excess_deaths.csv")
+compare_weekly <- read.csv("output-data/excess-deaths/all_weekly_excess_deaths.csv")
+compare_monthly <- read.csv("output-data/excess-deaths/all_monthly_excess_deaths.csv")
+compare_quarterly <- read.csv("output-data/excess-deaths/all_quarterly_excess_deaths.csv")
 
 # Define function to generate comparison with existing data:
 gen_comparison <- function(data1 = all_weekly_excess_deaths,
@@ -222,14 +222,17 @@ if(max(week_comparison$diff) > 1000 |
 } else {
 
 # Export weekly deaths
-write.csv(all_weekly_excess_deaths, 
-          "output-data/excess-deaths/all_weekly_excess_deaths.csv", fileEncoding = "UTF-8", row.names=FALSE)
+write.csv(all_weekly_excess_deaths,
+          file = "output-data/excess-deaths/all_weekly_excess_deaths.csv", 
+          fileEncoding = "UTF-8", row.names=FALSE)
 
 # Export monthly deaths
-write.csv(all_monthly_excess_deaths,"output-data/excess-deaths/all_monthly_excess_deaths.csv",
+write.csv(all_monthly_excess_deaths,
+          file = "output-data/excess-deaths/all_monthly_excess_deaths.csv",
           fileEncoding = "UTF-8",row.names=FALSE)
 
 # Export quarterly deaths
-write.csv(all_quarterly_excess_deaths,"output-data/excess-deaths/all_quarterly_excess_deaths.csv",
+write.csv(all_quarterly_excess_deaths,
+          file = "output-data/excess-deaths/all_quarterly_excess_deaths.csv",
           fileEncoding = "UTF-8",row.names=FALSE)
 }
