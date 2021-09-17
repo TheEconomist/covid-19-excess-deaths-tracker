@@ -1,5 +1,7 @@
 # *The Economist's* tracker for covid-19 excess deaths 
 
+[![update](https://github.com/TheEconomist/covid-19-excess-deaths-tracker/actions/workflows/update.yaml/badge.svg)](https://github.com/TheEconomist/covid-19-excess-deaths-tracker/actions/workflows/update.yaml)
+
 This repository contains the data behind *The Economist’s* [tracker for covid-19 excess deaths](https://www.economist.com/graphic-detail/coronavirus-excess-deaths-tracker) and the code that we have used to clean, analyse and present the numbers.
 
 ## Scripts, sources and output data
