@@ -1,0 +1,70 @@
+name: update
+on:
+  # push:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 5 * * 1"
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_VERSION: 4.0.3
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@12d5b556c504a4be89f0dc9779e0de65bf0cfa44
+        with:
+          r-version: ${{ env.R_VERSION }}
+
+      - name: Set up Ubuntu packages
+        run: sudo apt-get install libcurl4-openssl-dev
+
+      - name: Cache R packages
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: r-v1-${{ env.R_VERSION }}
+          restore-keys: r-v1
+
+      - name: Install packages
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          install.packages(c(
+            "tidyverse",
+            "readxl",
+            "data.table",
+            "lubridate",
+            "aweek"
+          ))
+        shell: Rscript {0}
+
+      - name: Run cleaning script
+        run: |
+          source('scripts/cleaning_script.R')
+        shell: Rscript {0}
+      
+      - name: Run excess deaths script
+        run: |
+          source('scripts/excess_deaths_script.R')
+        shell: Rscript {0}
+
+      - name: Run interactive script
+        run: |
+          source('scripts/interactive_script.R')
+        shell: Rscript {0}
+
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit --allow-empty -m "Data auto-update" -a
+
+      - name: Push changes
+        uses: ad-m/github-push-action@8407731efefc0d8f72af254c74276b7a90be36e1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
