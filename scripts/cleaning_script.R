@@ -11,11 +11,20 @@ options(scipen=999)
 # Import global JHU data from Our World In Data
 global_covid_source_latest <- read_csv("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/jhu/new_deaths.csv") %>%
   add_row(date=seq(as.Date("2019-12-31"), as.Date("2020-01-21"), by="days")) %>% arrange(date)
-global_covid_source_cumulative <- read_csv("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/jhu/total_deaths.csv") %>%
-  add_row(date=seq(as.Date("2019-12-31"), as.Date("2020-01-21"), by="days")) %>% arrange(date)
+# Adding in a few countries without covid-19 deaths data from Our World in Data:
+global_covid_source_latest <- cbind(global_covid_source_latest, tibble("Aruba" = rep(NA, nrow(global_covid_source_latest)),
+                                                                           "Bermuda" = rep(NA, nrow(global_covid_source_latest)),
+                                                                           "Faroe Islands" = rep(NA, nrow(global_covid_source_latest)), "French Polynesia" = rep(NA, nrow(global_covid_source_latest)), "Gibraltar" = rep(NA, nrow(global_covid_source_latest)),
+                                                                       "Greenland" = rep(NA, nrow(global_covid_source_latest)),
+                                                                       "Macao" = rep(NA, nrow(global_covid_source_latest)),
+))
 
 # Import population data from Our World In Data
 country_population_data <- fread("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv") %>% mutate(iso3c = iso_code) %>% select(population, iso3c, location) %>% unique()
+country_population_data <- rbind(country_population_data,
+                                 data.frame("population" = 49085,
+                                            "iso3c" = "FRO",
+                                            "location" = "Faroe Islands"))
 
 # Import global mortality data from World Mortality Dataset
 world_mortality_dataset <- fread("https://raw.githubusercontent.com/akarlinsky/world_mortality/main/world_mortality.csv")
@@ -253,7 +262,7 @@ cleaning_to_csv <- function(country = "Albania",
 # Step 4: Clean data for countries (excepting non-sovereign entities and the United States) ---------------------------------------
 
 # The following areas in the mortality dataset are skipped as they are overseas French departments or non-sovereign countries:
-skip <- c("French Guiana", "Guadeloupe", "Martinique", "Mayotte", "RÃ©union", "Aruba", "Bermuda", "Faroe Islands", "French Polynesia", "Gibraltar", "Greenland", "Macao", "Transnistria")
+skip <- c("French Guiana", "Guadeloupe", "Martinique", "Mayotte", "RÃ©union", "Transnistria")
 
 # We deal with the United States separately below (as we want results by state there):
 skip <- c(skip, "United states")
