@@ -27,8 +27,8 @@ world_mortality_dataset$country_name[world_mortality_dataset$country_name == "Bo
 
 # This list of correspondences maps excess deaths reporting week starts (Monday, Tuesday, etc.) to countries. This follows the mappings in the original excess deaths tracker script exactly. Please open an issue if any of them have since changed so we can adjust (such errors would slightly shifts deaths between weeks, but not their total number).
 week_start <- list(
-  "A" = c("Australia"),
-  "B" = c("Austria",        "Belgium",        "Bulgaria",       
+  "A" = NA,
+  "B" = c("Austria", "Australia", "Belgium", "Bulgaria",       
           "Chile",          "Colombia",       "Croatia",       
           "Cyprus",         "Czechia",        "Denmark",        "Ecuador",       
           "Estonia",        "Finland",        "France",         "Germany",       
@@ -66,8 +66,7 @@ cleaning_to_csv <- function(country = "Albania",
                             replace_names = 
                               data.frame(name = c("Czechia", "United Kingdom"),
                                          replacement = c("Czech Republic", "Britain")),
-                            week_starts_on = week_start,
-                            check_identical = F){
+                            week_starts_on = week_start){
   
   # Get data frequency:
   frequency <- unique(mortality_data[mortality_data$country_name == country, "time_unit"])
@@ -236,33 +235,11 @@ cleaning_to_csv <- function(country = "Albania",
   # Move spaces to "_" make lower case for file names:
   country <- tolower(unlist(gsub(" ", "_", country)))
   
-  # This check was introduced as we moved from the old to the new dataset. It ensures that 
-  if(check_identical){
-    # Test if output csv's are identical:
-    write.csv(country_deaths %>% mutate(start_date = format(start_date, "%Y-%m-%d"), end_date = format(end_date, "%Y-%m-%d")), 
-              "temp.csv", fileEncoding = "UTF-8", row.names=FALSE)
-    new <- read.csv("temp.csv")
-    
-    if(length(grep(country, dir('output-data/historical-deaths/'), ignore.case = T))){
-      
-      old <- read.csv(paste0("output-data/historical-deaths/", tolower(country), "_", frequency, "_deaths.csv"))
-      
-      # Because we have updated the population source, we just check that it is identical to the nearest 200k
-      old$population <- round(old$population/500000)
-      new$population <- round(new$population/500000)
-      
-      old$population <- NULL
-      new$population <- NULL
-      old <- data.frame(old)
-      new <- data.frame(new[1:nrow(old), ])
-      
-      # We then test if the common rows are identical:
-      return(identical(old, new))
-    } else {
-      print(paste0(country, " is a new addition to the dataset."))
-      return(TRUE)
-    }
-  }
+  # Convert from data table to data frame:
+  country_deaths <- data.frame(country_deaths)
+  
+  # Ensure no duplicated country-time-unit observations
+  country_deaths <- country_deaths[!duplicated(paste0(country_deaths$year, "_", country_deaths[, c("week", "month", "quarter")[c("week", "month", "quarter") %in% colnames(country_deaths)]])), ]
   
   # Export as CSV
   write.csv(country_deaths %>%
@@ -352,6 +329,9 @@ united_states_weekly_deaths <- united_states_weekly_total_deaths %>%
               ungroup()) %>%
   dplyr::select(country,region,region_code,start_date,end_date,days,year,week,
                 population,total_deaths,covid_deaths,expected_deaths)
+
+# Ensure no duplicate observations
+united_states_weekly_deaths <- united_states_weekly_deaths[!duplicated(paste0(united_states_weekly_deaths$year, "_", united_states_weekly_deaths$week, "_", united_states_weekly_deaths$region)), ]
 
 # Export as CSV
 write.csv(united_states_weekly_deaths %>%
