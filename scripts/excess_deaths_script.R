@@ -151,15 +151,21 @@ for(i in historical_deaths){
 # Step 4: combine weekly, monthly and quarterly deaths together, and calculate deaths per 100,000 people and percentage change ---------------------------------------
 
 # Combine weekly deaths and calculate per 100,000 people and percentage change
-data <- lapply(dir('output-data/excess-deaths/'), 
-               FUN = function(i){read_csv(paste0('output-data/excess-deaths/', i))})
+data <- lapply(setdiff(dir('output-data/excess-deaths/'), 
+                       c("all_monthly_excess_deaths.csv",
+                         "all_quarterly_excess_deaths.csv",
+                         "all_weekly_excess_deaths.csv")), 
+               FUN = function(i){
+                 temp <- read_csv(paste0('output-data/excess-deaths/', i))
+                 temp$region_code <- as.character(temp$region_code)
+                 temp})
 
 all_weekly_excess_deaths <- rbindlist(data[unlist(lapply(1:length(data), FUN = function(i){
   colnames(data[[i]])[8] == "week"
 }))])  %>%
   mutate(covid_deaths_per_100k = covid_deaths / population * 100000,
          excess_deaths_per_100k = excess_deaths / population * 100000,
-         excess_deaths_pct_change = (total_deaths / expected_deaths) - 1)
+         excess_deaths_pct_change = (total_deaths / expected_deaths) - 1) 
 
 all_monthly_excess_deaths <- rbindlist(data[unlist(lapply(1:length(data), FUN = function(i){
   colnames(data[[i]])[8] == "month"
@@ -174,6 +180,11 @@ all_quarterly_excess_deaths <- rbindlist(data[unlist(lapply(1:length(data), FUN 
   mutate(covid_deaths_per_100k = covid_deaths / population * 100000,
          excess_deaths_per_100k = excess_deaths / population * 100000,
          excess_deaths_pct_change = (total_deaths / expected_deaths) - 1)
+
+# Deduplication
+if(max(table(with(all_weekly_excess_deaths, paste0(country, "_", region, "_", year, "_", week)))) != 1){stop("Duplications in quarterly data, please inspect")}
+if(max(table(with(all_monthly_excess_deaths, paste0(country, "_", region, "_", year, "_", month)))) != 1){stop("Duplications in quarterly data, please inspect")}
+if(max(table(with(all_quarterly_excess_deaths, paste0(country, "_", region, "_", year, "_", quarter)))) != 1){stop("Duplications in quarterly data, please inspect")}
 
 # Check that values do not differ enormously from previous ones:
 compare_weekly <- read.csv("output-data/excess-deaths/all_weekly_excess_deaths.csv")
