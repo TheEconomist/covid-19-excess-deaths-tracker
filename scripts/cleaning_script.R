@@ -265,10 +265,10 @@ cleaning_to_csv <- function(country = "Albania",
 skip <- c("French Guiana", "Guadeloupe", "Martinique", "Mayotte", "RÃ©union", "Transnistria")
 
 # We deal with the United States separately below (as we want results by state there):
-skip <- c(skip, "United states")
+skip <- c(skip, "United states", "Puerto Rico")
 
 # Cycle through countries:
-for(i in setdiff(unique(world_mortality_dataset$country_name[world_mortality_dataset$time_unit == "monthly"]), skip)){
+for(i in setdiff(unique(world_mortality_dataset$country_name), skip)){
   cleaning_to_csv(country = i)
 }
 

@@ -128,12 +128,44 @@ for(i in historical_deaths){
   # Get country
   country <- dat$country[1]
   
+  # Check that country in list of countries with data not from new country - if so, insert break:
+ countries <- c("Albania", "Andorra", "Antigua and Barbuda", 
+                "Argentina", "Armenia", "Aruba", 
+                "Azerbaijan", "Belarus", "Belize", 
+                "Bermuda", "Bolivia", "Bosnia and Herzegovina", 
+                "Brazil", "Costa Rica", "Cuba", 
+                "Egypt", "El Salvador", "Faroe Islands", 
+                "French Polynesia", "Georgia", "Gibraltar", 
+                "Greenland", "Hong Kong", "Indonesia", 
+                "Ireland", "Jamaica", "Japan", 
+                "Kazakhstan", "Kosovo", "Kyrgyzstan", 
+                "Lebanon", "Liechtenstein", "Macao", 
+                "Malaysia", "Mauritius", "Moldova", 
+                "Monaco", "Mongolia", "Nicaragua", 
+                "North Macedonia", "Oman", "Panama", 
+                "Paraguay", "Philippines", "Qatar", 
+                "Russia", "San Marino", "Serbia", 
+                "Seychelles", "Singapore", "Taiwan", 
+                "Thailand", "Ukraine", "Uruguay", 
+                "Uzbekistan", "Australia", "Austria", "Belgium", "Britain", "Bulgaria", 
+                "Canada", "Chile", "Colombia", "Croatia", "Cyprus", 
+                "Czech Republic", "Denmark", "Ecuador", "Estonia", "Finland", 
+                "France", "Germany", "Greece", "Guatemala", "Hungary", 
+                "Iceland", "Iran", "Israel", "Italy", "Latvia", 
+                "Lithuania", "Luxembourg", "Malta", "Mexico", "Montenegro", 
+                "Netherlands", "New Zealand", "Norway", "Peru", "Poland", 
+                "Portugal", "Romania", "Slovakia", "Slovenia", "South Africa", 
+                "South Korea", "Spain", "Sweden", "Switzerland", "Tunisia", 
+                "Turkey", "United States", "Tajikistan")
+ 
+ if(!country %in% countries){
+   stop("New country, please inspect manually to ensure consistency.")
+ }
+
   # Get excess deaths, training a new model (except for South Africa, where expected deaths are provided explicitly):
   res <- get_excess_deaths(dat,
                            expected_deaths_model = NULL,
-                           frequency = dat_frequency,
-                           calculate = country != "South Africa",
-                           train_model= country != "South Africa")
+                           frequency = dat_frequency)
   
   # Move spaces to "_" make lower case for file names:
   country <- tolower(unlist(gsub(" ", "_", country)))
