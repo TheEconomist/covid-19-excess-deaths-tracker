@@ -1,0 +1,33 @@
+name: upload
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    env:
+      S3_FOLDER: covid-19-excess-deaths-tracker
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Upload to S3
+        run: |
+          aws s3 sync ./output-data/excess-deaths s3://"$AWS_S3_BUCKET"/"$S3_FOLDER" --acl public-read --cache-control "public,max-age=300,proxy-revalidate"
+          aws s3 sync ./output-data/interactive s3://"$AWS_S3_BUCKET"/"$S3_FOLDER" --acl public-read --cache-control "public,max-age=300,proxy-revalidate"
+        env:
+          S3_FOLDER: ${{ env.S3_FOLDER }}
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'us-east-1'
+
+      - name: Create Cloudfront invalidation
+        run: |
+          aws cloudfront create-invalidation --distribution-id "$AWS_CLOUDFRONT_DISTRIBUTION_ID" --paths "/$S3_FOLDER/*"
+        env:
+          S3_FOLDER: ${{ env.S3_FOLDER }}
+          AWS_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'us-east-1'
