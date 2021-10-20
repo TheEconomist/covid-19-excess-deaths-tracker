@@ -32,27 +32,7 @@ world_mortality_dataset <- fread("https://raw.githubusercontent.com/akarlinsky/w
 # We also harmonize the name for Bosnia:
 world_mortality_dataset$country_name[world_mortality_dataset$country_name == "Bosnia"] <- "Bosnia and Herzegovina"
 
-# Step 2: Map correspondences for weekly data ---------------------------------------
-
-# This list of correspondences maps excess deaths reporting week starts (Monday, Tuesday, etc.) to countries. This follows the mappings in the original excess deaths tracker script exactly. Please open an issue if any of them have since changed so we can adjust (such errors would slightly shifts deaths between weeks, but not their total number).
-week_start <- list(
-  "A" = NA,
-  "B" = c("Austria", "Australia", "Belgium", "Bulgaria",       
-          "Chile",          "Colombia",       "Croatia",       
-          "Cyprus",         "Czechia",        "Denmark",        "Ecuador",       
-          "Estonia",        "Finland",        "France",         "Germany",       
-          "Greece",         "Guatemala",      "Hungary",        "Iceland",       
-          "Israel",         "Italy",          "Latvia",         "Lithuania",   
-          "Luxembourg",     "Malta",          "Martinique",     "Mayotte",       
-          "Mexico",         "Montenegro",     "Netherlands",    "New Zealand",   
-          "Norway",         "Peru",           "Poland",         "Portugal",      
-          "RÃ©union",       "Romania",        "Slovakia",       "Slovenia",
-          "South Korea",    "Spain",          "Sweden",        
-          "Switzerland",    "Tunisia"),
-  "C" = c("Canada", "South Africa"),
-  "D" = c("United Kingdom"))
-
-# Step 3: Define function to clean data ---------------------------------------
+# Step 2: Define function to clean data ---------------------------------------
 
 # This combines covid-19 deaths, excess deaths, and population for a country, any name changes and week correspondences, and writes a panel data frame of the following form:
 
@@ -75,7 +55,9 @@ cleaning_to_csv <- function(country = "Albania",
                             replace_names = 
                               data.frame(name = c("Czechia", "United Kingdom"),
                                          replacement = c("Czech Republic", "Britain")),
-                            week_starts_on = week_start){
+                            weeks_iso = T,
+                            week_starts_on = NA, 
+                            output_folder = "output-data/historical-deaths/"){
   
   # Get data frequency:
   frequency <- unique(mortality_data[mortality_data$country_name == country, "time_unit"])
@@ -89,15 +71,42 @@ cleaning_to_csv <- function(country = "Albania",
   
   # This chunk cleans data provided weekly:
   if(frequency == "weekly"){
-    country_weekly_total_deaths <- world_mortality_dataset %>%
-      filter(country_name == country, year >= 2015) %>%
-      mutate(country = country_name, region = country_name, region_code = 0, 
-             population = country_population, 
-             week = time, total_deaths = deaths,
-             start_date = aweek::get_date(week=week,year=year) + ifelse(country %in% week_starts_on[["C"]], -1, 0) + ifelse(country %in% week_starts_on[["D"]], -2, 0),
-             end_date = start_date + 6) %>%
-      mutate(days = end_date - start_date + 1) %>%
-      dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
+    
+    # If all weeks should follow ISO standard for when they start and end
+    if(weeks_iso){
+      
+      country_weekly_total_deaths <- world_mortality_dataset %>%
+        filter(country_name == country, year >= 2015) %>%
+        mutate(country = country_name, region = country_name, region_code = 0, 
+               population = country_population, 
+               week = time, total_deaths = deaths,
+               start_date = aweek::get_date(week=week,year=year),
+               end_date = start_date + 6) %>%
+        mutate(days = end_date - start_date + 1) %>%
+        dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
+      
+      global_covid_source_latest$covid_deaths <- global_covid_source_latest[, country]
+      country_weekly_covid_deaths <- global_covid_source_latest %>%
+        filter(date >= as.Date("2020-01-01")) %>%
+        mutate(week_date = date,
+               week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+               year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4))) %>%
+        dplyr::select(date,year,week,covid_deaths) %>%
+        group_by(year,week) %>%
+        summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
+        drop_na() 
+    } else {
+      
+      country_weekly_total_deaths <- world_mortality_dataset %>%
+        filter(country_name == country, year >= 2015) %>%
+        mutate(country = country_name, region = country_name, region_code = 0, 
+               population = country_population, 
+               week = time, total_deaths = deaths,
+               start_date = aweek::get_date(week=week,year=year) + ifelse(country %in% week_starts_on[["C"]], -1, 0) + ifelse(country %in% week_starts_on[["D"]], -2, 0),
+               end_date = start_date + 6) %>%
+        mutate(days = end_date - start_date + 1) %>%
+        dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
+      
     
     # Group covid deaths by week
     if(country %in% c(week_starts_on[["B"]])){
@@ -136,17 +145,19 @@ cleaning_to_csv <- function(country = "Albania",
         summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
         drop_na() 
       
-    } else {
+    } else { 
+      # If no week given
       global_covid_source_latest$covid_deaths <- global_covid_source_latest[, country]
       country_weekly_covid_deaths <- global_covid_source_latest %>%
         filter(date >= as.Date("2020-01-01")) %>%
         mutate(week_date = date,
-               week = week(week_date),
-               year = year(week_date)) %>%
+               week = as.numeric(str_sub(aweek::date2week(date,week_start=1),7,8)),
+               year = as.numeric(str_sub(aweek::date2week(date,week_start=1),1,4))) %>%
         dplyr::select(date,year,week,covid_deaths) %>%
         group_by(year,week) %>%
         summarise(covid_deaths = sum(covid_deaths, na.rm=T)) %>%
-        drop_na()
+        drop_na() 
+    }
     }
     
     # Join weekly total deaths and weekly covid deaths together
@@ -254,12 +265,12 @@ cleaning_to_csv <- function(country = "Albania",
   write.csv(country_deaths %>%
               mutate(start_date = format(start_date, "%Y-%m-%d"),
                      end_date = format(end_date, "%Y-%m-%d")),
-            paste0("output-data/historical-deaths/", tolower(country), "_", frequency, "_deaths.csv"),
+            paste0(output_folder, tolower(country), "_", frequency, "_deaths.csv"),
             fileEncoding = "UTF-8",
             row.names=FALSE)
 }
 
-# Step 4: Clean data for countries (excepting non-sovereign entities and the United States) ---------------------------------------
+# Step 3: Clean data for countries (excepting non-sovereign entities and the United States) ---------------------------------------
 
 # The following areas in the mortality dataset are skipped as they are overseas French departments or non-sovereign countries:
 skip <- c("French Guiana", "Guadeloupe", "Martinique", "Mayotte", "RÃ©union", "Transnistria")
@@ -270,6 +281,34 @@ skip <- c(skip, "United states", "Puerto Rico")
 # Cycle through countries:
 for(i in setdiff(unique(world_mortality_dataset$country_name), skip)){
   cleaning_to_csv(country = i)
+}
+
+# Generate legacy dataset exports:
+# 1. Map correspondences for weekly data
+
+# This list of correspondences maps excess deaths reporting week starts (Monday, Tuesday, etc.) to countries. This follows the mappings in the original excess deaths tracker script exactly. Please open an issue if any of them have since changed so we can adjust (such errors would slightly shifts deaths between weeks, but not their total number).
+week_start <- list(
+  "A" = NA,
+  "B" = c("Austria", "Australia", "Belgium", "Bulgaria",       
+          "Chile",          "Colombia",       "Croatia",       
+          "Cyprus",         "Czechia",        "Denmark",        "Ecuador",       
+          "Estonia",        "Finland",        "France",         "Germany",       
+          "Greece",         "Guatemala",      "Hungary",        "Iceland",       
+          "Israel",         "Italy",          "Latvia",         "Lithuania",   
+          "Luxembourg",     "Malta",          "Martinique",     "Mayotte",       
+          "Mexico",         "Montenegro",     "Netherlands",    "New Zealand",   
+          "Norway",         "Peru",           "Poland",         "Portugal",      
+          "RÃ©union",       "Romania",        "Slovakia",       "Slovenia",
+          "South Korea",    "Spain",          "Sweden",        
+          "Switzerland",    "Tunisia"),
+  "C" = c("Canada", "South Africa"),
+  "D" = c("United Kingdom"))
+
+# 2. Cycle through countries and export to separate folder:
+for(i in setdiff(unique(world_mortality_dataset$country_name), skip)){
+  cleaning_to_csv(country = i,  output_folder = "output-data/alternative-exports-by-non-iso-week/historical-deaths/",
+                  weeks_iso = F,
+                  week_starts_on = week_start)
 }
 
 # Step 4: import and clean the United States' data (this enables results by state) ---------------------------------------
