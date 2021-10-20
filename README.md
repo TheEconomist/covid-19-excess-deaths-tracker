@@ -16,6 +16,8 @@ There is a third R script that summarises the data for some graphics in the arti
 
 * [`interactive_script.R`](scripts/interactive_script.R): this imports the files for `excess deaths` for a list of countries and creates the data for the small multiple chart and the table featured in the article. The files are exported to [`/output-data/interactive/`](output-data/interactive).
 
+In October 2021, we moved all weekly data to the ISO standard (meaning weeks begin Monday and end Sunday). This simplifies analysis using many countries at once. For those who prefer data respecting non-ISO week beginning and endings, please use [`/output-data/alternative-exports-by-non-iso-week/`](output-data/alternative-exports-by-non-iso-week). 
+
 ## Historical versions and sources
 
 This tracker has gone through several iterations since it was launched in April 2020, at which point it was the first database to compare excess mortality with official covid death tolls. As of July 2021 we are now largely relying on all-cause mortality data collected by Ariel Karlinsky and Dmitry Kobak for the WMD. But throughout the development of the tracker we have drawn on many other sources, including:
