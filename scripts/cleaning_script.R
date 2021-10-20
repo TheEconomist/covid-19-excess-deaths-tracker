@@ -388,3 +388,11 @@ write.csv(united_states_weekly_deaths %>%
           "output-data/historical-deaths/united_states_weekly_deaths.csv",
           fileEncoding = "UTF-8",
           row.names=FALSE)
+
+# Export for alternative directory
+write.csv(united_states_weekly_deaths %>%
+            mutate(start_date = format(start_date, "%Y-%m-%d"),
+                   end_date = format(end_date, "%Y-%m-%d")),
+          "output-data/alternative-exports-by-non-iso-week/historical-deaths/united_states_weekly_deaths.csv",
+          fileEncoding = "UTF-8",
+          row.names=FALSE)
