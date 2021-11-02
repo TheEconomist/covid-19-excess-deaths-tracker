@@ -24,7 +24,12 @@ country_population_data <- fread("https://raw.githubusercontent.com/owid/covid-1
 country_population_data <- rbind(country_population_data,
                                  data.frame("population" = 49085,
                                             "iso3c" = "FRO",
-                                            "location" = "Faroe Islands"))
+                                            "location" = "Faroe Islands"),
+                                 # https://www.insee.fr/fr/statistiques/1893198
+                                 # https://www.insee.fr/fr/statistiques/fichier/1893198/estim-pop-dep-sexe-gca-1975-2021.xlsx
+                                 data.frame("population" = 856858,
+                                            "iso3c" = "REU",
+                                            "location" = "Réunion"))
 
 # Import global mortality data from World Mortality Dataset
 world_mortality_dataset <- fread("https://raw.githubusercontent.com/akarlinsky/world_mortality/main/world_mortality.csv")
@@ -273,7 +278,7 @@ cleaning_to_csv <- function(country = "Albania",
 # Step 3: Clean data for countries (excepting non-sovereign entities and the United States) ---------------------------------------
 
 # The following areas in the mortality dataset are skipped as they are overseas French departments or non-sovereign countries:
-skip <- c("French Guiana", "Guadeloupe", "Martinique", "Mayotte", "RÃ©union", "Transnistria")
+skip <- c("French Guiana", "Guadeloupe", "Martinique", "Mayotte", "Réunion", "Transnistria")
 
 # We deal with the United States separately below (as we want results by state there):
 skip <- c(skip, "United states", "Puerto Rico")
@@ -298,7 +303,7 @@ week_start <- list(
           "Luxembourg",     "Malta",          "Martinique",     "Mayotte",       
           "Mexico",         "Montenegro",     "Netherlands",    "New Zealand",   
           "Norway",         "Peru",           "Poland",         "Portugal",      
-          "RÃ©union",       "Romania",        "Slovakia",       "Slovenia",
+          "Réunion",       "Romania",        "Slovakia",       "Slovenia",
           "South Korea",    "Spain",          "Sweden",        
           "Switzerland",    "Tunisia"),
   "C" = c("Canada", "South Africa"),
