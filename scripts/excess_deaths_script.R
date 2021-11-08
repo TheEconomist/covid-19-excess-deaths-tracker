@@ -382,8 +382,8 @@ all_quarterly_excess_deaths <- rbindlist(data[unlist(lapply(1:length(data), FUN 
          excess_deaths_pct_change = (total_deaths / expected_deaths) - 1)
 
 # Deduplication
-if(max(table(with(all_weekly_excess_deaths, paste0(country, "_", region, "_", year, "_", week)))) != 1){stop("Duplications in quarterly data, please inspect")}
-if(max(table(with(all_monthly_excess_deaths, paste0(country, "_", region, "_", year, "_", month)))) != 1){stop("Duplications in quarterly data, please inspect")}
+if(max(table(with(all_weekly_excess_deaths, paste0(country, "_", region, "_", year, "_", week)))) != 1){stop("Duplications in weekly data, please inspect")}
+if(max(table(with(all_monthly_excess_deaths, paste0(country, "_", region, "_", year, "_", month)))) != 1){stop("Duplications in monthly data, please inspect")}
 if(max(table(with(all_quarterly_excess_deaths, paste0(country, "_", region, "_", year, "_", quarter)))) != 1){stop("Duplications in quarterly data, please inspect")}
 
 # Check that values do not differ enormously from previous ones:
