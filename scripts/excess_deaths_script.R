@@ -156,7 +156,7 @@ for(i in historical_deaths){
                 "Netherlands", "New Zealand", "Norway", "Peru", "Poland", 
                 "Portugal", "Romania", "Slovakia", "Slovenia", "South Africa", 
                 "South Korea", "Spain", "Sweden", "Switzerland", "Tunisia", 
-                "Turkey", "United States", "Tajikistan")
+                "Turkey", "United States", "Tajikistan", "Dominican Republic", "Kuwait")
  
  if(!country %in% countries){
    stop("New country, please inspect manually to ensure consistency.")

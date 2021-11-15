@@ -32,7 +32,7 @@ country_population_data <- rbind(country_population_data,
                                             "location" = "Réunion"))
 
 # Import global mortality data from World Mortality Dataset
-world_mortality_dataset <- fread("https://raw.githubusercontent.com/akarlinsky/world_mortality/main/world_mortality.csv")
+world_mortality_dataset <- fread("https://raw.githubusercontent.com/akarlinsky/world_mortality/main/world_mortality.csv", encoding="UTF-8")
 
 # We also harmonize the name for Bosnia:
 world_mortality_dataset$country_name[world_mortality_dataset$country_name == "Bosnia"] <- "Bosnia and Herzegovina"
