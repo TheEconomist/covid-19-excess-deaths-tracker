@@ -10,6 +10,37 @@ options(scipen=999)
 # Import data
 historical_deaths <- dir('output-data/historical-deaths')
 
+# Updated list of countries with data:
+countries <- c("Albania", "Andorra", "Antigua and Barbuda", 
+               "Argentina", "Armenia", "Aruba", 
+               "Azerbaijan", "Belarus", "Belize", 
+               "Bermuda", "Bolivia", "Bosnia and Herzegovina", 
+               "Brazil", "Costa Rica", "Cuba", 
+               "Egypt", "El Salvador", "Faroe Islands", 
+               "French Polynesia", "Georgia", "Gibraltar", 
+               "Greenland", "Hong Kong", "Indonesia", 
+               "Ireland", "Jamaica", "Japan", 
+               "Kazakhstan", "Kosovo", "Kyrgyzstan", 
+               "Lebanon", "Liechtenstein", "Macao", 
+               "Malaysia", "Mauritius", "Moldova", 
+               "Monaco", "Mongolia", "Nicaragua", 
+               "North Macedonia", "Oman", "Panama", 
+               "Paraguay", "Philippines", "Qatar", 
+               "Russia", "San Marino", "Serbia", 
+               "Seychelles", "Singapore", "Taiwan", 
+               "Thailand", "Ukraine", "Uruguay", 
+               "Uzbekistan", "Australia", "Austria", "Belgium", "Britain", 
+               "Bulgaria", 
+               "Canada", "Chile", "Colombia", "Croatia", "Cyprus", 
+               "Czech Republic", "Denmark", "Ecuador", "Estonia", "Finland", 
+               "France", "Germany", "Greece", "Guatemala", "Hungary", 
+               "Iceland", "Iran", "Israel", "Italy", "Latvia", 
+               "Lithuania", "Luxembourg", "Malta", "Mexico", "Montenegro", 
+               "Netherlands", "New Zealand", "Norway", "Peru", "Poland", 
+               "Portugal", "Romania", "Slovakia", "Slovenia", "South Africa", 
+               "South Korea", "Spain", "Sweden", "Switzerland", "Tunisia", 
+               "Turkey", "United States", "Tajikistan", "Dominican Republic", "Kuwait")
+
 # Step 2: define function that calculates excess deaths ---------------------------------------
 
 # Define function that calculates excess deaths
@@ -129,34 +160,6 @@ for(i in historical_deaths){
   country <- dat$country[1]
   
   # Check that country in list of countries with data not from new country - if so, insert break:
- countries <- c("Albania", "Andorra", "Antigua and Barbuda", 
-                "Argentina", "Armenia", "Aruba", 
-                "Azerbaijan", "Belarus", "Belize", 
-                "Bermuda", "Bolivia", "Bosnia and Herzegovina", 
-                "Brazil", "Costa Rica", "Cuba", 
-                "Egypt", "El Salvador", "Faroe Islands", 
-                "French Polynesia", "Georgia", "Gibraltar", 
-                "Greenland", "Hong Kong", "Indonesia", 
-                "Ireland", "Jamaica", "Japan", 
-                "Kazakhstan", "Kosovo", "Kyrgyzstan", 
-                "Lebanon", "Liechtenstein", "Macao", 
-                "Malaysia", "Mauritius", "Moldova", 
-                "Monaco", "Mongolia", "Nicaragua", 
-                "North Macedonia", "Oman", "Panama", 
-                "Paraguay", "Philippines", "Qatar", 
-                "Russia", "San Marino", "Serbia", 
-                "Seychelles", "Singapore", "Taiwan", 
-                "Thailand", "Ukraine", "Uruguay", 
-                "Uzbekistan", "Australia", "Austria", "Belgium", "Britain", "Bulgaria", 
-                "Canada", "Chile", "Colombia", "Croatia", "Cyprus", 
-                "Czech Republic", "Denmark", "Ecuador", "Estonia", "Finland", 
-                "France", "Germany", "Greece", "Guatemala", "Hungary", 
-                "Iceland", "Iran", "Israel", "Italy", "Latvia", 
-                "Lithuania", "Luxembourg", "Malta", "Mexico", "Montenegro", 
-                "Netherlands", "New Zealand", "Norway", "Peru", "Poland", 
-                "Portugal", "Romania", "Slovakia", "Slovenia", "South Africa", 
-                "South Korea", "Spain", "Sweden", "Switzerland", "Tunisia", 
-                "Turkey", "United States", "Tajikistan", "Dominican Republic", "Kuwait")
  
  if(!country %in% countries){
    stop(paste0(country, " is a new country, please inspect manually to ensure consistency."))
@@ -299,37 +302,9 @@ for(i in historical_deaths){
   country <- dat$country[1]
 
   # Check that country in list of countries with data not from new country - if so, insert break:
-  countries <- c("Albania", "Andorra", "Antigua and Barbuda", 
-                 "Argentina", "Armenia", "Aruba", 
-                 "Azerbaijan", "Belarus", "Belize", 
-                 "Bermuda", "Bolivia", "Bosnia and Herzegovina", 
-                 "Brazil", "Costa Rica", "Cuba", 
-                 "Egypt", "El Salvador", "Faroe Islands", 
-                 "French Polynesia", "Georgia", "Gibraltar", 
-                 "Greenland", "Hong Kong", "Indonesia", 
-                 "Ireland", "Jamaica", "Japan", 
-                 "Kazakhstan", "Kosovo", "Kyrgyzstan", 
-                 "Lebanon", "Liechtenstein", "Macao", 
-                 "Malaysia", "Mauritius", "Moldova", 
-                 "Monaco", "Mongolia", "Nicaragua", 
-                 "North Macedonia", "Oman", "Panama", 
-                 "Paraguay", "Philippines", "Qatar", 
-                 "Russia", "San Marino", "Serbia", 
-                 "Seychelles", "Singapore", "Taiwan", 
-                 "Thailand", "Ukraine", "Uruguay", 
-                 "Uzbekistan", "Australia", "Austria", "Belgium", "Britain", "Bulgaria", 
-                 "Canada", "Chile", "Colombia", "Croatia", "Cyprus", 
-                 "Czech Republic", "Denmark", "Ecuador", "Estonia", "Finland", 
-                 "France", "Germany", "Greece", "Guatemala", "Hungary", 
-                 "Iceland", "Iran", "Israel", "Italy", "Latvia", 
-                 "Lithuania", "Luxembourg", "Malta", "Mexico", "Montenegro", 
-                 "Netherlands", "New Zealand", "Norway", "Peru", "Poland", 
-                 "Portugal", "Romania", "Slovakia", "Slovenia", "South Africa", 
-                 "South Korea", "Spain", "Sweden", "Switzerland", "Tunisia", 
-                 "Turkey", "United States", "Tajikistan")
-  
+ 
   if(!country %in% countries){
-    stop("New country, please inspect manually to ensure consistency.")
+    stop(paste0(country, " is a new country, please inspect manually to ensure consistency."))
   }
   
   # Get excess deaths, training a new model (except for South Africa, where expected deaths are provided explicitly):
