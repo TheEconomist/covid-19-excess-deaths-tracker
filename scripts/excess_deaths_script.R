@@ -159,7 +159,7 @@ for(i in historical_deaths){
                 "Turkey", "United States", "Tajikistan", "Dominican Republic", "Kuwait")
  
  if(!country %in% countries){
-   stop("New country, please inspect manually to ensure consistency.")
+   stop(paste0(country, " is a new country, please inspect manually to ensure consistency."))
  }
 
   # Get excess deaths, training a new model (except for South Africa, where expected deaths are provided explicitly):
