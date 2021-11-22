@@ -119,6 +119,9 @@ get_excess_deaths <- function(df,expected_deaths_model,frequency="weekly",calcul
     
   }
   
+  # Set expected deaths to be non-negative (on implementation, this had no impact, but makes code more robust to the off chance that some country had extremely strong time effects and extremely strong downward trend in deaths over time):
+  expected_deaths$expected_deaths[expected_deaths$expected_deaths < 0] <- 0
+  
   # Calculate excess deaths
   excess_deaths <- expected_deaths %>%
     mutate(excess_deaths = total_deaths - expected_deaths,
