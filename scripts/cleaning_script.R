@@ -278,7 +278,7 @@ cleaning_to_csv <- function(country = "Albania",
 # Step 3: Clean data for countries (excepting non-sovereign entities and the United States) ---------------------------------------
 
 # The following areas in the mortality dataset are skipped as they are overseas French departments or non-sovereign countries:
-skip <- c("French Guiana", "Guadeloupe", "Martinique", "Mayotte", "Réunion", "Transnistria")
+skip <- c("French Guiana", "Guadeloupe", "Martinique", "Mayotte", "Réunion", "Transnistria", "New Caledonia")
 
 # We deal with the United States separately below (as we want results by state there):
 skip <- c(skip, "United states", "Puerto Rico")
