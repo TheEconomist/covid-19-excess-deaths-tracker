@@ -6,15 +6,16 @@
 # Load packages
 library(tidyverse)
 library(data.table)
+options(scipen=999)
 
 # Loop over all countries:
 res <- data.frame()
-for(i in dir('output-data/historical-deaths')){
+for(country in dir('output-data/historical-deaths')){
 
 # Load data:
-df <- read_csv(paste0("output-data/historical-deaths/", i))
+df <- read_csv(paste0("output-data/historical-deaths/", country))
 
-if(i == "united_states_weekly_deaths.csv"){
+if(country == "united_states_weekly_deaths.csv"){
 df <- df[df$region == "United States", ]
 }
 
@@ -48,8 +49,6 @@ head(expected_deaths$expected_deaths)
 a <- c(sum(expected_deaths$expected_deaths), mean(cv_error))
 
 # Expected deaths calculation of the Farrington flexible algorithm (=Poisson):
-library(surveillance)
-
 summary(m1 <- glm(expected_deaths_formula, family="poisson", data=df))
 expected_deaths <- test_df %>% 
   mutate(expected_deaths = predict(m1, newdata=., type="response"))
@@ -109,7 +108,7 @@ d <- c(sum(expected_deaths$expected_deaths), mean(cv_error))
 
 # Combine all 4:
 res <- rbind(res, 
-             c(a, b, c, d, df$population[1], i))
+             c(a, b, c, d, df$population[1], country))
 }
 
 colnames(res) <- c('lm', 'lm_cv', 'poisson', 'poisson_cv', "lm_spline", 'lm_spline_cv', 'poisson_spline', 'poisson_spline_cv', 'population', 'country')
