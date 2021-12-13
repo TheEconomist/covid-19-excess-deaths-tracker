@@ -397,8 +397,9 @@ united_states_weekly_deaths <- united_states_weekly_total_deaths %>%
 # Ensure no duplicate observations
 united_states_weekly_deaths <- united_states_weekly_deaths[!duplicated(paste0(united_states_weekly_deaths$year, "_", united_states_weekly_deaths$week, "_", united_states_weekly_deaths$region)), ]
 
-# Remove two most recent weeks for state-level data (as these observations frequently have notes about reporting lag):
+# Remove most recent week for country-level data and two most recent weeks for state-level data (as these observations frequently have notes about reporting lag):
 united_states_weekly_deaths <- united_states_weekly_deaths[united_states_weekly_deaths$region == 'United States' | !united_states_weekly_deaths$end_date %in% sort(unique(united_states_weekly_deaths$end_date), decreasing = T)[1:2], ]
+united_states_weekly_deaths <- united_states_weekly_deaths[!united_states_weekly_deaths$end_date %in% sort(unique(united_states_weekly_deaths$end_date), decreasing = T)[1], ]
 
 # Export as CSV
 write.csv(united_states_weekly_deaths %>%
