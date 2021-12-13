@@ -287,6 +287,22 @@ write.csv(all_quarterly_excess_deaths,
 }
 
 
+# Check to ensure no country has fewer observations than in the immediately prior data update:
+obs_matrix <- data.frame(table(c(all_weekly_excess_deaths$country[
+  !is.na(all_weekly_excess_deaths$excess_deaths_per_100k) & 
+    all_weekly_excess_deaths$country == all_weekly_excess_deaths$region], all_monthly_excess_deaths$country[
+      !is.na(all_monthly_excess_deaths$excess_deaths_per_100k) &
+        all_monthly_excess_deaths$country == all_monthly_excess_deaths$region], all_quarterly_excess_deaths$country[!is.na(all_quarterly_excess_deaths$excess_deaths_per_100k) & all_quarterly_excess_deaths$country == all_quarterly_excess_deaths$region])))
+
+last_update_matrix <- read_csv("output-data/observations_per_country.csv")
+for(i in 1:nrow(last_update_matrix)){
+  if(last_update_matrix$Freq[i] > obs_matrix$Freq[obs_matrix$Var1 == last_update_matrix$Var1[i]]){
+    stop(paste0('Fewer observations than in latest update for ', last_update_matrix$Var1[i], " please inspect manually"))
+  }
+}
+write_csv(obs_matrix, "output-data/observations_per_country.csv")
+
+
 # Step 5: repeat process, using non-iso weeks ---------------------------------------
 
 # Import data
