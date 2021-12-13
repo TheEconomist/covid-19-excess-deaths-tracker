@@ -320,8 +320,16 @@ for(i in setdiff(unique(world_mortality_dataset$country_name), skip)){
 
 # Import the United States' data
 united_states_states <- fread("source-data/united-states/united_states_states.csv")
-united_states_covid_source_latest <- fread("https://usafactsstatic.blob.core.windows.net/public/data/covid-19/covid_deaths_usafacts.csv")
+united_states_covid_source_latest <- fread("https://static.usafacts.org/public/data/covid-19/covid_deaths_usafacts.csv")
 united_states_total_source_latest <- fread("https://data.cdc.gov/api/views/xkkf-xrst/rows.csv")
+
+# Load world mortality data to find threshold for completeness:
+most_recent <- world_mortality_dataset[world_mortality_dataset$country == 'United States', ]
+if(most_recent$time_unit == 'weekly'){
+  most_recent <- c(max(most_recent$year, na.rm = T), max(most_recent$time, na.rm = T))
+} else {
+  stop('United States data is no longer weekly. Please inspect manually to ensure new observations are not affected by reporting lags.')
+}
 
 # Group US states' total and expected deaths by week
 united_states_weekly_total_deaths <- united_states_total_source_latest %>%
@@ -341,6 +349,9 @@ united_states_weekly_total_deaths <- united_states_total_source_latest %>%
             expected_deaths = sum(expected_deaths)) %>%
   drop_na() %>%
   ungroup()
+
+# This line excludes observations deemed to suffer from plausible reporting lags by the World Mortality project:
+united_states_weekly_total_deaths <- united_states_weekly_total_deaths[united_states_weekly_total_deaths$end_date <= max(united_states_weekly_total_deaths$end_date[united_states_weekly_total_deaths$week <= most_recent[2] & united_states_weekly_total_deaths$year <= most_recent[1]], na.rm = T), ]
 
 # Group US states' covid deaths by week
 united_states_weekly_covid_deaths <- united_states_covid_source_latest %>%
