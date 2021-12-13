@@ -351,7 +351,7 @@ united_states_weekly_total_deaths <- united_states_total_source_latest %>%
   ungroup()
 
 # This line excludes observations deemed to suffer from plausible reporting lags by the World Mortality project:
-united_states_weekly_total_deaths <- united_states_weekly_total_deaths[united_states_weekly_total_deaths$end_date <= max(united_states_weekly_total_deaths$end_date[united_states_weekly_total_deaths$week <= most_recent[2] & united_states_weekly_total_deaths$year <= most_recent[1]], na.rm = T), ]
+united_states_weekly_total_deaths <- united_states_weekly_total_deaths[united_states_weekly_total_deaths$end_date < max(united_states_weekly_total_deaths$end_date[united_states_weekly_total_deaths$week <= most_recent[2] & united_states_weekly_total_deaths$year <= most_recent[1]], na.rm = T), ]
 
 # Group US states' covid deaths by week
 united_states_weekly_covid_deaths <- united_states_covid_source_latest %>%
