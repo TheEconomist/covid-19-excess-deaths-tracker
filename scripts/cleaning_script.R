@@ -12,12 +12,16 @@ options(scipen=999)
 global_covid_source_latest <- read_csv("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/jhu/new_deaths.csv") %>%
   add_row(date=seq(as.Date("2019-12-31"), as.Date("2020-01-21"), by="days")) %>% arrange(date)
 # Adding in a few countries without covid-19 deaths data from Our World in Data:
-global_covid_source_latest <- cbind(global_covid_source_latest, tibble("Aruba" = rep(NA, nrow(global_covid_source_latest)),
-                                                                           "Bermuda" = rep(NA, nrow(global_covid_source_latest)),
-                                                                           "Faroe Islands" = rep(NA, nrow(global_covid_source_latest)), "French Polynesia" = rep(NA, nrow(global_covid_source_latest)), "Gibraltar" = rep(NA, nrow(global_covid_source_latest)),
-                                                                       "Greenland" = rep(NA, nrow(global_covid_source_latest)),
-                                                                       "Macao" = rep(NA, nrow(global_covid_source_latest)),
-))
+missing_countries <- c("Aruba", "Bermuda", "Faroe Islands",
+                       "French Polynesia", "Gibraltar",
+                       "Greenland", "Macao")
+
+for(missing_country in setdiff(missing_countries, colnames(global_covid_source_latest))){
+  temp <- tibble(country = rep(NA, nrow(global_covid_source_latest)))
+  colnames(temp) <- missing_country
+  global_covid_source_latest <- cbind(
+    global_covid_source_latest, temp)  
+}
 
 # Import population data from Our World In Data
 country_population_data <- fread("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv") %>% mutate(iso3c = iso_code) %>% select(population, iso3c, location) %>% unique()
