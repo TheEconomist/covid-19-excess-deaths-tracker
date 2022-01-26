@@ -39,7 +39,8 @@ countries <- c("Albania", "Andorra", "Antigua and Barbuda",
                "Netherlands", "New Zealand", "Norway", "Peru", "Poland", 
                "Portugal", "Romania", "Slovakia", "Slovenia", "South Africa", 
                "South Korea", "Spain", "Sweden", "Switzerland", "Tunisia", 
-               "Turkey", "United States", "Tajikistan", "Dominican Republic", "Kuwait", "Brunei", "Barbados", "Jordan", "Maldives", "Palestine")
+               "Turkey", "United States", "Tajikistan", "Dominican Republic", "Kuwait", "Brunei", "Barbados", "Jordan", "Maldives", "Palestine",
+               "Algeria")
 
 # Step 2: define function that calculates excess deaths ---------------------------------------
 
