@@ -308,9 +308,6 @@ week_comparison <- gen_comparison(data1 = all_weekly_excess_deaths,
 month_comparison <- gen_comparison(data1 = all_monthly_excess_deaths,
                                   data2 = compare_monthly,
                                   frequency = "month")
-quarter_comparison <- gen_comparison(data1 = all_quarterly_excess_deaths,
-                                  data2 = compare_quarterly,
-                                  frequency = "quarter")
 
 if(max(week_comparison$diff) > 1000 |
    max(month_comparison$diff) > 4000 |
