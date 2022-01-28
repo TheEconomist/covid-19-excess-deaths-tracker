@@ -282,10 +282,7 @@ cleaning_to_csv <- function(country = "Albania",
 # Step 3: Clean data for countries (excepting non-sovereign entities and the United States) ---------------------------------------
 
 # The following areas in the mortality dataset are skipped as they are overseas French departments or non-sovereign countries:
-skip <- c("French Guiana", "Guadeloupe", "Martinique", "Mayotte", "Réunion", "Transnistria", "New Caledonia")
-
-# We deal with the United States separately below (as we want results by state there):
-skip <- c(skip, "United states", "Puerto Rico")
+skip <- c("French Guiana", "Guadeloupe", "Martinique", "Mayotte", "Réunion", "Transnistria", "New Caledonia", "Puerto Rico")
 
 # Cycle through countries:
 for(i in setdiff(unique(world_mortality_dataset$country_name), skip)){
@@ -409,14 +406,14 @@ united_states_weekly_deaths <- united_states_weekly_deaths[!united_states_weekly
 write.csv(united_states_weekly_deaths %>%
             mutate(start_date = format(start_date, "%Y-%m-%d"),
                    end_date = format(end_date, "%Y-%m-%d")),
-          "output-data/historical-deaths/united_states_weekly_deaths.csv",
+          "output-data/historical-deaths/united_states_by_state_weekly_deaths.csv",
           fileEncoding = "UTF-8",
           row.names=FALSE)
 
-# Export for alternative directory
+# Export for alternative directory (follows old convention)
 write.csv(united_states_weekly_deaths %>%
             mutate(start_date = format(start_date, "%Y-%m-%d"),
                    end_date = format(end_date, "%Y-%m-%d")),
-          "output-data/alternative-exports-by-non-iso-week/historical-deaths/united_states_weekly_deaths.csv",
+          "output-data/alternative-exports-by-non-iso-week/historical-deaths/united_states_by_state_weekly_deaths.csv",
           fileEncoding = "UTF-8",
           row.names=FALSE)

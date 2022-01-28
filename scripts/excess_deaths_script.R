@@ -151,6 +151,8 @@ get_excess_deaths <- function(df,expected_deaths_model,frequency="weekly",calcul
 }
 
 # Step 3: calculate excess deaths for each country ---------------------------------------
+frequencies_used <- c() # Records which frequencies we use in the data
+
 # Cycle through countries
 for(i in historical_deaths){
   
@@ -159,6 +161,7 @@ for(i in historical_deaths){
   
   # Get data frequency
   dat_frequency <- paste0(colnames(dat)[8], "ly")
+  frequencies_used <- c(frequencies_used, dat_frequency)
 
   # Get country
   country <- dat$country[1]
@@ -168,6 +171,13 @@ for(i in historical_deaths){
  if(!country %in% countries){
    stop(paste0(country, " is a new country, please inspect manually to ensure consistency."))
  }
+  
+  # If loading regional data, then do not use national estimate as well
+  regional <- FALSE # Set default
+  if(any(dat$country != dat$region) > 0){
+    regional <- TRUE
+    dat <- dat[dat$country != dat$region, ]
+  }
 
   # Get excess deaths, training a new model (except for South Africa, where expected deaths are provided explicitly):
   res <- get_excess_deaths(dat,
@@ -179,13 +189,27 @@ for(i in historical_deaths){
   
   # Save the model 
   saveRDS(res[[1]], paste0("output-data/expected-deaths-models/", 
-                           country, "_expected_deaths_model.RDS"))
+                           country, ifelse(regional, '_by_region', ''), "_expected_deaths_model.RDS"))
   
   # Save the results
   write.csv(res[[2]], 
-            paste0("output-data/excess-deaths/", country, "_excess_deaths.csv"),
-            fileEncoding = "UTF-8",row.names=FALSE)
+            paste0("output-data/excess-deaths/", country, ifelse(regional, '_by_region', ''), "_excess_deaths.csv"),
+            fileEncoding = "UTF-8", row.names=FALSE)
 }
+
+# We finally combine the US estimates into one file for convenience and consistency with past output
+# Load files:
+US_national <- read_csv("output-data/excess-deaths/united_states_excess_deaths.csv")
+US_regional <- read_csv("output-data/excess-deaths/united_states_by_region_excess_deaths.csv")
+US <- rbind(US_national, US_regional)
+
+# Write common export:
+write.csv(US,
+          "output-data/excess-deaths/united_states_excess_deaths.csv",
+          fileEncoding = "UTF-8", row.names=FALSE)
+
+# Remove export now part of main file:
+unlink("output-data/excess-deaths/united_states_by_region_excess_deaths.csv")
 
 # Step 4: combine weekly, monthly and quarterly deaths together, and calculate deaths per 100,000 people and percentage change ---------------------------------------
 
@@ -199,6 +223,8 @@ data <- lapply(setdiff(dir('output-data/excess-deaths/'),
                  temp$region_code <- as.character(temp$region_code)
                  temp})
 
+# Save weekly data
+if("weekly" %in% frequencies_used){
 all_weekly_excess_deaths <- rbindlist(data[unlist(lapply(1:length(data), FUN = function(i){
   colnames(data[[i]])[8] == "week"
 }))])  %>%
@@ -206,6 +232,12 @@ all_weekly_excess_deaths <- rbindlist(data[unlist(lapply(1:length(data), FUN = f
          excess_deaths_per_100k = excess_deaths / population * 100000,
          excess_deaths_pct_change = (total_deaths / expected_deaths) - 1) 
 
+# Deduplication
+if(max(table(with(all_weekly_excess_deaths, paste0(country, "_", region, "_", year, "_", week)))) != 1){stop("Duplications in weekly data, please inspect")}
+}
+
+# Save monthly data
+if("monthly" %in% frequencies_used){
 all_monthly_excess_deaths <- rbindlist(data[unlist(lapply(1:length(data), FUN = function(i){
   colnames(data[[i]])[8] == "month"
 }))])  %>%
@@ -213,6 +245,12 @@ all_monthly_excess_deaths <- rbindlist(data[unlist(lapply(1:length(data), FUN = 
          excess_deaths_per_100k = excess_deaths / population * 100000,
          excess_deaths_pct_change = (total_deaths / expected_deaths) - 1)
 
+# Deduplication
+if(max(table(with(all_monthly_excess_deaths, paste0(country, "_", region, "_", year, "_", month)))) != 1){stop("Duplications in monthly data, please inspect")}
+}
+
+# Save quarterly data
+if("quarterly" %in% frequencies_used){
 all_quarterly_excess_deaths <- rbindlist(data[unlist(lapply(1:length(data), FUN = function(i){
   colnames(data[[i]])[8] == "quarter"
 }))])  %>%
@@ -221,9 +259,9 @@ all_quarterly_excess_deaths <- rbindlist(data[unlist(lapply(1:length(data), FUN 
          excess_deaths_pct_change = (total_deaths / expected_deaths) - 1)
 
 # Deduplication
-if(max(table(with(all_weekly_excess_deaths, paste0(country, "_", region, "_", year, "_", week)))) != 1){stop("Duplications in quarterly data, please inspect")}
-if(max(table(with(all_monthly_excess_deaths, paste0(country, "_", region, "_", year, "_", month)))) != 1){stop("Duplications in quarterly data, please inspect")}
 if(max(table(with(all_quarterly_excess_deaths, paste0(country, "_", region, "_", year, "_", quarter)))) != 1){stop("Duplications in quarterly data, please inspect")}
+}
+
 
 # Check that values do not differ enormously from previous ones:
 compare_weekly <- read.csv("output-data/excess-deaths/all_weekly_excess_deaths.csv")
@@ -252,6 +290,18 @@ compare$diff_per_100k <- abs(compare$excess_deaths_per_100k.x - compare$excess_d
 
 return(compare_weekly)
 }
+
+# Prepare for comparison (this makes robust to any category eventually having no observations):
+if(!exists('all_weekly_excess_deaths')){
+  all_weekly_excess_deaths <- read_csv("output-data/excess-deaths/all_weekly_excess_deaths.csv")
+}
+if(!exists('all_monthly_excess_deaths')){
+  all_monthly_excess_deaths <- read_csv("output-data/excess-deaths/all_monthly_excess_deaths.csv")
+}
+if(!exists('all_quarterly_excess_deaths')){
+  all_quarterly_excess_deaths <- read_csv("output-data/excess-deaths/all_quarterly_excess_deaths.csv")
+}
+
 week_comparison <- gen_comparison(data1 = all_weekly_excess_deaths,
                     data2 = compare_weekly,
                     frequency = "week")
@@ -264,29 +314,32 @@ quarter_comparison <- gen_comparison(data1 = all_quarterly_excess_deaths,
 
 if(max(week_comparison$diff) > 1000 |
    max(month_comparison$diff) > 4000 |
-   max(quarter_comparison$diff) > 12000 |
    max(week_comparison$diff_per_100k) > 5 |
-   max(week_comparison$diff_per_100k) > 20 |
-   max(week_comparison$diff_per_100k) > 60){
+   max(month_comparison$diff_per_100k) > 20){
   stop("Differences with former data is very large, please inspect manually")
 } else {
 
 # Export weekly deaths
-write.csv(all_weekly_excess_deaths,
+  if(exists("all_weekly_excess_deaths")){
+    write.csv(all_weekly_excess_deaths,
           file = "output-data/excess-deaths/all_weekly_excess_deaths.csv", 
           fileEncoding = "UTF-8", row.names=FALSE)
+  }
 
 # Export monthly deaths
-write.csv(all_monthly_excess_deaths,
+  if(exists("all_monthly_excess_deaths")){
+    write.csv(all_monthly_excess_deaths,
           file = "output-data/excess-deaths/all_monthly_excess_deaths.csv",
           fileEncoding = "UTF-8",row.names=FALSE)
+  }
 
 # Export quarterly deaths
-write.csv(all_quarterly_excess_deaths,
+if(exists("all_quarterly_excess_deaths")){
+  write.csv(all_quarterly_excess_deaths,
           file = "output-data/excess-deaths/all_quarterly_excess_deaths.csv",
           fileEncoding = "UTF-8",row.names=FALSE)
+  }
 }
-
 
 # Check to ensure no country has fewer observations than in the immediately prior data update:
 obs_matrix <- data.frame(table(c(all_weekly_excess_deaths$country[
@@ -355,78 +408,45 @@ data <- lapply(setdiff(dir('output-data/alternative-exports-by-non-iso-week/exce
                  temp$region_code <- as.character(temp$region_code)
                  temp})
 
-all_weekly_excess_deaths <- rbindlist(data[unlist(lapply(1:length(data), FUN = function(i){
-  colnames(data[[i]])[8] == "week"
-}))])  %>%
-  mutate(covid_deaths_per_100k = covid_deaths / population * 100000,
-         excess_deaths_per_100k = excess_deaths / population * 100000,
-         excess_deaths_pct_change = (total_deaths / expected_deaths) - 1) 
-
-all_monthly_excess_deaths <- rbindlist(data[unlist(lapply(1:length(data), FUN = function(i){
-  colnames(data[[i]])[8] == "month"
-}))])  %>%
-  mutate(covid_deaths_per_100k = covid_deaths / population * 100000,
-         excess_deaths_per_100k = excess_deaths / population * 100000,
-         excess_deaths_pct_change = (total_deaths / expected_deaths) - 1)
-
-all_quarterly_excess_deaths <- rbindlist(data[unlist(lapply(1:length(data), FUN = function(i){
-  colnames(data[[i]])[8] == "quarter"
-}))])  %>%
-  mutate(covid_deaths_per_100k = covid_deaths / population * 100000,
-         excess_deaths_per_100k = excess_deaths / population * 100000,
-         excess_deaths_pct_change = (total_deaths / expected_deaths) - 1)
-
-# Deduplication
-if(max(table(with(all_weekly_excess_deaths, paste0(country, "_", region, "_", year, "_", week)))) != 1){stop("Duplications in weekly data, please inspect")}
-if(max(table(with(all_monthly_excess_deaths, paste0(country, "_", region, "_", year, "_", month)))) != 1){stop("Duplications in monthly data, please inspect")}
-if(max(table(with(all_quarterly_excess_deaths, paste0(country, "_", region, "_", year, "_", quarter)))) != 1){stop("Duplications in quarterly data, please inspect")}
-
-# Check that values do not differ enormously from previous ones:
-compare_weekly <- read.csv("output-data/alternative-exports-by-non-iso-week/excess-deaths/all_weekly_excess_deaths.csv")
-compare_monthly <- read.csv("output-data/alternative-exports-by-non-iso-week/excess-deaths/all_monthly_excess_deaths.csv")
-compare_quarterly <- read.csv("output-data/alternative-exports-by-non-iso-week/excess-deaths/all_quarterly_excess_deaths.csv")
-
-# Define function to generate comparison with existing data:
-gen_comparison <- function(data1 = all_weekly_excess_deaths,
-                           data2 = compare_weekly,
-                           frequency = "week"){
-  data1 <- data.frame(data1)
-  data2 <- data.frame(data2)
+# Save weekly data
+if("weekly" %in% frequencies_used){
+  all_weekly_excess_deaths <- rbindlist(data[unlist(lapply(1:length(data), FUN = function(i){
+    colnames(data[[i]])[8] == "week"
+  }))])  %>%
+    mutate(covid_deaths_per_100k = covid_deaths / population * 100000,
+           excess_deaths_per_100k = excess_deaths / population * 100000,
+           excess_deaths_pct_change = (total_deaths / expected_deaths) - 1) 
   
-  compare <-        merge(data1[, c("country", "region",
-                                    "year", frequency,
-                                    "excess_deaths_per_100k",
-                                    "excess_deaths")],
-                          data2[, c("country", "region",
-                                    "year", frequency,
-                                    "excess_deaths_per_100k",
-                                    "excess_deaths")], 
-                          by = c("country", "region", "year", frequency))
-  
-  compare$diff <- abs(compare$excess_deaths.x - compare$excess_deaths.y)
-  compare$diff_per_100k <- abs(compare$excess_deaths_per_100k.x - compare$excess_deaths_per_100k.y)
-  
-  return(compare_weekly)
+  # Deduplication
+  if(max(table(with(all_weekly_excess_deaths, paste0(country, "_", region, "_", year, "_", week)))) != 1){stop("Duplications in weekly data, please inspect")}
 }
-week_comparison <- gen_comparison(data1 = all_weekly_excess_deaths,
-                                  data2 = compare_weekly,
-                                  frequency = "week")
-month_comparison <- gen_comparison(data1 = all_monthly_excess_deaths,
-                                   data2 = compare_monthly,
-                                   frequency = "month")
-quarter_comparison <- gen_comparison(data1 = all_quarterly_excess_deaths,
-                                     data2 = compare_quarterly,
-                                     frequency = "quarter")
 
-if(max(week_comparison$diff) > 1000 |
-   max(month_comparison$diff) > 4000 |
-   max(quarter_comparison$diff) > 12000 |
-   max(week_comparison$diff_per_100k) > 5 |
-   max(week_comparison$diff_per_100k) > 20 |
-   max(week_comparison$diff_per_100k) > 60){
-  stop("Differences with former data is very large, please inspect manually")
-} else {
+# Save monthly data
+if("monthly" %in% frequencies_used){
+  all_monthly_excess_deaths <- rbindlist(data[unlist(lapply(1:length(data), FUN = function(i){
+    colnames(data[[i]])[8] == "month"
+  }))])  %>%
+    mutate(covid_deaths_per_100k = covid_deaths / population * 100000,
+           excess_deaths_per_100k = excess_deaths / population * 100000,
+           excess_deaths_pct_change = (total_deaths / expected_deaths) - 1)
   
+  # Deduplication
+  if(max(table(with(all_monthly_excess_deaths, paste0(country, "_", region, "_", year, "_", month)))) != 1){stop("Duplications in monthly data, please inspect")}
+}
+
+# Save quarterly data
+if("quarterly" %in% frequencies_used){
+  all_quarterly_excess_deaths <- rbindlist(data[unlist(lapply(1:length(data), FUN = function(i){
+    colnames(data[[i]])[8] == "quarter"
+  }))])  %>%
+    mutate(covid_deaths_per_100k = covid_deaths / population * 100000,
+           excess_deaths_per_100k = excess_deaths / population * 100000,
+           excess_deaths_pct_change = (total_deaths / expected_deaths) - 1)
+  
+  # Deduplication
+  if(max(table(with(all_quarterly_excess_deaths, paste0(country, "_", region, "_", year, "_", quarter)))) != 1){stop("Duplications in quarterly data, please inspect")}
+}
+ 
   # Export weekly deaths
   write.csv(all_weekly_excess_deaths,
             file = "output-data/alternative-exports-by-non-iso-week/excess-deaths/all_weekly_excess_deaths.csv", 
@@ -441,4 +461,4 @@ if(max(week_comparison$diff) > 1000 |
   write.csv(all_quarterly_excess_deaths,
             file = "output-data/alternative-exports-by-non-iso-week/excess-deaths/all_quarterly_excess_deaths.csv",
             fileEncoding = "UTF-8",row.names=FALSE)
-}
+
