@@ -317,21 +317,21 @@ if(max(week_comparison$diff) > 1000 |
 } else {
 
 # Export weekly deaths
-  if(exists("all_weekly_excess_deaths")){
+  if(exists("all_weekly_excess_deaths") & "weekly" %in% frequencies_used){
     write.csv(all_weekly_excess_deaths,
           file = "output-data/excess-deaths/all_weekly_excess_deaths.csv", 
           fileEncoding = "UTF-8", row.names=FALSE)
   }
 
 # Export monthly deaths
-  if(exists("all_monthly_excess_deaths")){
+  if(exists("all_monthly_excess_deaths") & "monthly" %in% frequencies_used){
     write.csv(all_monthly_excess_deaths,
           file = "output-data/excess-deaths/all_monthly_excess_deaths.csv",
           fileEncoding = "UTF-8",row.names=FALSE)
   }
 
 # Export quarterly deaths
-if(exists("all_quarterly_excess_deaths")){
+if(exists("all_quarterly_excess_deaths") & "quarterly" %in% frequencies_used){
   write.csv(all_quarterly_excess_deaths,
           file = "output-data/excess-deaths/all_quarterly_excess_deaths.csv",
           fileEncoding = "UTF-8",row.names=FALSE)
@@ -445,22 +445,22 @@ if("quarterly" %in% frequencies_used){
 }
  
 # Export weekly deaths
-if(exists("all_weekly_excess_deaths")){
+if(exists("all_weekly_excess_deaths") & "weekly" %in% frequencies_used){
   write.csv(all_weekly_excess_deaths,
             file = "output-data/excess-deaths/all_weekly_excess_deaths.csv", 
             fileEncoding = "UTF-8", row.names=FALSE)
 }
 
 # Export monthly deaths
-if(exists("all_monthly_excess_deaths")){
+if(exists("all_monthly_excess_deaths") & "monthly" %in% frequencies_used){
   write.csv(all_monthly_excess_deaths,
             file = "output-data/excess-deaths/all_monthly_excess_deaths.csv",
-            fileEncoding = "UTF-8",row.names=FALSE)
+            fileEncoding = "UTF-8", row.names=FALSE)
 }
 
 # Export quarterly deaths
-if(exists("all_quarterly_excess_deaths")){
+if(exists("all_quarterly_excess_deaths") & "quarterly" %in% frequencies_used){
   write.csv(all_quarterly_excess_deaths,
             file = "output-data/excess-deaths/all_quarterly_excess_deaths.csv",
-            fileEncoding = "UTF-8",row.names=FALSE)
+            fileEncoding = "UTF-8", row.names=FALSE)
 }
