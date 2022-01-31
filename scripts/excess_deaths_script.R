@@ -444,18 +444,23 @@ if("quarterly" %in% frequencies_used){
   if(max(table(with(all_quarterly_excess_deaths, paste0(country, "_", region, "_", year, "_", quarter)))) != 1){stop("Duplications in quarterly data, please inspect")}
 }
  
-  # Export weekly deaths
+# Export weekly deaths
+if(exists("all_weekly_excess_deaths")){
   write.csv(all_weekly_excess_deaths,
-            file = "output-data/alternative-exports-by-non-iso-week/excess-deaths/all_weekly_excess_deaths.csv", 
+            file = "output-data/excess-deaths/all_weekly_excess_deaths.csv", 
             fileEncoding = "UTF-8", row.names=FALSE)
-  
-  # Export monthly deaths
-  write.csv(all_monthly_excess_deaths,
-            file = "output-data/alternative-exports-by-non-iso-week/excess-deaths/all_monthly_excess_deaths.csv",
-            fileEncoding = "UTF-8",row.names=FALSE)
-  
-  # Export quarterly deaths
-  write.csv(all_quarterly_excess_deaths,
-            file = "output-data/alternative-exports-by-non-iso-week/excess-deaths/all_quarterly_excess_deaths.csv",
-            fileEncoding = "UTF-8",row.names=FALSE)
+}
 
+# Export monthly deaths
+if(exists("all_monthly_excess_deaths")){
+  write.csv(all_monthly_excess_deaths,
+            file = "output-data/excess-deaths/all_monthly_excess_deaths.csv",
+            fileEncoding = "UTF-8",row.names=FALSE)
+}
+
+# Export quarterly deaths
+if(exists("all_quarterly_excess_deaths")){
+  write.csv(all_quarterly_excess_deaths,
+            file = "output-data/excess-deaths/all_quarterly_excess_deaths.csv",
+            fileEncoding = "UTF-8",row.names=FALSE)
+}
