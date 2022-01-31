@@ -355,6 +355,7 @@ write_csv(obs_matrix, "output-data/observations_per_country.csv")
 
 
 # Step 5: repeat process, using non-iso weeks ---------------------------------------
+cat('\n\n Repeating process for legacy export (i.e. of non-iso week data) \n\n')
 
 # Import data
 historical_deaths <- dir('output-data/alternative-exports-by-non-iso-week/historical-deaths')
