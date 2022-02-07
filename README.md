@@ -30,7 +30,7 @@ This data has been collected, cleaned and analysed by [James Tozer](https://twit
 
 The [Financial Times](https://github.com/Financial-Times/coronavirus-excess-mortality-data) and the [New York Times](https://github.com/nytimes/covid-19-data/tree/master/excess-deaths) have both published similar analyses of excess mortality.
 
-If you use the data, or have any suggestions, please email [jamestozer@economist.com](mailto:jamestozer@economist.com).
+If you use the data, or have any suggestions, please email [sondresolstad@economist.com](mailto:sondresolstad@economist.com).
 
 ## Licence
 
