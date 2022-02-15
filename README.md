@@ -26,11 +26,11 @@ Registro Civil (Bolivia); Vital Strategies; Office for National Statistics; Nort
 
 ## Authors
 
-This data has been collected, cleaned and analysed by [James Tozer](https://twitter.com/J_CD_T) and [Martín González](https://twitter.com/martgnz). We are grateful to Lasse Skafte Vestergaard for providing data from [EuroMOMO](https://www.euromomo.eu/graphs-and-maps); to Oğuz Işık for providing data from Istanbul; to René van der Veer for providing code for the Netherlands; to Laurianne Despeghel and Mario Romero Zavalato for providing data from Mexico City; to Karen Gil for providing data from Bolivia; to Thais Carrança, Helio Gurovitz and Diogo Melo for providing data from Brazilian cities; and to Renato Teixeira and Vital Strategies for providing data from the whole of Brazil. 
+This data has been collected, cleaned and analysed by [James Tozer](https://twitter.com/J_CD_T), [Martín González](https://twitter.com/martgnz), and, since the fall of 2021, [Sondre Ulvund Solstad](https://twitter.com/sondreus). We are grateful to Lasse Skafte Vestergaard for providing data from [EuroMOMO](https://www.euromomo.eu/graphs-and-maps); to Oğuz Işık for providing data from Istanbul; to René van der Veer for providing code for the Netherlands; to Laurianne Despeghel and Mario Romero Zavalato for providing data from Mexico City; to Karen Gil for providing data from Bolivia; to Thais Carrança, Helio Gurovitz and Diogo Melo for providing data from Brazilian cities; and to Renato Teixeira and Vital Strategies for providing data from the whole of Brazil. 
 
 The [Financial Times](https://github.com/Financial-Times/coronavirus-excess-mortality-data) and the [New York Times](https://github.com/nytimes/covid-19-data/tree/master/excess-deaths) have both published similar analyses of excess mortality.
 
-If you use the data, or have any suggestions, please email [sondresolstad@economist.com](mailto:sondresolstad@economist.com).
+If you have any suggestions, please email [sondresolstad@economist.com](mailto:sondresolstad@economist.com).
 
 ## Licence
 
