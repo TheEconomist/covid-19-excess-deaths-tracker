@@ -33,7 +33,10 @@ country_population_data <- rbind(country_population_data,
                                  # https://www.insee.fr/fr/statistiques/fichier/1893198/estim-pop-dep-sexe-gca-1975-2021.xlsx
                                  data.frame("population" = 856858,
                                             "iso3c" = "REU",
-                                            "location" = "Réunion"))
+                                            "location" = "Réunion")
+                                 data.frame("population" = 483628,
+                                            "iso3c" = "CPV",
+                                            "location" = "Cabo Verde"),)
 
 # Import global mortality data from World Mortality Dataset
 world_mortality_dataset <- fread("https://raw.githubusercontent.com/akarlinsky/world_mortality/main/world_mortality.csv", encoding="UTF-8")
