@@ -11,6 +11,7 @@ options(scipen=999)
 # Import global JHU data from Our World In Data
 global_covid_source_latest <- read_csv("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/jhu/new_deaths.csv") %>%
   add_row(date=seq(as.Date("2019-12-31"), as.Date("2020-01-21"), by="days")) %>% arrange(date)
+
 # Adding in a few countries without covid-19 deaths data from Our World in Data:
 missing_countries <- c("Aruba", "Bermuda", "Faroe Islands",
                        "French Polynesia", "Gibraltar",
@@ -33,16 +34,14 @@ country_population_data <- rbind(country_population_data,
                                  # https://www.insee.fr/fr/statistiques/fichier/1893198/estim-pop-dep-sexe-gca-1975-2021.xlsx
                                  data.frame("population" = 856858,
                                             "iso3c" = "REU",
-                                            "location" = "Réunion"),
-                                 data.frame("population" = 483628,
-                                            "iso3c" = "CPV",
-                                            "location" = "Cabo Verde"))
+                                            "location" = "Réunion"))
 
 # Import global mortality data from World Mortality Dataset
 world_mortality_dataset <- fread("https://raw.githubusercontent.com/akarlinsky/world_mortality/main/world_mortality.csv", encoding="UTF-8")
 
 # We also harmonize the name for Bosnia:
 world_mortality_dataset$country_name[world_mortality_dataset$country_name == "Bosnia"] <- "Bosnia and Herzegovina"
+world_mortality_dataset$country_name[world_mortality_dataset$country_name == "Cabo Verde"] <- "Cape Verde"
 
 # Step 2: Define function to clean data ---------------------------------------
 
