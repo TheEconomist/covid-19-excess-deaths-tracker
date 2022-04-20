@@ -64,7 +64,7 @@ inspect_estimates <- function(country = 'Sweden'){
   # Plot by year (excluding 2022):
   b <- ggplot(df[df$year < 2022 & !duplicated(df$year), ], aes(x=start_date, y=total_deaths_annual, color = 'total deaths, annual'))+geom_line()+geom_point()+geom_line(aes(y=expected_deaths_annual, col='expected deaths, annual'))+geom_point(aes(y=expected_deaths_annual, col='expected deaths, annual'))+geom_vline(aes(xintercept = as.Date('2019-07-01')), col = 'black')+theme_minimal()
   
-  export <- df[!duplicated(df$year) & df$year < 2022, c('country', 'year', 'expected_deaths_annual', 'total_deaths_annual', 'excess_deaths_annual')]
+  export <- df[!duplicated(df$year) & df$year < 2022, c('country', 'year', 'expected_deaths_annual', 'total_deaths_annual')]
   return(list(a, b, export))}
 
 # To inspect a given country, use e.g.:
