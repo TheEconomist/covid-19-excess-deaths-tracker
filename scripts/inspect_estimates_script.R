@@ -59,10 +59,10 @@ inspect_estimates <- function(country = 'Sweden'){
   df$total_deaths_annual <- ave(df$total_deaths, df$year, FUN = sum)
 
   # Plot by week:
-  a <- ggplot(df, aes(x=start_date, y=total_deaths, color = 'total deaths'))+geom_line()+geom_line(aes(y=expected_deaths, col='expected_deaths'))
+  a <- ggplot(df, aes(x=start_date, y=total_deaths, color = 'total deaths'))+geom_line()+geom_line(aes(y=expected_deaths, col='expected_deaths'))+ggtitle(country)
   
   # Plot by year (excluding 2022):
-  b <- ggplot(df[df$year < 2022 & !duplicated(df$year), ], aes(x=start_date, y=total_deaths_annual, color = 'total deaths, annual'))+geom_line()+geom_point()+geom_line(aes(y=expected_deaths_annual, col='expected deaths, annual'))+geom_point(aes(y=expected_deaths_annual, col='expected deaths, annual'))+geom_vline(aes(xintercept = as.Date('2019-07-01')), col = 'black')+theme_minimal()
+  b <- ggplot(df[df$year < 2022 & !duplicated(df$year), ], aes(x=start_date, y=total_deaths_annual, color = 'total deaths, annual'))+geom_line()+geom_point()+geom_line(aes(y=expected_deaths_annual, col='expected deaths, annual'))+geom_point(aes(y=expected_deaths_annual, col='expected deaths, annual'))+geom_vline(aes(xintercept = as.Date('2019-07-01')), col = 'black')+theme_minimal()+ggtitle(country)
   
   export <- df[!duplicated(df$year) & df$year < 2022, c('country', 'year', 'expected_deaths_annual', 'total_deaths_annual')]
   return(list(a, b, export))}
