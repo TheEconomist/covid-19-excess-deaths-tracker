@@ -9,7 +9,9 @@ options(scipen=999)
 
 inspect = F
 
-# This defines a function to inspect total and expected mortality for a given country:
+# Part 1: Inspect total and expected mortality for a given country ------------------------------------
+
+# This defines a function, which takes a country name as the input and then provides 2 plots and a summary data frame in return
 inspect_estimates <- function(country = 'Sweden'){
   # Select country:
   country <- tolower(country)
@@ -68,13 +70,14 @@ inspect_estimates <- function(country = 'Sweden'){
   return(list(a, b, export))}
 
 # To inspect a given country, use e.g.:
-sweden <- inspect_estimates('Sweden')
-sweden[[1]]
-sweden[[2]]
-sweden[[3]]
+if(inspect){
+  sweden <- inspect_estimates('Sweden')
+  sweden[[1]]
+  sweden[[2]]
+  sweden[[3]]
+}
 
-
-# Export of selected countries:
+# This code chunk exports a few selected countries:
 export <- data.frame()
 countries <- c('Denmark', 'Sweden', 'Finland', 'Norway', 'Iceland', 'Belgium', 'Germany', 'Portugal', 'Spain', 'Japan', 'Ireland', 'United_States')
 for(i in countries){
@@ -89,6 +92,43 @@ ggplot(export, aes(x=year, y=total_deaths_annual, col='total deaths'))+
   geom_line(newdata = export[export$year >= 2020, ], aes(x=year, y=expected_deaths_annual, col = 'expected deaths'))+
   facet_wrap(country~.)
 }
+
+
+# Part 2: Replication for a given country ------------------------------------
+# This can be useful to see how we come up with our expected deaths estimates, and the details of our models
+
+# Load historical deaths data:
+country <- 'sweden'
+hist <- read_csv(sort(paste0('output-data/historical-deaths/', dir('output-data/historical-deaths/')[grep(country, dir('output-data/historical-deaths/'))]))[1])
+
+if(country == 'united_states'){
+  hist <- hist[hist$region_code == 'USA', ]
+}
+
+# Load expected deaths data:
+expected <- read_csv(sort(paste0('output-data/excess-deaths/', dir('output-data/excess-deaths/')[grep(country, dir('output-data/excess-deaths/'))]))[1])
+
+# Fit model:
+lm_fit <- lm(total_deaths ~ as.factor(week) + year, data = hist[hist$end_date < as.Date('2020-03-01'), ])
+expected$replicated_expected <- predict(lm_fit, newdata = expected)
+
+# We also provide an alternative here, which does not include the first two months of 2020 in the training data
+lm_fit <- lm(total_deaths ~ as.factor(week) + year, data = hist[hist$end_date < as.Date('2020-01-01'), ])
+expected$replicated_expected_alternative <- predict(lm_fit, newdata = expected)
+
+# This is what the two look like for 2020+2021 totals (not adjusting for leap year or split weeks effects, which the above does):
+sum(expected$total_deaths[expected$start_date <= as.Date('2022-01-01')] -
+      expected$replicated_expected[expected$start_date <= as.Date('2022-01-01')])
+sum(expected$total_deaths[expected$start_date <= as.Date('2022-01-01')] -
+      expected$replicated_expected_alternative[expected$start_date <= as.Date('2022-01-01')])
+
+library(ggplot2)
+ggplot(expected, aes(x=start_date, y=total_deaths))+
+  geom_line()+
+  geom_line(aes(y=expected_deaths, col='expected (economist data)'))+
+  geom_line(aes(y=replicated_expected, col='expected (replicated via above model)'))+
+  geom_line(aes(y=replicated_expected_alternative, col='expected (using smaller training data)'))+
+  ggtitle('Note: leap year correction makes feb figure differ')
 
 
 
