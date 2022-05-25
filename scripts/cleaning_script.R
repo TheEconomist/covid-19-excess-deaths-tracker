@@ -15,7 +15,7 @@ global_covid_source_latest <- read_csv("https://raw.githubusercontent.com/owid/c
 # Adding in a few countries without covid-19 deaths data from Our World in Data:
 missing_countries <- c("Aruba", "Bermuda", "Faroe Islands",
                        "French Polynesia", "Gibraltar",
-                       "Greenland", "Macao")
+                       "Greenland", "Macao", "Hong Kong")
 
 for(missing_country in setdiff(missing_countries, colnames(global_covid_source_latest))){
   temp <- tibble(country = rep(NA, nrow(global_covid_source_latest)))
@@ -419,3 +419,4 @@ write.csv(united_states_weekly_deaths %>%
           "output-data/alternative-exports-by-non-iso-week/historical-deaths/united_states_by_state_weekly_deaths.csv",
           fileEncoding = "UTF-8",
           row.names=FALSE)
+
