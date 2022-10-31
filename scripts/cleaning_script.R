@@ -6,6 +6,10 @@ library(readxl)
 library(data.table)
 library(lubridate)
 library(aweek)
+library(dplyr, warn.conflicts = FALSE)
+# Suppress summarise info
+options(dplyr.summarise.inform = FALSE)
+
 options(scipen=999)
 
 # Import global JHU data from Our World In Data
@@ -284,7 +288,7 @@ cleaning_to_csv <- function(country = "Albania",
 # Step 3: Clean data for countries (excepting non-sovereign entities and the United States) ---------------------------------------
 
 # The following areas in the mortality dataset are skipped as they are overseas French departments or non-sovereign countries:
-skip <- c("French Guiana", "Guadeloupe", "Martinique", "Mayotte", "Réunion", "Transnistria", "New Caledonia", "Puerto Rico")
+skip <- c("French Guiana", "Guadeloupe", "Martinique", "Mayotte", "Réunion", "Transnistria", "New Caledonia", "Puerto Rico", "Guernsey", "Jersey")
 
 # Cycle through countries:
 for(i in setdiff(unique(world_mortality_dataset$country_name), skip)){
