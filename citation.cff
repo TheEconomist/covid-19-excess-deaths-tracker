@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: dataset
+authors:
+  - family-names: "The Economist"
+    given-names: ""
+  - family-names: "Solstad"
+    given-names: "Sondre Ulvund"
+    affiliation: "The Economist"
+    email: "sondresolstad@economist.com"
+    orcid: "https://orcid.org/0000-0002-6132-256X"
+contact:
+  - family-names: "Solstad"
+    given-names: "Sondre Ulvund"
+    affiliation: "The Economist"
+    email: "sondresolstad@economist.com"
+    orcid: "https://orcid.org/0000-0002-6132-256X"
+title: "Tracking covid-19 excess deaths across countries"
+version: 1.0.0
+date-released: 2020-04-15
+url: "https://github.com/TheEconomist/covid-19-excess-deaths-tracker"
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "The Economist"
+      given-names: ""
+      affiliation: "The Economist"
+      email: "sondresolstad@economist.com"
+      orcid: "https://orcid.org/0000-0002-6132-256X"
+  contact:
+    - family-names: "Solstad"
+      given-names: "Sondre Ulvund"
+      affiliation: "The Economist"
+      email: "sondresolstad@economist.com"
+      orcid: "https://orcid.org/0000-0002-6132-256X"
+  journal: "The Economist"
+  year: 2020
