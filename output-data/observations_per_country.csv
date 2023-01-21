@@ -1,14 +1,14 @@
 Var1,Freq
 Albania,33
 Algeria,12
-Andorra,12
+Andorra,24
 Antigua and Barbuda,24
 Argentina,12
 Armenia,35
 Aruba,24
 Australia,143
 Austria,156
-Azerbaijan,34
+Azerbaijan,35
 Bahamas,24
 Barbados,33
 Belarus,15
@@ -45,14 +45,14 @@ Germany,154
 Gibraltar,13
 Greece,153
 Greenland,33
-Guatemala,135
-Hong Kong,33
+Guatemala,157
+Hong Kong,34
 Hungary,153
 Iceland,153
 Iran,144
 Ireland,35
 Isle of Man,24
-Israel,154
+Israel,155
 Italy,148
 Jamaica,23
 Japan,34
@@ -60,7 +60,7 @@ Jordan,24
 Kazakhstan,35
 Kosovo,35
 Kuwait,24
-Kyrgyzstan,34
+Kyrgyzstan,35
 Latvia,156
 Lebanon,24
 Liechtenstein,29
@@ -74,23 +74,23 @@ Mauritius,30
 Mexico,146
 Moldova,33
 Monaco,33
-Mongolia,35
+Mongolia,36
 Montenegro,138
 Netherlands,157
 New Zealand,156
 Nicaragua,24
 North Macedonia,34
-Norway,156
+Norway,158
 Oman,35
 Palestine,24
 Panama,22
-Paraguay,34
+Paraguay,35
 Peru,145
 Philippines,30
 Poland,157
 Portugal,153
 Qatar,35
-Romania,148
+Romania,152
 Russia,35
 Saint Kitts and Nevis,32
 Saint Vincent and the Grenadines,24
@@ -98,7 +98,7 @@ San Marino,35
 Serbia,35
 Seychelles,24
 Singapore,33
-Slovakia,150
+Slovakia,155
 Slovenia,155
 South Africa,154
 South Korea,135
@@ -111,6 +111,6 @@ Tajikistan,20
 Thailand,36
 Tunisia,26
 Ukraine,25
-United States,154
+United States,156
 Uruguay,35
 Uzbekistan,33
