@@ -3,11 +3,11 @@ Albania,36
 Algeria,12
 Andorra,24
 Antigua and Barbuda,24
-Argentina,12
+Argentina,24
 Armenia,37
 Aruba,24
 Australia,152
-Austria,163
+Austria,165
 Azerbaijan,36
 Bahamas,24
 Barbados,36
@@ -18,19 +18,19 @@ Bermuda,24
 Bolivia,25
 Bosnia and Herzegovina,33
 Brazil,36
-Britain,163
+Britain,165
 Brunei,24
 Bulgaria,162
 Canada,148
 Cape Verde,12
-Chile,164
+Chile,166
 Colombia,150
 Costa Rica,32
 Croatia,162
 Cuba,24
 Cyprus,162
 Czech Republic,161
-Denmark,164
+Denmark,166
 Dominican Republic,22
 Ecuador,155
 Egypt,36
@@ -41,7 +41,7 @@ Finland,162
 France,163
 French Polynesia,24
 Georgia,30
-Germany,164
+Germany,165
 Gibraltar,13
 Greece,162
 Greenland,36
@@ -58,7 +58,7 @@ Jamaica,23
 Japan,36
 Jordan,24
 Kazakhstan,36
-Kosovo,36
+Kosovo,37
 Kuwait,24
 Kyrgyzstan,36
 Latvia,164
@@ -74,10 +74,10 @@ Mauritius,30
 Mexico,157
 Moldova,36
 Monaco,33
-Mongolia,37
+Mongolia,38
 Montenegro,138
-Netherlands,164
-New Zealand,163
+Netherlands,166
+New Zealand,165
 Nicaragua,24
 North Macedonia,36
 Norway,165
@@ -90,7 +90,7 @@ Philippines,31
 Poland,165
 Portugal,162
 Qatar,37
-Romania,156
+Romania,160
 Russia,37
 Saint Kitts and Nevis,33
 Saint Vincent and the Grenadines,24
@@ -105,7 +105,7 @@ South Korea,135
 Spain,161
 Suriname,24
 Sweden,164
-Switzerland,162
+Switzerland,163
 Taiwan,38
 Tajikistan,32
 Thailand,38
@@ -113,6 +113,6 @@ Tunisia,26
 Turkey,24
 Ukraine,25
 United Arab Emirates,12
-United States,160
+United States,161
 Uruguay,35
 Uzbekistan,36
