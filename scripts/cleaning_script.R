@@ -43,9 +43,12 @@ country_population_data <- rbind(country_population_data,
 # Import global mortality data from World Mortality Dataset
 world_mortality_dataset <- fread("https://raw.githubusercontent.com/akarlinsky/world_mortality/main/world_mortality.csv", encoding="UTF-8")
 
-# We also harmonize the name for Bosnia:
+# We also harmonize the name for Bosnia and Cape Verde:
 world_mortality_dataset$country_name[world_mortality_dataset$country_name == "Bosnia"] <- "Bosnia and Herzegovina"
 world_mortality_dataset$country_name[world_mortality_dataset$country_name == "Cabo Verde"] <- "Cape Verde"
+
+# And remove Fiji, as we only have mean counts for pre-pandemic years
+world_mortality_dataset <- world_mortality_dataset[world_mortality_dataset$country_name != 'Fiji', ]
 
 # Step 2: Define function to clean data ---------------------------------------
 
@@ -332,7 +335,7 @@ united_states_total_source_latest <- fread("https://data.cdc.gov/api/views/xkkf-
 
 # Load world mortality data to find threshold for completeness:
 most_recent <- world_mortality_dataset[world_mortality_dataset$country == 'United States', ]
-if(most_recent$time_unit == 'weekly'){
+if(most_recent$time_unit[1] == 'weekly'){
   most_recent <- c(max(most_recent$year, na.rm = T), max(most_recent$time, na.rm = T))
 } else {
   stop('United States data is no longer weekly. Please inspect manually to ensure new observations are not affected by reporting lags.')

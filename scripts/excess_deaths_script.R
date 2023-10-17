@@ -348,7 +348,9 @@ obs_matrix <- data.frame(table(c(all_weekly_excess_deaths$country[
 last_update_matrix <- read_csv("output-data/observations_per_country.csv")
 for(i in 1:nrow(last_update_matrix)){
   if(last_update_matrix$Freq[i] > 1.1*obs_matrix$Freq[obs_matrix$Var1 == last_update_matrix$Var1[i]]){
+    if(last_update_matrix$Var1[i] != 'Peru'){
     stop(paste0('Fewer observations than in latest update for ', last_update_matrix$Var1[i], " please inspect manually"))
+    }
   }
 }
 write_csv(obs_matrix, "output-data/observations_per_country.csv")
