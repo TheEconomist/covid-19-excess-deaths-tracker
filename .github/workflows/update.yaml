@@ -39,7 +39,7 @@ jobs:
             "readxl",
             "data.table",
             "lubridate",
-            "aweek"
+            "aweek", dependencies = T
           ))
         shell: Rscript {0}
 
