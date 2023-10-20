@@ -2,7 +2,7 @@
 
 # Import libraries
 library(readxl)
-library(readr)
+library(tidyverse)
 library(data.table)
 library(lubridate)
 library(aweek)
