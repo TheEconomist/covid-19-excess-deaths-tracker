@@ -35,6 +35,7 @@ jobs:
         #if: steps.cache.outputs.cache-hit != 'true'
         run: |
           install.packages(c(
+            "ragg",
             "tidyverse",
             "readxl",
             "data.table",
