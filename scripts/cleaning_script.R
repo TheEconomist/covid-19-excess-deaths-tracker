@@ -1,7 +1,6 @@
 # Step 1: import libraries and data ---------------------------------------
 
 # Import libraries
-library(tidyverse)
 library(readxl)
 library(data.table)
 library(lubridate)
