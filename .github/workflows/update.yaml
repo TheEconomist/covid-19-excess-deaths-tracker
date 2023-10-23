@@ -35,12 +35,12 @@ jobs:
         #if: steps.cache.outputs.cache-hit != 'true'
         run: |
           install.packages(c(
-            "ragg",
             "tidyverse",
             "readxl",
             "data.table",
             "lubridate",
-            "aweek", dependencies = T
+            "aweek", dependencies = T,
+            repos='http://cran.us.r-project.org'
           ))
         shell: Rscript {0}
 
