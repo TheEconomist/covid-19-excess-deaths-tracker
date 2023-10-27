@@ -21,7 +21,7 @@ jobs:
           r-version: ${{ env.R_VERSION }}
 
       - name: Set up Ubuntu packages
-        run: sudo apt-get install libcurl4-openssl-dev
+        run: sudo apt-get install libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev
 
       - name: Cache R packages
         id: cache
