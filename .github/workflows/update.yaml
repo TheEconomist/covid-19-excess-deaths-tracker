@@ -39,8 +39,7 @@ jobs:
             "readxl",
             "data.table",
             "lubridate",
-            "aweek", dependencies = T,
-            repos='http://cran.us.r-project.org'
+            "aweek", dependencies = T
           ))
         shell: Rscript {0}
 
