@@ -31,14 +31,13 @@ for(missing_country in setdiff(missing_countries, colnames(global_covid_source_l
 # Import population data from Our World In Data
 country_population_data <- fread("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv") %>% mutate(iso3c = iso_code) %>% select(population, iso3c, location) %>% unique()
 country_population_data <- rbind(country_population_data,
-                                 data.frame("population" = 49085,
-                                            "iso3c" = "FRO",
-                                            "location" = "Faroe Islands"),
                                  # https://www.insee.fr/fr/statistiques/1893198
                                  # https://www.insee.fr/fr/statistiques/fichier/1893198/estim-pop-dep-sexe-gca-1975-2021.xlsx
                                  data.frame("population" = 856858,
                                             "iso3c" = "REU",
                                             "location" = "Réunion"))
+
+country_population_data <- country_population_data[!duplicated(country_population_data$iso3c), ]
 
 # Import global mortality data from World Mortality Dataset
 world_mortality_dataset <- fread("https://raw.githubusercontent.com/akarlinsky/world_mortality/main/world_mortality.csv", encoding="UTF-8")
