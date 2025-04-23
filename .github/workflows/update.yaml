@@ -49,7 +49,6 @@ jobs:
 
       - name: Run cleaning script
         run: |
-          cd $GITHUB_WORKSPACE
           source('scripts/cleaning_script.R')
         shell: Rscript {0}
       
