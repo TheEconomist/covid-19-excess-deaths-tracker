@@ -10,7 +10,7 @@ jobs:
     env:
       S3_FOLDER: covid-19-excess-deaths-tracker
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      R_VERSION: 4.2.3
+      R_VERSION: 4.3.2
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
