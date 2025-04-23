@@ -7,6 +7,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-22.04
+    env:
+      S3_FOLDER: covid-19-excess-deaths-tracker
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_VERSION: 4.3.2
     steps:
       - name: Update and install packages
         run: |
