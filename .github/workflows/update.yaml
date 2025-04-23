@@ -32,6 +32,9 @@ jobs:
           key: r-v1-${{ env.R_VERSION }}
           restore-keys: r-v1
 
+      - name: Check out repository
+        uses: actions/checkout@v3
+
       - name: Install packages
         #if: steps.cache.outputs.cache-hit != 'true'
         run: |
