@@ -54,13 +54,11 @@ jobs:
       
       - name: Run excess deaths script
         run: |
-          cd $GITHUB_WORKSPACE
           source('scripts/excess_deaths_script.R')
         shell: Rscript {0}
 
       - name: Run interactive script
         run: |
-          cd $GITHUB_WORKSPACE
           source('scripts/interactive_script.R')
         shell: Rscript {0}
 
