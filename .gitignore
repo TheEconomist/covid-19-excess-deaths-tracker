@@ -16,3 +16,4 @@ __pycache__/
 # Javascript
 node_modules
 .Rproj.user
+AGENTS.md

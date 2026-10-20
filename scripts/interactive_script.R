@@ -6,17 +6,18 @@ options(scipen=999)
 
 # Step 2: create CSV for the table ----------------------------------------
 
-# read every csv
-table_data <- bind_rows(read_csv('output-data/excess-deaths/all_weekly_excess_deaths.csv') %>% mutate(region_code = as.character(region_code)),
-                        read_csv('output-data/excess-deaths/all_monthly_excess_deaths.csv') %>% mutate(region_code = as.character(region_code)),
-                        read_csv('output-data/excess-deaths/all_quarterly_excess_deaths.csv') %>% mutate(region_code = as.character(region_code)))
-
-# we include some cities for countries that lack nationwide figures
-cities <- c('Istanbul', 'Jakarta')
+# Read the available non-empty frequency exports.
+aggregate_files <- c('output-data/excess-deaths/all_weekly_excess_deaths.csv',
+                     'output-data/excess-deaths/all_monthly_excess_deaths.csv',
+                     'output-data/excess-deaths/all_quarterly_excess_deaths.csv')
+table_data <- map(aggregate_files[file.exists(aggregate_files)], read_csv) %>%
+  keep(~ nrow(.x) > 0) %>%
+  map(~ mutate(.x, region_code = as.character(region_code))) %>%
+  bind_rows()
 
 # generate table csv
 table <- table_data %>% 
-  filter(country == region | region %in% cities) %>% 
+  filter(country == region) %>%
   group_by(region) %>% 
   mutate(cumulative_covid_deaths = cumsum(covid_deaths)) %>% 
   # we want to count since the first 50 deaths

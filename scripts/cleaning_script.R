@@ -46,6 +46,37 @@ world_mortality_dataset <- fread("https://raw.githubusercontent.com/akarlinsky/w
 world_mortality_dataset$country_name[world_mortality_dataset$country_name == "Bosnia"] <- "Bosnia and Herzegovina"
 world_mortality_dataset$country_name[world_mortality_dataset$country_name == "Cabo Verde"] <- "Cape Verde"
 
+# Botswana's 2015 monthly total includes 1,391 registrations of earlier deaths.
+# Scale to the 13,030 current-year deaths, preserving the monthly distribution.
+# Statistics Botswana 2015, Tables D1 and D8 (printed pages 40 and 47):
+# https://www.statsbots.org.bw/sites/default/files/publications/Vital%20Statistics%20%202015.pdf
+botswana_2015 <- world_mortality_dataset$country_name == "Botswana" &
+  world_mortality_dataset$year == 2015
+if(any(botswana_2015)){
+  botswana_2015_total <- sum(world_mortality_dataset$deaths[botswana_2015])
+  stopifnot(sum(botswana_2015) == 12,
+            all(world_mortality_dataset$time_unit[botswana_2015] == "monthly"))
+  if(!isTRUE(all.equal(botswana_2015_total, 14421)) &
+     !isTRUE(all.equal(botswana_2015_total, 13030))){
+    stop("Botswana 2015 source total changed; reconcile current-year deaths before rescaling.")
+  }
+  world_mortality_dataset$deaths[botswana_2015] <-
+    world_mortality_dataset$deaths[botswana_2015] * 13030 / botswana_2015_total
+}
+
+# The June 2016 count is transposed in WMD: Table D8 reports 1,108, not 1,180.
+# https://www.statsbots.org.bw/sites/default/files/publications/VItal%20Statistics%202016.pdf
+botswana_june_2016 <- world_mortality_dataset$country_name == "Botswana" &
+  world_mortality_dataset$year == 2016 & world_mortality_dataset$time == 6
+if(any(botswana_june_2016)){
+  stopifnot(sum(botswana_june_2016) == 1,
+            world_mortality_dataset$time_unit[botswana_june_2016] == "monthly")
+  if(!world_mortality_dataset$deaths[botswana_june_2016] %in% c(1180, 1108)){
+    stop("Botswana June 2016 source changed; reconcile with the official monthly table.")
+  }
+  world_mortality_dataset$deaths[botswana_june_2016] <- 1108
+}
+
 # And remove Fiji, as we only have mean counts for pre-pandemic years
 world_mortality_dataset <- world_mortality_dataset[world_mortality_dataset$country_name != 'Fiji', ]
 
@@ -323,6 +354,26 @@ for(i in setdiff(unique(world_mortality_dataset$country_name), skip)){
   cleaning_to_csv(country = i,  output_folder = "output-data/alternative-exports-by-non-iso-week/historical-deaths/",
                   weeks_iso = F,
                   week_starts_on = week_start)
+}
+
+# Remove stale exports when the WMD changes a country's reporting frequency.
+for(country_name in setdiff(unique(world_mortality_dataset$country_name), skip)){
+  output_country <- country_name
+  if(output_country == "Czechia") output_country <- "Czech Republic"
+  if(output_country == "United Kingdom") output_country <- "Britain"
+  output_country <- tolower(gsub(" ", "_", output_country))
+  frequency <- unique(world_mortality_dataset$time_unit[
+    world_mortality_dataset$country_name == country_name
+  ])
+  stale_frequencies <- setdiff(c("weekly", "monthly", "quarterly"), frequency)
+  for(stale_frequency in stale_frequencies){
+    stale_path <- file.path("output-data/historical-deaths",
+                            paste0(output_country, "_", stale_frequency, "_deaths.csv"))
+    if(file.exists(stale_path)) file.remove(stale_path)
+    stale_path <- file.path("output-data/alternative-exports-by-non-iso-week/historical-deaths",
+                            paste0(output_country, "_", stale_frequency, "_deaths.csv"))
+    if(file.exists(stale_path)) file.remove(stale_path)
+  }
 }
 
 # Step 4: import and clean the United States' data (this enables results by state) ---------------------------------------
