@@ -49,6 +49,15 @@ world_mortality_dataset$country_name[world_mortality_dataset$country_name == "Ca
 # And remove Fiji, as we only have mean counts for pre-pandemic years
 world_mortality_dataset <- world_mortality_dataset[world_mortality_dataset$country_name != 'Fiji', ]
 
+# Bhutan's 2024 monthly counts in the WMD are an exact copy of 2023. Drop 2024
+# while that remains the case, so corrected data come through automatically.
+bhutan_2023 <- world_mortality_dataset[world_mortality_dataset$country_name == "Bhutan" & world_mortality_dataset$year == 2023, ]
+bhutan_2024 <- world_mortality_dataset[world_mortality_dataset$country_name == "Bhutan" & world_mortality_dataset$year == 2024, ]
+if(nrow(bhutan_2024) == 12 &&
+   identical(bhutan_2024$deaths[order(bhutan_2024$time)], bhutan_2023$deaths[order(bhutan_2023$time)])){
+  world_mortality_dataset <- world_mortality_dataset[!(world_mortality_dataset$country_name == "Bhutan" & world_mortality_dataset$year == 2024), ]
+}
+
 # Step 2: Define function to clean data ---------------------------------------
 
 # This combines covid-19 deaths, excess deaths, and population for a country, any name changes and week correspondences, and writes a panel data frame of the following form:
