@@ -372,24 +372,6 @@ if(exists("all_quarterly_excess_deaths") & "quarterly" %in% frequencies_used){
   }
 }
 
-# Check to ensure no country has fewer observations than in the immediately prior data update:
-obs_matrix <- data.frame(table(c(all_weekly_excess_deaths$country[
-  !is.na(all_weekly_excess_deaths$excess_deaths_per_100k) & 
-    all_weekly_excess_deaths$country == all_weekly_excess_deaths$region], all_monthly_excess_deaths$country[
-      !is.na(all_monthly_excess_deaths$excess_deaths_per_100k) &
-        all_monthly_excess_deaths$country == all_monthly_excess_deaths$region], all_quarterly_excess_deaths$country[!is.na(all_quarterly_excess_deaths$excess_deaths_per_100k) & all_quarterly_excess_deaths$country == all_quarterly_excess_deaths$region])))
-
-last_update_matrix <- read_csv("output-data/observations_per_country.csv")
-for(i in 1:nrow(last_update_matrix)){
-  if(last_update_matrix$Freq[i] > 1.1*obs_matrix$Freq[obs_matrix$Var1 == last_update_matrix$Var1[i]]){
-    if(last_update_matrix$Var1[i] != 'Peru'){
-    stop(paste0('Fewer observations than in latest update for ', last_update_matrix$Var1[i], " please inspect manually"))
-    }
-  }
-}
-write_csv(obs_matrix, "output-data/observations_per_country.csv")
-
-
 # Step 5: repeat process, using non-iso weeks ---------------------------------------
 cat('\n\n Repeating process for legacy export (i.e. of non-iso week data) \n\n')
 
@@ -490,15 +472,11 @@ if(nrow(missing) > 0){
   stop(paste0("Listed series missing from the aggregates: ", paste(missing$country, missing$frequency, collapse = ", ")))
 }
 
-# Combine each frequency and export. A frequency with no listed series gets a
-# header-only file, which downstream scripts expect.
+# Combine each frequency
+aggregates <- list()
 for(unit in c("week", "month", "quarter")){
-  path <- paste0("output-data/excess-deaths/all_", unit, "ly_excess_deaths.csv")
   frames <- data[sapply(data, function(d) colnames(d)[8] == unit)]
-  if(length(frames) == 0){
-    write.csv(read.csv(path)[0, ], file = path, fileEncoding = "UTF-8", row.names = FALSE)
-    next
-  }
+  if(length(frames) == 0) next
   aggregate_excess_deaths <- rbindlist(frames) %>%
     mutate(covid_deaths_per_100k = covid_deaths / population * 100000,
            excess_deaths_per_100k = excess_deaths / population * 100000,
@@ -509,7 +487,29 @@ for(unit in c("week", "month", "quarter")){
                       aggregate_excess_deaths$year, "_", aggregate_excess_deaths[[unit]]))) != 1){
     stop(paste0("Duplications in ", unit, "ly data, please inspect"))
   }
+  aggregates[[unit]] <- aggregate_excess_deaths
+}
 
-  write.csv(aggregate_excess_deaths, file = path, fileEncoding = "UTF-8", row.names = FALSE)
+# Check that no published series has fewer observations than in the previous update:
+obs_matrix <- data.frame(table(unlist(lapply(aggregates, function(d) d$country[!is.na(d$excess_deaths_per_100k)]))))
+last_update_matrix <- read_csv("output-data/observations_per_country.csv") %>%
+  filter(Var1 %in% published_series$country, Var1 != "Peru") %>%
+  left_join(obs_matrix %>% mutate(Var1 = as.character(Var1)), by = "Var1", suffix = c("_last", "_now")) %>%
+  mutate(Freq_now = replace_na(Freq_now, 0))
+fewer <- last_update_matrix$Var1[last_update_matrix$Freq_last > 1.1 * last_update_matrix$Freq_now]
+if(length(fewer) > 0){
+  stop(paste0("Fewer observations than in latest update for ", paste(fewer, collapse = ", "), ", please inspect manually"))
+}
+write_csv(obs_matrix, "output-data/observations_per_country.csv")
+
+# Export. A frequency with no listed series gets a header-only file, which
+# downstream scripts expect.
+for(unit in c("week", "month", "quarter")){
+  path <- paste0("output-data/excess-deaths/all_", unit, "ly_excess_deaths.csv")
+  if(is.null(aggregates[[unit]])){
+    write.csv(read.csv(path)[0, ], file = path, fileEncoding = "UTF-8", row.names = FALSE)
+    next
+  }
+  write.csv(aggregates[[unit]], file = path, fileEncoding = "UTF-8", row.names = FALSE)
 }
 
