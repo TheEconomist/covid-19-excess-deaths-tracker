@@ -42,10 +42,34 @@ countries <- c("Albania", "Andorra", "Antigua and Barbuda",
                "Turkey", "United States", "Tajikistan", "Dominican Republic", "Kuwait", "Brunei", "Barbados", "Jordan", "Maldives", "Palestine",
                "Algeria", "Saint Kitts and Nevis", 'Suriname', 'Cape Verde', 'Saint Vincent and the Grenadines', 'Bahamas', 'Isle of Man', 'United Arab Emirates', 'Bhutan', 'Namibia')
 
+# Series with fewer than three full pre-pandemic years give an unreliable
+# trend. Their trend is set from annual deaths in another source instead
+# (level and seasonality still come from the series itself).
+annual_deaths_for_trends <- read_csv("source-data/annual_deaths_for_trends.csv")
+
+get_trend_growth <- function(dat){
+  unit <- colnames(dat)[8]
+  full_years <- dat %>%
+    filter(year <= 2019) %>%
+    group_by(year) %>%
+    summarise(periods = n_distinct(.data[[unit]])) %>%
+    filter(periods >= c(week = 52, month = 12, quarter = 4)[[unit]]) %>%
+    nrow()
+  annual <- annual_deaths_for_trends %>% filter(country == dat$country[1])
+  if(nrow(annual) == 0){
+    if(full_years < 3){
+      stop(paste0(dat$country[1], " has fewer than three full pre-pandemic years; add its annual deaths to source-data/annual_deaths_for_trends.csv"))
+    }
+    return(NULL)
+  }
+  # Linear trend, as in the baseline model, relative to the mean
+  coef(lm(deaths ~ year, annual))[["year"]] / mean(annual$deaths)
+}
+
 # Step 2: define function that calculates excess deaths ---------------------------------------
 
 # Define function that calculates excess deaths
-get_excess_deaths <- function(df,expected_deaths_model,frequency="weekly",calculate=TRUE,train_model=TRUE){
+get_excess_deaths <- function(df,expected_deaths_model,frequency="weekly",calculate=TRUE,train_model=TRUE,trend_growth=NULL){
   
   # Define formulas and count number of regions
   weekly_formula <- as.formula(total_deaths_per_day ~ year + week)
@@ -78,6 +102,15 @@ get_excess_deaths <- function(df,expected_deaths_model,frequency="weekly",calcul
     expected_deaths_formula <- quarterly_formula
   } else if (frequency == "quarterly" & df_regions > 1)  {
     expected_deaths_formula <- quarterly_regional_formula
+  }
+
+  # Fix the year trend at a given annual growth rate, applied to the
+  # pre-pandemic level in deaths per day
+  if(!is.null(trend_growth)){
+    if(df_regions > 1) stop("A fixed trend is only set up for national series")
+    pre_pandemic <- df$year <= 2019
+    trend_slope <- trend_growth * mean(df$total_deaths[pre_pandemic] / df$days[pre_pandemic])
+    expected_deaths_formula <- update(expected_deaths_formula, . ~ . - year + offset(trend_slope * year))
   }
 
   # Calculate expected deaths
@@ -182,7 +215,8 @@ for(i in historical_deaths){
   # Get excess deaths, training a new model (except for South Africa, where expected deaths are provided explicitly):
   res <- get_excess_deaths(dat,
                            expected_deaths_model = NULL,
-                           frequency = dat_frequency)
+                           frequency = dat_frequency,
+                           trend_growth = get_trend_growth(dat))
   
   # Move spaces to "_" make lower case for file names:
   country <- tolower(unlist(gsub(" ", "_", country)))
@@ -402,7 +436,8 @@ for(i in historical_deaths){
   # Get excess deaths, training a new model (except for South Africa, where expected deaths are provided explicitly):
   res <- get_excess_deaths(dat,
                            expected_deaths_model = NULL,
-                           frequency = dat_frequency)
+                           frequency = dat_frequency,
+                           trend_growth = get_trend_growth(dat))
   
   # Move spaces to "_" make lower case for file names:
   country <- tolower(unlist(gsub(" ", "_", country)))
