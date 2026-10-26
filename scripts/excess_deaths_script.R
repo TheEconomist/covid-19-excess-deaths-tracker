@@ -456,6 +456,13 @@ if(anyDuplicated(listed_inputs)){
   stop(paste0("Several input files used for ", paste(unique(listed_inputs[duplicated(listed_inputs)]), collapse = ", ")))
 }
 
+# Every listed series must come from an input processed in this run, so an
+# output file left over from an earlier run cannot stand in for it
+not_processed <- setdiff(published_series$country, listed_inputs)
+if(length(not_processed) > 0){
+  stop(paste0("No input file at the listed frequency for: ", paste(not_processed, collapse = ", ")))
+}
+
 # Combine weekly deaths and calculate per 100,000 people and percentage change
 data <- lapply(setdiff(dir('output-data/alternative-exports-by-non-iso-week/excess-deaths/'),
                        c("all_monthly_excess_deaths.csv",
