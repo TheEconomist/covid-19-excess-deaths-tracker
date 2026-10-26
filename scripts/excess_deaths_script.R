@@ -15,7 +15,7 @@ countries <- c("Albania", "Andorra", "Antigua and Barbuda",
                "Argentina", "Armenia", "Aruba", 
                "Azerbaijan", "Belarus", "Belize", 
                "Bermuda", "Bolivia", "Bosnia and Herzegovina", 
-               "Botswana", "Brazil", "Costa Rica", "Cuba", 
+               "Brazil", "Costa Rica", "Cuba", 
                "Egypt", "El Salvador", "Faroe Islands", 
                "French Polynesia", "Georgia", "Gibraltar", 
                "Greenland", "Hong Kong", "Indonesia", 
@@ -301,9 +301,6 @@ if(!exists('all_monthly_excess_deaths')){
 if(!exists('all_quarterly_excess_deaths')){
   all_quarterly_excess_deaths <- read_csv("output-data/excess-deaths/all_quarterly_excess_deaths.csv")
 }
-if(!"quarterly" %in% frequencies_used){
-  all_quarterly_excess_deaths <- compare_quarterly[0, ]
-}
 
 week_comparison <- gen_comparison(data1 = all_weekly_excess_deaths,
                     data2 = compare_weekly,
@@ -338,10 +335,6 @@ if(exists("all_quarterly_excess_deaths") & "quarterly" %in% frequencies_used){
   write.csv(all_quarterly_excess_deaths,
           file = "output-data/excess-deaths/all_quarterly_excess_deaths.csv",
           fileEncoding = "UTF-8",row.names=FALSE)
-  } else {
-    write.csv(compare_quarterly[0, ],
-              file = "output-data/excess-deaths/all_quarterly_excess_deaths.csv",
-              fileEncoding = "UTF-8", row.names=FALSE)
   }
 }
 
@@ -457,25 +450,21 @@ if("quarterly" %in% frequencies_used){
 # Export weekly deaths
 if(exists("all_weekly_excess_deaths") & "weekly" %in% frequencies_used){
   write.csv(all_weekly_excess_deaths,
-            file = "output-data/alternative-exports-by-non-iso-week/excess-deaths/all_weekly_excess_deaths.csv", 
+            file = "output-data/excess-deaths/all_weekly_excess_deaths.csv", 
             fileEncoding = "UTF-8", row.names=FALSE)
 }
 
 # Export monthly deaths
 if(exists("all_monthly_excess_deaths") & "monthly" %in% frequencies_used){
   write.csv(all_monthly_excess_deaths,
-            file = "output-data/alternative-exports-by-non-iso-week/excess-deaths/all_monthly_excess_deaths.csv",
+            file = "output-data/excess-deaths/all_monthly_excess_deaths.csv",
             fileEncoding = "UTF-8", row.names=FALSE)
 }
 
 # Export quarterly deaths
 if(exists("all_quarterly_excess_deaths") & "quarterly" %in% frequencies_used){
   write.csv(all_quarterly_excess_deaths,
-            file = "output-data/alternative-exports-by-non-iso-week/excess-deaths/all_quarterly_excess_deaths.csv",
-            fileEncoding = "UTF-8", row.names=FALSE)
-} else {
-  write.csv(compare_quarterly[0, ],
-            file = "output-data/alternative-exports-by-non-iso-week/excess-deaths/all_quarterly_excess_deaths.csv",
+            file = "output-data/excess-deaths/all_quarterly_excess_deaths.csv",
             fileEncoding = "UTF-8", row.names=FALSE)
 }
 
