@@ -6,10 +6,13 @@ options(scipen=999)
 
 # Step 2: create CSV for the table ----------------------------------------
 
-# read every csv
-table_data <- bind_rows(read_csv('output-data/excess-deaths/all_weekly_excess_deaths.csv') %>% mutate(region_code = as.character(region_code)),
-                        read_csv('output-data/excess-deaths/all_monthly_excess_deaths.csv') %>% mutate(region_code = as.character(region_code)),
-                        read_csv('output-data/excess-deaths/all_quarterly_excess_deaths.csv') %>% mutate(region_code = as.character(region_code)))
+# read every csv (a frequency with no published series has a header-only file)
+table_data <- map(c('output-data/excess-deaths/all_weekly_excess_deaths.csv',
+                    'output-data/excess-deaths/all_monthly_excess_deaths.csv',
+                    'output-data/excess-deaths/all_quarterly_excess_deaths.csv'), read_csv) %>%
+  keep(~ nrow(.x) > 0) %>%
+  map(~ mutate(.x, region_code = as.character(region_code))) %>%
+  bind_rows()
 
 # we include some cities for countries that lack nationwide figures
 cities <- c('Istanbul', 'Jakarta')

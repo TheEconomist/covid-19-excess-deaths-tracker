@@ -359,27 +359,46 @@ write_csv(obs_matrix, "output-data/observations_per_country.csv")
 # Step 5: repeat process, using non-iso weeks ---------------------------------------
 cat('\n\n Repeating process for legacy export (i.e. of non-iso week data) \n\n')
 
+# The aggregate exports (all_*_excess_deaths.csv) are built from this non-ISO
+# folder. source-data/published_series.csv lists the national series they hold
+# and the frequency of each; other series are left out of the aggregates.
+published_series <- read_csv("source-data/published_series.csv")
+stopifnot(!anyDuplicated(published_series$country),
+          all(published_series$frequency %in% c("weekly", "monthly", "quarterly")))
+
 # Import data
 historical_deaths <- dir('output-data/alternative-exports-by-non-iso-week/historical-deaths')
+listed_inputs <- c()
 
 # Cycle through countries
 for(i in historical_deaths){
-  
+
   # Load data
   dat <- fread(paste0('output-data/alternative-exports-by-non-iso-week/historical-deaths/', i))
-  
+
   # Get data frequency
   dat_frequency <- paste0(colnames(dat)[8], "ly")
-  
+
   # Get country
   country <- dat$country[1]
 
   # Check that country in list of countries with data not from new country - if so, insert break:
- 
+
   if(!country %in% countries){
     stop(paste0(country, " is a new country, please inspect manually to ensure consistency."))
   }
-  
+
+  # Several input files write to the same country file, so the last one would
+  # win. For listed countries, use only the national file at the listed frequency.
+  listed_frequency <- published_series$frequency[published_series$country == country]
+  if(length(listed_frequency) == 1){
+    if(dat_frequency != listed_frequency | any(dat$country != dat$region)){
+      cat("Skipping", i, "- not the listed series for", country, "\n")
+      next
+    }
+    listed_inputs <- c(listed_inputs, country)
+  }
+
   # Get excess deaths, training a new model (except for South Africa, where expected deaths are provided explicitly):
   res <- get_excess_deaths(dat,
                            expected_deaths_model = NULL,
@@ -398,73 +417,57 @@ for(i in historical_deaths){
             fileEncoding = "UTF-8",row.names=FALSE)
 }
 
+if(anyDuplicated(listed_inputs)){
+  stop(paste0("Several input files used for ", paste(unique(listed_inputs[duplicated(listed_inputs)]), collapse = ", ")))
+}
+
 # Combine weekly deaths and calculate per 100,000 people and percentage change
-data <- lapply(setdiff(dir('output-data/alternative-exports-by-non-iso-week/excess-deaths/'), 
+data <- lapply(setdiff(dir('output-data/alternative-exports-by-non-iso-week/excess-deaths/'),
                        c("all_monthly_excess_deaths.csv",
                          "all_quarterly_excess_deaths.csv",
-                         "all_weekly_excess_deaths.csv")), 
+                         "all_weekly_excess_deaths.csv")),
                FUN = function(i){
                  temp <- read_csv(paste0('output-data/alternative-exports-by-non-iso-week/excess-deaths/', i))
                  temp$region_code <- as.character(temp$region_code)
                  temp})
 
-# Save weekly data
-if("weekly" %in% frequencies_used){
-  all_weekly_excess_deaths <- rbindlist(data[unlist(lapply(1:length(data), FUN = function(i){
-    colnames(data[[i]])[8] == "week"
-  }))])  %>%
-    mutate(covid_deaths_per_100k = covid_deaths / population * 100000,
-           excess_deaths_per_100k = excess_deaths / population * 100000,
-           excess_deaths_pct_change = (total_deaths / expected_deaths) - 1) 
-  
-  # Deduplication
-  if(max(table(with(all_weekly_excess_deaths, paste0(country, "_", region, "_", year, "_", week)))) != 1){stop("Duplications in weekly data, please inspect")}
+# Keep only the listed series, national rows only
+left_out <- setdiff(unique(unlist(lapply(data, function(d) d$country))), published_series$country)
+if(length(left_out) > 0){
+  cat("Not in published_series.csv, left out of the aggregates:", paste(left_out, collapse = ", "), "\n")
+}
+data <- lapply(data, function(d){
+  listed <- published_series$country[published_series$frequency == paste0(colnames(d)[8], "ly")]
+  d[d$country == d$region & d$country %in% listed, ]
+})
+data <- data[sapply(data, nrow) > 0]
+
+aggregated <- unique(bind_rows(lapply(data, function(d) tibble(country = d$country[1], frequency = paste0(colnames(d)[8], "ly")))))
+missing <- anti_join(published_series, aggregated, by = c("country", "frequency"))
+if(nrow(missing) > 0){
+  stop(paste0("Listed series missing from the aggregates: ", paste(missing$country, missing$frequency, collapse = ", ")))
 }
 
-# Save monthly data
-if("monthly" %in% frequencies_used){
-  all_monthly_excess_deaths <- rbindlist(data[unlist(lapply(1:length(data), FUN = function(i){
-    colnames(data[[i]])[8] == "month"
-  }))])  %>%
-    mutate(covid_deaths_per_100k = covid_deaths / population * 100000,
-           excess_deaths_per_100k = excess_deaths / population * 100000,
-           excess_deaths_pct_change = (total_deaths / expected_deaths) - 1)
-  
-  # Deduplication
-  if(max(table(with(all_monthly_excess_deaths, paste0(country, "_", region, "_", year, "_", month)))) != 1){stop("Duplications in monthly data, please inspect")}
-}
-
-# Save quarterly data
-if("quarterly" %in% frequencies_used){
-  all_quarterly_excess_deaths <- rbindlist(data[unlist(lapply(1:length(data), FUN = function(i){
-    colnames(data[[i]])[8] == "quarter"
-  }))])  %>%
+# Combine each frequency and export. A frequency with no listed series gets a
+# header-only file, which downstream scripts expect.
+for(unit in c("week", "month", "quarter")){
+  path <- paste0("output-data/excess-deaths/all_", unit, "ly_excess_deaths.csv")
+  frames <- data[sapply(data, function(d) colnames(d)[8] == unit)]
+  if(length(frames) == 0){
+    write.csv(read.csv(path)[0, ], file = path, fileEncoding = "UTF-8", row.names = FALSE)
+    next
+  }
+  aggregate_excess_deaths <- rbindlist(frames) %>%
     mutate(covid_deaths_per_100k = covid_deaths / population * 100000,
            excess_deaths_per_100k = excess_deaths / population * 100000,
            excess_deaths_pct_change = (total_deaths / expected_deaths) - 1)
-  
+
   # Deduplication
-  if(max(table(with(all_quarterly_excess_deaths, paste0(country, "_", region, "_", year, "_", quarter)))) != 1){stop("Duplications in quarterly data, please inspect")}
-}
- 
-# Export weekly deaths
-if(exists("all_weekly_excess_deaths") & "weekly" %in% frequencies_used){
-  write.csv(all_weekly_excess_deaths,
-            file = "output-data/excess-deaths/all_weekly_excess_deaths.csv", 
-            fileEncoding = "UTF-8", row.names=FALSE)
-}
+  if(max(table(paste0(aggregate_excess_deaths$country, "_", aggregate_excess_deaths$region, "_",
+                      aggregate_excess_deaths$year, "_", aggregate_excess_deaths[[unit]]))) != 1){
+    stop(paste0("Duplications in ", unit, "ly data, please inspect"))
+  }
 
-# Export monthly deaths
-if(exists("all_monthly_excess_deaths") & "monthly" %in% frequencies_used){
-  write.csv(all_monthly_excess_deaths,
-            file = "output-data/excess-deaths/all_monthly_excess_deaths.csv",
-            fileEncoding = "UTF-8", row.names=FALSE)
-}
-
-# Export quarterly deaths
-if(exists("all_quarterly_excess_deaths") & "quarterly" %in% frequencies_used){
-  write.csv(all_quarterly_excess_deaths,
-            file = "output-data/excess-deaths/all_quarterly_excess_deaths.csv",
-            fileEncoding = "UTF-8", row.names=FALSE)
+  write.csv(aggregate_excess_deaths, file = path, fileEncoding = "UTF-8", row.names = FALSE)
 }
 
