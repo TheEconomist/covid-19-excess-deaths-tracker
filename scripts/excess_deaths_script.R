@@ -322,7 +322,7 @@ compare <-        merge(data1[, c("country", "region",
 compare$diff <- abs(compare$excess_deaths.x - compare$excess_deaths.y)
 compare$diff_per_100k <- abs(compare$excess_deaths_per_100k.x - compare$excess_deaths_per_100k.y)
 
-return(compare_weekly)
+return(compare)
 }
 
 # Prepare for comparison (this makes robust to any category eventually having no observations):
