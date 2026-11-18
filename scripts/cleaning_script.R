@@ -77,6 +77,66 @@ if(any(botswana_june_2016)){
   world_mortality_dataset$deaths[botswana_june_2016] <- 1108
 }
 
+# Namibia's 2021 months are wrong in WMD although the annual total is right
+# (July is 2,767 against an official 3,749). Set them to the official counts:
+# UN Demographic Yearbook, "Deaths by month of death", Namibia 2021 (final figures,
+# source year 2024): http://data.un.org/Data.aspx?d=POP&f=tableCode%3A65%3BcountryCode%3A516
+namibia_2021 <- world_mortality_dataset$country_name == "Namibia" &
+  world_mortality_dataset$year == 2021
+if(any(namibia_2021)){
+  namibia_2021_wmd <- c(1715, 1703, 1818, 1677, 2027, 3392, 2767, 2015, 1727, 1727, 1612, 1936)
+  namibia_2021_official <- c(1579, 1527, 1587, 1593, 1840, 3577, 3749, 2019, 1622, 1627, 1571, 1826)
+  stopifnot(sum(namibia_2021) == 12,
+            all(world_mortality_dataset$time_unit[namibia_2021] == "monthly"))
+  namibia_2021_order <- order(world_mortality_dataset$time[namibia_2021])
+  namibia_2021_now <- world_mortality_dataset$deaths[namibia_2021][namibia_2021_order]
+  if(!isTRUE(all.equal(namibia_2021_now, namibia_2021_wmd)) &
+     !isTRUE(all.equal(namibia_2021_now, namibia_2021_official))){
+    stop("Namibia 2021 source months changed; reconcile with the official monthly table.")
+  }
+  world_mortality_dataset$deaths[namibia_2021][namibia_2021_order] <- namibia_2021_official
+}
+
+# Namibia's 2015-2017 counts come from an earlier extraction of the population
+# register than 2018-2021 (they equal Table 6.3 of the Vital Statistics Report 2016
+# & 2017, made before 31,264 back-captured records were added). Scale each year to
+# the later extraction, preserving the monthly distribution. The later totals are
+# read off Figure 6.2 of the Vital Statistics Report 2018-2021 (accurate to about
+# +/-150 deaths), as that report does not tabulate them.
+namibia_early_totals <- c("2015" = 19615, "2016" = 19542, "2017" = 19281)
+namibia_early_wmd <- c("2015" = 18613, "2016" = 18188, "2017" = 18441)
+for(namibia_year in names(namibia_early_totals)){
+  namibia_rows <- world_mortality_dataset$country_name == "Namibia" &
+    world_mortality_dataset$year == as.numeric(namibia_year)
+  if(any(namibia_rows)){
+    namibia_total <- sum(world_mortality_dataset$deaths[namibia_rows])
+    stopifnot(sum(namibia_rows) == 12,
+              all(world_mortality_dataset$time_unit[namibia_rows] == "monthly"))
+    if(!isTRUE(all.equal(namibia_total, namibia_early_wmd[[namibia_year]])) &
+       !isTRUE(all.equal(namibia_total, namibia_early_totals[[namibia_year]]))){
+      stop("Namibia ", namibia_year, " source total changed; reconcile the extraction before rescaling.")
+    }
+    world_mortality_dataset$deaths[namibia_rows] <-
+      world_mortality_dataset$deaths[namibia_rows] * namibia_early_totals[[namibia_year]] / namibia_total
+  }
+}
+
+# Ecuador's 2019 weeks are on INEC's provisional count (73,431 deaths in the
+# calendar year); the definitive count is 74,439 (INEC, Registro Estadistico de
+# Defunciones Generales). Scale the 2019 weeks by the ratio.
+ecuador_2019 <- world_mortality_dataset$country_name == "Ecuador" &
+  world_mortality_dataset$year == 2019
+if(any(ecuador_2019)){
+  ecuador_2019_total <- sum(world_mortality_dataset$deaths[ecuador_2019])
+  stopifnot(sum(ecuador_2019) == 52,
+            all(world_mortality_dataset$time_unit[ecuador_2019] == "weekly"))
+  if(!isTRUE(all.equal(ecuador_2019_total, 73479))){
+    stop("Ecuador 2019 source total changed; reconcile with INEC's definitive count before rescaling.")
+  }
+  world_mortality_dataset$deaths[ecuador_2019] <-
+    world_mortality_dataset$deaths[ecuador_2019] * 74439 / 73431
+}
+
 # And remove Fiji, as we only have mean counts for pre-pandemic years
 world_mortality_dataset <- world_mortality_dataset[world_mortality_dataset$country_name != 'Fiji', ]
 
