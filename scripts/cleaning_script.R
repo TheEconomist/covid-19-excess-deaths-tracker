@@ -28,12 +28,27 @@ for(missing_country in setdiff(missing_countries, colnames(global_covid_source_l
     global_covid_source_latest, temp)  
 }
 
-# Import population data from Our World In Data
-country_population_data <- fread("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv") %>% mutate(iso3c = iso_code) %>% select(population, iso3c, location) %>% unique()
-country_population_data <- rbind(country_population_data,
-                                 # https://www.insee.fr/fr/statistiques/1893198
-                                 # https://www.insee.fr/fr/statistiques/fichier/1893198/estim-pop-dep-sexe-gca-1975-2021.xlsx
-                                 data.frame("population" = 856858,
+# Import Our World In Data's main file (population; reported covid-19 deaths for territories absent from the JHU file)
+owid_full <- fread("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv")
+
+# If JHU has no column for a territory, use its OWID COVID-19 death counts, matched by ISO code.
+territories_from_owid <- c("French Guiana" = "GUF", "Guadeloupe" = "GLP", "Martinique" = "MTQ", "Mayotte" = "MYT",
+                           "New Caledonia" = "NCL", "Puerto Rico" = "PRI", "Réunion" = "REU")
+for(territory in setdiff(names(territories_from_owid), colnames(global_covid_source_latest))){
+  temp <- owid_full[owid_full$iso_code == territories_from_owid[[territory]], ]
+  if(nrow(temp) == 0 | sum(temp$new_deaths, na.rm = T) == 0){stop(paste0("No reported covid-19 deaths found for ", territory))}
+  global_covid_source_latest[[territory]] <- temp$new_deaths[match(as.Date(global_covid_source_latest$date), as.Date(temp$date))]
+}
+
+# Population data
+country_population_data <- owid_full %>% mutate(iso3c = iso_code) %>% select(population, iso3c, location) %>% unique()
+# Replace OWID's population estimate (974,062) with the average of INSEE's January 2022
+# and January 2023 counts (881,348 and 889,679). OWID spells the name "Reunion".
+# Use "Réunion" to match the mortality data.
+# https://www.insee.fr/fr/statistiques/8312303
+# https://www.insee.fr/fr/statistiques/8683056
+country_population_data <- rbind(country_population_data[country_population_data$iso3c != "REU", ],
+                                 data.frame("population" = 885514,
                                             "iso3c" = "REU",
                                             "location" = "Réunion"))
 
@@ -211,6 +226,9 @@ cleaning_to_csv <- function(country = "Albania",
                population = country_population, 
                week = time, total_deaths = deaths,
                start_date = aweek::get_date(week=week,year=year) + ifelse(country %in% week_starts_on[["C"]], -1, 0) + ifelse(country %in% week_starts_on[["D"]], -2, 0),
+               # Puerto Rico reports CDC (MMWR) weeks. From 2016 these start the day before the ISO week of the same
+               # number, as assumed above, but CDC's 2015 starts a week later than ISO's, so its dates are computed directly.
+               start_date = dplyr::if_else(country == "Puerto Rico", aweek::get_date(week=week,year=year,start=7), start_date),
                end_date = start_date + 6) %>%
         mutate(days = end_date - start_date + 1) %>%
         dplyr::select(country,region,region_code,start_date,end_date,days,year,week,population,total_deaths)
@@ -380,8 +398,9 @@ cleaning_to_csv <- function(country = "Albania",
 
 # Step 3: Clean data for countries (excepting non-sovereign entities and the United States) ---------------------------------------
 
-# The following areas in the mortality dataset are skipped as they are overseas French departments or non-sovereign countries:
-skip <- c("French Guiana", "Guadeloupe", "Martinique", "Mayotte", "Réunion", "Transnistria", "New Caledonia", "Puerto Rico", "Guernsey", "Jersey")
+# Skipped: Transnistria (not a unit of its own downstream; Moldova's series excludes it) and Guernsey and Jersey (no longer in the mortality dataset).
+# The French overseas departments, New Caledonia and Puerto Rico were skipped until November 2026; their parents' series (France, United States) do not include them.
+skip <- c("Transnistria", "Guernsey", "Jersey")
 
 # Cycle through countries:
 for(i in setdiff(unique(world_mortality_dataset$country_name), skip)){
@@ -406,7 +425,7 @@ week_start <- list(
           "Réunion",       "Romania",        "Slovakia",       "Slovenia",
           "South Korea",    "Spain",          "Sweden",        
           "Switzerland",    "Tunisia"),
-  "C" = c("Canada", "South Africa", "United States"),
+  "C" = c("Canada", "South Africa", "United States", "Puerto Rico"), # Puerto Rico: CDC weeks (Sunday to Saturday), as the United States
   "D" = c("United Kingdom"))
 
 # 2. Cycle through countries and export to separate folder:

@@ -40,7 +40,8 @@ countries <- c("Albania", "Andorra", "Antigua and Barbuda",
                "Portugal", "Romania", "Slovakia", "Slovenia", "South Africa", 
                "South Korea", "Spain", "Sweden", "Switzerland", "Tunisia", 
                "Turkey", "United States", "Tajikistan", "Dominican Republic", "Kuwait", "Brunei", "Barbados", "Jordan", "Maldives", "Palestine",
-               "Algeria", "Saint Kitts and Nevis", 'Suriname', 'Cape Verde', 'Saint Vincent and the Grenadines', 'Bahamas', 'Isle of Man', 'United Arab Emirates', 'Bhutan', 'Namibia')
+               "Algeria", "Saint Kitts and Nevis", 'Suriname', 'Cape Verde', 'Saint Vincent and the Grenadines', 'Bahamas', 'Isle of Man', 'United Arab Emirates', 'Bhutan', 'Namibia',
+               "French Guiana", "Guadeloupe", "Martinique", "Mayotte", "New Caledonia", "Puerto Rico", "Réunion")
 
 # Series with fewer than three full pre-pandemic years give an unreliable
 # trend. Their trend is set from annual deaths in another source instead
